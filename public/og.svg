@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#04060A"/><stop offset=".55" stop-color="#0A1020"/><stop offset="1" stop-color="#04060A"/>
+    </linearGradient>
+    <linearGradient id="ln" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7DF0FF"/><stop offset=".5" stop-color="#2E7BFF"/><stop offset="1" stop-color="#1140C8"/>
+    </linearGradient>
+    <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E7BFF" stop-opacity=".34"/><stop offset="1" stop-color="#0B2A7A" stop-opacity=".05"/>
+    </linearGradient>
+    <radialGradient id="halo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#1E5BFF" stop-opacity=".5"/><stop offset="1" stop-color="#1E5BFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#78A0DC" stroke-opacity=".07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <ellipse cx="820" cy="330" rx="380" ry="300" fill="url(#halo)"/>
+
+  <!-- Moto -->
+  <g transform="translate(560 150) scale(0.62)" fill="none" stroke="url(#ln)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="200" cy="372" r="104"/><circle cx="700" cy="372" r="104"/>
+    <g stroke-width="4" opacity=".9">
+      <circle cx="200" cy="372" r="66"/><circle cx="700" cy="372" r="66"/>
+      <path d="M200 306 L200 438 M143 339 L257 405 M143 405 L257 339"/>
+      <path d="M700 306 L700 438 M643 339 L757 405 M643 405 L757 339"/>
+    </g>
+    <path d="M386 334 L400 360 L208 384 L200 356 Z" fill="url(#fl)"/>
+    <path d="M376 300 L330 352" stroke-width="11"/>
+    <path d="M406 292 L500 306 L490 388 L396 372 Z" fill="url(#fl)"/>
+    <path d="M452 318 L436 344 L456 348 L442 372" stroke-width="4"/>
+    <path d="M604 260 C 588 236, 548 224, 502 226 C 458 228, 424 242, 408 264 L 406 292 C 440 306, 494 308, 536 300 C 578 292, 604 278, 604 260 Z" fill="url(#fl)"/>
+    <path d="M408 264 L 350 250 C 322 244, 292 234, 268 224 C 256 219, 244 226, 244 238 C 244 250, 256 258, 272 264 C 310 278, 356 286, 406 292 Z" fill="url(#fl)"/>
+    <path d="M622 236 L692 356" stroke-width="13"/>
+    <path d="M648 228 L716 348" stroke-width="9"/>
+    <path d="M636 222 L588 200" stroke-width="9"/>
+    <path d="M592 336 A118 118 0 0 1 716 262" stroke-width="9"/>
+    <circle cx="678" cy="224" r="27" fill="url(#fl)"/>
+  </g>
+
+  <!-- Texto -->
+  <g transform="translate(80 208)">
+    <text font-family="Impact, 'Arial Narrow', sans-serif" font-size="26" letter-spacing="6" fill="#22E0FF">MOVILIDAD ELÉCTRICA</text>
+    <text y="88" font-family="Impact, 'Arial Narrow', sans-serif" font-size="88" fill="#E6ECF4">LA CIUDAD,</text>
+    <text y="176" font-family="Impact, 'Arial Narrow', sans-serif" font-size="88" fill="#2E7BFF">SIN GASOLINA<tspan fill="#FF2233">.</tspan></text>
+    <text y="238" font-family="Arial, sans-serif" font-size="25" fill="#A5B2C3">19 modelos · Hasta 90 km de autonomía · Desde $2.400.000</text>
+  </g>
+
+  <!-- Marca -->
+  <g transform="translate(80 74)">
+    <path d="M22 2 L42 13 V35 L22 46 L2 35 V13 Z" fill="none" stroke="url(#ln)" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M11 15 V33 M11 24 H19 M19 15 V33" stroke="#E6ECF4" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+    <path d="M27 15 H30 a7.4 9 0 0 1 0 18 H27 Z" fill="none" stroke="#E6ECF4" stroke-width="3.4" stroke-linejoin="round"/>
+    <text x="60" y="34" font-family="Impact, 'Arial Narrow', sans-serif" font-size="30" letter-spacing="1.5" fill="#E6ECF4">H<tspan fill="#FF2233">&amp;</tspan>D MOTORENS</text>
+  </g>
+
+  <rect y="622" width="1200" height="8" fill="#FF2233"/>
+</svg>
