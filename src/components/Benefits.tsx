@@ -27,43 +27,40 @@ const ITEMS = [
 
 export default function Benefits() {
   return (
-    <section id="nosotros" className="relative scroll-mt-20 overflow-hidden py-20 sm:py-28">
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute left-1/2 top-1/2 h-[520px] w-[820px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.07] blur-[120px]" />
-      </div>
-
+    <section id="nosotros" className="relative scroll-mt-20 bg-paper2 py-14 sm:py-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
-        <SectionHead
-          eyebrow="Por qué H&D"
-          title={
-            <>
-              Menos gasto.
-              <br />
-              Más movimiento.
-            </>
-          }
-          sub="Cuatro razones por las que nuestros clientes cambian su moto de gasolina por una eléctrica."
-        />
+        <div className="grid gap-9 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-14">
+          <SectionHead
+            tone="light"
+            eyebrow="Por qué H&D"
+            title={
+              <>
+                Menos gasto.
+                <br />
+                Más movimiento.
+              </>
+            }
+            sub="Cuatro razones por las que nuestros clientes cambian su moto de gasolina por una eléctrica."
+          />
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {ITEMS.map(({ Icon, title, text }, i) => (
-            <Reveal as="li" key={title} delay={i * 90}>
-              <div className="group relative h-full overflow-hidden rounded-3xl border border-white/[0.08] surface p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/30 hover:shadow-lift sm:p-7">
-                <span
-                  className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue/15 blur-2xl transition-all duration-500 group-hover:bg-cyan/20"
-                  aria-hidden="true"
-                />
-                <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan/25 bg-cyan/10 text-cyan transition-transform duration-500 group-hover:scale-110">
-                  <Icon className="h-[22px] w-[22px]" />
-                </span>
-                <h3 className="relative mt-5 font-display text-xl font-bold uppercase tracking-wide text-chrome">
-                  {title}
-                </h3>
-                <p className="relative mt-2.5 text-[14.5px] leading-relaxed text-silver">{text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {ITEMS.map(({ Icon, title, text }, i) => (
+              <Reveal as="li" key={title} delay={i * 80}>
+                <div className="group flex h-full gap-3.5 rounded-2xl border border-ink/[0.07] bg-card p-4 shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-blue/25 hover:shadow-card-hover sm:p-5">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue/[0.09] text-blue-deep transition-transform duration-500 group-hover:scale-110">
+                    <Icon className="h-[21px] w-[21px]" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-[1.15rem] font-bold uppercase leading-tight tracking-wide text-ink">
+                      {title}
+                    </h3>
+                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-slate">{text}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   )

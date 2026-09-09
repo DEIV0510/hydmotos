@@ -43,7 +43,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="inicio" className="relative isolate overflow-hidden pb-16 pt-[104px] sm:pb-24 sm:pt-[128px]">
+    <section id="inicio" className="relative isolate overflow-hidden pb-12 pt-[96px] sm:pb-16 sm:pt-[118px]">
       {/* --- Capas de fondo --- */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute inset-0 bg-grid-tech bg-grid opacity-60" />
@@ -96,7 +96,7 @@ export default function Hero() {
             que <strong className="font-semibold text-chrome">no exigen SOAT ni matrícula</strong>.
           </p>
 
-          <div className="mt-9 flex animate-[hero-in_.8s_cubic-bezier(.16,1,.3,1)_.5s_both] flex-col gap-3 xs:flex-row">
+          <div className="mt-7 flex animate-[hero-in_.8s_cubic-bezier(.16,1,.3,1)_.5s_both] flex-col gap-3 xs:flex-row">
             <Button href={waLink(WA_GENERAL)} external={waLink(WA_GENERAL).startsWith('http')}>
               Cotizar ahora
             </Button>
@@ -106,7 +106,7 @@ export default function Hero() {
           </div>
 
           {/* Cifras de respaldo */}
-          <dl className="mt-11 grid animate-[hero-in_.8s_cubic-bezier(.16,1,.3,1)_.62s_both] grid-cols-3 gap-4 border-t border-white/[0.07] pt-6">
+          <dl className="mt-8 grid animate-[hero-in_.8s_cubic-bezier(.16,1,.3,1)_.62s_both] grid-cols-3 gap-4 border-t border-white/[0.07] pt-6">
             {[
               { v: `${STATS.maxRange} km`, l: 'Autonomía máx.' },
               { v: `${STATS.maxSpeed} km/h`, l: 'Velocidad máx.' },

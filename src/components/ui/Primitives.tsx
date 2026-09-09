@@ -35,28 +35,42 @@ export function SectionHead({
   title,
   sub,
   center = false,
+  tone = 'dark',
 }: {
   eyebrow: string
   title: ReactNode
   sub?: string
   center?: boolean
+  /** 'light' = sección de fondo claro */
+  tone?: 'dark' | 'light'
 }) {
+  const light = tone === 'light'
   return (
     <header className={`max-w-2xl ${center ? 'mx-auto text-center' : ''}`}>
       <Reveal>
-        <span className="eyebrow">
-          <span className="h-px w-7 bg-cyan/60" aria-hidden="true" />
+        <span
+          className={`inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-widest2 ${
+            light ? 'text-blue-deep' : 'text-cyan'
+          }`}
+        >
+          <span className={`h-px w-7 ${light ? 'bg-blue/50' : 'bg-cyan/60'}`} aria-hidden="true" />
           {eyebrow}
         </span>
       </Reveal>
       <Reveal delay={90}>
-        <h2 className="mt-4 text-[clamp(2rem,6vw,3.6rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
+        <h2
+          className={`mt-3.5 text-[clamp(1.9rem,5.4vw,3.2rem)] font-extrabold uppercase leading-[0.95] tracking-tight ${
+            light ? 'text-ink' : 'text-chrome'
+          }`}
+        >
           {title}
         </h2>
       </Reveal>
       {sub && (
         <Reveal delay={170}>
-          <p className="mt-4 text-[15px] leading-relaxed text-silver sm:text-base">{sub}</p>
+          <p className={`mt-3.5 text-[15px] leading-relaxed ${light ? 'text-slate' : 'text-silver'}`}>
+            {sub}
+          </p>
         </Reveal>
       )}
     </header>

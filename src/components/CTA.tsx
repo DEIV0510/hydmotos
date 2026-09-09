@@ -6,7 +6,7 @@ import { STATS } from '@/data/motos'
 export default function CTA() {
   const wa = waLink(WA_GENERAL)
   return (
-    <section className="relative px-5 py-10 sm:px-8 sm:py-16">
+    <section className="relative px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <div className="relative mx-auto max-w-content overflow-hidden rounded-[28px] border border-white/[0.09] bg-graphite sm:rounded-[36px]">
           {/* fondo */}
@@ -16,7 +16,7 @@ export default function CTA() {
             <div className="absolute right-0 top-0 h-[300px] w-[300px] rounded-full bg-red/10 blur-[100px]" />
           </div>
 
-          <div className="relative grid items-center gap-6 p-8 sm:p-12 lg:grid-cols-[1.05fr_1fr] lg:p-16">
+          <div className="relative grid items-center gap-6 p-7 sm:p-11 lg:grid-cols-[1.05fr_1fr] lg:p-14">
             <div>
               <span className="eyebrow">
                 <span className="h-px w-7 bg-cyan/60" aria-hidden="true" />

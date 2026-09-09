@@ -63,13 +63,13 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
 
       <div
         ref={panel}
-        className="relative flex max-h-[92dvh] w-full max-w-3xl animate-[sheet_.42s_cubic-bezier(.16,1,.3,1)_both] flex-col overflow-hidden rounded-t-3xl border border-white/[0.09] bg-graphite sm:animate-[pop_.35s_cubic-bezier(.16,1,.3,1)_both] sm:rounded-3xl"
+        className="relative flex max-h-[92dvh] w-full max-w-3xl animate-[sheet_.42s_cubic-bezier(.16,1,.3,1)_both] flex-col overflow-hidden rounded-t-3xl border border-ink/[0.09] bg-card sm:animate-[pop_.35s_cubic-bezier(.16,1,.3,1)_both] sm:rounded-3xl"
       >
         <button
           ref={closeBtn}
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-void/70 text-chrome backdrop-blur transition-colors hover:border-cyan/50 hover:text-cyan"
+          className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-ink/12 bg-card/85 text-ink backdrop-blur transition-colors hover:border-blue/50 hover:text-blue-deep"
           aria-label="Cerrar"
         >
           <IconClose className="h-5 w-5" />
@@ -79,8 +79,8 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
           {/* Cabecera visual */}
           <div className="relative">
             <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-              <div className="absolute inset-0 bg-grid-tech bg-grid opacity-30" />
-              <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/25 blur-[70px]" />
+              <div className="absolute inset-0 bg-grid-light bg-grid opacity-45" />
+              <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.13] blur-[60px]" />
             </div>
             {off > 0 && (
               <span className="absolute left-5 top-5 z-10 rounded-full bg-red-btn px-3 py-1 text-[10px] font-bold uppercase tracking-widest2 text-white shadow-glow-red">
@@ -98,45 +98,45 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
                   className="mx-auto aspect-[900/520] w-full max-w-lg object-contain"
                 />
               ) : (
-                <MotoArt variant={moto.art} className="mx-auto w-full max-w-lg" />
+                <MotoArt variant={moto.art} tone="light" className="mx-auto w-full max-w-lg" />
               )}
             </div>
           </div>
 
           <div className="px-5 pb-6 sm:px-10 sm:pb-10">
-            <p className="text-[10px] font-semibold uppercase tracking-widest2 text-cyan/70">
+            <p className="text-[10px] font-semibold uppercase tracking-widest2 text-blue-deep">
               H&amp;D Motorens
             </p>
             <h2
               id="modal-title"
-              className="mt-1 font-display text-[clamp(2rem,7vw,2.9rem)] font-extrabold uppercase leading-none text-chrome"
+              className="mt-1 font-display text-[clamp(2rem,7vw,2.9rem)] font-extrabold uppercase leading-none text-ink"
             >
               {moto.name}
             </h2>
 
             <div className="mt-4 flex flex-wrap items-end gap-x-4 gap-y-1">
-              <p className="font-display text-[clamp(1.7rem,6vw,2.4rem)] font-extrabold leading-none text-chrome [font-variant-numeric:tabular-nums]">
+              <p className="font-display text-[clamp(1.7rem,6vw,2.4rem)] font-extrabold leading-none text-ink [font-variant-numeric:tabular-nums]">
                 {formatCOP(moto.price)}
               </p>
               {moto.oldPrice && (
-                <p className="pb-1 text-base font-medium text-silver/72 line-through">
+                <p className="pb-1 text-base font-medium text-slate line-through">
                   {formatCOP(moto.oldPrice)}
                 </p>
               )}
             </div>
 
             {/* Ficha técnica completa */}
-            <h3 className="mt-8 text-[11px] font-semibold uppercase tracking-widest2 text-cyan">
+            <h3 className="mt-8 text-[11px] font-semibold uppercase tracking-widest2 text-blue-deep">
               Ficha técnica
             </h3>
             <dl className="mt-3 grid gap-x-8 sm:grid-cols-2">
               {specsOf(moto).map((s) => (
                 <div
                   key={s.label}
-                  className="flex items-baseline justify-between gap-4 border-b border-white/[0.06] py-2.5"
+                  className="flex items-baseline justify-between gap-4 border-b border-ink/[0.07] py-2.5"
                 >
-                  <dt className="text-[13px] text-silver/75">{s.label}</dt>
-                  <dd className="text-right text-[13.5px] font-semibold text-chrome">{s.value}</dd>
+                  <dt className="text-[13px] text-slate">{s.label}</dt>
+                  <dd className="text-right text-[13.5px] font-semibold text-ink">{s.value}</dd>
                 </div>
               ))}
             </dl>

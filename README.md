@@ -150,10 +150,35 @@ src/
   entregada (precio, precio anterior, autonomía, velocidad, motor, batería
   y código de imagen). 0 discrepancias.
 - **Responsive:** 360, 390, 768, 1024, 1440 y 1920 px sin scroll horizontal.
+- **Distribución:** el catálogo muestra 8 modelos y amplía de 8 en 8 con «Ver más»,
+  para que la página quepa en ~5 pantallas en vez de 10.
 - **Accesibilidad:** contraste AA verificado componiendo transparencias
   (0 fallos), foco visible por teclado, áreas táctiles ≥44 px, un solo `h1`,
   `alt` en todas las imágenes y soporte de `prefers-reduced-motion`.
 - **Build:** TypeScript sin errores. ~73 kB gzip en total, sin imágenes raster.
+
+## Fondos
+
+La página alterna en tres bloques para no ser oscura de principio a fin:
+
+1. **Oscuro** — hero y franja de ventajas (impacto de marca).
+2. **Claro** — catálogo, destacados, beneficios (`bg-paper2`, un gris algo más
+   marcado para dar ritmo), proceso y servicios. Aquí las tarjetas son blancas
+   y las siluetas se dibujan con `tone="light"`, en azul oscuro.
+3. **Oscuro** — CTA final, contacto y pie.
+
+Para cambiar el tono de un bloque basta con la clase de fondo de esa sección
+(`bg-paper` o `bg-paper2`) y pasar `tone` al `MotoArt` que contenga.
+
+Tokens de color en `tailwind.config.js`:
+
+| Token | Valor | Uso |
+|---|---|---|
+| `void` / `graphite` | `#04060A` / `#0A0E15` | fondos oscuros |
+| `paper` / `paper2` | `#F1F4F8` / `#E4E9F0` | fondos claros |
+| `card` | `#FFFFFF` | tarjetas del bloque claro |
+| `chrome` / `silver` | `#E6ECF4` / `#A5B2C3` | texto sobre oscuro |
+| `ink` / `slate` | `#080C13` / `#4A5768` | texto sobre claro |
 
 ## Notas de diseño
 

@@ -30,46 +30,47 @@ export default function Highlights() {
   }, [])
 
   return (
-    <section className="relative py-16 sm:py-20">
+    <section className="relative bg-paper pb-14 sm:pb-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <Reveal>
-          <span className="eyebrow">
-            <span className="h-px w-7 bg-cyan/60" aria-hidden="true" />
+          <span className="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-widest2 text-blue-deep">
+            <span className="h-px w-7 bg-blue/50" aria-hidden="true" />
             Lo más buscado
           </span>
         </Reveal>
 
-        <ul className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <ul className="mt-5 grid gap-3 xs:grid-cols-2 xl:grid-cols-4">
           {picks.map(({ key, Icon, label, moto, stat }, i) => {
             const wa = waLink(waForMoto(moto.name))
             return (
-              <Reveal as="li" key={key} delay={i * 80}>
+              <Reveal as="li" key={key} delay={i * 70}>
                 <a
                   href={wa}
                   target={wa.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="group relative flex h-full items-center gap-4 overflow-hidden rounded-2xl border border-white/[0.08] surface p-4 transition-all duration-500 hover:-translate-y-1 hover:border-cyan/30 hover:shadow-lift"
+                  className="group flex h-full items-center gap-3 rounded-2xl border border-ink/[0.07] bg-card p-3 shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-blue/25 hover:shadow-card-hover"
                 >
-                  <div className="relative w-24 shrink-0 sm:w-28">
+                  <div className="relative w-20 shrink-0 sm:w-24">
                     <div
-                      className="absolute inset-0 rounded-full bg-blue/20 blur-xl transition-all duration-500 group-hover:bg-cyan/25"
+                      className="absolute inset-0 rounded-full bg-blue/[0.12] blur-lg transition-all duration-500 group-hover:bg-blue/20"
                       aria-hidden="true"
                     />
                     <MotoArt
                       variant={moto.art}
+                      tone="light"
                       weight={9}
                       className="relative w-full transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
                   <div className="min-w-0">
-                    <p className="flex items-center gap-1.5 text-[9.5px] font-semibold uppercase tracking-widest2 text-cyan/80">
+                    <p className="flex items-center gap-1.5 text-[9.5px] font-semibold uppercase tracking-widest2 text-blue-deep">
                       <Icon className="h-3.5 w-3.5" />
                       {label}
                     </p>
-                    <p className="mt-1 truncate font-display text-lg font-bold uppercase leading-none text-chrome">
+                    <p className="mt-1 truncate font-display text-[17px] font-bold uppercase leading-none text-ink">
                       {moto.name}
                     </p>
-                    <p className="mt-1.5 font-display text-[15px] font-bold text-cyan [font-variant-numeric:tabular-nums]">
+                    <p className="mt-1 font-display text-[14px] font-bold text-blue-deep [font-variant-numeric:tabular-nums]">
                       {stat(moto)}
                     </p>
                   </div>

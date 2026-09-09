@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-white/[0.07] bg-graphite">
-      <div className="mx-auto max-w-content px-5 py-14 sm:px-8 sm:py-16">
+      <div className="mx-auto max-w-content px-5 py-12 sm:px-8 sm:py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Logo />
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.07] pt-7 text-[12.5px] text-silver/72 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/[0.07] pt-7 text-[12.5px] text-silver/72 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} H&amp;D MOTORENS. Todos los derechos reservados.</p>
           <p>Precios en pesos colombianos. Sujetos a cambio sin previo aviso.</p>
         </div>

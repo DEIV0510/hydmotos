@@ -9,9 +9,16 @@ export default {
         graphite: '#0A0E15',
         steel: '#121924',
         carbon: '#1B2431',
-        // Texto
+        // Superficies claras (bloque central de la página)
+        paper: '#F1F4F8',
+        paper2: '#E4E9F0',
+        card: '#FFFFFF',
+        // Texto sobre oscuro
         chrome: '#E6ECF4',
         silver: '#A5B2C3',
+        // Texto sobre claro
+        ink: '#080C13',
+        slate: '#4A5768',
         // Acentos de marca
         blue: { DEFAULT: '#1E5BFF', deep: '#0B3FCC', soft: '#4C7CFF' },
         cyan: { DEFAULT: '#22E0FF', deep: '#0FA8C8' },
@@ -29,8 +36,12 @@ export default {
         'glow-cyan': '0 0 44px -10px rgba(34,224,255,0.5)',
         'glow-red': '0 10px 34px -10px rgba(255,34,51,0.65)',
         lift: '0 30px 60px -24px rgba(0,0,0,0.85)',
+        card: '0 2px 4px -2px rgba(10,20,40,0.06), 0 12px 28px -12px rgba(10,20,40,0.14)',
+        'card-hover': '0 8px 16px -6px rgba(10,20,40,0.10), 0 28px 52px -20px rgba(16,40,90,0.28)',
       },
       backgroundImage: {
+        'grid-light':
+          'linear-gradient(rgba(20,40,80,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(20,40,80,0.055) 1px, transparent 1px)',
         'grid-tech':
           'linear-gradient(rgba(120,160,220,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(120,160,220,0.055) 1px, transparent 1px)',
       },

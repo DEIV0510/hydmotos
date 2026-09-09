@@ -24,7 +24,7 @@ export default function Contact() {
   const socials = Object.entries(SOCIAL).filter(([, v]) => v) as [string, string][]
 
   return (
-    <section id="contacto" className="relative scroll-mt-20 py-20 sm:py-28">
+    <section id="contacto" className="relative scroll-mt-20 py-14 sm:py-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <SectionHead

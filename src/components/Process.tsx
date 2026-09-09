@@ -1,4 +1,4 @@
-import { Reveal, SectionHead } from '@/components/ui/Primitives'
+import { Reveal } from '@/components/ui/Primitives'
 
 const STEPS = [
   { n: '01', t: 'Elige', d: 'Explora el catálogo y filtra por autonomía, velocidad o precio.' },
@@ -9,30 +9,38 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28">
+    <section className="relative bg-paper pt-14 sm:pt-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
-        <SectionHead
-          eyebrow="Proceso"
-          title={<>Cuatro pasos y ya</>}
-          sub="Sin vueltas ni papeleo innecesario."
-        />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
+          <Reveal>
+            <span className="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-widest2 text-blue-deep">
+              <span className="h-px w-7 bg-blue/50" aria-hidden="true" />
+              Proceso
+            </span>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="font-display text-[clamp(1.7rem,4.5vw,2.4rem)] font-extrabold uppercase leading-none tracking-tight text-ink">
+              Cuatro pasos y ya
+            </h2>
+          </Reveal>
+        </div>
 
-        <ol className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <ol className="relative mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
           {/* línea que conecta los pasos en escritorio */}
           <span
-            className="pointer-events-none absolute left-0 right-0 top-[26px] hidden h-px bg-gradient-to-r from-transparent via-cyan/30 to-transparent lg:block"
+            className="pointer-events-none absolute left-0 right-0 top-5 hidden h-px bg-gradient-to-r from-transparent via-blue/25 to-transparent lg:block"
             aria-hidden="true"
           />
           {STEPS.map((s, i) => (
-            <Reveal as="li" key={s.n} delay={i * 110} className="relative">
+            <Reveal as="li" key={s.n} delay={i * 90} className="relative">
               <div className="group">
-                <span className="relative z-10 flex h-[52px] w-[52px] items-center justify-center rounded-full border border-cyan/25 bg-graphite font-display text-lg font-bold text-cyan transition-all duration-500 group-hover:scale-110 group-hover:border-cyan/60 group-hover:shadow-glow-cyan">
+                <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-blue/25 bg-card font-display text-[15px] font-bold text-blue-deep shadow-card transition-all duration-500 group-hover:scale-110 group-hover:border-blue/60">
                   {s.n}
                 </span>
-                <h3 className="mt-5 font-display text-2xl font-bold uppercase tracking-wide text-chrome">
+                <h3 className="mt-3.5 font-display text-xl font-bold uppercase tracking-wide text-ink">
                   {s.t}
                 </h3>
-                <p className="mt-2 max-w-[26ch] text-[14.5px] leading-relaxed text-silver">{s.d}</p>
+                <p className="mt-1.5 max-w-[30ch] text-[13.5px] leading-relaxed text-slate">{s.d}</p>
               </div>
             </Reveal>
           ))}

@@ -9,7 +9,17 @@ type Props = {
   weight?: number
   /** Si se pasa, el SVG se anuncia a lectores de pantalla con este texto */
   title?: string
+  /**
+   * Fondo sobre el que se dibuja. En 'light' el trazo se oscurece para
+   * mantener el contraste sobre las secciones claras.
+   */
+  tone?: 'dark' | 'light'
 }
+
+const TONES = {
+  dark: { a: '#7DF0FF', b: '#2E7BFF', c: '#1140C8', fillTop: 0.36, fillBottom: 0.05, fill: '#2E7BFF', fill2: '#0B2A7A' },
+  light: { a: '#1E5BFF', b: '#0B3FCC', c: '#08205F', fillTop: 0.15, fillBottom: 0.02, fill: '#1E5BFF', fill2: '#08205F' },
+} as const
 
 /**
  * Ilustración vectorial de moto eléctrica, dibujada a medida para H&D MOTORENS.
@@ -20,11 +30,18 @@ type Props = {
  * se distingan de un vistazo. Al ser eléctricas no llevan escape: el bloque
  * central es la batería.
  */
-export default function MotoArt({ variant = 'street', className = '', weight = 6, title }: Props) {
+export default function MotoArt({
+  variant = 'street',
+  className = '',
+  weight = 6,
+  title,
+  tone = 'dark',
+}: Props) {
   const uid = useId().replace(/:/g, '')
   const ln = `ln-${uid}`
   const fl = `fl-${uid}`
   const P = PARTS[variant]
+  const T = TONES[tone]
 
   return (
     <svg
@@ -38,13 +55,13 @@ export default function MotoArt({ variant = 'street', className = '', weight = 6
     >
       <defs>
         <linearGradient id={ln} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#7DF0FF" />
-          <stop offset=".5" stopColor="#2E7BFF" />
-          <stop offset="1" stopColor="#1140C8" />
+          <stop offset="0" stopColor={T.a} />
+          <stop offset=".5" stopColor={T.b} />
+          <stop offset="1" stopColor={T.c} />
         </linearGradient>
         <linearGradient id={fl} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#2E7BFF" stopOpacity=".36" />
-          <stop offset="1" stopColor="#0B2A7A" stopOpacity=".05" />
+          <stop offset="0" stopColor={T.fill} stopOpacity={T.fillTop} />
+          <stop offset="1" stopColor={T.fill2} stopOpacity={T.fillBottom} />
         </linearGradient>
       </defs>
 
