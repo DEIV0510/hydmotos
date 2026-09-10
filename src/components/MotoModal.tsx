@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import MotoArt from '@/components/art/MotoArt'
-import { formatCOP, specsOf, type Moto } from '@/data/motos'
+import { formatCOP, photoOf, specsOf, type Moto } from '@/data/motos'
 import { IconClose, IconWhatsApp } from '@/components/art/Icons'
 import { waLink, waForMoto } from '@/lib/wa'
 
@@ -43,7 +43,9 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
 
   if (!moto) return null
 
-  const off = moto.oldPrice ? Math.round(((moto.oldPrice - moto.price) / moto.oldPrice) * 100) : 0
+  const off =
+    moto.oldPrice && moto.price ? Math.round(((moto.oldPrice - moto.price) / moto.oldPrice) * 100) : 0
+  const photo = photoOf(moto)
   const wa = waLink(waForMoto(moto.name))
 
   return (
@@ -88,14 +90,16 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
               </span>
             )}
             <div className="relative px-4 pt-10 sm:px-10">
-              {moto.image ? (
+              {photo ? (
                 <img
-                  src={moto.image}
+                  src={photo.src}
+                  srcSet={photo.srcSet}
+                  sizes="(max-width: 640px) 90vw, 460px"
                   alt={`Moto eléctrica ${moto.name}`}
                   width={900}
-                  height={520}
+                  height={900}
                   decoding="async"
-                  className="mx-auto aspect-[900/520] w-full max-w-lg object-contain"
+                  className="mx-auto aspect-square w-full max-w-[420px] object-contain"
                 />
               ) : (
                 <MotoArt variant={moto.art} tone="light" className="mx-auto w-full max-w-lg" />
@@ -115,15 +119,29 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
             </h2>
 
             <div className="mt-4 flex flex-wrap items-end gap-x-4 gap-y-1">
-              <p className="font-display text-[clamp(1.7rem,6vw,2.4rem)] font-extrabold leading-none text-ink [font-variant-numeric:tabular-nums]">
-                {formatCOP(moto.price)}
-              </p>
-              {moto.oldPrice && (
-                <p className="pb-1 text-base font-medium text-slate line-through">
-                  {formatCOP(moto.oldPrice)}
+              {moto.price ? (
+                <>
+                  <p className="font-display text-[clamp(1.7rem,6vw,2.4rem)] font-extrabold leading-none text-ink [font-variant-numeric:tabular-nums]">
+                    {formatCOP(moto.price)}
+                  </p>
+                  {moto.oldPrice && (
+                    <p className="pb-1 text-base font-medium text-slate line-through">
+                      {formatCOP(moto.oldPrice)}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <p className="font-display text-[clamp(1.3rem,4.5vw,1.7rem)] font-bold uppercase leading-none tracking-wide text-blue-deep">
+                  Precio por WhatsApp
                 </p>
               )}
             </div>
+
+            {moto.description && (
+              <p className="mt-5 max-w-2xl text-[14.5px] leading-relaxed text-slate">
+                {moto.description}
+              </p>
+            )}
 
             {/* Ficha técnica completa */}
             <h3 className="mt-8 text-[11px] font-semibold uppercase tracking-widest2 text-blue-deep">

@@ -32,7 +32,7 @@ export default function Catalog() {
     const out = MOTOS.filter((m) => {
       if (cat !== 'todas' && m.category !== cat) return false
       if (!q) return true
-      const haystack = `${m.name} ${m.battery} ${m.capacity} ${m.brakes} ${m.power}w ${m.range}km ${m.speed}`
+      const haystack = `${m.name} ${m.battery} ${m.capacity ?? ''} ${m.brakes ?? ''} ${m.power ?? ''}w ${m.range ?? ''}km ${m.speed ?? ''} ${(m.colors ?? []).join(' ')} ${m.description ?? ''}`
         .toLowerCase()
         .normalize('NFD')
         .replace(/\p{Diacritic}/gu, '')
@@ -41,13 +41,18 @@ export default function Catalog() {
 
     const by: Record<SortId, (a: Moto, b: Moto) => number> = {
       // ofertas primero, luego mejor relación autonomía/precio
+      // Con foto y con precio primero: son las fichas mas completas
       destacados: (a, b) =>
-        Number(Boolean(b.oldPrice)) - Number(Boolean(a.oldPrice)) || b.range / b.price - a.range / a.price,
-      'precio-asc': (a, b) => a.price - b.price,
-      'precio-desc': (a, b) => b.price - a.price,
-      autonomia: (a, b) => b.range - a.range,
-      velocidad: (a, b) => b.speed - a.speed,
-      potencia: (a, b) => b.power - a.power,
+        Number(Boolean(b.oldPrice)) - Number(Boolean(a.oldPrice)) ||
+        Number(Boolean(b.price)) - Number(Boolean(a.price)) ||
+        Number(Boolean(b.image)) - Number(Boolean(a.image)) ||
+        (b.range ?? 0) - (a.range ?? 0),
+      // Los modelos sin precio se van al final en ambos sentidos
+      'precio-asc': (a, b) => (a.price ?? Infinity) - (b.price ?? Infinity),
+      'precio-desc': (a, b) => (b.price ?? -1) - (a.price ?? -1),
+      autonomia: (a, b) => (b.range ?? 0) - (a.range ?? 0),
+      velocidad: (a, b) => (b.speed ?? 0) - (a.speed ?? 0),
+      potencia: (a, b) => (b.power ?? 0) - (a.power ?? 0),
     }
     return [...out].sort(by[sort])
   }, [cat, query, sort])
@@ -165,10 +170,10 @@ export default function Catalog() {
 
         {list.length > 0 ? (
           <>
-            <ul className="mt-4 grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <ul className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
               {visible.map((m, i) => (
                 <Reveal as="li" key={m.id} delay={Math.min(i % PAGE, 5) * 60} className="h-full">
-                  <MotoCard moto={m} onOpen={setDetail} />
+                  <MotoCard moto={m} onOpen={setDetail} priority={i < 4} />
                 </Reveal>
               ))}
             </ul>

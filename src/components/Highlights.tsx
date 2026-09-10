@@ -13,10 +13,10 @@ import { waLink, waForMoto } from '@/lib/wa'
 export default function Highlights() {
   const picks = useMemo(() => {
     const criteria = [
-      { key: 'autonomia', Icon: IconRoute, label: 'Mayor autonomía', by: (m: Moto) => m.range, stat: (m: Moto) => `${m.range} km` },
-      { key: 'velocidad', Icon: IconGauge, label: 'Mayor velocidad', by: (m: Moto) => m.speed, stat: (m: Moto) => `${m.speed} km/h` },
-      { key: 'potencia', Icon: IconBolt, label: 'Mayor potencia', by: (m: Moto) => m.power, stat: (m: Moto) => `${m.power.toLocaleString('es-CO')}W` },
-      { key: 'precio', Icon: IconWallet, label: 'Mejor precio', by: (m: Moto) => -m.price, stat: (m: Moto) => formatCOP(m.price) },
+      { key: 'autonomia', Icon: IconRoute, label: 'Mayor autonomía', by: (m: Moto) => m.range ?? 0, stat: (m: Moto) => `${m.range} km` },
+      { key: 'velocidad', Icon: IconGauge, label: 'Mayor velocidad', by: (m: Moto) => m.speed ?? 0, stat: (m: Moto) => `${m.speed} km/h` },
+      { key: 'potencia', Icon: IconBolt, label: 'Mayor potencia', by: (m: Moto) => m.power ?? 0, stat: (m: Moto) => `${(m.power ?? 0).toLocaleString('es-CO')}W` },
+      { key: 'precio', Icon: IconWallet, label: 'Mejor precio', by: (m: Moto) => -(m.price ?? Infinity), stat: (m: Moto) => (m.price ? formatCOP(m.price) : 'Consultar') },
     ]
 
     // Una moto por criterio: si ya ganó antes, cede el puesto a la siguiente

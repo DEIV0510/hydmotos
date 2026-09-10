@@ -5,172 +5,121 @@ React 18 + Vite 5 + Tailwind 3 + TypeScript.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5327
+npm run dev      # http://localhost:5327 (también accesible desde el celular, ver abajo)
 npm run build    # genera dist/
 ```
 
 ---
 
-## ⚠️ Pendiente antes de publicar
+## ⚠️ Lo único pendiente: el número de WhatsApp
 
-### 1. Número de WhatsApp
-
-Es lo único que bloquea la conversión. Abre **`src/data/site.ts`** y rellena:
+Abre **`src/data/site.ts`** y rellena:
 
 ```ts
 export const WHATSAPP_NUMBER: string = '573001234567'  // sin +, sin espacios
 ```
 
 Mientras esté vacío, todos los botones de cotizar llevan a la sección de
-contacto en lugar de abrir un chat roto. Al ponerlo, se activan de golpe:
-el botón flotante, el del navbar, el de cada tarjeta, el del detalle y los
-destacados — todos con el nombre de la moto ya escrito en el mensaje.
+contacto en lugar de abrir un chat roto. Al ponerlo se activan de golpe: el
+botón flotante, el del navbar, el de cada tarjeta, el del detalle y los
+destacados, todos con el nombre de la moto ya escrito en el mensaje.
 
-### 2. Resto de datos de contacto
+En el mismo archivo van teléfono, correo, dirección, horario y redes.
+**Las filas vacías no se muestran**, así que no queda ningún hueco en la web.
 
-En el mismo archivo. **Las filas vacías no se muestran**, así que no queda
-ningún hueco ni texto de relleno en la web:
+---
 
-```ts
-export const PHONE   = ''   // Teléfono visible
-export const EMAIL   = ''   // Correo
-export const ADDRESS = ''   // Dirección / ciudad
-export const SCHEDULE = 'Lunes a sábado · 8:00 a.m. – 6:00 p.m.'
-export const SOCIAL = { instagram: '', facebook: '', tiktok: '' }
-```
+## Ver la web desde el celular
 
-### 3. Fotos de las motos
+El servidor de desarrollo ya escucha en la red local. Con el PC y el móvil en
+el mismo WiFi:
 
-Ahora mismo cada moto se muestra con una **ilustración vectorial propia**
-(hay 5 siluetas: urbana, deportiva, trail, scooter y tricimotor).
+1. Arranca `npm run dev`. En la consola aparecen dos direcciones.
+2. Abre en el celular la que dice **Network** (algo como `http://192.168.x.x:5327`).
 
-Cuando tengas las fotos:
-
-1. Guárdalas en `public/motos/` (por ejemplo `public/motos/urban.webp`).
-2. En `src/data/motos.ts`, añade el campo `image` a esa moto:
-
-```ts
-{
-  id: 'urban',
-  name: 'URBAN',
-  imageCode: '3lopc2ghol',        // código original del recurso
-  image: '/motos/urban.webp',     // ← añadir esta línea
-  ...
-}
-```
-
-La tarjeta y el detalle cambian solos a la foto, ya con `loading="lazy"`,
-`decoding="async"` y proporción reservada para que no salte el layout.
-Formato recomendado: **WebP, 900×520, fondo transparente o oscuro**.
-
-> El campo `imageCode` de cada moto guarda el código del recurso que
-> entregaste, para que sea fácil emparejar cada archivo con su modelo.
+`http://localhost:5327` **solo funciona en el propio PC** — desde el móvil hay
+que usar la IP de red.
 
 ---
 
 ## Catálogo
 
-Todo el catálogo vive en **`src/data/motos.ts`**. Es la única fuente de
-verdad: la web entera se alimenta de ese array.
+**74 modelos.** El archivo `src/data/motos.ts` está **generado**: no lo edites a
+mano. Se construye con:
 
-Al añadir o editar una moto se actualizan **solos**, sin tocar nada más:
-
-- el grid del catálogo y el contador de modelos
-- los conteos de cada filtro por categoría
-- el buscador (nombre, batería, capacidad, frenos, potencia…)
-- los 6 ordenamientos (precio ↑↓, autonomía, velocidad, potencia, destacados)
-- los 4 destacados de "Lo más buscado"
-- las cifras del hero (autonomía máx., velocidad máx., precio desde)
-- el badge de oferta y su porcentaje de descuento
-- los datos estructurados de SEO (schema.org)
-
-### Añadir una moto
-
-Copia un objeto del array y ajusta los campos:
-
-```ts
-{
-  ...base,                    // valores comunes del catálogo
-  id: 'nuevo-modelo',         // único; si repites nombre, diferencia el id
-  name: 'NUEVO MODELO',
-  category: 'urbana',         // urbana | familiar | matricula | tricimotor
-  price: 4_000_000,
-  oldPrice: 4_500_000,        // opcional: activa el badge de OFERTA
-  imageCode: 'abc123',
-  art: 'street',              // street | sport | trail | scooter | trike
-  range: 65,                  // km   → filtros y orden
-  speed: 50,                  // km/h → filtros y orden
-  power: 350,                 // W    → filtros y orden
-  battery: 'Grafeno',
-  capacity: '2 personas',
-  brakes: 'Disco delantero y banda trasera',
-  pedals: true,
-  led: true,
-  parkingLights: true,
-}
+```bash
+npm run catalog
 ```
 
-`base` aporta los valores repetidos (espejos de lujo, llanta Sello Matic,
-ciclovía, direccionales, alarma, stop y SOAT/matrícula/tecnomecánica en `false`).
-Cualquiera se puede sobrescribir en la moto, como hacen BIWI y CLASSIC RUN.
+que cruza tres fuentes:
 
-### Nota sobre nombres repetidos
+| Fuente | Qué aporta |
+|---|---|
+| `scripts/build-catalog.mjs` → const `CLIENTE` | Los **19 modelos con precio**, tal como los enviaste |
+| `motors/Descripciones_...xlsx` | Descripción, ficha técnica y colores de 63 modelos |
+| `public/motos/` | Las fotos ya recortadas y optimizadas |
 
-Hay **dos FAMILY PLUS** distintos, con ids `family-plus-5420` y
-`family-plus-5200`. Son registros independientes a propósito: distinto
-precio, autonomía, velocidad y motor. No los fusiones.
+### Sobre los precios
+
+Solo llevan precio **los 19 modelos de tu lista**. Los otros 55 muestran
+«Precio por WhatsApp», porque el Excel trae los precios publicados por las
+tiendas proveedoras (Evobike, Mobulaa, Brenson, Biológica, NIU) y no los tuyos.
+
+Cuando tengas tus precios para el resto, añádelos en el array `CLIENTE` de
+`scripts/build-catalog.mjs` y ejecuta `npm run catalog`.
+
+> Ojo: para REINA, MOPED, TIGRE, POLAR y RYDER PRO tu precio y el del Excel no
+> coinciden. Manda el tuyo.
+
+### Añadir o cambiar una moto
+
+Edita el array `CLIENTE` en `scripts/build-catalog.mjs` y ejecuta
+`npm run catalog`. Se actualizan **solos**: el grid, el contador de modelos, los
+conteos por categoría, el buscador, los seis ordenamientos, los destacados de
+«Lo más buscado», las cifras del hero, el badge de oferta y el SEO estructurado.
+
+Hay **dos FAMILY PLUS** distintos a propósito (`family-plus-5420` y
+`family-plus-5200`): distinto precio, autonomía, velocidad y motor. No los fusiones.
 
 ---
 
-## Estructura
+## Imágenes, logo y vídeo
 
+Todo sale de la carpeta `motors/` y se procesa con scripts:
+
+```bash
+npm run photos   # elige y recorta la foto de cada modelo
+npm run logo     # recorta y exporta el logo oficial
+npm run video    # comprime el vídeo del local
 ```
-src/
-├── data/
-│   ├── motos.ts          ← catálogo (19 modelos) + derivados
-│   └── site.ts           ← WhatsApp, contacto, redes, navegación
-├── lib/wa.ts             ← enlaces y mensajes de WhatsApp
-├── hooks/
-│   ├── useReveal.ts      ← aparición al hacer scroll
-│   └── useTilt.ts        ← inclinación 3D de las tarjetas
-└── components/
-    ├── art/              ← MotoArt (5 siluetas), Logo, Icons
-    ├── ui/Primitives.tsx ← Reveal, SectionHead, Button
-    ├── LoadingScreen · Navbar · Hero · Marquee
-    ├── Catalog · MotoCard · MotoModal · Highlights
-    ├── Benefits · Process · Services · CTA
-    └── Contact · Footer · WhatsAppButton · StructuredData
-```
+
+- **Fotos** (`scripts/build-photos.mjs`): de las 838 imágenes de la carpeta se
+  elige automáticamente la mejor de cada modelo, midiendo la silueta para
+  descartar planos de detalle (manillares, tableros) y quedarse con las de
+  perfil completo. Luego se recorta el fondo con relleno desde los bordes y se
+  exporta a WebP con transparencia en dos tamaños, para que la moto quede
+  apoyada sobre el color de la tarjeta en vez de dentro de un recuadro blanco.
+  Los modelos donde la elección automática falla se corrigen en la constante
+  `MANUAL` de ese script.
+- **Logo** (`scripts/build-logo.mjs`): recorta el PNG por su canal alfa y
+  exporta el wordmark en dos anchos más el monograma del favicon.
+- **Vídeo** (`scripts/build-video.mjs`): recorta 18 s del recorrido por el local,
+  quita el audio y comprime de 20 MB a 1,5 MB. Se carga solo cuando la sección
+  entra en pantalla.
+
+Las fotos son de las tiendas proveedoras y varias llevan su marca impresa o de
+agua; se usan tal cual, por decisión tuya.
 
 ---
-
-## Verificado
-
-- **Datos:** los 19 modelos validados campo por campo contra la ficha
-  entregada (precio, precio anterior, autonomía, velocidad, motor, batería
-  y código de imagen). 0 discrepancias.
-- **Responsive:** 360, 390, 768, 1024, 1440 y 1920 px sin scroll horizontal.
-- **Distribución:** el catálogo muestra 8 modelos y amplía de 8 en 8 con «Ver más»,
-  para que la página quepa en ~5 pantallas en vez de 10.
-- **Accesibilidad:** contraste AA verificado componiendo transparencias
-  (0 fallos), foco visible por teclado, áreas táctiles ≥44 px, un solo `h1`,
-  `alt` en todas las imágenes y soporte de `prefers-reduced-motion`.
-- **Build:** TypeScript sin errores. ~73 kB gzip en total, sin imágenes raster.
 
 ## Fondos
 
 La página alterna en tres bloques para no ser oscura de principio a fin:
 
-1. **Oscuro** — hero y franja de ventajas (impacto de marca).
-2. **Claro** — catálogo, destacados, beneficios (`bg-paper2`, un gris algo más
-   marcado para dar ritmo), proceso y servicios. Aquí las tarjetas son blancas
-   y las siluetas se dibujan con `tone="light"`, en azul oscuro.
-3. **Oscuro** — CTA final, contacto y pie.
-
-Para cambiar el tono de un bloque basta con la clase de fondo de esa sección
-(`bg-paper` o `bg-paper2`) y pasar `tone` al `MotoArt` que contenga.
-
-Tokens de color en `tailwind.config.js`:
+1. **Oscuro** — hero y franja de ventajas.
+2. **Claro** — catálogo, destacados, beneficios (`bg-paper2`, algo más marcado
+   para dar ritmo), proceso y servicios.
+3. **Oscuro** — local, CTA final, contacto y pie.
 
 | Token | Valor | Uso |
 |---|---|---|
@@ -180,13 +129,47 @@ Tokens de color en `tailwind.config.js`:
 | `chrome` / `silver` | `#E6ECF4` / `#A5B2C3` | texto sobre oscuro |
 | `ink` / `slate` | `#080C13` / `#4A5768` | texto sobre claro |
 
-## Notas de diseño
+---
 
-- No había logo original: el wordmark y el monograma están en
-  `src/components/art/Logo.tsx`. Para cambiarlo, se toca solo ese archivo.
-- Las siluetas de moto son vectores propios dibujados para este proyecto
-  (`src/components/art/MotoArt.tsx`), no iconos de librería.
-- Los textos de **Servicios** (`src/components/Services.tsx`) son una
-  propuesta editable: ajústalos a lo que realmente ofrece el negocio.
-- El asterisco de "Sin SOAT ni matrícula*" se refiere a que BIWI ELÉCTRICA y
-  CLASSIC RUN sí los requieren, según la ficha entregada.
+## Estructura
+
+```
+scripts/                  ← generadores (catálogo, fotos, logo, vídeo)
+src/
+├── data/
+│   ├── motos.ts          ← GENERADO: catálogo de 74 modelos
+│   └── site.ts           ← WhatsApp, contacto, redes, navegación
+├── lib/wa.ts             ← enlaces y mensajes de WhatsApp
+├── hooks/                ← useReveal, useTilt
+└── components/
+    ├── art/              ← Logo, Icons, MotoArt (5 siluetas de respaldo)
+    ├── ui/Primitives.tsx ← Reveal, SectionHead, Button
+    ├── LoadingScreen · Navbar · Hero · Marquee
+    ├── Catalog · MotoCard · MotoModal · Highlights
+    ├── Benefits · Process · Services · Showroom · CTA
+    └── Contact · Footer · WhatsAppButton · StructuredData
+```
+
+---
+
+## Verificado
+
+- **Datos:** los 19 modelos con precio validados campo por campo contra tu ficha.
+- **Responsive:** 360, 375, 390, 768, 1024, 1440 y 1920 px sin scroll horizontal.
+  El catálogo va a 2 columnas en móvil, 3 en portátil y 4 en pantalla grande.
+- **Distribución:** 6,3 pantallas en escritorio con 74 productos; el catálogo
+  muestra 8 y amplía de 8 en 8.
+- **Accesibilidad:** contraste AA verificado componiendo transparencias, foco
+  visible por teclado, áreas táctiles ≥44 px, un solo `h1`, `alt` en todas las
+  imágenes y soporte de `prefers-reduced-motion`.
+- **Build:** TypeScript sin errores. ~99 kB gzip de código; las fotos y el vídeo
+  se cargan bajo demanda.
+
+## Notas
+
+- Las siluetas vectoriales de `MotoArt.tsx` siguen usándose en los 12 modelos
+  que aún no tienen foto y en el hero.
+- Los textos de **Servicios** (`src/components/Services.tsx`) son una propuesta
+  editable: ajústalos a lo que realmente ofreces.
+- El asterisco de «Sin SOAT ni matrícula*» se refiere a que BIWI ELÉCTRICA y
+  CLASSIC RUN sí los requieren, según tu ficha.
