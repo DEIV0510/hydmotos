@@ -17,6 +17,11 @@ import path from 'node:path'
 const SC = 'C:/Users/Lenovo/AppData/Local/Temp/claude/C--Users-Lenovo-OneDrive-Escritorio-Claude-Sesiones/ea9866f6-d0ee-407f-a1be-7a916b000800/scratchpad'
 const crudo = JSON.parse(readFileSync(path.join(SC, 'catalogo-crudo.json'), 'utf8').replace(/^﻿/, ''))
 
+/** Encuadre de cada foto: 'recorte' (transparente) o 'ambiente' (llena el marco) */
+const MODOS = existsSync('scripts/photo-modes.json')
+  ? JSON.parse(readFileSync('scripts/photo-modes.json', 'utf8'))
+  : {}
+
 const slug = (s) =>
   s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
@@ -143,7 +148,10 @@ const body = motos
     const l = [`    id: ${q(m.id)}`, `    name: ${q(m.name)}`, `    category: ${q(m.category)}`, `    art: ${q(m.art)}`]
     if (m.price) l.push(`    price: ${money(m.price)}`)
     if (m.oldPrice) l.push(`    oldPrice: ${money(m.oldPrice)}`)
-    if (m.image) l.push(`    image: ${q(m.image)}`)
+    if (m.image) {
+      l.push(`    image: ${q(m.image)}`)
+      if (MODOS[m.image] === 'ambiente') l.push(`    photoFit: ${q('cover')}`)
+    }
     if (m.description) l.push(`    description: ${q(m.description)}`)
     if (m.colors?.length) l.push(`    colors: ${JSON.stringify(m.colors)}`)
     if (m.range) l.push(`    range: ${m.range}`)

@@ -48,8 +48,8 @@ export default function Showroom() {
   return (
     <section className="relative overflow-hidden py-14 sm:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-40" />
-        <div className="absolute -left-32 top-1/2 h-[440px] w-[440px] -translate-y-1/2 rounded-full bg-blue/15 blur-[120px]" />
+        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-25" />
+        <div className="absolute -left-32 top-1/2 h-[440px] w-[440px] -translate-y-1/2 rounded-full bg-blue/8 blur-[90px]" />
       </div>
 
       <div className="mx-auto grid max-w-content items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.78fr] lg:gap-14">
@@ -106,7 +106,7 @@ export default function Showroom() {
         <Reveal delay={140}>
           <div ref={box} className="relative mx-auto w-full max-w-[300px] lg:max-w-[340px]">
             <div
-              className="absolute -inset-5 rounded-[42px] bg-blue/15 blur-3xl"
+              className="absolute -inset-5 rounded-[42px] bg-blue/8 blur-3xl"
               aria-hidden="true"
             />
             <div className="relative overflow-hidden rounded-[28px] border border-white/12 bg-graphite shadow-lift">

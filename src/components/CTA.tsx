@@ -11,9 +11,9 @@ export default function CTA() {
         <div className="relative mx-auto max-w-content overflow-hidden rounded-[28px] border border-white/[0.09] bg-graphite sm:rounded-[36px]">
           {/* fondo */}
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-            <div className="absolute inset-0 bg-grid-tech bg-grid opacity-40" />
-            <div className="absolute -left-20 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-blue/20 blur-[110px]" />
-            <div className="absolute right-0 top-0 h-[300px] w-[300px] rounded-full bg-red/10 blur-[100px]" />
+            <div className="absolute inset-0 bg-grid-tech bg-grid opacity-25" />
+            <div className="absolute -left-20 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-blue/10 blur-[80px]" />
+            <div className="absolute right-0 top-0 h-[300px] w-[300px] rounded-full bg-red/[0.06] blur-[80px]" />
           </div>
 
           <div className="relative grid items-center gap-6 p-7 sm:p-11 lg:grid-cols-[1.05fr_1fr] lg:p-14">
@@ -40,7 +40,7 @@ export default function CTA() {
 
             <div className="relative hidden lg:block">
               <div
-                className="absolute inset-0 rounded-full bg-cyan/10 blur-[70px]"
+                className="absolute inset-0 rounded-full bg-cyan/8 blur-[70px]"
                 aria-hidden="true"
               />
               <MotoArt variant="trail" className="relative w-full drop-shadow-[0_24px_40px_rgba(0,0,0,.7)]" />

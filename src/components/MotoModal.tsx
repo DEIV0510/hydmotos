@@ -81,7 +81,7 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
           {/* Cabecera visual */}
           <div className="relative">
             <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-              <div className="absolute inset-0 bg-grid-light bg-grid opacity-45" />
+              <div className="absolute inset-0 bg-grid-light bg-grid opacity-30" />
               <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.13] blur-[60px]" />
             </div>
             {off > 0 && (
@@ -99,7 +99,9 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
                   width={900}
                   height={900}
                   decoding="async"
-                  className="mx-auto aspect-square w-full max-w-[420px] object-contain"
+                  className={`mx-auto aspect-square w-full max-w-[420px] ${
+                    moto.photoFit === 'cover' ? 'rounded-2xl object-cover' : 'object-contain'
+                  }`}
                 />
               ) : (
                 <MotoArt variant={moto.art} tone="light" className="mx-auto w-full max-w-lg" />

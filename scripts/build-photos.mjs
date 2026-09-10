@@ -10,7 +10,7 @@
  *   node scripts/build-photos.mjs <picks.json> [--only=Modelo]
  */
 import sharp from 'sharp'
-import { readFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 
 const [, , picksPath, ...flags] = process.argv
@@ -31,6 +31,15 @@ const MANUAL = {
   Tigre: '01_Tigre_rojo_1.png',
   Tauro: '01_Bicicleta_Tauro_Negro.jpg',
   Tifon: '02_Tifon_roja_con_blanco_1.png',
+  // Catálogo de Biológica: son fotos de calle o parqueadero, no de estudio.
+  // Se eligen las de perfil completo y se publican como foto de ambiente.
+  'MAK3 - AIMA': '04_mak3_04b.jpg',
+  'T3 - AIMA': '03_t3-gris-1.jpg',
+  'TROGON - AIMA': '01_IMG_1284a.jpeg',
+  'A500 - AIMA': '01_moto-a500-11a.jpg',
+  'PORTIVA - MAGMA': '02_Moto-2-01.jpg',
+  'VELMPU MILAN 500WATTS 2026': '01_FrontalDiag2-MilanVerde.png',
+  'Ciclomotor Electrico Brenson Mobility': '01_MOBILITY_t-red_2.jpg',
 }
 
 export function slug(s) {
@@ -64,26 +73,49 @@ async function cutout(file, tol = 26) {
     Math.abs(data[i + 1] - ref[1]) <= tol &&
     Math.abs(data[i + 2] - ref[2]) <= tol
 
-  const seen = new Uint8Array(w * h)
-  const stack = []
-  for (let x = 0; x < w; x++) {
-    stack.push([x, 0], [x, h - 1])
+  // ¿Es fondo de estudio? Se mide cuánto varía el marco de la imagen.
+  // Un ciclorama liso apenas varía; una calle o un parqueadero tienen
+  // baldosas, coches y vegetación, y la desviación se dispara.
+  const marco = []
+  const paso = Math.max(1, Math.round(w / 60))
+  for (let x = 0; x < w; x += paso) {
+    for (const y of [0, 1, h - 2, h - 1]) marco.push((y * w + x) * 4)
   }
-  for (let y = 0; y < h; y++) {
-    stack.push([0, y], [w - 1, y])
+  for (let y = 0; y < h; y += paso) {
+    for (const x of [0, 1, w - 2, w - 1]) marco.push((y * w + x) * 4)
+  }
+  const lum = marco.map((i) => 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2])
+  const media = lum.reduce((a, b) => a + b, 0) / lum.length
+  const desv = Math.sqrt(lum.reduce((a, v) => a + (v - media) ** 2, 0) / lum.length)
+
+  const seen = new Uint8Array(w * h)
+
+  /** Relleno desde los bordes con una tolerancia dada */
+  const flood = (t) => {
+    const stack = []
+    for (let x = 0; x < w; x++) stack.push([x, 0], [x, h - 1])
+    for (let y = 0; y < h; y++) stack.push([0, y], [w - 1, y])
+    while (stack.length) {
+      const [x, y] = stack.pop()
+      if (x < 0 || y < 0 || x >= w || y >= h) continue
+      const p = y * w + x
+      if (seen[p]) continue
+      const i = p * 4
+      const cerca =
+        Math.abs(data[i] - ref[0]) <= t &&
+        Math.abs(data[i + 1] - ref[1]) <= t &&
+        Math.abs(data[i + 2] - ref[2]) <= t
+      if (!cerca) continue
+      seen[p] = 1
+      data[i + 3] = 0
+      stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1])
+    }
   }
 
-  while (stack.length) {
-    const [x, y] = stack.pop()
-    if (x < 0 || y < 0 || x >= w || y >= h) continue
-    const p = y * w + x
-    if (seen[p]) continue
-    const i = p * 4
-    if (!near(i)) continue
-    seen[p] = 1
-    data[i + 3] = 0
-    stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1])
-  }
+  // Dos pasadas: la segunda, más tolerante, se lleva los degradados suaves
+  // que dejaban una mancha clara pegada al vehículo.
+  flood(tol)
+  flood(tol + 20)
 
   // Suaviza el borde: los píxeles opacos junto a uno recortado se atenúan
   for (let y = 1; y < h - 1; y++) {
@@ -97,7 +129,17 @@ async function cutout(file, tol = 26) {
     }
   }
 
-  return sharp(data, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer()
+  let recortado = 0
+  for (let p = 0; p < w * h; p++) recortado += seen[p]
+  const ratio = recortado / (w * h)
+
+  // Solo se recorta cuando el marco es liso (estudio) Y el relleno se llevó
+  // una parte razonable. Si falla cualquiera de las dos, la foto se publica
+  // como imagen de ambiente, llenando el marco de la tarjeta.
+  const esEstudio = desv < 26 && ratio >= 0.25
+
+  const png = await sharp(data, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer()
+  return { png, esEstudio, desv: Math.round(desv), ratio: +ratio.toFixed(2) }
 }
 
 const picks = JSON.parse(readFileSync(picksPath, 'utf8').replace(/^﻿/, ''))
@@ -113,37 +155,42 @@ for (const [model, info] of Object.entries(picks)) {
   const id = slug(model)
 
   try {
-    const cut = await cutout(src)
-    // Cada paso se materializa a PNG: sharp falla al componer si la entrada
-    // llega como una tubería sin resolver, aunque las medidas encajen.
-    const trimmed = await sharp(cut).trim({ threshold: 6 }).png().toBuffer()
-    const before = await sharp(trimmed).metadata()
+    const { png, esEstudio, desv, ratio } = await cutout(src)
 
-    const inner = await sharp(trimmed)
-      .resize(W - 70, H - 70, { fit: 'inside' })
-      .png()
-      .toBuffer()
-    const after = await sharp(inner).metadata()
+    if (esEstudio) {
+      // Foto de catálogo: el vehículo va recortado y flotando sobre la tarjeta.
+      // Cada paso se materializa a PNG porque sharp falla al componer una
+      // tubería sin resolver, aunque las medidas encajen.
+      const trimmed = await sharp(png).trim({ threshold: 6 }).png().toBuffer()
+      const inner = await sharp(trimmed).resize(W - 70, H - 70, { fit: 'inside' }).png().toBuffer()
+      const base = await sharp({
+        create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+      })
+        .composite([{ input: inner, gravity: 'center' }])
+        .png()
+        .toBuffer()
 
-    const base = await sharp({
-      create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
-    })
-      .composite([{ input: inner, gravity: 'center' }])
-      .png()
-      .toBuffer()
-
-    for (const { w, suf } of SIZES) {
-      await sharp(base)
-        .resize({ width: w })
-        .webp({ quality: 86, alphaQuality: 90 })
-        .toFile(path.join(OUT, `${id}${suf}.webp`))
+      for (const { w, suf } of SIZES) {
+        await sharp(base).resize({ width: w }).webp({ quality: 86, alphaQuality: 90 }).toFile(path.join(OUT, `${id}${suf}.webp`))
+      }
+    } else {
+      // Foto de ambiente (calle, parqueadero): recortarla dejaría un recuadro
+      // con trozos de fondo, así que se encuadra y se sirve opaca, llenando
+      // el marco de la tarjeta.
+      for (const { w, suf } of SIZES) {
+        await sharp(src)
+          .resize(w, Math.round((w * H) / W), { fit: 'cover', position: 'attention' })
+          .webp({ quality: 82 })
+          .toFile(path.join(OUT, `${id}${suf}.webp`))
+      }
     }
 
-    report.push({ model, id, src: chosen, recorte: `${before.width}x${before.height}`, encaje: `${after.width}x${after.height}` })
+    report.push({ model, id, src: chosen, modo: esEstudio ? 'recorte' : 'ambiente', desv, ratio })
   } catch (e) {
     report.push({ model, id, src: chosen, error: String(e.message).slice(0, 90) })
   }
 }
 
+writeFileSync('scripts/photo-modes.json', JSON.stringify(Object.fromEntries(report.filter((r) => !r.error).map((r) => [r.id, r.modo])), null, 1))
 console.log(JSON.stringify(report, null, 1))
 console.error(`procesadas ${report.filter((r) => !r.error).length} / ${report.length}`)

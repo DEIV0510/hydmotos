@@ -52,7 +52,7 @@ export default function Highlights() {
                 >
                   <div className="relative w-20 shrink-0 sm:w-24">
                     <div
-                      className="absolute inset-0 rounded-full bg-blue/[0.12] blur-lg transition-all duration-500 group-hover:bg-blue/20"
+                      className="absolute inset-0 rounded-full bg-blue/[0.12] blur-lg transition-all duration-500 group-hover:bg-blue/10"
                       aria-hidden="true"
                     />
                     <MotoArt

@@ -37,8 +37,8 @@ export default function MotoCard({
       {/* Escenario del vehículo */}
       <div className="relative aspect-[4/3] overflow-hidden bg-paper2/70">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute inset-0 bg-grid-light bg-grid opacity-45" />
-          <div className="absolute left-1/2 top-[58%] h-36 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.13] blur-[46px] transition-all duration-700 group-hover:bg-blue/20" />
+          <div className="absolute inset-0 bg-grid-light bg-grid opacity-30" />
+          <div className="absolute left-1/2 top-[58%] h-36 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.13] blur-[46px] transition-all duration-700 group-hover:bg-blue/10" />
         </div>
 
         <div className="absolute left-3 top-3 z-10 flex flex-col items-start gap-1.5">
@@ -54,7 +54,11 @@ export default function MotoCard({
           )}
         </div>
 
-        <div className="relative flex h-full items-center justify-center p-3 [transform:translateZ(30px)]">
+        <div
+          className={`relative flex h-full items-center justify-center [transform:translateZ(30px)] ${
+            moto.photoFit === 'cover' ? '' : 'p-3'
+          }`}
+        >
           {photo ? (
             <img
               src={photo.src}
@@ -66,7 +70,9 @@ export default function MotoCard({
               loading={priority ? 'eager' : 'lazy'}
               fetchPriority={priority ? 'high' : 'auto'}
               decoding="async"
-              className="h-full w-full object-contain transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.07]"
+              className={`h-full w-full transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.07] ${
+                moto.photoFit === 'cover' ? 'object-cover' : 'object-contain'
+              }`}
             />
           ) : (
             <MotoArt

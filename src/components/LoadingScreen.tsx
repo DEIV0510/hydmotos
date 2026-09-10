@@ -64,9 +64,9 @@ export default function LoadingScreen() {
       aria-live="polite"
       aria-label="Cargando H&D MOTORENS"
     >
-      <div className="pointer-events-none absolute inset-0 bg-grid-tech bg-grid opacity-40" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 bg-grid-tech bg-grid opacity-25" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/20 blur-[110px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/10 blur-[80px]"
         aria-hidden="true"
       />
 

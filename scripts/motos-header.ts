@@ -25,6 +25,12 @@ export type Moto = {
 
   /** Nombre del archivo en public/motos (sin extensión) */
   image?: string
+  /**
+   * Cómo encuadrar la foto. Por omisión va recortada sobre el fondo de la
+   * tarjeta; 'cover' es para las fotos de ambiente (calle, parqueadero),
+   * que llenan el marco porque no se pueden recortar.
+   */
+  photoFit?: 'cover'
   description?: string
   colors?: string[]
 

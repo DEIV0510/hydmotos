@@ -17,8 +17,10 @@ type Props = {
 }
 
 const TONES = {
-  dark: { a: '#7DF0FF', b: '#2E7BFF', c: '#1140C8', fillTop: 0.36, fillBottom: 0.05, fill: '#2E7BFF', fill2: '#0B2A7A' },
-  light: { a: '#1E5BFF', b: '#0B3FCC', c: '#08205F', fillTop: 0.15, fillBottom: 0.02, fill: '#1E5BFF', fill2: '#08205F' },
+  dark: { a: '#B9C4D2', b: '#8A97A9', c: '#5E6A7D', fillTop: 0.2, fillBottom: 0.03, fill: '#8A97A9', fill2: '#39434F' },
+  // Gris neutro: junto a las fotos reales, un trazo de color se leía como
+  // un dibujo fuera de sitio. Así queda como marcador discreto de 'sin foto'.
+  light: { a: '#9AA4B2', b: '#7C879A', c: '#5E6A7D', fillTop: 0.1, fillBottom: 0.02, fill: '#8A94A6', fill2: '#5E6A7D' },
 } as const
 
 /**
