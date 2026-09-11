@@ -62,6 +62,9 @@ export type Moto = {
   tecnomecanica: boolean
   reverse?: boolean
 
+  /** Tienda de origen del material (Evobike, Biologica, Brenson, Mobulaa, NIU) */
+  brand?: string
+
   /** De dónde salieron los datos: 'cliente' tiene precio propio verificado */
   source: 'cliente' | 'excel'
 }

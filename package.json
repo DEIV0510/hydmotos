@@ -17,7 +17,9 @@
     "assets": "npm run assets:excel && npm run assets:pick && npm run assets:photos && npm run catalog",
     "audit": "node scripts/audit.mjs",
     "audit:missing": "node scripts/match-missing.mjs",
-    "audit:sheet": "node scripts/review-photos.mjs"
+    "audit:sheet": "node scripts/review-photos.mjs",
+    "audit:photos": "node scripts/audit-photos.mjs",
+    "audit:sheet-of": "node scripts/sheet-of.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

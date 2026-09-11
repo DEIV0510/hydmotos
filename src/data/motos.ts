@@ -62,6 +62,9 @@ export type Moto = {
   tecnomecanica: boolean
   reverse?: boolean
 
+  /** Tienda de origen del material (Evobike, Biologica, Brenson, Mobulaa, NIU) */
+  brand?: string
+
   /** De dónde salieron los datos: 'cliente' tiene precio propio verificado */
   source: 'cliente' | 'excel'
 }
@@ -96,6 +99,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -153,6 +157,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -184,6 +189,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -241,6 +247,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -380,6 +387,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -411,6 +419,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -442,6 +451,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "cliente",
   },
   {
@@ -578,6 +588,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "cliente",
   },
   {
@@ -633,6 +644,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -662,6 +674,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -690,6 +703,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -719,6 +733,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -748,6 +763,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -777,6 +793,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -806,6 +823,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -835,6 +853,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -864,6 +883,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -893,6 +913,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -922,6 +943,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -951,6 +973,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -980,6 +1003,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1009,6 +1033,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1038,6 +1063,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1067,6 +1093,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1096,6 +1123,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1125,6 +1153,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1155,6 +1184,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1185,6 +1215,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Evobike",
     source: "excel",
   },
   {
@@ -1213,6 +1244,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1242,6 +1274,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1271,6 +1304,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1299,6 +1333,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1328,6 +1363,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1356,6 +1392,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1385,6 +1422,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1415,6 +1453,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1443,6 +1482,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1472,6 +1512,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1501,6 +1542,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1531,6 +1573,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1559,6 +1602,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1588,6 +1632,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1616,6 +1661,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1644,6 +1690,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1672,6 +1719,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Mobulaa",
     source: "excel",
   },
   {
@@ -1696,6 +1744,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1719,6 +1768,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1741,6 +1791,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1763,6 +1814,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1786,6 +1838,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1808,6 +1861,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1830,6 +1884,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Brenson",
     source: "excel",
   },
   {
@@ -1857,6 +1912,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -1886,6 +1942,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -1914,6 +1971,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -1941,6 +1999,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -1970,6 +2029,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -2000,6 +2060,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -2028,6 +2089,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -2057,6 +2119,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -2085,6 +2148,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -2115,6 +2179,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "Biologica",
     source: "excel",
   },
   {
@@ -2144,6 +2209,7 @@ export const MOTOS: Moto[] = [
     soat: false,
     matricula: false,
     tecnomecanica: false,
+    brand: "NIU",
     source: "excel",
   },
 ]

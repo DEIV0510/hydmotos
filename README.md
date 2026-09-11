@@ -185,6 +185,36 @@ src/
 
 ---
 
+## Estado de las fotos
+
+```bash
+npm run audit:photos          # lista qué falta y qué conviene reemplazar
+npm run audit:sheet-of out.jpg <id> <id>   # hoja de contacto de esos modelos
+```
+
+**9 modelos tienen foto mejorable** (ninguno lleva precio propio, así que no
+son urgentes):
+
+| Modelo | Proveedor | Problema |
+|---|---|---|
+| T3 – AIMA | Biológica | marca de agua + foto de calle |
+| MAK3 – AIMA | Biológica | marca de agua + foto de parqueadero |
+| A500 – AIMA | Biológica | marca de agua + es un render, no una foto |
+| TROGON – AIMA | Biológica | foto del local, con luces de colores |
+| FISHER 350 – Electrika | Biológica | foto del local |
+| DAKOTA PRO | Brenson | la foto muestra tres motos a la vez |
+| VERONA | Brenson | la foto muestra cuatro motos a la vez |
+| VERA 2026 | Brenson | varias motos y piezas sueltas, muy pequeñas |
+| GIRL 3 | Mobulaa | el recorte del fondo dejó una mancha |
+
+La clasificación está **revisada a ojo** y anotada en `scripts/audit-photos.mjs`.
+Se intentó detectar la marca de agua midiendo el contraste de la banda central,
+pero daba 50 falsos positivos de 63: confundía el borde del vehículo con el
+texto sobreimpreso.
+
+Para sustituir cualquiera, deja el archivo en `public/motos/<id>.webp` y
+`<id>@2x.webp` (900×900, fondo transparente).
+
 ## Modelos que aún necesitan foto
 
 Once de los 74 no tienen foto y se muestran con una silueta gris. Son justo

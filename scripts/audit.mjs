@@ -37,6 +37,7 @@ export function leerCatalogo() {
         range: campo('range'),
         speed: campo('speed'),
         power: campo('power'),
+        brand: campo('brand'),
         source: campo('source'),
       }
     })
