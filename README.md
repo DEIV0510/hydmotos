@@ -1,6 +1,6 @@
 # H&D MOTORENS
 
-Web de catálogo para **H&D MOTORENS** — motos eléctricas.
+Web de catálogo para **H&D MOTORENS** — 74 motos eléctricas y 135 repuestos.
 React 18 + Vite 5 + Tailwind 3 + TypeScript.
 
 ```bash
@@ -21,8 +21,9 @@ export const WHATSAPP_NUMBER: string = '573001234567'  // sin +, sin espacios
 
 Mientras esté vacío, todos los botones de cotizar llevan a la sección de
 contacto en lugar de abrir un chat roto. Al ponerlo se activan de golpe: el
-botón flotante, el del navbar, el de cada tarjeta, el del detalle y los
-destacados, todos con el nombre de la moto ya escrito en el mensaje.
+botón flotante, el del navbar, el de cada tarjeta, el del detalle, los
+destacados y los «Pedir» de repuestos, cada uno con el nombre de la moto —o el
+del repuesto y su referencia— ya escrito en el mensaje.
 
 En el mismo archivo van teléfono, correo, dirección, horario y redes.
 **Las filas vacías no se muestran**, así que no queda ningún hueco en la web.
@@ -164,15 +165,52 @@ La página alterna en tres bloques para no ser oscura de principio a fin:
 
 ---
 
+## Repuestos
+
+La sección `#repuestos` lleva **135 referencias reales** del Excel
+`Repuestos_Bicyrekkord.xlsx`: nombre, categoría, referencia, precio y
+descripción tal como vienen del proveedor. Todas tienen precio; a diferencia de
+las motos, aquí sí se muestran porque el Excel los trae completos.
+
+```bash
+npm run parts:excel    # Excel → scripts/data/repuestos-excel.json
+npm run parts:photos   # saca las fotos del PDF → public/repuestos/
+npm run parts          # genera src/data/repuestos.ts
+npm run audit:parts    # resumen; --sinfoto lista las que faltan
+```
+
+Las fotos salen de `Catalogo_Bicyrekkord_Repuestos.pdf`, que las lleva
+incrustadas. El catálogo abre cada producto con una página de ficha —nombre,
+referencia y precio— y detrás coloca una o varias páginas solo con fotos, así
+que el extractor no mira página a página: arrastra el producto activo y se
+queda con la imagen más grande que aparezca hasta la ficha siguiente. Sin eso,
+los productos cuya ficha no lleva imagen encima (los controladores VOTOL, los
+cargadores de litio, el conjunto impermeable) se quedaban sin foto teniéndola.
+
+**134 de 135 tienen foto.** La única que no es «Motor 500W-48V/60V, Rin 10´»:
+el catálogo del proveedor no trae ninguna imagen para ese motor, así que se
+muestra con el icono de su categoría en vez de con la foto de otro motor.
+
+El orden del array intercala categorías —una pieza de cada una por ronda— para
+que la primera pantalla no sean ocho aceleradores casi iguales. Al filtrar por
+categoría se respeta el orden del proveedor.
+
+Las fotos llevan la marca de agua del proveedor, igual que las de las motos.
+
+---
+
 ## Estructura
 
 ```
-scripts/                  ← generadores (catálogo, fotos, logo, vídeo)
+scripts/                  ← generadores (catálogo, repuestos, fotos, logo, vídeo)
 src/
 ├── data/
 │   ├── motos.ts          ← GENERADO: catálogo de 74 modelos
+│   ├── repuestos.ts      ← GENERADO: 135 repuestos
 │   └── site.ts           ← WhatsApp, contacto, redes, navegación
-├── lib/wa.ts             ← enlaces y mensajes de WhatsApp
+├── lib/
+│   ├── wa.ts             ← enlaces y mensajes de WhatsApp
+│   └── img.ts            ← fetchPriority sin el aviso de React 18
 ├── hooks/                ← useReveal, useTilt
 └── components/
     ├── art/              ← Logo, Icons, MotoArt (5 siluetas de respaldo)
@@ -180,6 +218,7 @@ src/
     ├── LoadingScreen · Navbar · Hero · Marquee
     ├── Catalog · MotoCard · MotoModal · Highlights
     ├── Benefits · Process · Services · Showroom · CTA
+    ├── Parts · PartModal
     └── Contact · Footer · WhatsAppButton · StructuredData
 ```
 
@@ -234,15 +273,18 @@ Para añadirlas, basta con dejar el archivo en `public/motos/<id>.webp`
 ## Verificado
 
 - **Datos:** los 19 modelos con precio validados campo por campo contra tu ficha.
+  Los 135 repuestos salen del Excel sin tocar precios ni nombres.
 - **Responsive:** 360, 375, 390, 768, 1024, 1440 y 1920 px sin scroll horizontal.
   El catálogo va a 2 columnas en móvil, 3 en portátil y 4 en pantalla grande.
-- **Distribución:** 6,3 pantallas en escritorio con 74 productos; el catálogo
-  muestra 8 y amplía de 8 en 8.
+- **Repuestos:** las 135 tarjetas cargan sin una sola imagen rota; el buscador
+  encuentra por nombre, por referencia y sin tildes; el filtro por categoría,
+  el «Ver más» hasta el final, el estado de «Sin resultados» y la ficha con
+  `Esc` y foco atrapado, todos probados en el navegador.
 - **Accesibilidad:** contraste AA verificado componiendo transparencias, foco
   visible por teclado, áreas táctiles ≥44 px, un solo `h1`, `alt` en todas las
   imágenes y soporte de `prefers-reduced-motion`.
-- **Build:** TypeScript sin errores. ~99 kB gzip de código; las fotos y el vídeo
-  se cargan bajo demanda.
+- **Build:** TypeScript sin errores, consola del navegador limpia. ~118 kB gzip
+  de código; las fotos y el vídeo se cargan bajo demanda.
 
 ## Notas
 

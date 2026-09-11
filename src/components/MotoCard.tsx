@@ -3,6 +3,7 @@ import { useTilt } from '@/hooks/useTilt'
 import { formatCOP, photoOf, type Moto } from '@/data/motos'
 import { IconBattery, IconGauge, IconRoute, IconArrow } from '@/components/art/Icons'
 import { waLink, waForMoto } from '@/lib/wa'
+import { prioridad } from '@/lib/img'
 
 export default function MotoCard({
   moto,
@@ -68,7 +69,7 @@ export default function MotoCard({
               width={450}
               height={450}
               loading={priority ? 'eager' : 'lazy'}
-              fetchPriority={priority ? 'high' : 'auto'}
+              {...prioridad(priority ? 'high' : 'auto')}
               decoding="async"
               className={`h-full w-full transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.07] ${
                 moto.photoFit === 'cover' ? 'object-cover' : 'object-contain'

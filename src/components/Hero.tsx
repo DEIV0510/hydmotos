@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Primitives'
 import { STATS, formatCOP, MOTOS, photoOf } from '@/data/motos'
 import { waLink, WA_GENERAL } from '@/lib/wa'
+import { prioridad } from '@/lib/img'
 
 /**
  * Portada.
@@ -87,7 +88,7 @@ export default function Hero() {
               width={900}
               height={900}
               // Es la imagen principal de la portada: se carga la primera
-              fetchPriority="high"
+              {...prioridad('high')}
               decoding="async"
               alt={`Moto eléctrica ${moto.name} de H&D MOTORENS`}
               className="relative z-10 mx-auto w-full max-w-[560px] object-contain drop-shadow-[0_36px_36px_rgba(0,0,0,0.55)]"

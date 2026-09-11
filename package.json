@@ -19,7 +19,11 @@
     "audit:missing": "node scripts/match-missing.mjs",
     "audit:sheet": "node scripts/review-photos.mjs",
     "audit:photos": "node scripts/audit-photos.mjs",
-    "audit:sheet-of": "node scripts/sheet-of.mjs"
+    "audit:sheet-of": "node scripts/sheet-of.mjs",
+    "parts:excel": "node scripts/parse-parts-xlsx.mjs",
+    "parts:photos": "node scripts/extract-parts-photos.mjs",
+    "parts": "node scripts/build-parts.mjs",
+    "audit:parts": "node scripts/audit-parts.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -30,6 +34,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
+    "pdfjs-dist": "^6.3.289",
     "postcss": "^8.4.47",
     "sharp": "^0.35.4",
     "tailwindcss": "^3.4.13",
