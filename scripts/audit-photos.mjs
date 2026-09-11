@@ -51,6 +51,33 @@ const correctas = catalogo.filter((m) => m.image && !motivo(m.image))
 
 const precio = (m) => (m.price ? '$' + m.price.toLocaleString('es-CO') : 'sin precio')
 
+/* --- Lista única, ordenada por urgencia --- */
+if (process.argv.includes('--lista')) {
+  const pendientes = [
+    ...sinFoto.map((m) => ({ ...m, que: 'SIN FOTO' })),
+    ...mejorables.map((m) => ({ ...m, que: motivo(m.image).toUpperCase() })),
+  ].sort(
+    (a, b) =>
+      // Primero los que tienen precio propio (son los que se venden),
+      // y dentro de cada grupo, el más caro arriba.
+      Number(Boolean(b.price)) - Number(Boolean(a.price)) || (b.price ?? 0) - (a.price ?? 0),
+  )
+
+  console.log(`\nFOTOS PENDIENTES — ${pendientes.length} de ${catalogo.length} modelos\n`)
+  console.log(`  #   MODELO                          PRECIO          PROVEEDOR    PROBLEMA`)
+  console.log(`  ${'─'.repeat(94)}`)
+  for (const [i, m] of pendientes.entries()) {
+    console.log(
+      `  ${String(i + 1).padStart(2)}  ${m.name.padEnd(30)}  ${precio(m).padStart(12)}  ` +
+        `${(m.brand || '—').padEnd(11)}  ${m.que}`,
+    )
+  }
+  console.log(
+    `\n  Con precio tuyo: ${pendientes.filter((m) => m.price).length}  ·  Sin precio: ${pendientes.filter((m) => !m.price).length}`,
+  )
+  process.exit(0)
+}
+
 console.log(`\n════ 1. SIN FOTO — ${sinFoto.length} modelos (muestran silueta gris) ════\n`)
 for (const m of sinFoto) {
   console.log(`  ${m.name.padEnd(26)} ${precio(m).padStart(12)}`)

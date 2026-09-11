@@ -46,5 +46,6 @@ export const NAV = [
   { id: 'motos', label: 'Motos' },
   { id: 'nosotros', label: 'Nosotros' },
   { id: 'servicios', label: 'Servicios' },
+  { id: 'repuestos', label: 'Repuestos' },
   { id: 'contacto', label: 'Contacto' },
 ]

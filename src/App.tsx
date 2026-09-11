@@ -7,6 +7,7 @@ import Highlights from '@/components/Highlights'
 import Benefits from '@/components/Benefits'
 import Process from '@/components/Process'
 import Services from '@/components/Services'
+import Parts from '@/components/Parts'
 import Showroom from '@/components/Showroom'
 import CTA from '@/components/CTA'
 import Contact from '@/components/Contact'
@@ -28,6 +29,7 @@ export default function App() {
         <Benefits />
         <Process />
         <Services />
+        <Parts />
         <Showroom />
         <CTA />
         <Contact />

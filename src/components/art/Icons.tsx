@@ -74,6 +74,55 @@ export const IconTools = ({ className }: P) => (
   </svg>
 )
 
+export const IconPlug = ({ className }: P) => (
+  <svg {...S} className={className}>
+    <path d="M9 3v5M15 3v5" />
+    <path d="M6.5 8h11v3a5.5 5.5 0 0 1-11 0V8Z" />
+    <path d="M12 16.5V21" />
+  </svg>
+)
+
+export const IconTire = ({ className }: P) => (
+  <svg {...S} className={className}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="3.5" />
+    <path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21" />
+  </svg>
+)
+
+export const IconBrake = ({ className }: P) => (
+  <svg {...S} className={className}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="2.5" />
+    <path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3" />
+    <path d="M17.5 5.5 6.5 18.5" strokeOpacity=".45" />
+  </svg>
+)
+
+export const IconShock = ({ className }: P) => (
+  <svg {...S} className={className}>
+    <path d="M12 2v4M12 18v4" />
+    <path d="M8.5 6h7M8.5 18h7" />
+    <path d="M15.5 8 8.5 10l7 2-7 2 7 2" />
+  </svg>
+)
+
+export const IconLight = ({ className }: P) => (
+  <svg {...S} className={className}>
+    <path d="M4 8.5a5.5 5.5 0 0 1 5.5-5.5h1a5.5 5.5 0 0 1 0 11h-1A5.5 5.5 0 0 1 4 8.5Z" />
+    <path d="M18.5 5.5 22 4M18.5 8.5H22M18.5 11.5 22 13" />
+    <path d="M7 19h8" />
+  </svg>
+)
+
+export const IconDash = ({ className }: P) => (
+  <svg {...S} className={className}>
+    <rect x="2.5" y="5" width="19" height="12" rx="2.5" />
+    <path d="M6.5 9h5M6.5 13h8" />
+    <circle cx="17.5" cy="9.5" r="1.2" />
+  </svg>
+)
+
 export const IconSearch = ({ className }: P) => (
   <svg {...S} className={className}>
     <circle cx="11" cy="11" r="7" />
