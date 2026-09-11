@@ -14,6 +14,13 @@
  */
 import { leerCatalogo } from './audit.mjs'
 
+/*
+ * Nota: t3-aima, mak3-aima, a500-aima, trogon-aima y portiva-magma ya NO se
+ * publican —el cliente pidió quitarlas el 2026-09-11, ver DESCARTADAS en
+ * build-photos.mjs—, así que salen en la lista 1 y no en la 2. Se dejan
+ * clasificadas aquí por si algún día vuelven.
+ */
+
 /** Fotos con la dirección de la tienda de origen impresa encima */
 const MARCA_DE_AGUA = new Set(['t3-aima', 'mak3-aima', 'a500-aima'])
 
@@ -78,11 +85,14 @@ if (process.argv.includes('--lista')) {
   process.exit(0)
 }
 
-console.log(`\n════ 1. SIN FOTO — ${sinFoto.length} modelos (muestran silueta gris) ════\n`)
+console.log(`\n════ 1. SIN FOTO — ${sinFoto.length} modelos (avisan «foto pendiente») ════\n`)
 for (const m of sinFoto) {
   console.log(`  ${m.name.padEnd(26)} ${precio(m).padStart(12)}`)
 }
-console.log(`\n  Todos llevan TU precio, así que son los que más urge cubrir.`)
+const conPrecio = sinFoto.filter((m) => m.price).length
+console.log(
+  `\n  ${conPrecio} de los ${sinFoto.length} llevan TU precio: son los que más urge cubrir.`,
+)
 
 console.log(`\n════ 2. FOTO MEJORABLE — ${mejorables.length} modelos ════\n`)
 for (const m of mejorables) {

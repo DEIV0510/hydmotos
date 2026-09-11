@@ -32,16 +32,27 @@ const MANUAL = {
   Tigre: '01_Tigre_rojo_1.png',
   Tauro: '01_Bicicleta_Tauro_Negro.jpg',
   Tifon: '02_Tifon_roja_con_blanco_1.png',
-  // Catálogo de Biológica: son fotos de calle o parqueadero, no de estudio.
-  // Se eligen las de perfil completo y se publican como foto de ambiente.
-  'MAK3 - AIMA': '04_mak3_04b.jpg',
-  'T3 - AIMA': '03_t3-gris-1.jpg',
-  'TROGON - AIMA': '01_IMG_1284a.jpeg',
-  'A500 - AIMA': '01_moto-a500-11a.jpg',
-  'PORTIVA - MAGMA': '02_Moto-2-01.jpg',
   'VELMPU MILAN 500WATTS 2026': '01_FrontalDiag2-MilanVerde.png',
   'Ciclomotor Electrico Brenson Mobility': '01_MOBILITY_t-red_2.jpg',
 }
+
+/**
+ * Modelos que se publican SIN foto por decisión del cliente (2026-09-11).
+ * Son los del catálogo de Biológica: fotos de calle o de parqueadero que no se
+ * pueden recortar, varias con la dirección de la tienda impresa encima y una
+ * que es un render, no una foto. Antes salían como foto de ambiente. La
+ * tarjeta muestra el aviso de foto pendiente en su lugar.
+ *
+ * Cuando llegue una foto propia, se borra el modelo de aquí y se ejecuta
+ * `npm run assets:photos && npm run catalog`.
+ */
+const DESCARTADAS = new Set([
+  'MAK3 - AIMA',
+  'T3 - AIMA',
+  'TROGON - AIMA',
+  'A500 - AIMA',
+  'PORTIVA - MAGMA',
+])
 
 /**
  * Carpetas que no se llaman como el modelo.
@@ -157,7 +168,7 @@ const picks = JSON.parse(readFileSync(picksPath, 'utf8').replace(/^﻿/, ''))
 const report = []
 
 for (const [model, info] of Object.entries(picks)) {
-  if (IGNORAR.has(model)) continue
+  if (IGNORAR.has(model) || DESCARTADAS.has(model)) continue
   if (only && model !== only) continue
   if (!info.top.length) continue
 

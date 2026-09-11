@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import MotoArt from '@/components/art/MotoArt'
+import PhotoPending from '@/components/art/PhotoPending'
 import { formatCOP, photoOf, specsOf, type Moto } from '@/data/motos'
 import { IconClose, IconWhatsApp } from '@/components/art/Icons'
 import { waLink, waForMoto } from '@/lib/wa'
@@ -104,7 +104,7 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
                   }`}
                 />
               ) : (
-                <MotoArt variant={moto.art} tone="light" className="mx-auto w-full max-w-lg" />
+                <PhotoPending name={moto.name} size="modal" />
               )}
             </div>
           </div>

@@ -142,7 +142,8 @@ recomprimir. Sirven como referencia para comprobar datos a ojo.
   entra en pantalla.
 
 Las fotos son de las tiendas proveedoras y varias llevan su marca impresa o de
-agua; se usan tal cual, por decisión tuya.
+agua; se usan tal cual, por decisión tuya. Las cinco que el cliente pidió
+quitar están en la constante DESCARTADAS de ese mismo script.
 
 ---
 
@@ -213,7 +214,7 @@ src/
 │   └── img.ts            ← fetchPriority sin el aviso de React 18
 ├── hooks/                ← useReveal, useTilt
 └── components/
-    ├── art/              ← Logo, Icons, MotoArt (5 siluetas de respaldo)
+    ├── art/              ← Logo, Icons, PhotoPending (aviso de foto que falta)
     ├── ui/Primitives.tsx ← Reveal, SectionHead, Button
     ├── LoadingScreen · Navbar · Hero · Marquee
     ├── Catalog · MotoCard · MotoModal · Highlights
@@ -231,15 +232,16 @@ npm run audit:photos          # lista qué falta y qué conviene reemplazar
 npm run audit:sheet-of out.jpg <id> <id>   # hoja de contacto de esos modelos
 ```
 
-**9 modelos tienen foto mejorable** (ninguno lleva precio propio, así que no
+De aquella lista, **cinco ya no se publican**: el cliente pidió quitarlas el
+2026-09-11 y ahora avisan «Foto pendiente» (`T3 – AIMA`, `MAK3 – AIMA`,
+`A500 – AIMA`, `TROGON – AIMA` y `PORTIVA – MAGMA`). Ver la sección
+**Modelos que aún necesitan foto**.
+
+**Quedan 5 con foto mejorable** (ninguna lleva precio propio, así que no
 son urgentes):
 
 | Modelo | Proveedor | Problema |
 |---|---|---|
-| T3 – AIMA | Biológica | marca de agua + foto de calle |
-| MAK3 – AIMA | Biológica | marca de agua + foto de parqueadero |
-| A500 – AIMA | Biológica | marca de agua + es un render, no una foto |
-| TROGON – AIMA | Biológica | foto del local, con luces de colores |
 | FISHER 350 – Electrika | Biológica | foto del local |
 | DAKOTA PRO | Brenson | la foto muestra tres motos a la vez |
 | VERONA | Brenson | la foto muestra cuatro motos a la vez |
@@ -256,8 +258,12 @@ Para sustituir cualquiera, deja el archivo en `public/motos/<id>.webp` y
 
 ## Modelos que aún necesitan foto
 
-Once de los 74 no tienen foto y se muestran con una silueta gris. Son justo
-los que no aparecen en el material de los proveedores:
+**Dieciséis de los 74.** En vez de una foto, la tarjeta y la ficha muestran el
+aviso **«Foto pendiente»** (`src/components/art/PhotoPending.tsx`). Antes iba
+ahí una silueta vectorial, pero dibujar una moto que no es la del modelo
+confunde más de lo que ayuda: el cliente pidió decir claramente que falta.
+
+**Once no aparecen en el material de los proveedores:**
 
 `ZEUS` · `FAMILY Q` · `FAMILY PLUS` (los dos) · `MOTORENS` · `BIWI ELÉCTRICA`
 · `CLASSIC RUN` · `MAGMA NEVA` · `FAMILY` · `CIELO` · `BEETLE`
@@ -267,8 +273,19 @@ estos no encuentra ninguno fiable: las coincidencias son solo de cifras
 genéricas (55 km / 40 km/h / 350 W lo comparten muchos modelos) y esas fotos
 ya las usa otro modelo. **No se les asigna una foto ajena a propósito.**
 
-Para añadirlas, basta con dejar el archivo en `public/motos/<id>.webp`
-(y `<id>@2x.webp`) usando el id que muestra `npm run audit --sinfoto`.
+**Cinco tenían foto y el cliente pidió quitarla** (2026-09-11), por marca de
+agua de la tienda de origen, por ser de calle o parqueadero, o por ser un
+render en vez de una foto:
+
+`TROGON – AIMA` · `T3 – AIMA` · `PORTIVA – MAGMA` · `MAK3 – AIMA` · `A500 – AIMA`
+
+Están en la constante `DESCARTADAS` de `scripts/build-photos.mjs`. Para
+devolverles la foto, se borra el modelo de ese `Set` y se ejecuta
+`npm run assets:photos && npm run catalog`.
+
+Para añadir una foto nueva, basta con dejar el archivo en
+`public/motos/<id>.webp` (y `<id>@2x.webp`) usando el id que muestra
+`npm run audit --sinfoto`.
 
 ## Verificado
 
@@ -283,13 +300,23 @@ Para añadirlas, basta con dejar el archivo en `public/motos/<id>.webp`
 - **Accesibilidad:** contraste AA verificado componiendo transparencias, foco
   visible por teclado, áreas táctiles ≥44 px, un solo `h1`, `alt` en todas las
   imágenes y soporte de `prefers-reduced-motion`.
-- **Build:** TypeScript sin errores, consola del navegador limpia. ~118 kB gzip
+- **Build:** TypeScript sin errores, consola del navegador limpia. ~116 kB gzip
   de código; las fotos y el vídeo se cargan bajo demanda.
 
 ## Notas
 
-- Las siluetas vectoriales de `MotoArt.tsx` siguen usándose en los 12 modelos
-  que aún no tienen foto y en el hero.
+- **Ya no se dibuja ninguna moto por código.** Donde antes había siluetas
+  vectoriales ahora hay fotos reales (hero, destacados, banner de cierre) o el
+  aviso de «Foto pendiente». `MotoArt.tsx` sigue en el repo porque de él sale
+  el tipo `MotoVariant` del catálogo, pero no se renderiza en ninguna parte y
+  no pesa nada en el paquete: la importación es `import type`, que desaparece
+  al compilar.
+- El banner de cierre lleva **REINA** y el hero **TIGRE**: dos fotos distintas
+  y las dos claras, porque una moto oscura recortada se pierde contra el
+  grafito del fondo.
+- Los destacados de «Lo más buscado» salen del dato real. Cuando el campeón de
+  un criterio no tiene foto, la tarjeta va sin miniatura en lugar de elegir
+  otro modelo, que haría falso el titular.
 - Los textos de **Servicios** (`src/components/Services.tsx`) son una propuesta
   editable: ajústalos a lo que realmente ofreces.
 - El asterisco de «Sin SOAT ni matrícula*» se refiere a que BIWI ELÉCTRICA y

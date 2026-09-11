@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
-import MotoArt from '@/components/art/MotoArt'
 import { Reveal } from '@/components/ui/Primitives'
-import { MOTOS, formatCOP, type Moto } from '@/data/motos'
+import { MOTOS, formatCOP, photoOf, type Moto } from '@/data/motos'
 import { IconRoute, IconGauge, IconBolt, IconWallet } from '@/components/art/Icons'
 import { waLink, waForMoto } from '@/lib/wa'
 
@@ -42,6 +41,7 @@ export default function Highlights() {
         <ul className="mt-5 grid gap-3 xs:grid-cols-2 xl:grid-cols-4">
           {picks.map(({ key, Icon, label, moto, stat }, i) => {
             const wa = waLink(waForMoto(moto.name))
+            const foto = photoOf(moto)
             return (
               <Reveal as="li" key={key} delay={i * 70}>
                 <a
@@ -50,18 +50,34 @@ export default function Highlights() {
                   rel="noopener noreferrer"
                   className="group flex h-full items-center gap-3 rounded-2xl border border-ink/[0.07] bg-card p-3 shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-blue/25 hover:shadow-card-hover"
                 >
-                  <div className="relative w-20 shrink-0 sm:w-24">
-                    <div
-                      className="absolute inset-0 rounded-full bg-blue/[0.12] blur-lg transition-all duration-500 group-hover:bg-blue/10"
-                      aria-hidden="true"
-                    />
-                    <MotoArt
-                      variant={moto.art}
-                      tone="light"
-                      weight={9}
-                      className="relative w-full transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
+                  {/*
+                    Sin foto no se pone nada: el campeón de cada criterio sale
+                    del dato real, y varios de ellos aún no tienen foto. Cuatro
+                    recuadros de "foto pendiente" seguidos parecen un error, y
+                    elegir otro modelo solo por tener foto haría falso el
+                    titular. La tarjeta funciona igual con el dato solo.
+                  */}
+                  {foto && (
+                    <div className="relative w-20 shrink-0 sm:w-24">
+                      <div
+                        className="absolute inset-0 rounded-full bg-blue/[0.12] blur-lg transition-all duration-500 group-hover:bg-blue/10"
+                        aria-hidden="true"
+                      />
+                      <img
+                        src={foto.src}
+                        srcSet={foto.srcSet}
+                        sizes="96px"
+                        alt={`Moto eléctrica ${moto.name}`}
+                        width={450}
+                        height={450}
+                        loading="lazy"
+                        decoding="async"
+                        className={`relative aspect-square w-full transition-transform duration-700 group-hover:scale-110 ${
+                          moto.photoFit === 'cover' ? 'rounded-xl object-cover' : 'object-contain'
+                        }`}
+                      />
+                    </div>
+                  )}
                   <div className="min-w-0">
                     <p className="flex items-center gap-1.5 text-[9.5px] font-semibold uppercase tracking-widest2 text-blue-deep">
                       <Icon className="h-3.5 w-3.5" />

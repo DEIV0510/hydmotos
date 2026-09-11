@@ -1,10 +1,22 @@
-import MotoArt from '@/components/art/MotoArt'
 import { Button, Reveal } from '@/components/ui/Primitives'
 import { waLink, WA_GENERAL } from '@/lib/wa'
-import { STATS } from '@/data/motos'
+import { MOTOS, STATS, photoOf } from '@/data/motos'
+
+/**
+ * Modelo que acompaña al banner. Distinto del que sale en el hero, para no
+ * repetir la misma foto en la misma página, y de los claros del catálogo: el
+ * banner es grafito y una moto oscura recortada se pierde contra el fondo.
+ * Si algún día se queda sin foto se coge la primera recortada que haya, en
+ * lugar de dibujar nada.
+ */
+const ACOMPANA = 'reina'
 
 export default function CTA() {
   const wa = waLink(WA_GENERAL)
+  const moto =
+    MOTOS.find((m) => m.id === ACOMPANA && m.image) ??
+    MOTOS.find((m) => m.image && m.photoFit !== 'cover')
+  const foto = moto && photoOf(moto)
   return (
     <section className="relative px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
@@ -38,13 +50,26 @@ export default function CTA() {
               </div>
             </div>
 
-            <div className="relative hidden lg:block">
-              <div
-                className="absolute inset-0 rounded-full bg-cyan/8 blur-[70px]"
-                aria-hidden="true"
-              />
-              <MotoArt variant="trail" className="relative w-full drop-shadow-[0_24px_40px_rgba(0,0,0,.7)]" />
-            </div>
+            {foto && (
+              <div className="relative hidden lg:block">
+                {/* Halo para despegar la foto del grafito del banner */}
+                <div
+                  className="absolute inset-6 rounded-full bg-blue/25 blur-[80px]"
+                  aria-hidden="true"
+                />
+                <img
+                  src={foto.src}
+                  srcSet={foto.srcSet}
+                  sizes="(max-width: 1024px) 0px, 600px"
+                  alt={`Moto eléctrica ${moto!.name}`}
+                  width={450}
+                  height={450}
+                  loading="lazy"
+                  decoding="async"
+                  className="relative w-full object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,.7)]"
+                />
+              </div>
+            )}
           </div>
         </div>
       </Reveal>

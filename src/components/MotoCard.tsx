@@ -1,4 +1,4 @@
-import MotoArt from '@/components/art/MotoArt'
+import PhotoPending from '@/components/art/PhotoPending'
 import { useTilt } from '@/hooks/useTilt'
 import { formatCOP, photoOf, type Moto } from '@/data/motos'
 import { IconBattery, IconGauge, IconRoute, IconArrow } from '@/components/art/Icons'
@@ -76,13 +76,7 @@ export default function MotoCard({
               }`}
             />
           ) : (
-            <MotoArt
-              variant={moto.art}
-              tone="light"
-              weight={7}
-              className="w-full transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
-              title={`Ilustración de ${moto.name}`}
-            />
+            <PhotoPending name={moto.name} />
           )}
         </div>
       </div>
