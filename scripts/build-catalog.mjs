@@ -14,12 +14,12 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import path from 'node:path'
 
-const SC = 'C:/Users/Lenovo/AppData/Local/Temp/claude/C--Users-Lenovo-OneDrive-Escritorio-Claude-Sesiones/ea9866f6-d0ee-407f-a1be-7a916b000800/scratchpad'
-const crudo = JSON.parse(readFileSync(path.join(SC, 'catalogo-crudo.json'), 'utf8').replace(/^﻿/, ''))
+
+const crudo = JSON.parse(readFileSync('scripts/data/excel.json', 'utf8'))
 
 /** Encuadre de cada foto: 'recorte' (transparente) o 'ambiente' (llena el marco) */
-const MODOS = existsSync('scripts/photo-modes.json')
-  ? JSON.parse(readFileSync('scripts/photo-modes.json', 'utf8'))
+const MODOS = existsSync('scripts/data/photo-modes.json')
+  ? JSON.parse(readFileSync('scripts/data/photo-modes.json', 'utf8'))
   : {}
 
 const slug = (s) =>

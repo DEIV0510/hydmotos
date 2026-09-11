@@ -8,10 +8,16 @@
     "dev": "vite --port 5327 --host",
     "build": "tsc -b --noCheck && vite build",
     "preview": "vite preview --port 5327",
+    "assets:excel": "node scripts/parse-xlsx.mjs",
+    "assets:pick": "node scripts/pick-photos.mjs",
+    "assets:photos": "node scripts/build-photos.mjs",
+    "assets:logo": "node scripts/build-logo.mjs",
+    "assets:video": "node scripts/build-video.mjs",
     "catalog": "node scripts/build-catalog.mjs",
-    "photos": "node scripts/build-photos.mjs",
-    "logo": "node scripts/build-logo.mjs",
-    "video": "node scripts/build-video.mjs"
+    "assets": "npm run assets:excel && npm run assets:pick && npm run assets:photos && npm run catalog",
+    "audit": "node scripts/audit.mjs",
+    "audit:missing": "node scripts/match-missing.mjs",
+    "audit:sheet": "node scripts/review-photos.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

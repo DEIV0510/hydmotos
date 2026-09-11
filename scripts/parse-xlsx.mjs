@@ -2,9 +2,10 @@
  * Lee el Excel de descripciones que entregó el cliente y lo vuelca a JSON
  * normalizado, con las specs de la ficha técnica ya interpretadas.
  *
- *   node scripts/parse-xlsx.mjs > catalogo-crudo.json
+ *   node scripts/parse-xlsx.mjs
  */
 import XLSX from 'xlsx'
+import { writeFileSync, mkdirSync } from 'node:fs'
 
 const FILE = 'C:/Users/Lenovo/Desktop/motors/Descripciones_motos_y_bicicletas_electricas.xlsx'
 const wb = XLSX.readFile(FILE)
@@ -31,14 +32,31 @@ const kmhOf = (s) => {
   return all.length ? Math.max(...all) : null
 }
 
-/** Busca una línea de la ficha técnica por etiqueta */
+/**
+ * Busca una línea de la ficha técnica por etiqueta.
+ * Algunas fichas dejan la etiqueta sola y ponen el dato en las viñetas de
+ * debajo ("• Autonomía:" y luego "• 60 V: hasta 55 km"), así que en ese caso
+ * se juntan las líneas siguientes hasta la próxima etiqueta.
+ */
 function spec(ficha, ...labels) {
   const lines = String(ficha).split('\n')
   for (const label of labels) {
-    const re = new RegExp(`^[•\\-\\s]*${label}\\s*:?\\s*(.+)$`, 'i')
-    for (const l of lines) {
-      const m = l.trim().match(re)
-      if (m) return m[1].trim().replace(/\.$/, '')
+    const re = new RegExp(`^[•\\-\\s]*${label}\\s*:?\\s*(.*)$`, 'i')
+    for (let i = 0; i < lines.length; i++) {
+      const m = lines[i].trim().match(re)
+      if (!m) continue
+      if (m[1].trim()) return m[1].trim().replace(/\.$/, '')
+
+      const cont = []
+      for (let j = i + 1; j < lines.length; j++) {
+        const l = lines[j].trim()
+        if (!l) continue
+        // Otra etiqueta con nombre propio corta la lista
+        if (/^[•\-\s]*[A-Za-zÁÉÍÓÚÑáéíóúñ][^:]{3,}:/.test(l) && !/^[•\-\s]*\d/.test(l)) break
+        cont.push(l.replace(/^[•\-\s]+/, ''))
+        if (cont.length >= 4) break
+      }
+      if (cont.length) return cont.join(' · ')
     }
   }
   return ''
@@ -56,6 +74,11 @@ for (const sheet of wb.SheetNames) {
     if (!name) continue
 
     const ficha = String(r[8] || '')
+
+    // Solo se leen los campos de la ficha estructurada. Rascar las cifras del
+    // texto libre de la descripción daba valores falsos: al quedarse con el
+    // número mayor mezclaba versiones (el 72 V con el 60 V) o tomaba el límite
+    // legal de ciclovía como velocidad máxima del modelo.
     const potencia = spec(ficha, 'Potencia', 'Motor')
     const bateria = spec(ficha, 'Batería', 'Bateria')
     const autonomia = spec(ficha, 'Autonomía', 'Autonomia', 'Recorrido')
@@ -97,4 +120,6 @@ for (const sheet of wb.SheetNames) {
   }
 }
 
-console.log(JSON.stringify(out, null, 1))
+mkdirSync('scripts/data', { recursive: true })
+writeFileSync('scripts/data/excel.json', JSON.stringify(out, null, 1))
+console.log(`${out.length} modelos leídos del Excel → scripts/data/excel.json`)

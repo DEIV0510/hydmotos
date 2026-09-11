@@ -42,7 +42,7 @@ export function Logo({
 export function LogoMark({ className = '', size = 40 }: { className?: string; size?: number }) {
   return (
     <img
-      src="/marca/monograma.png"
+      src="/marca/monograma.webp"
       width={size}
       height={Math.round(size * 0.42)}
       alt=""

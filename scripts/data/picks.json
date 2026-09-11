@@ -1,0 +1,2207 @@
+{
+ "A500 - AIMA": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\A500 - AIMA",
+  "total": 12,
+  "top": [
+   {
+    "file": "10_moto-a500-06b.jpg",
+    "score": 113,
+    "ratio": 2.25,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "06_moto-a500-02b.jpg",
+    "score": 33,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "01_moto-a500-11a.jpg",
+    "score": 13,
+    "ratio": 1.68,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "02_moto-a500-08a.jpg",
+    "score": 13,
+    "ratio": 1.68,
+    "w": 1080,
+    "h": 720
+   }
+  ]
+ },
+ "AGUILA": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\AGUILA",
+  "total": 4,
+  "top": [
+   {
+    "file": "02_Captura-de-pantalla-2025-08-21-a-las-3.13.29-p.m.png",
+    "score": 43,
+    "ratio": 1.28,
+    "w": 2280,
+    "h": 1804
+   },
+   {
+    "file": "03_Captura-de-pantalla-2025-08-21-a-las-3.13.50-p.m.png",
+    "score": 43,
+    "ratio": 1.27,
+    "w": 2260,
+    "h": 1796
+   },
+   {
+    "file": "04_Captura-de-pantalla-2025-08-21-a-las-3.14.12-p.m.png",
+    "score": 43,
+    "ratio": 1.27,
+    "w": 2304,
+    "h": 1802
+   },
+   {
+    "file": "01_Captura-de-pantalla-2025-08-15-a-las-5.15.03-p.m.png",
+    "score": -94,
+    "ratio": 0.91,
+    "w": 1520,
+    "h": 1520
+   }
+  ]
+ },
+ "FISHER 350 - Electrika": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\FISHER 350 - Electrika",
+  "total": 12,
+  "top": [
+   {
+    "file": "03_IMG_0800.jpg",
+    "score": 93,
+    "ratio": 1.33,
+    "w": 1080,
+    "h": 810
+   },
+   {
+    "file": "05_IMG_0766.jpg",
+    "score": 93,
+    "ratio": 1.33,
+    "w": 1080,
+    "h": 810
+   },
+   {
+    "file": "08_IMG_0781.jpg",
+    "score": 93,
+    "ratio": 1.33,
+    "w": 1080,
+    "h": 810
+   },
+   {
+    "file": "09_IMG_0782.jpg",
+    "score": 58,
+    "ratio": 1.33,
+    "w": 1080,
+    "h": 810
+   }
+  ]
+ },
+ "GALAXY A4": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\GALAXY A4",
+  "total": 7,
+  "top": [
+   {
+    "file": "02_bicicletas-electricas.webp",
+    "score": 56,
+    "ratio": 0.82,
+    "w": 1024,
+    "h": 1024
+   },
+   {
+    "file": "05_bicimoto.webp",
+    "score": 56,
+    "ratio": 0.93,
+    "w": 1024,
+    "h": 1024
+   },
+   {
+    "file": "01_bicicleta-de-electrica.webp",
+    "score": -24,
+    "ratio": 0.75,
+    "w": 1024,
+    "h": 1024
+   },
+   {
+    "file": "03_biologica-colombia.webp",
+    "score": -24,
+    "ratio": 0.68,
+    "w": 1024,
+    "h": 1024
+   }
+  ]
+ },
+ "MAGMA K2": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\MAGMA K2",
+  "total": 17,
+  "top": [
+   {
+    "file": "02_k2-verde-02a.jpg",
+    "score": 6,
+    "ratio": 1.11,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "05_k2-azul-06a.jpg",
+    "score": 6,
+    "ratio": 1.08,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "08_k2-negro-robot-02a.jpg",
+    "score": 6,
+    "ratio": 1.08,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "12_k2-negro-bandera-06a.jpg",
+    "score": 6,
+    "ratio": 1.09,
+    "w": 1200,
+    "h": 1200
+   }
+  ]
+ },
+ "MAK3 - AIMA": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\MAK3 - AIMA",
+  "total": 17,
+  "top": [
+   {
+    "file": "06_mak3_06b.jpg",
+    "score": 93,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "13_mak3_13b.jpg",
+    "score": 93,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "10_mak3_10b.jpg",
+    "score": 33,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "01_mak3_01c.jpg",
+    "score": 13,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   }
+  ]
+ },
+ "PORTIVA - MAGMA": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\PORTIVA - MAGMA",
+  "total": 17,
+  "top": [
+   {
+    "file": "01_Moto-2-02.jpg",
+    "score": 73,
+    "ratio": 0.96,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "09_Moto-2-02.jpg",
+    "score": 73,
+    "ratio": 0.96,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "17_Moto-5-02.jpg",
+    "score": 73,
+    "ratio": 0.96,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "02_Moto-2-01.jpg",
+    "score": 33,
+    "ratio": 1.41,
+    "w": 1200,
+    "h": 1200
+   }
+  ]
+ },
+ "SOL A2": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\SOL A2",
+  "total": 5,
+  "top": [
+   {
+    "file": "01_Bicicletas-electricas-ofertas.webp",
+    "score": 86,
+    "ratio": 1.13,
+    "w": 1024,
+    "h": 1024
+   },
+   {
+    "file": "03_Bicicletas-electricas-Bogota-baratas.webp",
+    "score": 86,
+    "ratio": 1.04,
+    "w": 1024,
+    "h": 1024
+   },
+   {
+    "file": "04_Bicicletas-electricas-tipo-moto.webp",
+    "score": 86,
+    "ratio": 1.1,
+    "w": 1024,
+    "h": 1024
+   },
+   {
+    "file": "05_Bicicletas-electricas-tipo-moto-precio.webp",
+    "score": 86,
+    "ratio": 1.15,
+    "w": 1024,
+    "h": 1024
+   }
+  ]
+ },
+ "T3 - AIMA": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\T3 - AIMA",
+  "total": 8,
+  "top": [
+   {
+    "file": "05_t3-stop-1a.jpg",
+    "score": 113,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "06_t3-amortiguacion-1a.jpg",
+    "score": 33,
+    "ratio": 1.51,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "01_t3-azul-1.jpg",
+    "score": 13,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "02_t3-blanca-1.jpg",
+    "score": 13,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   }
+  ]
+ },
+ "TROGON - AIMA": {
+  "brand": "biologica_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\biologica_fotos\\Biologica Motos y Bicicletas Electricas\\TROGON - AIMA",
+  "total": 12,
+  "top": [
+   {
+    "file": "07_IMG_1294a.jpeg",
+    "score": 93,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "08_IMG_1296a.jpeg",
+    "score": 93,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "01_IMG_1284a.jpeg",
+    "score": 13,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   },
+   {
+    "file": "02_IMG_1285a.jpeg",
+    "score": 13,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 720
+   }
+  ]
+ },
+ "Bicicleta Electrica Brenson Dallas": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\Bicicleta Electrica Brenson Dallas",
+  "total": 14,
+  "top": [
+   {
+    "file": "06_20sombra-Photoroom-fotor-bg-remover-202412109142.png",
+    "score": 78,
+    "ratio": 1.07,
+    "w": 500,
+    "h": 410
+   },
+   {
+    "file": "04_18sombra-Photoroom-fotor-bg-remover-202412109131.png",
+    "score": 43,
+    "ratio": 0.88,
+    "w": 1280,
+    "h": 960
+   },
+   {
+    "file": "05_19sombra-Photoroom-fotor-bg-remover-202412109137-copia.png",
+    "score": 35,
+    "ratio": 0.69,
+    "w": 493,
+    "h": 500
+   },
+   {
+    "file": "07_21sombra-Photoroom-fotor-bg-remover-202412109148.png",
+    "score": 35,
+    "ratio": 0.81,
+    "w": 500,
+    "h": 375
+   }
+  ]
+ },
+ "Ciclomotor Electrico Brenson Mobility": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\Ciclomotor Electrico Brenson Mobility",
+  "total": 7,
+  "top": [
+   {
+    "file": "04_MOBILITY_t-blue_3.jpg",
+    "score": 36,
+    "ratio": 0.76,
+    "w": 1467,
+    "h": 1930
+   },
+   {
+    "file": "06_MOBILITY_t-blue_2.jpg",
+    "score": 36,
+    "ratio": 0.86,
+    "w": 1588,
+    "h": 1862
+   },
+   {
+    "file": "01_MOBILITY_t-red_2.jpg",
+    "score": -14,
+    "ratio": 1.03,
+    "w": 1588,
+    "h": 1539
+   },
+   {
+    "file": "07_M-Baul_Roja.png",
+    "score": -14,
+    "ratio": 1.09,
+    "w": 1175,
+    "h": 1080
+   }
+  ]
+ },
+ "Ciclomotor Electrico DAKOTA PRO": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\Ciclomotor Electrico DAKOTA PRO",
+  "total": 9,
+  "top": [
+   {
+    "file": "01_DakotaColores.png",
+    "score": 113,
+    "ratio": 1.42,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "06_Disenosintitulo_3.png",
+    "score": 86,
+    "ratio": 0.97,
+    "w": 1333,
+    "h": 2000
+   },
+   {
+    "file": "05_Disenosintitulo_5_-copia.png",
+    "score": 73,
+    "ratio": 1.14,
+    "w": 1333,
+    "h": 2000
+   },
+   {
+    "file": "08_Disenosintitulo_3_-copia.png",
+    "score": 73,
+    "ratio": 1.13,
+    "w": 1333,
+    "h": 2000
+   }
+  ]
+ },
+ "Ciclomotor electrico VERA 2026": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\Ciclomotor electrico VERA 2026",
+  "total": 9,
+  "top": [
+   {
+    "file": "09_WhatsAppImage2025-11-13at10.41.56PM_2.jpg",
+    "score": 113,
+    "ratio": 1.93,
+    "w": 1600,
+    "h": 738
+   },
+   {
+    "file": "05_LATERAL.png",
+    "score": 100,
+    "ratio": 1.25,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "08_WhatsAppImage2025-11-13at10.41.56PM_1.jpg",
+    "score": 43,
+    "ratio": 2.36,
+    "w": 1600,
+    "h": 738
+   },
+   {
+    "file": "02_DIRECCIONAL.png",
+    "score": -14,
+    "ratio": 1,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "Ciclomotor electrico Verona": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\Ciclomotor electrico Verona",
+  "total": 10,
+  "top": [
+   {
+    "file": "01_ColoresVerona.png",
+    "score": 113,
+    "ratio": 1.44,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_Diseno_sin_titulo_20.png",
+    "score": 86,
+    "ratio": 1.14,
+    "w": 1333,
+    "h": 2000
+   },
+   {
+    "file": "07_Verona4_1.png",
+    "score": 86,
+    "ratio": 1.14,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "09_Diseno_sin_titulo_23.png",
+    "score": 86,
+    "ratio": 1.11,
+    "w": 1333,
+    "h": 2000
+   }
+  ]
+ },
+ "FAENZA 2026": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\FAENZA 2026",
+  "total": 8,
+  "top": [
+   {
+    "file": "05_Lateral.png",
+    "score": 113,
+    "ratio": 1.2,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "08_TraseraDiag.png",
+    "score": 56,
+    "ratio": 0.87,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_Farola.png",
+    "score": -14,
+    "ratio": 1,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_Freno.png",
+    "score": -14,
+    "ratio": 0.96,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "VELMPU MILAN 500WATTS 2026": {
+  "brand": "brenson_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\brenson_fotos\\Brenson Ciclomotores y Bicicletas\\VELMPU MILAN 500WATTS 2026",
+  "total": 8,
+  "top": [
+   {
+    "file": "02_Farola-MilanVerde.png",
+    "score": 86,
+    "ratio": 0.97,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "01_FrontalDiag2-MilanVerde.png",
+    "score": 56,
+    "ratio": 0.89,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "06_LlantaFrenos-Milan.png",
+    "score": 6,
+    "ratio": 1.04,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_Farola-MilanRoja.png",
+    "score": -14,
+    "ratio": 1,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "Aguila Pro": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Aguila Pro",
+  "total": 54,
+  "top": [
+   {
+    "file": "29_Frame370.jpg",
+    "score": 105,
+    "ratio": 1.34,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "34_Frame363.jpg",
+    "score": 105,
+    "ratio": 1.36,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "38_Beetle-RosaAzul-1.png",
+    "score": 100,
+    "ratio": 1.41,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "40_Beetle-RosaAzul-3.png",
+    "score": 100,
+    "ratio": 1.16,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Aguila Pro Baul": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Aguila Pro Baul",
+  "total": 25,
+  "top": [
+   {
+    "file": "06_aguil1_gris.png",
+    "score": 113,
+    "ratio": 1.27,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "09_aguil4_gris.png",
+    "score": 113,
+    "ratio": 1.5,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "11_aguil1_morada.png",
+    "score": 113,
+    "ratio": 1.18,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "15_aguil5_morada.png",
+    "score": 113,
+    "ratio": 1.6,
+    "w": 1800,
+    "h": 1800
+   }
+  ]
+ },
+ "Aguila Pro Max": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Aguila Pro Max",
+  "total": 4,
+  "top": [
+   {
+    "file": "01_Group48098731.png",
+    "score": 100,
+    "ratio": 1.22,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "02_Group_48098731.png",
+    "score": 100,
+    "ratio": 1.3,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "03_VEC.png",
+    "score": 100,
+    "ratio": 1.22,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "04_GR.png",
+    "score": 20,
+    "ratio": 1.26,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Aurora": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Aurora",
+  "total": 36,
+  "top": [
+   {
+    "file": "01_Aurora_blanca_1.png",
+    "score": 100,
+    "ratio": 1.34,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "02_Aurora_verde_1.png",
+    "score": 100,
+    "ratio": 1.4,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "03_Aurora_tornasol_1.png",
+    "score": 100,
+    "ratio": 1.39,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "04_Aurora_roja_1.png",
+    "score": 100,
+    "ratio": 1.37,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Colorita": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Colorita",
+  "total": 30,
+  "top": [
+   {
+    "file": "01_Fuccia1.png",
+    "score": 100,
+    "ratio": 1.22,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "06_Colorita_morada_1.png",
+    "score": 100,
+    "ratio": 1.17,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "11_Colorita_naranja_1.png",
+    "score": 100,
+    "ratio": 1.24,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "16_Colorita_roja_1.png",
+    "score": 100,
+    "ratio": 1.21,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Eclipce": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Eclipce",
+  "total": 25,
+  "top": [
+   {
+    "file": "01_Eclipceroja1.png",
+    "score": 113,
+    "ratio": 1.44,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "06_Eclipce_gris_1.png",
+    "score": 113,
+    "ratio": 1.35,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "11_Eclipce_blanca_1.png",
+    "score": 113,
+    "ratio": 1.41,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "16_Eclipce_negra_1.png",
+    "score": 113,
+    "ratio": 1.43,
+    "w": 1095,
+    "h": 1434
+   }
+  ]
+ },
+ "Galaxy": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Galaxy",
+  "total": 9,
+  "top": [
+   {
+    "file": "07_Group48098586.jpg",
+    "score": 105,
+    "ratio": 1.34,
+    "w": 721,
+    "h": 956
+   },
+   {
+    "file": "09_Group_10_1.png",
+    "score": 100,
+    "ratio": 1.33,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "01_Bicicleta_Galaxy_Griss.jpg",
+    "score": 92,
+    "ratio": 1.37,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "06_Group48098619.jpg",
+    "score": 48,
+    "ratio": 0.88,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Galaxy Plus": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Galaxy Plus",
+  "total": 18,
+  "top": [
+   {
+    "file": "07_04.png",
+    "score": 113,
+    "ratio": 1.52,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "08_05.png",
+    "score": 113,
+    "ratio": 1.48,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "12_Frame381.jpg",
+    "score": 105,
+    "ratio": 1.48,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "01_Galaxy_Plus_Gris.jpg",
+    "score": 92,
+    "ratio": 1.48,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Jaguar": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Jaguar",
+  "total": 25,
+  "top": [
+   {
+    "file": "07_jAGUAR_GRIS_1.png",
+    "score": 113,
+    "ratio": 1.36,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "12_JAGUAR_ROJA_1.png",
+    "score": 113,
+    "ratio": 1.39,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "17_JAGUAR_VERDE_1.png",
+    "score": 113,
+    "ratio": 1.42,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "22_JAGUAR_1.png",
+    "score": 113,
+    "ratio": 1.4,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Leo": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Leo",
+  "total": 16,
+  "top": [
+   {
+    "file": "09_LEO_ALL_GREEN.png",
+    "score": 113,
+    "ratio": 1.29,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "10_04_1.png",
+    "score": 113,
+    "ratio": 1.56,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "11_02_2.png",
+    "score": 113,
+    "ratio": 1.57,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "12_02_1.png",
+    "score": 113,
+    "ratio": 1.6,
+    "w": 1200,
+    "h": 1200
+   }
+  ]
+ },
+ "Lumo": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Lumo",
+  "total": 31,
+  "top": [
+   {
+    "file": "01_Lumo_rojo_1.png",
+    "score": 100,
+    "ratio": 1.34,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "02_Lumo_rosa_oscuro_1.png",
+    "score": 100,
+    "ratio": 1.35,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "03_Lumo_verde_1.png",
+    "score": 100,
+    "ratio": 1.29,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "04_Lumo_verde_tornasol_1.png",
+    "score": 100,
+    "ratio": 1.27,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Moped": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Moped",
+  "total": 12,
+  "top": [
+   {
+    "file": "01_Frame_315.png",
+    "score": 92,
+    "ratio": 1.38,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "10_Frame_308.png",
+    "score": 78,
+    "ratio": 0.96,
+    "w": 723,
+    "h": 956
+   },
+   {
+    "file": "03_Frame_314.png",
+    "score": 65,
+    "ratio": 1.03,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "07_Frame_290.png",
+    "score": 65,
+    "ratio": 0.96,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Polar": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Polar",
+  "total": 35,
+  "top": [
+   {
+    "file": "27_Group_10_18.png",
+    "score": 113,
+    "ratio": 1.16,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "06_Polar-Verde-1.png",
+    "score": 100,
+    "ratio": 1.51,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "11_Polar-Negra-1.png",
+    "score": 100,
+    "ratio": 1.52,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "16_Polar-Morado-1.png",
+    "score": 100,
+    "ratio": 1.57,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Rayo": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Rayo",
+  "total": 18,
+  "top": [
+   {
+    "file": "07_Frame_117_2.jpg",
+    "score": 105,
+    "ratio": 1.21,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "08_Frame_118_1.jpg",
+    "score": 105,
+    "ratio": 1.28,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "09_Rayo-1.png",
+    "score": 100,
+    "ratio": 1.27,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "14_Rayo-Gris-1.png",
+    "score": 100,
+    "ratio": 1.24,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Rayo Pro": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Rayo Pro",
+  "total": 22,
+  "top": [
+   {
+    "file": "08_Bici-Roja-Pro-1.png",
+    "score": 100,
+    "ratio": 1.36,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "13_Bici-Beige-Pro-1.png",
+    "score": 100,
+    "ratio": 1.32,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "18_RayoPro-1.png",
+    "score": 100,
+    "ratio": 1.42,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "01_Group48098537.jpg",
+    "score": 92,
+    "ratio": 1.38,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Reina": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Reina",
+  "total": 20,
+  "top": [
+   {
+    "file": "01_Reina-Verde-1.png",
+    "score": 113,
+    "ratio": 1.25,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "06_Reina-Morado-1.png",
+    "score": 113,
+    "ratio": 1.28,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "07_Reina-Roja-1.png",
+    "score": 100,
+    "ratio": 1.29,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "08_Reina-Rosa-1.png",
+    "score": 100,
+    "ratio": 1.29,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Ryder Pro": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Ryder Pro",
+  "total": 35,
+  "top": [
+   {
+    "file": "01_RYDER-BEIGE-1.png",
+    "score": 100,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "06_RYDER-BLANCO-ROJO.png",
+    "score": 100,
+    "ratio": 1.53,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "11_RYDER-BLANCO-VERDE-1png.png",
+    "score": 100,
+    "ratio": 1.46,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "16_RYDER-ROJA-1.png",
+    "score": 100,
+    "ratio": 1.51,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Sol": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Sol",
+  "total": 13,
+  "top": [
+   {
+    "file": "05_Frame_62.jpg",
+    "score": 105,
+    "ratio": 1.36,
+    "w": 721,
+    "h": 957
+   },
+   {
+    "file": "06_Frame_74.jpg",
+    "score": 105,
+    "ratio": 1.37,
+    "w": 721,
+    "h": 957
+   },
+   {
+    "file": "07_Frame_50.jpg",
+    "score": 105,
+    "ratio": 1.34,
+    "w": 721,
+    "h": 957
+   },
+   {
+    "file": "08_Frame_49.jpg",
+    "score": 105,
+    "ratio": 1.37,
+    "w": 721,
+    "h": 956
+   }
+  ]
+ },
+ "Sol Pro": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Sol Pro",
+  "total": 25,
+  "top": [
+   {
+    "file": "01_Frame346.jpg",
+    "score": 105,
+    "ratio": 1.27,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "09_Frame324.jpg",
+    "score": 105,
+    "ratio": 1.31,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "18_Frame338.jpg",
+    "score": 105,
+    "ratio": 1.33,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "23_Frame354.jpg",
+    "score": 105,
+    "ratio": 1.3,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Tauro": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Tauro",
+  "total": 9,
+  "top": [
+   {
+    "file": "04_Group48098629.jpg",
+    "score": 105,
+    "ratio": 1.26,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "01_Bicicleta_Tauro_Negro.jpg",
+    "score": 92,
+    "ratio": 1.21,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "06_Tauro_Rojo.jpg",
+    "score": 92,
+    "ratio": 1.47,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "07_Tauro_Verde_Manzana.jpg",
+    "score": 92,
+    "ratio": 1.47,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Tifon": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Tifon",
+  "total": 7,
+  "top": [
+   {
+    "file": "01_Tifon_roja_con_verde_1.png",
+    "score": -24,
+    "ratio": 0.62,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "02_Tifon_roja_con_blanco_1.png",
+    "score": -24,
+    "ratio": 0.73,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "03_Tifon_marron_con_blanco.png",
+    "score": -37,
+    "ratio": 0.73,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "04_Tifonazulconblanco.png",
+    "score": -37,
+    "ratio": 0.67,
+    "w": 1800,
+    "h": 1800
+   }
+  ]
+ },
+ "Tigre": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Tigre",
+  "total": 21,
+  "top": [
+   {
+    "file": "06_Tigre_rojo_5.png",
+    "score": 113,
+    "ratio": 1.17,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "07_TIGRE_GRIS_1.png",
+    "score": 113,
+    "ratio": 1.51,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "11_TIGRE_GRIS_5_0.png",
+    "score": 113,
+    "ratio": 1.21,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "12_TIGRE_VERDE_1.png",
+    "score": 113,
+    "ratio": 1.53,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Urban": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Urban",
+  "total": 27,
+  "top": [
+   {
+    "file": "27_04.png",
+    "score": 113,
+    "ratio": 1.33,
+    "w": 1200,
+    "h": 1200
+   },
+   {
+    "file": "07_Bicicleta-Azul-1.png",
+    "score": 100,
+    "ratio": 1.33,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "12_Bicicleta-Rojo-Blanco-1.png",
+    "score": 100,
+    "ratio": 1.32,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "17_Bicicleta-Gris-1.png",
+    "score": 100,
+    "ratio": 1.33,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "Urbex": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Urbex",
+  "total": 25,
+  "top": [
+   {
+    "file": "01_foto1deurbexazul.png",
+    "score": 100,
+    "ratio": 1.46,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "06_Urbex_blanca_1.png",
+    "score": 100,
+    "ratio": 1.44,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "11_Urbex_naranja_1.png",
+    "score": 100,
+    "ratio": 1.46,
+    "w": 1080,
+    "h": 1434
+   },
+   {
+    "file": "16_Urbex_verde_1.png",
+    "score": 100,
+    "ratio": 1.45,
+    "w": 1080,
+    "h": 1434
+   }
+  ]
+ },
+ "VMP S5": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\VMP S5",
+  "total": 9,
+  "top": [
+   {
+    "file": "01_Group48098737.jpg",
+    "score": 92,
+    "ratio": 1.28,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "06_Frame_117.jpg",
+    "score": 92,
+    "ratio": 1.26,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "07_Frame_119.jpg",
+    "score": 92,
+    "ratio": 1.28,
+    "w": 720,
+    "h": 956
+   },
+   {
+    "file": "08_Frame_118.jpg",
+    "score": 92,
+    "ratio": 1.25,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "VMP S6": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\VMP S6",
+  "total": 5,
+  "top": [
+   {
+    "file": "03_Group_10_27.png",
+    "score": 100,
+    "ratio": 1.25,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "05_Group_10_29.png",
+    "score": 100,
+    "ratio": 1.25,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "04_Group_10_28.png",
+    "score": 65,
+    "ratio": 1.25,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "01_S6_gris.png",
+    "score": 6,
+    "ratio": 1.03,
+    "w": 1092,
+    "h": 1434
+   }
+  ]
+ },
+ "Voltiero": {
+  "brand": "evobike_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\evobike_fotos\\Evobike Bicicletas Electricas\\Voltiero",
+  "total": 10,
+  "top": [
+   {
+    "file": "05_Voltieroazul-cafe1.png",
+    "score": 113,
+    "ratio": 1.26,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "08_Voltiero_naranja_azul_1.png",
+    "score": 113,
+    "ratio": 1.28,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "10_Voltiero_rojo_verde_1.png",
+    "score": 113,
+    "ratio": 1.29,
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "file": "02_Group_48098731.png",
+    "score": 92,
+    "ratio": 1.32,
+    "w": 720,
+    "h": 956
+   }
+  ]
+ },
+ "Camellito Bicicleta Electrica Alta Calidad Mobulaa": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\Camellito Bicicleta Electrica Alta Calidad Mobulaa",
+  "total": 3,
+  "top": [
+   {
+    "file": "01_DSC06084_1_1.jpg",
+    "score": 56,
+    "ratio": 0.63,
+    "w": 2349,
+    "h": 2288
+   },
+   {
+    "file": "03_EB16_4.jpg",
+    "score": 43,
+    "ratio": 0.77,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_BicicletaElectricaEB-11APOLO-2025-10-20T105413.582.jpg",
+    "score": -37,
+    "ratio": 0.62,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-10 Mobulaa 350W Bicicleta Electrica Adulto": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-10 Mobulaa 350W Bicicleta Electrica Adulto",
+  "total": 3,
+  "top": [
+   {
+    "file": "02_Frame267_1.jpg",
+    "score": 113,
+    "ratio": 1.19,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "03_Frame266_2.jpg",
+    "score": 56,
+    "ratio": 0.89,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "01_Frame265_1.jpg",
+    "score": 21,
+    "ratio": 0.89,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-11 APOLO": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-11 APOLO",
+  "total": 4,
+  "top": [
+   {
+    "file": "03_Frame266_3.jpg",
+    "score": 73,
+    "ratio": 1.11,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "01_20260119090923_1748_16.png",
+    "score": 56,
+    "ratio": 0.81,
+    "w": 1600,
+    "h": 1600
+   },
+   {
+    "file": "02_Frame267_2.jpg",
+    "score": 43,
+    "ratio": 0.94,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_Frame265_2.jpg",
+    "score": 11,
+    "ratio": 0.93,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-2B KATANA": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-2B KATANA",
+  "total": 4,
+  "top": [
+   {
+    "file": "01_Mobulaa_EB_2B_01.png",
+    "score": 73,
+    "ratio": 1.15,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_Mobulaa_EB_2B.png",
+    "score": 43,
+    "ratio": 0.88,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "03_Mobulaa_EB_2B_03.png",
+    "score": -7,
+    "ratio": 0.95,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_Mobulaa_EB_2B_02.png",
+    "score": -37,
+    "ratio": 0.95,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-3B Bicimoto Electrica Mobulaa": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-3B Bicimoto Electrica Mobulaa",
+  "total": 2,
+  "top": [
+   {
+    "file": "02_Mobulaa_EB3B.png",
+    "score": 73,
+    "ratio": 1.01,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "01_Mobulaa_EB3B_01.png",
+    "score": -37,
+    "ratio": 0.89,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-4 HALCON": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-4 HALCON",
+  "total": 6,
+  "top": [
+   {
+    "file": "02_Frame326.jpg",
+    "score": 100,
+    "ratio": 1.46,
+    "w": 1080,
+    "h": 1237
+   },
+   {
+    "file": "04_Frame324.jpg",
+    "score": 100,
+    "ratio": 1.5,
+    "w": 1080,
+    "h": 1237
+   },
+   {
+    "file": "05_Frame323.jpg",
+    "score": 100,
+    "ratio": 1.48,
+    "w": 1080,
+    "h": 1237
+   },
+   {
+    "file": "01_20260112153730_1699_16.png",
+    "score": 86,
+    "ratio": 1.01,
+    "w": 1600,
+    "h": 1600
+   }
+  ]
+ },
+ "EB-5 TANK": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-5 TANK",
+  "total": 4,
+  "top": [
+   {
+    "file": "01_MobulaaEB501.jpg",
+    "score": 100,
+    "ratio": 1.37,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_MobulaaEB502.jpg",
+    "score": 11,
+    "ratio": 0.56,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_MobulaaEB5.jpg",
+    "score": -7,
+    "ratio": 1.01,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "03_MobulaaEB503.jpg",
+    "score": -14,
+    "ratio": 1,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-7 TANK PRO": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-7 TANK PRO",
+  "total": 4,
+  "top": [
+   {
+    "file": "01_MobulaaEB7.jpg",
+    "score": 100,
+    "ratio": 1.34,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_MobulaaEB701.jpg",
+    "score": 11,
+    "ratio": 0.59,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_MobulaaEB703.jpg",
+    "score": -14,
+    "ratio": 1,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "03_MobulaaEB702.jpg",
+    "score": -24,
+    "ratio": 0.8,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-8 CABALLERO": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-8 CABALLERO",
+  "total": 4,
+  "top": [
+   {
+    "file": "01_20260119090926_1751_16.png",
+    "score": 56,
+    "ratio": 0.8,
+    "w": 1600,
+    "h": 1600
+   },
+   {
+    "file": "04_GRIS.png",
+    "score": 56,
+    "ratio": 0.89,
+    "w": 4192,
+    "h": 3792
+   },
+   {
+    "file": "02_MobulaaGIRL410.jpg",
+    "score": -7,
+    "ratio": 1.09,
+    "w": 1081,
+    "h": 1080
+   },
+   {
+    "file": "03_BicicletaElectricaEB-8CABALLERO.jpg",
+    "score": -7,
+    "ratio": 0.95,
+    "w": 1081,
+    "h": 1080
+   }
+  ]
+ },
+ "EB-9 PRO RAPTOR PRO": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-9 PRO RAPTOR PRO",
+  "total": 2,
+  "top": [
+   {
+    "file": "02_BicicletaElectricaEB-11APOLO-2025-09-18T144811.207.jpg",
+    "score": 20,
+    "ratio": 1.16,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "01_Eb9pro_2.jpg",
+    "score": -12,
+    "ratio": 1.36,
+    "w": 1081,
+    "h": 1081
+   }
+  ]
+ },
+ "EB-9 RAPTOR": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB-9 RAPTOR",
+  "total": 2,
+  "top": [
+   {
+    "file": "02_BicicletaElectricaEB-9BRAPTORPRO.jpg",
+    "score": 20,
+    "ratio": 1.23,
+    "w": 1081,
+    "h": 1080
+   },
+   {
+    "file": "01_BicicletaElectricaEB-9RAPTOR.jpg",
+    "score": 11,
+    "ratio": 0.75,
+    "w": 1081,
+    "h": 1080
+   }
+  ]
+ },
+ "EB15A NAKED": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB15A NAKED",
+  "total": 3,
+  "top": [
+   {
+    "file": "02_BicicletaElectricaEB-11APOLO-2025-09-18T114654.940.jpg",
+    "score": 43,
+    "ratio": 0.83,
+    "w": 1081,
+    "h": 1081
+   },
+   {
+    "file": "03_BicicletaElectricaEB-11APOLO-2025-09-18T114815.468.jpg",
+    "score": 43,
+    "ratio": 0.91,
+    "w": 1081,
+    "h": 1081
+   },
+   {
+    "file": "01_s002_3.jpg",
+    "score": -37,
+    "ratio": 0.7,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB15B NAKED": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB15B NAKED",
+  "total": 1,
+  "top": [
+   {
+    "file": "01_BicicletaElectricaEB-11APOLO-2025-09-18T115625.007.jpg",
+    "score": 56,
+    "ratio": 0.81,
+    "w": 1081,
+    "h": 1081
+   }
+  ]
+ },
+ "EB16 Principe": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB16 Principe",
+  "total": 3,
+  "top": [
+   {
+    "file": "01_EB16_3.jpg",
+    "score": -37,
+    "ratio": 0.69,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_BicicletaElectricaEB-11APOLO-2025-09-18T111709.739.jpg",
+    "score": -37,
+    "ratio": 0.7,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "03_BicicletaElectricaEB-11APOLO-2025-09-18T111714.303.jpg",
+    "score": -37,
+    "ratio": 0.71,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "EB6 AMOR": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\EB6 AMOR",
+  "total": 3,
+  "top": [
+   {
+    "file": "01_MobulaaEB6.jpg",
+    "score": 100,
+    "ratio": 1.36,
+    "w": 1081,
+    "h": 1080
+   },
+   {
+    "file": "02_MobulaaEB602.jpg",
+    "score": -14,
+    "ratio": 1,
+    "w": 1081,
+    "h": 1080
+   },
+   {
+    "file": "03_MobulaaEB603.jpg",
+    "score": -14,
+    "ratio": 1,
+    "w": 1081,
+    "h": 1080
+   }
+  ]
+ },
+ "Girl 3": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\Girl 3",
+  "total": 4,
+  "top": [
+   {
+    "file": "02_MobulaaGirl302.png",
+    "score": 68,
+    "ratio": 1.57,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "04_Mobulaa_Girl_3_01.png",
+    "score": 68,
+    "ratio": 1.6,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "01_20260112153723_1697_16.png",
+    "score": 56,
+    "ratio": 0.88,
+    "w": 1600,
+    "h": 1600
+   },
+   {
+    "file": "03_MobulaaGirl3.png",
+    "score": 43,
+    "ratio": 0.9,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "GIRL 4": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\GIRL 4",
+  "total": 5,
+  "top": [
+   {
+    "file": "05_MobulaaGIRL403.jpg",
+    "score": 73,
+    "ratio": 0.98,
+    "w": 1081,
+    "h": 1080
+   },
+   {
+    "file": "01_20260112153734_1700_16.png",
+    "score": 56,
+    "ratio": 0.81,
+    "w": 1600,
+    "h": 1600
+   },
+   {
+    "file": "04_MobulaaGIRL402.jpg",
+    "score": 43,
+    "ratio": 0.93,
+    "w": 1081,
+    "h": 1080
+   },
+   {
+    "file": "02_MobulaaGIRL4.jpg",
+    "score": 8,
+    "ratio": 0.85,
+    "w": 1081,
+    "h": 1080
+   }
+  ]
+ },
+ "Trimotos C1 Tyson": {
+  "brand": "mobulaa_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\mobulaa_fotos\\Mobulaa Bicimotos\\Trimotos C1 Tyson",
+  "total": 3,
+  "top": [
+   {
+    "file": "01_s002_5.jpg",
+    "score": 113,
+    "ratio": 1.94,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "02_s002_6.jpg",
+    "score": 6,
+    "ratio": 1.01,
+    "w": 1080,
+    "h": 1080
+   },
+   {
+    "file": "03_s002_7.jpg",
+    "score": -24,
+    "ratio": 0.71,
+    "w": 1080,
+    "h": 1080
+   }
+  ]
+ },
+ "Azul": {
+  "brand": "niu_nqi_sport_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\niu_nqi_sport_fotos\\NIU NQi Sport\\Azul",
+  "total": 8,
+  "top": [
+   {
+    "file": "03_niu-nqi-sport-azul-2.webp",
+    "score": 25,
+    "ratio": 1.31,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "07_niu-nqi-sport-azul-6.webp",
+    "score": 25,
+    "ratio": 1.31,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "01_niu-nqi-sport-azul-miniatura.webp",
+    "score": -32,
+    "ratio": 0.87,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "04_niu-nqi-sport-azul-3.webp",
+    "score": -32,
+    "ratio": 0.85,
+    "w": 750,
+    "h": 750
+   }
+  ]
+ },
+ "Banners": {
+  "brand": "niu_nqi_sport_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\niu_nqi_sport_fotos\\NIU NQi Sport\\Banners",
+  "total": 9,
+  "top": [
+   {
+    "file": "08_niu-nqi-sport-banner-logo-del-producto.webp",
+    "score": -27,
+    "ratio": 7.71,
+    "w": 1200,
+    "h": 155
+   },
+   {
+    "file": "02_niu-nqi-sport-banner-feeling.webp",
+    "score": -47,
+    "ratio": 3.21,
+    "w": 1920,
+    "h": 600
+   },
+   {
+    "file": "03_niu-nqi-sport-banner-caracteristicas.webp",
+    "score": -82,
+    "ratio": 2.4,
+    "w": 1400,
+    "h": 580
+   },
+   {
+    "file": "05_niu-nqi-sport-banner-galeria-2.webp",
+    "score": -92,
+    "ratio": 1,
+    "w": 500,
+    "h": 500
+   }
+  ]
+ },
+ "Blanco": {
+  "brand": "niu_nqi_sport_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\niu_nqi_sport_fotos\\NIU NQi Sport\\Blanco",
+  "total": 8,
+  "top": [
+   {
+    "file": "01_niu-nqi-sport-blanco-miniatura.webp",
+    "score": 48,
+    "ratio": 0.89,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "02_niu-nqi-sport-blanco-1.webp",
+    "score": 35,
+    "ratio": 0.88,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "03_niu-nqi-sport-blanco-2.webp",
+    "score": 25,
+    "ratio": 1.32,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "06_niu-nqi-sport-blanco-5.webp",
+    "score": 25,
+    "ratio": 1.32,
+    "w": 750,
+    "h": 750
+   }
+  ]
+ },
+ "Negro": {
+  "brand": "niu_nqi_sport_fotos",
+  "dir": "C:\\Users\\Lenovo\\Desktop\\motors\\niu_nqi_sport_fotos\\NIU NQi Sport\\Negro",
+  "total": 6,
+  "top": [
+   {
+    "file": "04_niu-nqi-sport-negro-4.webp",
+    "score": -32,
+    "ratio": 0.85,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "05_niu-nqi-sport-negro-5.webp",
+    "score": -32,
+    "ratio": 0.85,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "01_niu-nqi-sport-negro-1.webp",
+    "score": -45,
+    "ratio": 0.86,
+    "w": 750,
+    "h": 750
+   },
+   {
+    "file": "02_niu-nqi-sport-negro-2.webp",
+    "score": -45,
+    "ratio": 0.53,
+    "w": 750,
+    "h": 750
+   }
+  ]
+ }
+}

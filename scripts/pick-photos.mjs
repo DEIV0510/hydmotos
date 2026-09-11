@@ -6,10 +6,11 @@
  * y se puntúa la proporción y cuánto ocupa del encuadre. Las fichas de PDF,
  * banners, capturas y planos de detalle quedan penalizados.
  *
- *   node scripts/pick-photos.mjs > picks.json
+ *   node scripts/pick-photos.mjs
  */
 import sharp from 'sharp'
 import { readdir, stat } from 'node:fs/promises'
+import { writeFileSync, mkdirSync } from 'node:fs'
 import path from 'node:path'
 
 const ROOT = 'C:/Users/Lenovo/Desktop/motors'
@@ -119,4 +120,6 @@ for (const brand of await readdir(ROOT)) {
   }
 }
 
-console.log(JSON.stringify(out, null, 1))
+mkdirSync('scripts/data', { recursive: true })
+writeFileSync('scripts/data/picks.json', JSON.stringify(out, null, 1))
+console.log(`${Object.keys(out).length} modelos analizados → scripts/data/picks.json`)

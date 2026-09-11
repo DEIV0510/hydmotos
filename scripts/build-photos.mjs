@@ -7,13 +7,14 @@
  * los bordes, se ajusta el encuadre al vehículo y se exporta a WebP con
  * transparencia, para que la moto quede apoyada sobre el color de la tarjeta.
  *
- *   node scripts/build-photos.mjs <picks.json> [--only=Modelo]
+ *   node scripts/build-photos.mjs [--only=Modelo]
  */
 import sharp from 'sharp'
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 
-const [, , picksPath, ...flags] = process.argv
+const [, , ...flags] = process.argv
+const picksPath = flags.find((f) => !f.startsWith('--')) ?? 'scripts/data/picks.json'
 const only = flags.find((f) => f.startsWith('--only='))?.split('=')[1]
 const OUT = 'public/motos'
 mkdirSync(OUT, { recursive: true })
@@ -41,6 +42,16 @@ const MANUAL = {
   'VELMPU MILAN 500WATTS 2026': '01_FrontalDiag2-MilanVerde.png',
   'Ciclomotor Electrico Brenson Mobility': '01_MOBILITY_t-red_2.jpg',
 }
+
+/**
+ * Carpetas que no se llaman como el modelo.
+ * La NIU viene separada por colores ("Azul", "Blanco", "Negro") y son todas
+ * el mismo modelo: se publica una y las otras se descartan.
+ */
+const CARPETA_ES = {
+  Azul: 'nqi-sport',
+}
+const IGNORAR = new Set(['Banners', 'Blanco', 'Negro'])
 
 export function slug(s) {
   return s
@@ -146,13 +157,13 @@ const picks = JSON.parse(readFileSync(picksPath, 'utf8').replace(/^﻿/, ''))
 const report = []
 
 for (const [model, info] of Object.entries(picks)) {
-  if (model === 'Banners') continue
+  if (IGNORAR.has(model)) continue
   if (only && model !== only) continue
   if (!info.top.length) continue
 
   const chosen = MANUAL[model] || info.top[0].file
   const src = path.join(info.dir, chosen)
-  const id = slug(model)
+  const id = CARPETA_ES[model] ?? slug(model)
 
   try {
     const { png, esEstudio, desv, ratio } = await cutout(src)
@@ -191,6 +202,6 @@ for (const [model, info] of Object.entries(picks)) {
   }
 }
 
-writeFileSync('scripts/photo-modes.json', JSON.stringify(Object.fromEntries(report.filter((r) => !r.error).map((r) => [r.id, r.modo])), null, 1))
+writeFileSync('scripts/data/photo-modes.json', JSON.stringify(Object.fromEntries(report.filter((r) => !r.error).map((r) => [r.id, r.modo])), null, 1))
 console.log(JSON.stringify(report, null, 1))
 console.error(`procesadas ${report.filter((r) => !r.error).length} / ${report.length}`)

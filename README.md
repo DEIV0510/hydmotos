@@ -85,13 +85,39 @@ Hay **dos FAMILY PLUS** distintos a propósito (`family-plus-5420` y
 
 ## Imágenes, logo y vídeo
 
-Todo sale de la carpeta `motors/` y se procesa con scripts:
+Todo sale de la carpeta `motors/` y se procesa con scripts. El pipeline
+completo, en orden, es un solo comando:
 
 ```bash
-npm run photos   # elige y recorta la foto de cada modelo
-npm run logo     # recorta y exporta el logo oficial
-npm run video    # comprime el vídeo del local
+npm run assets
 ```
+
+que encadena estos pasos (también ejecutables por separado):
+
+| Comando | Qué hace |
+|---|---|
+| `npm run assets:excel` | Lee el Excel → `scripts/data/excel.json` |
+| `npm run assets:pick` | Puntúa las 838 fotos → `scripts/data/picks.json` |
+| `npm run assets:photos` | Recorta y exporta a `public/motos/` |
+| `npm run catalog` | Genera `src/data/motos.ts` |
+
+Aparte, y solo cuando cambie ese material:
+
+```bash
+npm run assets:logo    # recorta y exporta el logo oficial
+npm run assets:video   # comprime el vídeo del local
+```
+
+Para revisar qué falta:
+
+```bash
+npm run audit           # resumen: fotos, precios, fichas
+npm run audit:missing   # candidatos para los modelos sin foto
+npm run audit:sheet out # hoja de contacto de las fotos ya procesadas
+```
+
+Los intermedios viven en `scripts/data/` y están versionados, así que el
+catálogo se puede regenerar sin tener el Excel ni la carpeta de fotos a mano.
 
 - **Fotos** (`scripts/build-photos.mjs`): de las 838 imágenes de la carpeta se
   elige automáticamente la mejor de cada modelo, midiendo la silueta para
@@ -151,6 +177,22 @@ src/
 ```
 
 ---
+
+## Modelos que aún necesitan foto
+
+Once de los 74 no tienen foto y se muestran con una silueta gris. Son justo
+los que no aparecen en el material de los proveedores:
+
+`ZEUS` · `FAMILY Q` · `FAMILY PLUS` (los dos) · `MOTORENS` · `BIWI ELÉCTRICA`
+· `CLASSIC RUN` · `MAGMA NEVA` · `FAMILY` · `CIELO` · `BEETLE`
+
+`npm run audit:missing` busca candidatos cruzando nombre y cifras, y para
+estos no encuentra ninguno fiable: las coincidencias son solo de cifras
+genéricas (55 km / 40 km/h / 350 W lo comparten muchos modelos) y esas fotos
+ya las usa otro modelo. **No se les asigna una foto ajena a propósito.**
+
+Para añadirlas, basta con dejar el archivo en `public/motos/<id>.webp`
+(y `<id>@2x.webp`) usando el id que muestra `npm run audit --sinfoto`.
 
 ## Verificado
 

@@ -41,10 +41,10 @@ console.log(`original ${meta.width}x${meta.height} → contenido ${box.width}x${
 const base = sharp(SRC).extract(box)
 const baseBuf = await base.png().toBuffer()
 
-// Ancho completo del wordmark, para el pie y la pantalla de carga
+// Ancho completo del wordmark, para navbar y pie. Solo WebP: el PNG del
+// wordmark pesaba 4 veces más y no lo usa nadie.
 for (const w of [280, 560]) {
   await sharp(baseBuf).resize({ width: w }).webp({ quality: 92 }).toFile(path.join(OUT, `logo-${w}.webp`))
-  await sharp(baseBuf).resize({ width: w }).png({ compressionLevel: 9 }).toFile(path.join(OUT, `logo-${w}.png`))
 }
 
 // Solo el monograma H&D (la fila superior de bloques) para el favicon
@@ -52,7 +52,7 @@ const markH = Math.round(box.height * 0.52)
 const markBuf = await sharp(baseBuf)
   .extract({ left: 0, top: 0, width: box.width, height: markH })
   .toBuffer()
-await sharp(markBuf).resize({ width: 512 }).png({ compressionLevel: 9 }).toFile(path.join(OUT, 'monograma.png'))
+await sharp(markBuf).resize({ width: 320 }).webp({ quality: 92 }).toFile(path.join(OUT, 'monograma.webp'))
 
 const out = await sharp(path.join(OUT, 'logo-560.webp')).metadata()
 console.log(`logo-560.webp → ${out.width}x${out.height}`)
