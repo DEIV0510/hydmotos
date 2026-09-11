@@ -25,7 +25,45 @@
    "llantas": "Sellomatic 3.0-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km (versión extraíble 60V: hasta 50 km)"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "200 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 154 cm - Alto 118 cm - Ancho 48 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -48,12 +86,54 @@
    "autonomiaTxt": "55 Km Batería de 60V",
    "velocidadKmh": 40,
    "velocidadTxt": "35 - 40 km/h",
-   "capacidad": "de carga: Soporta hasta 150 kg",
+   "capacidad": "Soporta hasta 150 kg",
    "frenos": "",
-   "llantas": "",
+   "llantas": "2.75-10",
    "carga": "6 - 8 horas",
    "peso": "51.11 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 27AH – Batería extraíbles"
+   },
+   {
+    "label": "Cargador",
+    "value": "60 V / 3 A"
+   },
+   {
+    "label": "Autonomía",
+    "value": "55 Km Batería de 60V"
+   },
+   {
+    "label": "Velocidad",
+    "value": "35 - 40 km/h"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "Soporta hasta 150 kg"
+   },
+   {
+    "label": "Peso",
+    "value": "51.11 kg"
+   },
+   {
+    "label": "Tipo de llanta",
+    "value": "2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Luces led",
+    "value": "Presencia y estilo moderno"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -76,12 +156,62 @@
    "autonomiaTxt": "60 V: hasta 55 km · 72 V: hasta 65 km",
    "velocidadKmh": 40,
    "velocidadTxt": "Hasta 40 km/h",
-   "capacidad": "de carga máxima: 200 kg",
+   "capacidad": "",
    "frenos": "",
-   "llantas": "",
+   "llantas": "16-3.0",
    "carga": "6–8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Batería",
+    "value": "60 V / 72 V"
+   },
+   {
+    "label": "Tipo de batería",
+    "value": "Plomo de grafeno"
+   },
+   {
+    "label": "Velocidad",
+    "value": "Hasta 40 km/h"
+   },
+   {
+    "label": "Capacidad de carga máxima",
+    "value": "200 kg"
+   },
+   {
+    "label": "Tipo de llanta",
+    "value": "16-3.0"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6–8 horas"
+   },
+   {
+    "label": "Plazas",
+    "value": "2"
+   },
+   {
+    "label": "Resistencia al agua",
+    "value": "IPX5"
+   },
+   {
+    "label": "Largo",
+    "value": "187 cm"
+   },
+   {
+    "label": "Alto",
+    "value": "117 cm"
+   },
+   {
+    "label": "Ancho",
+    "value": "71 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -109,7 +239,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 50 km · 72V: 60 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 158 cm - Alto 158 cm - Ancho 71 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -137,7 +305,45 @@
    "llantas": "Sellomatic AD:3.00-8 / AT:2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "48V: 35 km · 60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "48V: Ácido de plomo · 60V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "100 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic AD:3.00-8 / AT:2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 152 cm - Alto 105 cm - Ancho 69 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -165,7 +371,45 @@
    "llantas": "Sellomatic 3.0-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "130 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 162 cm - Alto 106 cm - Ancho 72 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -188,12 +432,86 @@
    "autonomiaTxt": "35 Km Batería de 48V",
    "velocidadKmh": 40,
    "velocidadTxt": "35 - 40 km/h",
-   "capacidad": "de carga: Soporta hasta 90 kg",
+   "capacidad": "Soporta hasta 90 kg",
    "frenos": "",
-   "llantas": "",
+   "llantas": "2.75-10",
    "carga": "6 - 8 horas",
    "peso": "39 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "48 V / 3 A"
+   },
+   {
+    "label": "Autonomía",
+    "value": "35 Km Batería de 48V"
+   },
+   {
+    "label": "Velocidad",
+    "value": "35 - 40 km/h"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "Soporta hasta 90 kg"
+   },
+   {
+    "label": "Peso",
+    "value": "39 kg"
+   },
+   {
+    "label": "Tipo de llanta",
+    "value": "2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Comodidad y ligereza",
+    "value": "Diseñado especialmente para principiantes"
+   },
+   {
+    "label": "Relación calidad/precio",
+    "value": "Una opción accesible con grandes beneficios"
+   },
+   {
+    "label": "Canasta amplia",
+    "value": "Espacio adicional para llevar tus pertenencias"
+   },
+   {
+    "label": "Suspensión",
+    "value": "Para un manejo suave y estable"
+   },
+   {
+    "label": "Asiento para acompañante",
+    "value": "Perfecto para llevar a alguien más cómodamente"
+   },
+   {
+    "label": "Alarma antirrobo",
+    "value": "Asegura tu velmpu  en cualquier lugar"
+   },
+   {
+    "label": "Pantalla led",
+    "value": "Información clara durante tus trayectos"
+   },
+   {
+    "label": "Faro de luz led",
+    "value": "Ideal para la conducción nocturna"
+   },
+   {
+    "label": "Pedales y claxon",
+    "value": "Para mayor funcionalidad y seguridad"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -221,7 +539,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "135 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 155 cm - Alto 104 cm - Ancho 41 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -249,7 +605,45 @@
    "llantas": "Sellomatic 3.0-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "150 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 170 cm - Alto 119 cm - Ancho 72 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -272,12 +666,90 @@
    "autonomiaTxt": "55 Km Batería de 60V",
    "velocidadKmh": 40,
    "velocidadTxt": "35 - 40 km/h",
-   "capacidad": "de carga: Soporta hasta 150 kg",
-   "frenos": "de disco delantero: Frenado eficiente y seguro",
-   "llantas": "",
+   "capacidad": "Soporta hasta 150 kg",
+   "frenos": "",
+   "llantas": "3 -16",
    "carga": "6 - 8 horas",
    "peso": "60 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 27AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "60 V / 3 A"
+   },
+   {
+    "label": "Autonomía",
+    "value": "55 Km Batería de 60V"
+   },
+   {
+    "label": "Velocidad",
+    "value": "35 - 40 km/h"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "Soporta hasta 150 kg"
+   },
+   {
+    "label": "Peso",
+    "value": "60 kg"
+   },
+   {
+    "label": "Tipo de llanta",
+    "value": "3 -16"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Vehículo de carga",
+    "value": "Especialmente diseñado para el trabajo diario"
+   },
+   {
+    "label": "Asiento trasero plegable",
+    "value": "Espacio adicional para transportar objetos grandes"
+   },
+   {
+    "label": "Canasta amplia",
+    "value": "Mayor capacidad para llevar mercancía"
+   },
+   {
+    "label": "Freno de disco delantero",
+    "value": "Frenado eficiente y seguro"
+   },
+   {
+    "label": "Suspensión",
+    "value": "Adaptable a cualquier tipo de terreno"
+   },
+   {
+    "label": "Asiento para acompañante",
+    "value": "Espacio adicional para un pasajero"
+   },
+   {
+    "label": "Alarma antirrobo",
+    "value": "Protección y seguridad extra"
+   },
+   {
+    "label": "Pantalla led",
+    "value": "Información clara y precisa sobre el estado de la Velmpu"
+   },
+   {
+    "label": "Faro de luz led horizontal",
+    "value": "Iluminación potente para conducción nocturna"
+   },
+   {
+    "label": "Pedales y claxon",
+    "value": "Mayor control y seguridad"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -305,7 +777,45 @@
    "llantas": "Sellomatic 6.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "35 a 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "48V: 35 km · 60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "48V: Ácido de plomo · 60V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "100 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 6.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 155 cm - Alto 104 cm - Ancho 69 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -333,7 +843,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 38 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "120 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 155 cm - Alto 113 cm - Ancho 43 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -361,7 +909,45 @@
    "llantas": "Sellomatic 3.0-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "200 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 174 cm - Alto 114 cm - Ancho 57 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -384,12 +970,82 @@
    "autonomiaTxt": "55 Km Batería de 60V",
    "velocidadKmh": 40,
    "velocidadTxt": "35 - 40 km/h",
-   "capacidad": "de carga: Soporta hasta 130 kg",
+   "capacidad": "Soporta hasta 130 kg",
    "frenos": "",
-   "llantas": "",
+   "llantas": "2.75-10",
    "carga": "6 - 8 horas",
    "peso": "44.5kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 27AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "60 V / 3 A"
+   },
+   {
+    "label": "Autonomía",
+    "value": "55 Km Batería de 60V"
+   },
+   {
+    "label": "Velocidad",
+    "value": "35 - 40 km/h"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "Soporta hasta 130 kg"
+   },
+   {
+    "label": "Peso",
+    "value": "44.5kg"
+   },
+   {
+    "label": "Tipo de llanta",
+    "value": "2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Fácil de manejar",
+    "value": "Ideal para conductores con experiencia"
+   },
+   {
+    "label": "Direccionales delanteras y traseras",
+    "value": "Mayor seguridad en el tránsito urbano"
+   },
+   {
+    "label": "Suspensión",
+    "value": "Comodidad asegurada en cada trayecto"
+   },
+   {
+    "label": "Asiento para acompañante",
+    "value": "Perfecto para viajes compartidos"
+   },
+   {
+    "label": "Alarma antirrobo",
+    "value": "Protección adicional para tu vehículo"
+   },
+   {
+    "label": "Pantalla led",
+    "value": "Información clara y precisa mientras conduces"
+   },
+   {
+    "label": "Faro de luz",
+    "value": "Iluminación potente para la noche"
+   },
+   {
+    "label": "Pedales y claxon",
+    "value": "Funcionalidad práctica para el día a día"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -417,7 +1073,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "135 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 155 cm - Alto 104 cm - Ancho 41 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -445,7 +1139,45 @@
    "llantas": "Sellomatic 3.0-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "120 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 162 cm - Alto 106 cm - Ancho 57 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -473,7 +1205,45 @@
    "llantas": "90/90-12",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "90/90-12"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 175 cm - Alto 110 cm - Ancho 73 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -501,7 +1271,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "35 a 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "48V: 35 km · 60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "48V: Ácido de plomo · 60V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "100 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 147 cm - Alto 102 cm - Ancho 35 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -529,7 +1337,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "35 a 38 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "48V: 38 km"
+   },
+   {
+    "label": "Batería",
+    "value": "48V: Ácido de plomo (extraíble)"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "100 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 147 cm - Alto 102 cm - Ancho 35 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -557,7 +1403,45 @@
    "llantas": "Sellomatic 3.0-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V: Plomo de grafeno (extraíble)"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "200 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 163 cm - Alto 109 cm - Ancho 40 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -585,7 +1469,45 @@
    "llantas": "16-3.0",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "16-3.0"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 185 cm - Alto 111 cm - Ancho 68 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -613,7 +1535,45 @@
    "llantas": "Sellomatic 3.0-16",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V: Plomo de grafeno (extraíble)"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-16"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 190 cm - Alto 112 cm - Ancho 75 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -636,12 +1596,86 @@
    "autonomiaTxt": "35 Km Batería de 48V",
    "velocidadKmh": 40,
    "velocidadTxt": "35 - 40 km/h",
-   "capacidad": "de carga: Soporta hasta 130 kg",
+   "capacidad": "Soporta hasta 130 kg",
    "frenos": "",
-   "llantas": "",
+   "llantas": "2.75-10",
    "carga": "6 - 8 horas",
    "peso": "39 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "48 V / 3 A"
+   },
+   {
+    "label": "Autonomía",
+    "value": "35 Km Batería de 48V"
+   },
+   {
+    "label": "Velocidad",
+    "value": "35 - 40 km/h"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "Soporta hasta 130 kg"
+   },
+   {
+    "label": "Peso",
+    "value": "39 kg"
+   },
+   {
+    "label": "Tipo de llanta",
+    "value": "2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Comodidad y ligereza",
+    "value": "Diseñada para principiantes"
+   },
+   {
+    "label": "Amplia variedad de estilos y colores",
+    "value": "Opciones para todos los gustos"
+   },
+   {
+    "label": "Canasta amplia",
+    "value": "Ideal para llevar objetos personales"
+   },
+   {
+    "label": "Suspensión",
+    "value": "Garantiza un manejo suave y cómodo"
+   },
+   {
+    "label": "Asiento para acompañante",
+    "value": "Perfecto para viajes compartidos"
+   },
+   {
+    "label": "Alarma antirrobo",
+    "value": "Protección adicional para tu Velmpu"
+   },
+   {
+    "label": "Pantalla led",
+    "value": "Información clara y funcional mientras conduces"
+   },
+   {
+    "label": "Faro de luz",
+    "value": "Potente iluminación para la noche"
+   },
+   {
+    "label": "Pedales y claxon",
+    "value": "Funcionalidad imprescindible para la movilidad urbana"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -669,7 +1703,45 @@
    "llantas": "Sellomatic 3.0-16",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V: Plomo de grafeno (extraíble)"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "150 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 3.0-16"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 180 cm - Alto 120 cm - Ancho 75 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -697,7 +1769,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "30 a 38 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "48V: 35 - 40 km"
+   },
+   {
+    "label": "Batería",
+    "value": "48V: Ácido de plomo (extraíble)"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "100 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 145 cm - Alto 98 cm - Ancho 37 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -725,7 +1835,45 @@
    "llantas": "Sellomatic 2.75-10",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 33 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "48V: 35 - 40 km"
+   },
+   {
+    "label": "Batería",
+    "value": "48V: Ácido de plomo"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "100 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "Sellomatic 2.75-10"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 145 cm - Alto 105 cm - Ancho 42 cm"
+   }
+  ]
  },
  {
   "proveedor": "Evobike",
@@ -753,7 +1901,45 @@
    "llantas": "16-3.0",
    "carga": "6 - 8 horas",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Capacidad",
+    "value": "2 persona"
+   },
+   {
+    "label": "Potencia",
+    "value": "350 W"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "hasta 40 km/h"
+   },
+   {
+    "label": "Autonomía",
+    "value": "60V: 55 km · 72V: 65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 72V: Plomo de grafeno"
+   },
+   {
+    "label": "Límite de peso",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "16-3.0"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 - 8 horas"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "Largo 166 cm - Alto 110 cm - Ancho 73 cm"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -776,12 +1962,38 @@
    "autonomiaTxt": "40–50 km por carga",
    "velocidadKmh": 25,
    "velocidadTxt": "25 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "",
    "peso": "50 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40–50 km por carga"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W de alto rendimiento"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20Ah"
+   },
+   {
+    "label": "Peso",
+    "value": "50 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -804,12 +2016,54 @@
    "autonomiaTxt": "50 – 60 km por carga",
    "velocidadKmh": 25,
    "velocidadTxt": "25 km/h",
-   "capacidad": "de carga: 130 kg",
+   "capacidad": "130 kg",
    "frenos": "",
    "llantas": "10\"",
    "carga": "7 – 8 horas",
    "peso": "56 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "50 – 60 km por carga"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "7 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "56 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "130 kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -832,12 +2086,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -860,12 +2156,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 150 kg",
+   "capacidad": "150 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "50 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "50 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "150 kg"
+   },
+   {
+    "label": "Neumáticos",
+    "value": "10\""
+   },
+   {
+    "label": "Inclinaciones",
+    "value": "Hasta 15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -888,12 +2226,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 130 kg",
+   "capacidad": "130 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "130 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -916,12 +2296,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -944,12 +2366,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "60 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "60 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumáticos",
+    "value": "10\""
+   },
+   {
+    "label": "Inclinaciones permitidas",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -972,12 +2436,58 @@
    "autonomiaTxt": "50 – 60 km por carga",
    "velocidadKmh": 25,
    "velocidadTxt": "25 km/h",
-   "capacidad": "de carga: 130 kg",
+   "capacidad": "130 kg",
    "frenos": "",
    "llantas": "10\"",
    "carga": "7 – 8 horas",
    "peso": "56 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "50 – 60 km por carga"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "7 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "56 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "130 kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   },
+   {
+    "label": "Tipo de batería",
+    "value": "Plomo ácido"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1000,12 +2510,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1028,12 +2580,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 150 kg",
+   "capacidad": "150 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "60 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "60 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "150 kg"
+   },
+   {
+    "label": "Neumáticos",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1056,12 +2650,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 130 kg",
+   "capacidad": "130 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "56 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "56 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "130 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1084,12 +2720,62 @@
    "autonomiaTxt": "50 – 60 km por carga",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 300 kg",
+   "capacidad": "300 kg",
    "frenos": "",
    "llantas": "10\"",
    "carga": "6 – 8 horas",
    "peso": "95 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "50 – 60 km por carga"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "650W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 32Ah"
+   },
+   {
+    "label": "Tipo de batería",
+    "value": "Plomo ácido"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "95 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "300 kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   },
+   {
+    "label": "Para circular requiere",
+    "value": "Licencia, SOAT y matrícula"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1112,12 +2798,58 @@
    "autonomiaTxt": "50 – 60 km por carga",
    "velocidadKmh": 25,
    "velocidadTxt": "25 km/h",
-   "capacidad": "de carga: 130 kg",
+   "capacidad": "130 kg",
    "frenos": "",
    "llantas": "10\"",
    "carga": "7 – 8 horas",
    "peso": "56 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "50 – 60 km por carga"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "7 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "56 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "130 kg"
+   },
+   {
+    "label": "Llanta",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   },
+   {
+    "label": "Tipo de batería",
+    "value": "Plomo ácido"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1140,12 +2872,58 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 130 kg",
+   "capacidad": "130 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "130 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   },
+   {
+    "label": "Tipo de batería",
+    "value": "Plomo ácido"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1168,12 +2946,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "60V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1196,12 +3016,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "48 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "48 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1224,12 +3086,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "48 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "48 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Mobulaa",
@@ -1252,12 +3156,54 @@
    "autonomiaTxt": "40 – 50 km",
    "velocidadKmh": 35,
    "velocidadTxt": "25 – 35 km/h",
-   "capacidad": "de carga: 120 kg",
+   "capacidad": "120 kg",
    "frenos": "",
    "llantas": "",
    "carga": "6 – 8 horas",
    "peso": "55 kg"
-  }
+  },
+  "detalle": [
+   {
+    "label": "Autonomía",
+    "value": "40 – 50 km"
+   },
+   {
+    "label": "Velocidad máxima",
+    "value": "25 – 35 km/h"
+   },
+   {
+    "label": "Motor",
+    "value": "350W"
+   },
+   {
+    "label": "Batería",
+    "value": "48V / 20Ah"
+   },
+   {
+    "label": "Tiempo de carga",
+    "value": "6 – 8 horas"
+   },
+   {
+    "label": "Material del marco",
+    "value": "Acero Alloy"
+   },
+   {
+    "label": "Peso",
+    "value": "55 kg"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 kg"
+   },
+   {
+    "label": "Neumático",
+    "value": "10\""
+   },
+   {
+    "label": "Capacidad de inclinación",
+    "value": "15°"
+   }
+  ]
  },
  {
   "proveedor": "Brenson",
@@ -1285,7 +3231,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Brenson",
@@ -1313,7 +3260,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Brenson",
@@ -1341,7 +3289,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Brenson",
@@ -1369,7 +3318,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Brenson",
@@ -1397,7 +3347,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Brenson",
@@ -1425,7 +3376,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Brenson",
@@ -1453,7 +3405,8 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": []
  },
  {
   "proveedor": "Biologica",
@@ -1476,12 +3429,122 @@
    "autonomiaTxt": "50 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": null,
    "velocidadTxt": "",
-   "capacidad": "DE CARGA: 80 Kg",
-   "frenos": "DELANTERO: Banda Guaya",
-   "llantas": "DELANTERA: 2.75 - 10 - Sellomatic",
-   "carga": "DOR: Para Plomo",
+   "capacidad": "80 Kg",
+   "frenos": "Banda Guaya · Banda Guaya",
+   "llantas": "2.75 - 10 - Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "350W Brushless / FULL WHEEL ENGINE – Rin de Aluminio – Sellado Anti Humedad – 12 Pernos de Seguridad / Rin Sellomatic"
+   },
+   {
+    "label": "Autonomía",
+    "value": "50 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Banda Guaya"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Banda Guaya"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "1"
+   },
+   {
+    "label": "Reversa",
+    "value": "No"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "2.75 - 10 - Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "2.75 - 10 - Sellomatic"
+   },
+   {
+    "label": "Luces",
+    "value": "LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "No"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "Sí"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "80 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "1 Adulto + 1 Niño"
+   },
+   {
+    "label": "Espejos",
+    "value": "No"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "No"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Si"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Pintura",
+    "value": "Plásticos de color orignal"
+   },
+   {
+    "label": "Colores",
+    "value": "Rojo - Verde - Negro - Blanco - Curuba"
+   },
+   {
+    "label": "Batería",
+    "value": "48V 20 AH Plomo"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1504,12 +3567,106 @@
    "autonomiaTxt": "55 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": 45,
    "velocidadTxt": "45 Km/h (Máxima en condiciones ideales)",
-   "capacidad": "DE CARGA: 110 Kg",
-   "frenos": "DELANTERO: Disco",
-   "llantas": "DELANTERA: 3.00 -10 Sellomatic",
-   "carga": "DOR: Para Plomo, Para Litio",
+   "capacidad": "110 Kg",
+   "frenos": "Disco · Disco",
+   "llantas": "3.00 -10 Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "350WBrushless / FULL WHEEL ENGINE – Rin de Aluminio – Sellado Anti Humedad – 12 Pernos de Seguridad / Rin Sellomatic"
+   },
+   {
+    "label": "Velocidad",
+    "value": "45 Km/h (Máxima en condiciones ideales)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "55 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Disco"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3 Posiciones de Velocidad con Mando en el Manubrio"
+   },
+   {
+    "label": "Reversa",
+    "value": "No"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "3.00 -10 Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "3.00 -10 Sellomatic"
+   },
+   {
+    "label": "Luces",
+    "value": "LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "Si"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "110 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "1 Adulto + 1 Niño"
+   },
+   {
+    "label": "Espejos",
+    "value": "Sí"
+   },
+   {
+    "label": "Colores",
+    "value": "Colores Variados"
+   },
+   {
+    "label": "Batería",
+    "value": "Plomo 48V 20AH, Litio 48V 20AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo, Para Litio"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1532,12 +3689,126 @@
    "autonomiaTxt": "65 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": null,
    "velocidadTxt": "",
-   "capacidad": "DE CARGA: 80 Kg",
-   "frenos": "DELANTERO: Banda Guaya",
-   "llantas": "DELANTERA: 2,75-10 - Sellomatic",
-   "carga": "DOR: Para Plomo",
+   "capacidad": "80 Kg",
+   "frenos": "Banda Guaya · Banda Guaya",
+   "llantas": "2,75-10 - Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "350W Brushless / FULL WHEEL ENGINE – Rin de Aluminio – Sellado Anti Humedad – 12 Pernos de Seguridad / Rin Sellomatic"
+   },
+   {
+    "label": "Autonomía",
+    "value": "65 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Banda Guaya"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Banda Guaya"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "1"
+   },
+   {
+    "label": "Reversa",
+    "value": "No"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "2,75-10 - Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "2,75-10 - Sellomatic"
+   },
+   {
+    "label": "Luces",
+    "value": "LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "No"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "Sí"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "80 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "1 Adulto + 1 niño"
+   },
+   {
+    "label": "Espejos",
+    "value": "No"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "No"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Colores",
+    "value": "Azul"
+   },
+   {
+    "label": "Batería",
+    "value": "Plomo 60V 20AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1560,12 +3831,130 @@
    "autonomiaTxt": "40 - 50 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": null,
    "velocidadTxt": "",
-   "capacidad": "DE CARGA: 80 Kg",
-   "frenos": "DELANTERO: Banda Guaya",
-   "llantas": "DELANTERA: 14 - 2.75 - Sellomatic",
-   "carga": "DOR: Para Litio, Para Plomo",
+   "capacidad": "80 Kg",
+   "frenos": "Banda Guaya · Banda Guaya",
+   "llantas": "14 - 2.75 - Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "350W Brushless / FULL WHEEL ENGINE – Rin de Aluminio – Sellado Anti Humedad – 12 Pernos de Seguridad / Rin Sellomatic"
+   },
+   {
+    "label": "Autonomía",
+    "value": "40 - 50 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Banda Guaya"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Banda Guaya"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital Color"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3"
+   },
+   {
+    "label": "Reversa",
+    "value": "No"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "14 - 2.75 - Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "14 - 2.75 - Sellomatic"
+   },
+   {
+    "label": "Luces",
+    "value": "LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí (traseras)"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "Sí"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "80 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "1 persona + 1 niño"
+   },
+   {
+    "label": "Espejos",
+    "value": "Si"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "No"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "No"
+   },
+   {
+    "label": "Pintura",
+    "value": "Pintura brillante de poliuretano"
+   },
+   {
+    "label": "Colores",
+    "value": "Negro - Azul - Verde - Caqui"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "No"
+   },
+   {
+    "label": "Batería",
+    "value": "Litio 48V 15AH, Plomo 48V 20AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Litio, Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1588,12 +3977,170 @@
    "autonomiaTxt": "80 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": 75,
    "velocidadTxt": "75 Km/h (Máxima en condiciones ideales)",
-   "capacidad": "DE CARGA: 160 Kg",
-   "frenos": "DELANTERO: Disco hidráulico",
-   "llantas": "DELANTERA: 90-70-12 Sellomatic",
-   "carga": "DOR: Para Litio",
+   "capacidad": "160 Kg",
+   "frenos": "Disco hidráulico · Disco hidráulico",
+   "llantas": "90-70-12 Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "2.000W Brushless / MAGMA / Full Wheel Engine ©"
+   },
+   {
+    "label": "Velocidad",
+    "value": "75 Km/h (Máxima en condiciones ideales)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "80 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco hidráulico"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Disco hidráulico"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital Vertical Colores"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3 Posiciones de Velocidad con Mando en el Manubrio"
+   },
+   {
+    "label": "Reversa",
+    "value": "Sí"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "90-70-12 Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "90-70-12 Sellomatic"
+   },
+   {
+    "label": "Rin delantero",
+    "value": "Metálico 12"
+   },
+   {
+    "label": "Suspensión delantera",
+    "value": "Telescópica"
+   },
+   {
+    "label": "Suspensión trasera",
+    "value": "Dual Shock"
+   },
+   {
+    "label": "Luces",
+    "value": "Doble Faro LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí"
+   },
+   {
+    "label": "Alarma",
+    "value": "(Opcional)"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "(Opcional)"
+   },
+   {
+    "label": "Control",
+    "value": "(Opcional)"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "No"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "160 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "2 Personas"
+   },
+   {
+    "label": "Acelerador",
+    "value": "Automático en Manillar"
+   },
+   {
+    "label": "Manillares",
+    "value": "Plástico"
+   },
+   {
+    "label": "Maniguetas",
+    "value": "Metálicas"
+   },
+   {
+    "label": "Espejos",
+    "value": "Sí"
+   },
+   {
+    "label": "Parabrisas",
+    "value": "No"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Integrados"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "No"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "No"
+   },
+   {
+    "label": "Pintura",
+    "value": "Brillante"
+   },
+   {
+    "label": "Colores",
+    "value": "Gris con Rojo"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "Reversa - Luces de parqueo - Destello de luces - Cargador de celular USB"
+   },
+   {
+    "label": "Batería",
+    "value": "Litio 72V 30AH (Extraíble)"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Litio"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1616,12 +4163,170 @@
    "autonomiaTxt": "65 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": 60,
    "velocidadTxt": "60 Km/h (Máxima en condiciones ideales)",
-   "capacidad": "DE CARGA: 180 Kg",
-   "frenos": "DELANTERO: Disco hidráulico",
-   "llantas": "DELANTERA: 100-80-12 - (Chaoyang) Sellomatic",
-   "carga": "DOR: Para Plomo",
+   "capacidad": "180 Kg",
+   "frenos": "Disco hidráulico · Disco hidráulico",
+   "llantas": "100-80-12 - (Chaoyang) Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "2.500W Brushless / Rin Sellomatic"
+   },
+   {
+    "label": "Velocidad",
+    "value": "60 Km/h (Máxima en condiciones ideales)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "65 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco hidráulico"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Disco hidráulico"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital colores"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3 Posiciones de Velocidad con Mando en el Manubrio"
+   },
+   {
+    "label": "Reversa",
+    "value": "Sí"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "100-80-12 - (Chaoyang) Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "120-70-12 - (Chaoyang) Sellomatic"
+   },
+   {
+    "label": "Rin delantero",
+    "value": "Metálico 12"
+   },
+   {
+    "label": "Suspensión delantera",
+    "value": "Telescópica"
+   },
+   {
+    "label": "Suspensión trasera",
+    "value": "Mono Shock"
+   },
+   {
+    "label": "Luces",
+    "value": "LED de doble lente"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "No"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "2 Personas"
+   },
+   {
+    "label": "Acelerador",
+    "value": "Automático en Manillar"
+   },
+   {
+    "label": "Manillares",
+    "value": "Aluminio y Plástico"
+   },
+   {
+    "label": "Maniguetas",
+    "value": "Metálicas"
+   },
+   {
+    "label": "Espejos",
+    "value": "Sí"
+   },
+   {
+    "label": "Parabrisas",
+    "value": "No"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Retráctiles - Aluminio"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "No"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "No"
+   },
+   {
+    "label": "Pintura",
+    "value": "Plana - Tornasolada"
+   },
+   {
+    "label": "Colores",
+    "value": "Blanco - Azul"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "Sistema de audio"
+   },
+   {
+    "label": "Batería",
+    "value": "Plomo Gel 72V 21,8AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1644,12 +4349,166 @@
    "autonomiaTxt": "30 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": null,
    "velocidadTxt": "",
-   "capacidad": "DE CARGA: 80 Kg",
-   "frenos": "DELANTERO: Disco",
-   "llantas": "DELANTERA: 2,75-10 - (Chao Yang) - Sellomatic",
-   "carga": "DOR: Para Plomo",
+   "capacidad": "80 Kg",
+   "frenos": "Disco · Banda",
+   "llantas": "2,75-10 - (Chao Yang) - Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "350W Brushless / FULL WHEEL ENGINE – Rin de Aluminio – Sellado Anti Humedad – 12 Pernos de Seguridad / Rin Sellomatic"
+   },
+   {
+    "label": "Autonomía",
+    "value": "30 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Banda"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "No"
+   },
+   {
+    "label": "Reversa",
+    "value": "No"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "2,75-10 - (Chao Yang) - Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "2,75-10 - (Chao Yang) - Sellomatic"
+   },
+   {
+    "label": "Rin delantero",
+    "value": "Aleación 10"
+   },
+   {
+    "label": "Suspensión delantera",
+    "value": "Telescópica"
+   },
+   {
+    "label": "Suspensión trasera",
+    "value": "Dual Shock"
+   },
+   {
+    "label": "Luces",
+    "value": "Incandescentes"
+   },
+   {
+    "label": "Direccionales",
+    "value": "No"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "Sí"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "80 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "1 Persona"
+   },
+   {
+    "label": "Acelerador",
+    "value": "Automático en Manillar"
+   },
+   {
+    "label": "Manillares",
+    "value": "Plástico"
+   },
+   {
+    "label": "Maniguetas",
+    "value": "Metálicas"
+   },
+   {
+    "label": "Espejos",
+    "value": "No"
+   },
+   {
+    "label": "Parabrisas",
+    "value": "Sí"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "No"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Pintura",
+    "value": "Plásticos de color original"
+   },
+   {
+    "label": "Colores",
+    "value": "Amarillo - Rojo Salmón - Rosado - Gris - Negro"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "Gato (soporte) central"
+   },
+   {
+    "label": "Batería",
+    "value": "Plomo 48V 13AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1672,12 +4531,170 @@
    "autonomiaTxt": "65 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": 55,
    "velocidadTxt": "55 Km/h (Máxima en condiciones ideales)",
-   "capacidad": "DE CARGA: 180 Kg",
-   "frenos": "DELANTERO: Disco doble pistón",
-   "llantas": "DELANTERA: 100-70 - (Maxxis) Sellomatic",
-   "carga": "DOR: Para Litio",
+   "capacidad": "180 Kg",
+   "frenos": "Disco doble pistón · Disco",
+   "llantas": "100-70 - (Maxxis) Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "1.800W Brushless / BOSCH EM 03 DUAL CORE / Rin Sellomatic"
+   },
+   {
+    "label": "Velocidad",
+    "value": "55 Km/h (Máxima en condiciones ideales)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "65 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco doble pistón"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Disco"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3 Posiciones de Velocidad con Mando en el Manubrio"
+   },
+   {
+    "label": "Reversa",
+    "value": "Sí"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "100-70 - (Maxxis) Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "120-70 - (Maxxis) Sellomatic"
+   },
+   {
+    "label": "Rin delantero",
+    "value": "Aleación 12/12"
+   },
+   {
+    "label": "Suspensión delantera",
+    "value": "Telescópica"
+   },
+   {
+    "label": "Suspensión trasera",
+    "value": "Dual Shock"
+   },
+   {
+    "label": "Luces",
+    "value": "Faro Multifuncional LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "No"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "2 Personas"
+   },
+   {
+    "label": "Acelerador",
+    "value": "Automático en Manillar"
+   },
+   {
+    "label": "Manillares",
+    "value": "Plástico"
+   },
+   {
+    "label": "Maniguetas",
+    "value": "Metálicas"
+   },
+   {
+    "label": "Espejos",
+    "value": "Sí"
+   },
+   {
+    "label": "Parabrisas",
+    "value": "Sí"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Retráctiles - Aluminio"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Pintura",
+    "value": "Semi-mate"
+   },
+   {
+    "label": "Colores",
+    "value": "Negro - Azul - Blanco - Gris"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "Sistema de audio - Acelerador de emergencia - Portavasos - USB"
+   },
+   {
+    "label": "Batería",
+    "value": "Litio 60V 28AH (Extraíble)"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Litio"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1700,12 +4717,170 @@
    "autonomiaTxt": "90 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": 47,
    "velocidadTxt": "47 Km/h (Máxima en condiciones ideales)",
-   "capacidad": "DE CARGA: 180 Kg",
-   "frenos": "DELANTERO: Disco",
-   "llantas": "DELANTERA: 90/90-10 - (Chao Yang) Sellomatic",
-   "carga": "DOR: Para Plomo",
+   "capacidad": "180 Kg",
+   "frenos": "Disco · Banda",
+   "llantas": "90/90-10 - (Chao Yang) Sellomatic",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "1.200W Brushless / AIMA K(MAX) / Rin Sellomatic"
+   },
+   {
+    "label": "Velocidad",
+    "value": "47 Km/h (Máxima en condiciones ideales)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "90 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Banda"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3 Posiciones de Velocidad con Mando en el Manubrio"
+   },
+   {
+    "label": "Reversa",
+    "value": "Sí"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "90/90-10 - (Chao Yang) Sellomatic"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "90/90-10 - (Chao Yang) Sellomatic"
+   },
+   {
+    "label": "Rin delantero",
+    "value": "Aleación 10/10"
+   },
+   {
+    "label": "Suspensión delantera",
+    "value": "Telescópica"
+   },
+   {
+    "label": "Suspensión trasera",
+    "value": "Dual Shock"
+   },
+   {
+    "label": "Luces",
+    "value": "Faro Multifuncional LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "No"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "180 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "2 Personas"
+   },
+   {
+    "label": "Acelerador",
+    "value": "Automático en Manillar"
+   },
+   {
+    "label": "Manillares",
+    "value": "Plástico"
+   },
+   {
+    "label": "Maniguetas",
+    "value": "Metálicas"
+   },
+   {
+    "label": "Espejos",
+    "value": "Sí"
+   },
+   {
+    "label": "Parabrisas",
+    "value": "No"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Retráctiles - Aluminio"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Pintura",
+    "value": "Semi-mate"
+   },
+   {
+    "label": "Colores",
+    "value": "Azul - Blanco - Gris - Verde"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "Sistema de potencia SDS - Luz 360° - Freno regenerativo"
+   },
+   {
+    "label": "Batería",
+    "value": "Plomo 72V 30AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "Biologica",
@@ -1728,12 +4903,170 @@
    "autonomiaTxt": "55 km - (Aproximada dependiendo de la batería y en condiciones ideales)",
    "velocidadKmh": 53,
    "velocidadTxt": "53 Km/h (Máxima en condiciones ideales)",
-   "capacidad": "DE CARGA: 120 Kg",
-   "frenos": "DELANTERO: Disco",
-   "llantas": "DELANTERA: 90/90-10",
-   "carga": "DOR: Para Plomo",
+   "capacidad": "120 Kg",
+   "frenos": "Disco · Disco",
+   "llantas": "90/90-10",
+   "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Motor",
+    "value": "1.200W Brushless / BOSCH / Rin Sellomatic"
+   },
+   {
+    "label": "Velocidad",
+    "value": "53 Km/h (Máxima en condiciones ideales)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "55 km - (Aproximada dependiendo de la batería y en condiciones ideales)"
+   },
+   {
+    "label": "Freno delantero",
+    "value": "Disco"
+   },
+   {
+    "label": "Freno trasero",
+    "value": "Disco"
+   },
+   {
+    "label": "Tablero",
+    "value": "Digital"
+   },
+   {
+    "label": "Posiciones de velocidad",
+    "value": "3 Posiciones de Velocidad con Mando en el Manubrio"
+   },
+   {
+    "label": "Reversa",
+    "value": "Sí + Parking"
+   },
+   {
+    "label": "Llanta delantera",
+    "value": "90/90-10"
+   },
+   {
+    "label": "Llanta trasera",
+    "value": "90/90-10"
+   },
+   {
+    "label": "Rin delantero",
+    "value": "Aleación 10/10"
+   },
+   {
+    "label": "Suspensión delantera",
+    "value": "Telescópica"
+   },
+   {
+    "label": "Suspensión trasera",
+    "value": "Dual Shock"
+   },
+   {
+    "label": "Luces",
+    "value": "Faro Multifuncional LED"
+   },
+   {
+    "label": "Direccionales",
+    "value": "Sí"
+   },
+   {
+    "label": "Alarma",
+    "value": "Sí"
+   },
+   {
+    "label": "Bloqueo",
+    "value": "Sí"
+   },
+   {
+    "label": "Control",
+    "value": "Sí"
+   },
+   {
+    "label": "Pito",
+    "value": "Sí"
+   },
+   {
+    "label": "Pedaleo asistido",
+    "value": "No"
+   },
+   {
+    "label": "Capacidad de carga",
+    "value": "120 Kg"
+   },
+   {
+    "label": "Silla",
+    "value": "2 Personas - Tapizado de Lujo"
+   },
+   {
+    "label": "Acelerador",
+    "value": "Automático en Manillar"
+   },
+   {
+    "label": "Manillares",
+    "value": "Alumnio y Plástico"
+   },
+   {
+    "label": "Maniguetas",
+    "value": "Metálicas"
+   },
+   {
+    "label": "Espejos",
+    "value": "Sí"
+   },
+   {
+    "label": "Parabrisas",
+    "value": "No"
+   },
+   {
+    "label": "Descansapies acompañante",
+    "value": "Retráctiles - Aluminio"
+   },
+   {
+    "label": "Seguro de manos acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Espaldar acompañante",
+    "value": "Sí"
+   },
+   {
+    "label": "Baúl",
+    "value": "No"
+   },
+   {
+    "label": "Parrilla",
+    "value": "No"
+   },
+   {
+    "label": "Bolsillo delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Gancho delantero",
+    "value": "Sí"
+   },
+   {
+    "label": "Pintura",
+    "value": "Pintura brillante de poliuretano"
+   },
+   {
+    "label": "Colores",
+    "value": "Rojo - Azul - Blanco"
+   },
+   {
+    "label": "+ adicionales",
+    "value": "Luz ambiental alrededor del vehículo - Sensor táctil"
+   },
+   {
+    "label": "Batería",
+    "value": "Plomo 60V 20AH"
+   },
+   {
+    "label": "Cargador",
+    "value": "Para Plomo"
+   }
+  ]
  },
  {
   "proveedor": "NIU",
@@ -1761,6 +5094,40 @@
    "llantas": "",
    "carga": "",
    "peso": ""
-  }
+  },
+  "detalle": [
+   {
+    "label": "Velocidad máxima",
+    "value": "55 km/h"
+   },
+   {
+    "label": "Potencia",
+    "value": "1.500 W (nominal)"
+   },
+   {
+    "label": "Autonomía",
+    "value": "55-65 km"
+   },
+   {
+    "label": "Batería",
+    "value": "litio extraíble 60 V / 26 Ah"
+   },
+   {
+    "label": "Frenos",
+    "value": "discos hidráulicos delantero y trasero + freno regenerativo tipo EBS"
+   },
+   {
+    "label": "Suspensión",
+    "value": "hidráulica telescópica delantera + doble amortiguador trasero"
+   },
+   {
+    "label": "Capacidad",
+    "value": "2 personas"
+   },
+   {
+    "label": "Colores",
+    "value": "Azul, Blanco, Negro"
+   }
+  ]
  }
 ]

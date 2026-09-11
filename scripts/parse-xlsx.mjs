@@ -41,7 +41,10 @@ const kmhOf = (s) => {
 function spec(ficha, ...labels) {
   const lines = String(ficha).split('\n')
   for (const label of labels) {
-    const re = new RegExp(`^[•\\-\\s]*${label}\\s*:?\\s*(.*)$`, 'i')
+    // La etiqueta tiene que terminar justo antes de los dos puntos. Sin este
+    // anclaje, "Capacidad" mordía "CAPACIDAD DE CARGA: 180 Kg" y devolvía
+    // "DE CARGA: 180 Kg", y "Carga" partía "CARGADOR:" en "DOR: Para Plomo".
+    const re = new RegExp(`^[•\\-\\s]*${label}\\s*:\\s*(.*)$`, 'i')
     for (let i = 0; i < lines.length; i++) {
       const m = lines[i].trim().match(re)
       if (!m) continue
@@ -83,11 +86,31 @@ for (const sheet of wb.SheetNames) {
     const bateria = spec(ficha, 'Batería', 'Bateria')
     const autonomia = spec(ficha, 'Autonomía', 'Autonomia', 'Recorrido')
     const velocidad = spec(ficha, 'Velocidad máxima', 'Velocidad')
-    const capacidad = spec(ficha, 'Capacidad')
-    const frenos = spec(ficha, 'Frenos', 'Freno')
-    const llantas = spec(ficha, 'Llantas', 'Llanta', 'Rin')
-    const carga = spec(ficha, 'Tiempo de carga', 'Carga')
+    const capacidad = spec(ficha, 'Capacidad de carga', 'Capacidad', 'Silla')
+    const frenos =
+      [spec(ficha, 'Freno delantero'), spec(ficha, 'Freno trasero')].filter(Boolean).join(' · ') ||
+      spec(ficha, 'Frenos', 'Freno')
+    const llantas = spec(ficha, 'Llanta delantera', 'Llantas', 'Llanta', 'Tipo de llanta')
+    const carga = spec(ficha, 'Tiempo de carga')
     const peso = spec(ficha, 'Peso máximo soportado', 'Peso soportado', 'Peso')
+
+    // Ficha completa: algunas tiendas publican 30-40 campos (suspensión,
+    // tablero, reversa, espaldar…). Se guardan todos tal cual para mostrarlos
+    // en el detalle, sin quedarse solo con el puñado que se usa para filtrar.
+    const detalle = []
+    const vistos = new Set()
+    for (const linea of ficha.split('\n')) {
+      const m = linea.trim().match(/^[•\-\s]*([A-Za-zÁÉÍÓÚÜÑáéíóúüñ+ ./]{2,42}?)\s*:\s*(.+)$/)
+      if (!m) continue
+      const label = m[1].trim().replace(/\s+/g, ' ')
+      const value = m[2].trim().replace(/\.$/, '')
+      // Descarta los avisos legales largos y las etiquetas sin dato útil
+      if (value.length > 120 || /^valores$/i.test(label)) continue
+      const clave = label.toLowerCase()
+      if (vistos.has(clave)) continue
+      vistos.add(clave)
+      detalle.push({ label: label.charAt(0).toUpperCase() + label.slice(1).toLowerCase(), value })
+    }
 
     out.push({
       proveedor: sheet,
@@ -116,6 +139,7 @@ for (const sheet of wb.SheetNames) {
         carga,
         peso,
       },
+      detalle,
     })
   }
 }

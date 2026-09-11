@@ -33,6 +33,11 @@ export type Moto = {
   photoFit?: 'cover'
   description?: string
   colors?: string[]
+  /**
+   * Ficha técnica completa tal y como la publica el proveedor. Algunas traen
+   * 40 campos (suspensión, tablero, reversa…) y otras ninguno.
+   */
+  sheet?: { label: string; value: string }[]
 
   range?: number
   speed?: number

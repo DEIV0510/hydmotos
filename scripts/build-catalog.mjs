@@ -109,6 +109,7 @@ for (const c of CLIENTE) {
     description: fuente?.descripcion || '',
     colors: fuente ? colores(fuente.opciones) : [],
     charge: fuente?.specs.carga || '',
+    sheet: fuente?.detalle ?? [],
     source: 'cliente',
   })
 }
@@ -128,6 +129,7 @@ for (const m of crudo) {
     capacity: m.specs.capacidad || '', brakes: m.specs.frenos || '',
     tire: m.specs.llantas || base.tire,
     charge: m.specs.carga || '',
+    sheet: m.detalle ?? [],
     image: existsSync(`public/motos/${id}.webp`) ? id : null,
     description: m.descripcion,
     colors: colores(m.opciones),
@@ -154,6 +156,7 @@ const body = motos
     }
     if (m.description) l.push(`    description: ${q(m.description)}`)
     if (m.colors?.length) l.push(`    colors: ${JSON.stringify(m.colors)}`)
+    if (m.sheet?.length) l.push(`    sheet: ${JSON.stringify(m.sheet)}`)
     if (m.range) l.push(`    range: ${m.range}`)
     if (m.speed) l.push(`    speed: ${m.speed}`)
     if (m.power) l.push(`    power: ${m.power}`)

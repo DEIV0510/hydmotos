@@ -119,6 +119,13 @@ npm run audit:sheet out # hoja de contacto de las fotos ya procesadas
 Los intermedios viven en `scripts/data/` y están versionados, así que el
 catálogo se puede regenerar sin tener el Excel ni la carpeta de fotos a mano.
 
+### Los PDF de catálogo
+
+`motors/` incluye cuatro catálogos en PDF (Biológica, Brenson, Mobulaa, NIU).
+**No se usan en el build**: son una maquetación del mismo material que ya está
+en el Excel y en las carpetas de fotos, con las imágenes incrustadas sin
+recomprimir. Sirven como referencia para comprobar datos a ojo.
+
 - **Fotos** (`scripts/build-photos.mjs`): de las 838 imágenes de la carpeta se
   elige automáticamente la mejor de cada modelo, midiendo la silueta para
   descartar planos de detalle (manillares, tableros) y quedarse con las de
