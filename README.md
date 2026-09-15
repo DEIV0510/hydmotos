@@ -54,7 +54,7 @@ eléctricos · Taller · Repuestos**. El logo lleva al inicio y «Consultar», a
 
 | # | Sección | Para qué está |
 |---|---|---|
-| — | Portada (`Hero`) | El carro como protagonista, en su foto completa; WhatsApp y catálogo |
+| — | Portada (`Hero`) | El vídeo del carro a sangre en todo el hero, con el mensaje encima; WhatsApp y catálogo |
 | — | Franja (`Marquee`) | Banda azul eléctrico con las categorías y datos del catálogo |
 | — | Descuentos (`Descuentos`) | Banner con letras en 3D y las ofertas reales; admite videos (`src/data/promos.ts`) |
 | 01 | Destacados (`Featured`) | Motos con precio y foto en un mosaico, ofertas primero; accesos por tipo |
@@ -248,16 +248,33 @@ usando el id que muestra `npm run audit -- --sinfoto`, y ejecuta `npm run catalo
 ## Portada, carro, iconos y material de MAGMA
 
 ```bash
-npm run media        # public/carro, public/magma, public/og.jpg y src/data/media.ts
-npm run assets:logo  # public/marca, favicon-48.png y apple-touch-icon.png
+npm run media             # public/carro, public/magma, public/og.jpg y src/data/media.ts
+npm run assets:logo       # public/marca, favicon-48.png y apple-touch-icon.png
+npm run assets:hero-video # public/video/hero(.mp4|-mobile.mp4|-poster.jpg)
 ```
 
-- **Carro**: la portada usa `carro4.png` (tres cuartos, 1270×716) y el cierre
-  `carro.png` (el faro). También se exportan `carro2` y `carro3`. Son fotos de
-  unos 1270 px de ancho, casi 16:9, y van **completas**: sin recortes, sin
-  filtros y sin fundidos en los bordes (así lo pidió el cliente), en un marco
-  con esquinas redondeadas y borde fino. Se precarga desde `index.html` y
-  mientras llega se ve una vista previa difuminada de unos 250 bytes.
+- **Vídeo de la portada**: el cliente añadió `carrohero.mp4` (10 s, el carro
+  parado de noche, cámara acercándose al frente) y pidió ponerlo en **todo**
+  el hero, no en una parte: por eso va a sangre, de lado a lado y hasta detrás
+  del menú (transparente hasta que se hace scroll), con el texto encima, en
+  vez de en un recuadro al lado. `build-hero-video.mjs` le quita el audio y lo
+  saca en dos anchos —el nativo (1280) para escritorio y uno más liviano (640)
+  para el celular, elegido por `<source media>`— y en un solo formato: se
+  probó también WebM y, con el detalle fino de los neones, salía más pesado
+  que el MP4. El póster es el primer fotograma; con «reducir movimiento» la
+  portada se queda en ese fotograma, sin reproducir nada.
+
+  Encima solo lleva un velo oscuro parejo, más fuerte donde va el texto: la
+  cámara se acerca tanto al final del bucle que el carro (plateado, muy claro
+  bajo los neones) llega a ocupar esa misma zona, y con un velo suave el texto
+  dejaba de leerse ahí. Se ajustó **midiendo el contraste real** en capturas de
+  pantalla (no del fotograma del vídeo suelto, que no lleva el velo) en varios
+  instantes del bucle, no solo en el póster.
+- **Carro (fotos)**: siguen en la sección de carros eléctricos y en el cierre
+  (`carro.png`, el faro). `carro4.png` es la de tres cuartos y también se
+  exportan `carro2` y `carro3`. Son fotos de unos 1270 px de ancho, casi 16:9,
+  y van **completas**: sin recortes, sin filtros y sin fundidos en los bordes
+  (así lo pidió el cliente), en un marco con esquinas redondeadas y borde fino.
 - **Compartir el enlace**: `og.jpg` (1200×630) es la misma foto del carro
   recortada a ese formato. WhatsApp y Facebook no muestran SVG ni rutas
   relativas; el `og.svg` anterior llevaba una moto dibujada y «19 modelos».
@@ -271,7 +288,7 @@ npm run assets:logo  # public/marca, favicon-48.png y apple-touch-icon.png
   `public/carro-mini` (`CARRO_MINI`), para la sección de carros eléctricos. No
   hay nombre ni datos: se presenta por el color y las puertas.
 
-El vídeo del local se comprime aparte con `npm run assets:video`.
+El vídeo del local (sección «El local») se comprime aparte con `npm run assets:video`.
 
 ---
 
@@ -334,7 +351,7 @@ Para quitar o añadir una excepción hay que volver a sacar las originales:
 ```
 scripts/
 ├── pick-photos.mjs · build-photos.mjs · build-extra-photos.mjs · build-catalog.mjs
-├── build-media.mjs · build-logo.mjs
+├── build-media.mjs · build-logo.mjs · build-video.mjs · build-hero-video.mjs
 ├── parse-parts-xlsx.mjs · extract-parts-photos.mjs · build-parts-clean.mjs · build-parts.mjs
 └── cutout.mjs · encuadre.mjs · sku.mjs      ← piezas compartidas
 src/
@@ -385,9 +402,18 @@ src/
   escritorio y menú móvil (también con `Esc`). Los enlaces del menú dejan cada
   sección justo bajo la barra (antes quedaba 96 px más abajo: se sumaban
   `scroll-padding` y `scroll-mt`).
-- **Accesibilidad:** axe-core sin infracciones. Anillo de foco visible en
-  fondos claros y oscuros. Con «reducir movimiento» no hay pantalla de carga ni
-  animaciones, y la portada aparece sin esperas.
+- **Accesibilidad:** axe-core sin infracciones en toda la página, con el menú
+  móvil abierto incluido. Anillo de foco visible en fondos claros y oscuros.
+  Con «reducir movimiento» no hay pantalla de carga ni animaciones, la portada
+  aparece sin esperas y el vídeo del carro se queda en su primer fotograma en
+  vez de reproducirse.
+  > Al subir el azul eléctrico (`cyan`) de tono, los títulos «Navegación» y
+  > «Contacto» del pie y los números del menú móvil —que lo usaban atenuado al
+  > 80 %— bajaron de 4,5:1. Se corrigió quitándoles esa atenuación.
+- **Vídeo de la portada:** en 390, 1024 y 1440 px carga y reproduce el archivo
+  que le corresponde (`hero-mobile.mp4` por debajo de 768 px, `hero.mp4` desde
+  ahí), en bucle y sin sonido, cubriendo todo el hero sin dejar espacio vacío
+  de más (la sección mide lo que pide su contenido, no una altura fija).
 - **Build:** TypeScript sin errores (`npx tsc -b`) y consola limpia.
 
 ## Notas

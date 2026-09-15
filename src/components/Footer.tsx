@@ -24,7 +24,8 @@ export default function Footer() {
           </div>
 
           <nav aria-label="Pie de página">
-            <h2 className="text-[10px] font-semibold uppercase tracking-widest2 text-cyan/80">
+            {/* Sin /80: con el azul eléctrico nuevo, atenuado bajaba de 4.5:1 sobre este fondo */}
+            <h2 className="text-[10px] font-semibold uppercase tracking-widest2 text-cyan">
               Navegación
             </h2>
             <ul className="mt-4 space-y-1">
@@ -45,7 +46,7 @@ export default function Footer() {
           </nav>
 
           <div>
-            <h2 className="text-[10px] font-semibold uppercase tracking-widest2 text-cyan/80">
+            <h2 className="text-[10px] font-semibold uppercase tracking-widest2 text-cyan">
               Contacto
             </h2>
             <ul className="mt-4 space-y-2.5 text-[14px] text-silver">

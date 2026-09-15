@@ -158,7 +158,8 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   className="flex items-baseline gap-4 border-b border-white/[0.07] py-4 font-display text-[2.1rem] font-bold uppercase leading-none text-chrome transition-colors active:text-cyan"
                 >
-                  <span className="font-sans text-[11px] font-semibold tracking-widest2 text-cyan/80">
+                  {/* Sin /80: con el azul eléctrico nuevo, atenuado bajaba de 4.5:1 */}
+                  <span className="font-sans text-[11px] font-semibold tracking-widest2 text-cyan">
                     0{i + 1}
                   </span>
                   {n.label}
