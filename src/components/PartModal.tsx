@@ -5,9 +5,9 @@ import { photoOfPart, type Repuesto } from '@/data/repuestos'
 import { waLink, waReady } from '@/lib/wa'
 
 export function waForPart(r: Repuesto) {
-  return `Hola, quiero pedir este repuesto de H&D MOTORENS: ${r.name}${
+  return `Hola, quiero comprar este repuesto de H&D MOTORENS: ${r.name}${
     r.sku ? ` (ref. ${r.sku})` : ''
-  }.`
+  }. ¿Me confirman disponibilidad?`
 }
 
 export default function PartModal({
@@ -185,10 +185,10 @@ export default function PartModal({
                 href={wa}
                 target={waReady ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="mt-7 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-red-btn px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-red transition-all duration-300 hover:bg-red active:scale-[0.98]"
+                className="mt-7 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-blue px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-blue transition-all duration-300 hover:bg-blue-deep active:scale-[0.98]"
               >
                 <IconWhatsApp className="h-5 w-5" />
-                Pedir por WhatsApp
+                Comprar por WhatsApp
               </a>
             </div>
           </div>

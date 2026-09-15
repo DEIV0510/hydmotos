@@ -33,7 +33,7 @@ export default function Benefits() {
           <div className="lg:col-span-5">
             <SectionHead
               tone="light"
-              eyebrow="04 · Por qué H&D"
+              eyebrow="08 · Por qué H&D"
               title={
                 <>
                   Menos gasto.

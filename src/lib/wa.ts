@@ -11,10 +11,11 @@ export function waLink(message: string) {
 }
 
 export const WA_GENERAL =
-  'Hola, estoy interesado en conocer las motos eléctricas disponibles de H&D MOTORENS.'
+  'Hola, quiero información sobre las motos, patinetas y carros eléctricos de H&D MOTORENS.'
 
+/** Mensaje del botón «Comprar» de cada moto */
 export function waForMoto(name: string) {
-  return `Hola, estoy interesado en la moto ${name} de H&D MOTORENS. Quiero conocer más información.`
+  return `Hola, quiero comprar la moto ${name} que vi en la web de H&D MOTORENS. ¿Me confirman precio y disponibilidad?`
 }
 
 /** true cuando el enlace abre WhatsApp de verdad (hay número configurado) */

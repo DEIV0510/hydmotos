@@ -25,6 +25,7 @@ import {
 import { formatCOP } from '@/data/motos'
 import { waLink, waReady } from '@/lib/wa'
 import PartModal, { waForPart } from '@/components/PartModal'
+import { EVENTO_REPUESTOS, type PeticionRepuestos } from '@/lib/catalogo'
 
 const ICONOS = {
   battery: IconBattery,
@@ -46,6 +47,17 @@ export default function Parts() {
   const [query, setQuery] = useState('')
   const [shown, setShown] = useState(PAGE)
   const [abierto, setAbierto] = useState<Repuesto | null>(null)
+
+  // Las secciones de patinetas, taller y descuentos abren los repuestos ya filtrados
+  useEffect(() => {
+    const onPeticion = (e: Event) => {
+      const p = (e as CustomEvent<PeticionRepuestos>).detail ?? {}
+      setCat(p.cat ?? 'todas')
+      setQuery(p.q ?? '')
+    }
+    window.addEventListener(EVENTO_REPUESTOS, onPeticion)
+    return () => window.removeEventListener(EVENTO_REPUESTOS, onPeticion)
+  }, [])
 
   const lista = useMemo(() => {
     const q = query.trim().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
@@ -71,7 +83,7 @@ export default function Parts() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             tone="light"
-            eyebrow="05 · Repuestos"
+            eyebrow="07 · Repuestos"
             title={
               <>
                 Todo para tu
@@ -124,8 +136,8 @@ export default function Parts() {
                   aria-pressed={on}
                   className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border px-4 text-[12px] font-semibold uppercase tracking-widest2 transition-all duration-300 ${
                     on
-                      ? 'border-ink bg-ink text-white'
-                      : 'border-ink/12 bg-card text-slate hover:border-ink/35 hover:text-ink'
+                      ? 'border-blue bg-blue text-white'
+                      : 'border-ink/12 bg-card text-slate hover:border-blue/40 hover:text-blue-deep'
                   }`}
                 >
                   {c.id === 'todas' ? 'Todas' : c.id}
@@ -214,9 +226,9 @@ export default function Parts() {
                           href={wa}
                           target={waReady ? '_blank' : undefined}
                           rel="noopener noreferrer"
-                          className="relative z-20 mt-3 inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-ink text-[11px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-red-btn hover:shadow-glow-red active:scale-[0.98]"
+                          className="relative z-20 mt-3 inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-blue text-[11px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98]"
                         >
-                          Pedir
+                          Comprar
                         </a>
                       </div>
 

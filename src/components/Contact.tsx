@@ -28,7 +28,7 @@ export default function Contact() {
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <SectionHead
-            eyebrow="07 · Contacto"
+            eyebrow="10 · Contacto"
             title={<>Hablemos</>}
             sub="Respondemos por WhatsApp. Cuéntanos qué buscas y te asesoramos sin compromiso."
           />

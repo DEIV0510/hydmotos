@@ -2,11 +2,15 @@ import LoadingScreen from '@/components/LoadingScreen'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
+import Descuentos from '@/components/Descuentos'
 import Featured from '@/components/Featured'
 import Catalog from '@/components/Catalog'
 import Magma from '@/components/Magma'
-import Benefits from '@/components/Benefits'
+import Patinetas from '@/components/Patinetas'
+import Carros from '@/components/Carros'
+import Taller from '@/components/Taller'
 import Parts from '@/components/Parts'
+import Benefits from '@/components/Benefits'
 import Showroom from '@/components/Showroom'
 import CTA from '@/components/CTA'
 import Contact from '@/components/Contact'
@@ -15,10 +19,11 @@ import WhatsAppButton from '@/components/WhatsAppButton'
 import StructuredData from '@/components/StructuredData'
 
 /**
- * Orden de la página, pensado como un recorrido de venta:
- * portada con el carro → destacados y accesos por tipo → catálogo completo →
- * la marca MAGMA → por qué H&D y cómo comprar → repuestos → el local → cierre
- * y contacto. Alterna bloques oscuros y claros para marcar el ritmo.
+ * Orden de la página, pensado como un recorrido de venta y en el mismo orden
+ * que el menú por categorías que pidió el cliente:
+ * portada → descuentos (el gancho, arriba) → motos (destacados, catálogo y
+ * MAGMA) → patinetas → carros eléctricos → taller → repuestos → por qué H&D →
+ * el local → cierre y contacto.
  */
 export default function App() {
   return (
@@ -29,11 +34,15 @@ export default function App() {
       <main id="main">
         <Hero />
         <Marquee />
+        <Descuentos />
         <Featured />
         <Catalog />
         <Magma />
-        <Benefits />
+        <Patinetas />
+        <Carros />
+        <Taller />
         <Parts />
+        <Benefits />
         <Showroom />
         <CTA />
         <Contact />

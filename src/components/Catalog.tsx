@@ -88,12 +88,12 @@ export default function Catalog() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             tone="light"
-            eyebrow="02 · Catálogo"
+            eyebrow="02 · Motos"
             title={
               <>
-                Todos los
+                Todas las
                 <br />
-                modelos
+                motos
               </>
             }
             sub={`${STATS.total} modelos eléctricos · ${STATS.offers} en oferta · ${STATS.withPrice} con precio publicado.`}
@@ -163,8 +163,8 @@ export default function Catalog() {
                   aria-pressed={on}
                   className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border px-4 text-[12px] font-semibold uppercase tracking-widest2 transition-all duration-300 ${
                     on
-                      ? 'border-ink bg-ink text-white'
-                      : 'border-ink/12 bg-card text-slate hover:border-ink/35 hover:text-ink'
+                      ? 'border-blue bg-blue text-white'
+                      : 'border-ink/12 bg-card text-slate hover:border-blue/40 hover:text-blue-deep'
                   }`}
                 >
                   {c.label}

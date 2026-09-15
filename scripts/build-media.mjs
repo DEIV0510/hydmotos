@@ -1,11 +1,13 @@
 /**
  * Prepara los recursos gráficos que no son fichas de producto: las fotos del
- * carro para la portada y el material de marca de MAGMA (banner, piezas
- * informativas y fotos de detalle).
+ * carro para la portada, las del carro pequeño para la sección de carros
+ * eléctricos y el material de marca de MAGMA (banner, piezas informativas y
+ * fotos de detalle).
  *
  *   node scripts/build-media.mjs
  *
- * Escribe public/carro/*.webp, public/magma/*.webp y src/data/media.ts.
+ * Escribe public/carro, public/carro-mini, public/magma, public/og.jpg y
+ * src/data/media.ts.
  * Nunca amplía: el ancho mayor es el de la imagen original. Los textos
  * alternativos describen solo lo que se ve en cada imagen.
  */
@@ -48,6 +50,19 @@ const GRUPOS = [
       { id: 'detalle-asiento', file: 'magma3.png', alt: 'Detalle MAGMA: asientos sobre carrocería roja' },
       { id: 'detalle-rueda', file: 'magma4.png', alt: 'Detalle MAGMA: rueda delantera con freno de disco' },
       { id: 'detalle-amortiguador', file: 'magamrespuesot.png', alt: 'Detalle MAGMA: amortiguador trasero' },
+    ],
+  },
+  {
+    // Las cinco fotos .jpg.jpeg de la raíz: un carro pequeño azul claro de dos
+    // puertas. Sin nombre ni datos; va en la sección de carros eléctricos
+    nombre: 'CARRO_MINI',
+    dir: 'carro-mini',
+    anchos: [480, 960],
+    items: [
+      { id: 'tres-cuartos', file: '1556198b-d8ed-4357-afc2-3a7307d85878.jpg.jpeg', alt: 'Carro eléctrico pequeño azul claro con techo blanco, visto de tres cuartos' },
+      { id: 'frente', file: 'ed2ce9a8-3088-4feb-88e4-9d0f4cd6ae30.jpg.jpeg', alt: 'Carro eléctrico pequeño azul claro visto de frente' },
+      { id: 'trasera-tres-cuartos', file: 'c09549f1-5f48-4d23-aa94-4c4f01555dba.jpg.jpeg', alt: 'Carro eléctrico pequeño azul claro visto desde atrás, de tres cuartos' },
+      { id: 'trasera', file: 'c151dae2-ffd1-4810-bc43-844dbbc604ea.jpg.jpeg', alt: 'Parte trasera del carro eléctrico pequeño azul claro' },
     ],
   },
 ]

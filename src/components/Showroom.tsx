@@ -70,7 +70,7 @@ export default function Showroom() {
           <Reveal>
             <span className="eyebrow">
               <span className="h-px w-7 bg-cyan/60" aria-hidden="true" />
-              06 · Nuestro local
+              09 · Nuestro local
             </span>
           </Reveal>
           <Reveal delay={90}>

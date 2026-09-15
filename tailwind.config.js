@@ -21,8 +21,10 @@ export default {
         slate: '#4A5768',
         // Acentos de marca
         blue: { DEFAULT: '#1B57D6', deep: '#123C99', soft: '#4C7CFF' },
-        // Antes era un cian neón: bajado a un azul acero legible
-        cyan: { DEFAULT: '#7FA8D9', deep: '#2E6BB8' },
+        // Azul eléctrico de acento sobre fondo oscuro (5,9:1 sobre void). El
+        // nombre es heredado: empezó como un cian neón, pasó a azul acero y el
+        // cliente pidió «más azul eléctrico, que se vea más tecnología» (15/09)
+        cyan: { DEFAULT: '#3D8BFF', deep: '#1F66E0' },
         red: { DEFAULT: '#D62030', btn: '#C0121F', deep: '#8E0A14' },
       },
       fontFamily: {
@@ -34,7 +36,7 @@ export default {
       maxWidth: { content: '84rem' },
       boxShadow: {
         'glow-blue': '0 18px 40px -18px rgba(27,87,214,0.45)',
-        'glow-cyan': '0 18px 40px -18px rgba(46,107,184,0.4)',
+        'glow-cyan': '0 18px 40px -18px rgba(61,139,255,0.5)',
         'glow-red': '0 12px 28px -14px rgba(214,32,48,0.5)',
         lift: '0 30px 60px -24px rgba(0,0,0,0.85)',
         card: '0 2px 4px -2px rgba(10,20,40,0.06), 0 12px 28px -12px rgba(10,20,40,0.14)',

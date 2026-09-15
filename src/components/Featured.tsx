@@ -196,11 +196,11 @@ function Tarjeta({
             href={wa}
             target={waReady ? '_blank' : undefined}
             rel="noopener noreferrer"
-            className={`relative z-20 inline-flex items-center justify-center rounded-full bg-ink font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-red-btn hover:shadow-glow-red active:scale-[0.98] ${
+            className={`relative z-20 inline-flex items-center justify-center rounded-full bg-blue font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98] ${
               grande ? 'min-h-[50px] px-7 text-[12px]' : 'min-h-[44px] px-4 text-[10.5px] sm:px-5 sm:text-[11px]'
             }`}
           >
-            Consultar
+            Comprar
           </a>
         </div>
       </div>

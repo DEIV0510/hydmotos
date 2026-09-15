@@ -7,8 +7,9 @@
  * 105 equivalentes y 20 «para revisar». Se revisaron todas a ojo contra la
  * foto original, lado a lado (2026-09-15), y NO se usan las que enseñan otra
  * pieza, otro conector, otra marca en la etiqueta o la marca de agua de otra
- * tienda: ahí se queda la foto original aunque lleve la de Bicyrekkord. Mejor
- * una marca de agua que la foto de un repuesto que no es.
+ * tienda. Esas se quedan SIN foto (la tarjeta muestra el icono de su
+ * categoría): el cliente no quiere ninguna con marca de agua (15/09) y tampoco
+ * sirve la foto de un repuesto que no es.
  *
  * Se ejecuta DESPUÉS de parts:photos (que vuelve a sacar todas del PDF):
  *
@@ -16,7 +17,7 @@
  */
 import sharp from 'sharp'
 import { createRequire } from 'node:module'
-import { existsSync, writeFileSync } from 'node:fs'
+import { existsSync, rmSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { archivoDeSku, slugNombre } from './sku.mjs'
 
@@ -67,7 +68,7 @@ const filas = XLSX.utils
   .filter((r) => r[3])
 
 const BARRA = String.fromCharCode(92) // las rutas del Excel vienen con barra invertida
-const informe = { limpias: [], originales: [], sinFoto: [], errores: [] }
+const informe = { limpias: [], retiradas: [], sinFoto: [], errores: [] }
 
 for (const r of filas) {
   const nombre = String(r[3])
@@ -77,12 +78,20 @@ for (const r of filas) {
   const rel = r[6] ? String(r[6]).split(BARRA).join('/') : null
   const motivo = NO_USAR[sku] ?? NO_USAR[nombre]
 
+  // Sin foto antes que con la marca de agua de Bicyrekkord: se borra la original
+  // que dejó parts:photos y la tarjeta muestra el icono de su categoría hasta
+  // que llegue una foto limpia del repuesto correcto.
+  const retirarOriginal = () => {
+    for (const { suf } of SIZES) rmSync(path.join(OUT, `${archivo}${suf}.webp`), { force: true })
+  }
   if (!rel) {
+    retirarOriginal()
     informe.sinFoto.push(clave)
     continue
   }
   if (motivo) {
-    informe.originales.push(`${clave}: ${motivo}`)
+    retirarOriginal()
+    informe.retiradas.push(`${clave}: ${motivo}`)
     continue
   }
 
@@ -114,9 +123,9 @@ for (const r of filas) {
 
 writeFileSync('scripts/data/repuestos-fotos-limpias.json', JSON.stringify(informe, null, 1))
 console.log(
-  `${informe.limpias.length} con foto sin marca · ${informe.originales.length} con la original · ` +
+  `${informe.limpias.length} con foto sin marca · ${informe.retiradas.length} sin foto (solo había con marca de agua) · ` +
     `${informe.sinFoto.length} sin foto nueva · ${informe.errores.length} errores`,
 )
-for (const o of informe.originales) console.log('  original →', o)
+for (const o of informe.retiradas) console.log('  sin foto →', o)
 for (const e of informe.errores) console.log('  ERROR →', e)
 if (informe.errores.length) process.exitCode = 1

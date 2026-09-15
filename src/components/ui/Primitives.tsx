@@ -50,10 +50,10 @@ export function SectionHead({
       <Reveal>
         <span
           className={`inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-widest2 ${
-            light ? 'text-blue-deep' : 'text-cyan'
+            light ? 'text-blue' : 'text-cyan'
           }`}
         >
-          <span className={`h-px w-7 ${light ? 'bg-blue/50' : 'bg-cyan/60'}`} aria-hidden="true" />
+          <span className={`h-px w-7 ${light ? 'bg-blue' : 'bg-cyan'}`} aria-hidden="true" />
           {eyebrow}
         </span>
       </Reveal>

@@ -1,7 +1,7 @@
 # H&D MOTORENS
 
-Web de catálogo para **H&D MOTORENS**: 80 motos eléctricas, 135 repuestos y un
-carro en la portada. React 18 + Vite 5 + Tailwind 3 + TypeScript.
+Web de catálogo para **H&D MOTORENS**: motos (80 modelos), patinetas y carros
+eléctricos, taller y 135 repuestos. React 18 + Vite 5 + Tailwind 3 + TypeScript.
 En vivo en **https://hydmotos.vercel.app**: cada push a `main` se despliega solo.
 
 ```bash
@@ -32,8 +32,15 @@ puse de ejemplo al crear la web y nunca se confirmó.
 
 También faltan:
 
-- **Nombre, precio y ficha del carro** de la portada. Si los mandas, se presentan ahí.
-- **Foto de 6 modelos**: MOTORENS, BIWI ELÉCTRICA, TRICIMOTOR ELÉCTRICO, T3, MAK3 y PORTIVA.
+- **Patinetas eléctricas**: fotos, nombres y precios de los modelos. La sección
+  existe (el menú la pide) pero no muestra ninguno inventado: invita a
+  preguntar por WhatsApp y enseña los repuestos para patineta.
+- **Carros eléctricos**: nombre, precio y ficha de los dos carros de las fotos
+  (el plateado de 5 puertas y el azul claro de 2 puertas).
+- **Taller**: qué trabajos hace. Mientras no llegue, la sección no enumera servicios.
+- **Videos para el banner de descuentos**: se añaden en `src/data/promos.ts`.
+- **Fotos limpias de 27 repuestos** que solo tenían foto con marca de agua (lista en «Repuestos»).
+- **Foto de 6 motos**: MOTORENS, BIWI ELÉCTRICA, TRICIMOTOR ELÉCTRICO, T3, MAK3 y PORTIVA.
 - **Qué cifras valen** en REINA, MOPED, RYDER PRO, TIGRE y POLAR (ver «Sobre los precios»).
 - **Dominio propio**, si lo compras: la dirección de la web está en `index.html`,
   `src/components/StructuredData.tsx`, `public/robots.txt` y `public/sitemap.xml`.
@@ -42,25 +49,34 @@ También faltan:
 
 ## Recorrido de la página
 
+El menú va por categorías, como pidió el cliente: **Motos · Patinetas · Carros
+eléctricos · Taller · Repuestos**. El logo lleva al inicio y «Consultar», a WhatsApp.
+
 | # | Sección | Para qué está |
 |---|---|---|
-| — | Portada (`Hero`) | El carro como protagonista, el mensaje de la tienda y dos llamadas: WhatsApp y catálogo |
-| — | Franja (`Marquee`) | Datos comprobables en la propia web |
-| 01 | Destacados (`Featured`) | Modelos con precio y foto en un mosaico, ofertas primero; accesos por tipo |
-| 02 | Catálogo (`Catalog`) | Los 80 modelos con búsqueda, filtros, orden, ficha y WhatsApp |
+| — | Portada (`Hero`) | El carro como protagonista, en su foto completa; WhatsApp y catálogo |
+| — | Franja (`Marquee`) | Banda azul eléctrico con las categorías y datos del catálogo |
+| — | Descuentos (`Descuentos`) | Banner con letras en 3D y las ofertas reales; admite videos (`src/data/promos.ts`) |
+| 01 | Destacados (`Featured`) | Motos con precio y foto en un mosaico, ofertas primero; accesos por tipo |
+| 02 | Motos (`Catalog`) | Las 80 motos con búsqueda, filtros, orden, ficha y botón «Comprar» |
 | 03 | MAGMA (`Magma`) | La marca con más material propio: banner, piezas y acceso a sus modelos |
-| 04 | Por qué H&D (`Benefits`) | Cifras del catálogo y cómo comprar en tres pasos |
-| 05 | Repuestos (`Parts`) | 135 piezas con precio, casi todas con referencia |
-| 06 | El local (`Showroom`) | El vídeo real de la tienda |
-| — | Cierre (`CTA`) | Llamada final con el mismo carro, en detalle |
-| 07 | Contacto (`Contact`) | WhatsApp y los datos que estén configurados |
+| 04 | Patinetas (`Patinetas`) | Sin modelos todavía: WhatsApp y los repuestos para patineta |
+| 05 | Carros eléctricos (`Carros`) | Los dos carros de las fotos, con galería y «Comprar» |
+| 06 | Taller (`Taller`) | Servicio técnico: WhatsApp y enlace a repuestos, sin servicios inventados |
+| 07 | Repuestos (`Parts`) | 135 piezas con precio y botón «Comprar» |
+| 08 | Por qué H&D (`Benefits`) | Cifras del catálogo y cómo comprar en tres pasos |
+| 09 | El local (`Showroom`) | El vídeo real de la tienda |
+| — | Cierre (`CTA`) | Llamada final con la foto del faro, completa |
+| 10 | Contacto (`Contact`) | WhatsApp y los datos que estén configurados |
 
-Alterna bloques oscuros y claros: oscuro (portada y franja) → claro (destacados
-y catálogo) → oscuro (MAGMA) → claro (por qué H&D y repuestos) → oscuro (local,
-cierre, contacto y pie).
+Alterna bloques oscuros y claros, con el azul eléctrico como hilo: oscuro
+(portada, franja y descuentos) → claro (destacados y motos) → oscuro (MAGMA) →
+claro (patinetas) → oscuro (carros y taller) → claro (repuestos y por qué H&D)
+→ oscuro (local, cierre, contacto y pie).
 
-Los accesos por tipo y los botones de MAGMA filtran el catálogo desde fuera con
-un evento de ventana (`src/lib/catalogo.ts`) y bajan hasta él.
+Los accesos por tipo, MAGMA y los descuentos filtran el catálogo desde fuera con
+un evento de ventana (`src/lib/catalogo.ts`) y bajan hasta él; patinetas, taller
+y descuentos hacen lo mismo con los repuestos.
 
 Destacados no es un «más vendidos», porque ese dato no existe: son modelos con
 precio publicado y foto, las ofertas primero y después uno de cada tipo. Sale
@@ -77,6 +93,12 @@ pago, «todos los modelos en exhibición para ver y probar», «sin cita previa�
 Las cifras de las piezas de MAGMA (ciclos de batería, garantía de motor de 5
 años) están dentro de sus propias imágenes y se muestran tal cual, con la nota
 de que dependen de cada modelo.
+
+Patinetas, carros eléctricos y taller están porque el cliente los pidió como
+categorías (notas de voz del 11 y el 15/09). Sin material de ellos, la web no
+inventa modelos, precios ni servicios: enseña lo que hay (las fotos de los dos
+carros, los repuestos para patineta) y lleva a WhatsApp. Los descuentos del
+banner son los del catálogo, y los botones de producto dicen «Comprar».
 
 ---
 
@@ -245,8 +267,9 @@ npm run assets:logo  # public/marca, favicon-48.png y apple-touch-icon.png
 - **MAGMA**: `banner.png`, `info.png`–`info5.png`, `magma.png`–`magma4.png` y
   `magamrespuesot.png` (el amortiguador), a 380 px y a su ancho original
   (hasta 760).
-- Las cinco fotos `.jpg.jpeg` de un carro pequeño azul claro de dos puertas no
-  se usan: no hay nombre ni datos y no es el carro de `carro*.png`.
+- **Carro azul claro**: cuatro de las cinco fotos `.jpg.jpeg` de la raíz, en
+  `public/carro-mini` (`CARRO_MINI`), para la sección de carros eléctricos. No
+  hay nombre ni datos: se presenta por el color y las puertas.
 
 El vídeo del local se comprime aparte con `npm run assets:video`.
 
@@ -272,17 +295,23 @@ que son fotos equivalentes de otros vendedores. Se revisaron todas contra la
 original, primero lado a lado y después todas juntas en una hoja: **107 se
 usan y 27 no**. Las 27 enseñan otra pieza (una farola en lugar del altavoz,
 otros conectores, otros cargadores), otra marca en la etiqueta de las baterías,
-el logotipo o la marca de agua de otra tienda, o la pieza cortada. Esas
-conservan la foto original, con la marca de Bicyrekkord: mejor eso que la foto
-de un repuesto que no es o con la marca de otro. El motivo de cada una está en
-`NO_USAR` (`scripts/build-parts-clean.mjs`) y el resultado en
-`scripts/data/repuestos-fotos-limpias.json`.
+el logotipo o la marca de agua de otra tienda, o la pieza cortada.
+
+Esas 27 quedan **sin foto** (la tarjeta muestra el icono de su categoría): el
+cliente pidió que no quedara ninguna con marca de agua, y la única otra foto era
+la del PDF, con la de Bicyrekkord. El motivo de cada una está en `NO_USAR`
+(`scripts/build-parts-clean.mjs`) y el resultado en
+`scripts/data/repuestos-fotos-limpias.json`. Referencias: RKAC019, RKAC013,
+RKAC033, RKAB001, RKBTS009, «Batería Plomo Gel 12V 27AH», RKBB014, RKBR003,
+RKCM009, RKCM015, RKCM016, RKCM017, RKCM008, RKCG010, RKCG001, RKCM006, RKCM007,
+RKCZ020, RKEM001, RKAC008-1, RKPE001, RKRC001, RKRD005, RKSH004, RKSS001, RKSW002
+y RKSW005.
 
 Para quitar o añadir una excepción hay que volver a sacar las originales:
 `npm run repuestos` completo, no solo `parts:clean`.
 
-**134 de 135 tienen foto.** «Motor 500W-48V/60V, Rin 10´» (RKMT021) no tiene en
-ninguna fuente y muestra el icono de su categoría.
+**107 de 135 tienen foto.** Además de esas 27, «Motor 500W-48V/60V, Rin 10´»
+(RKMT021) no tiene en ninguna fuente.
 
 ---
 
@@ -312,16 +341,17 @@ src/
 ├── data/
 │   ├── motos.ts        ← GENERADO: 80 modelos
 │   ├── repuestos.ts    ← GENERADO: 135 repuestos
-│   ├── media.ts        ← GENERADO: fotos del carro y material de MAGMA
-│   └── site.ts         ← WhatsApp, contacto, redes, navegación
+│   ├── media.ts        ← GENERADO: fotos de los carros y material de MAGMA
+│   ├── promos.ts       ← videos del banner de descuentos
+│   └── site.ts         ← WhatsApp, contacto, redes, menú por categorías
 ├── lib/                ← wa.ts (WhatsApp) · catalogo.ts (filtrar desde fuera) · img.ts
 ├── hooks/              ← useReveal, useTilt
 └── components/
     ├── art/            ← Logo, Icons, PhotoPending
     ├── ui/Primitives.tsx
-    ├── LoadingScreen · Navbar · Hero · Marquee
-    ├── Featured · Catalog · MotoCard · MotoModal
-    ├── Magma · Benefits · Parts · PartModal
+    ├── LoadingScreen · Navbar · Hero · Marquee · Descuentos
+    ├── Featured · Catalog · MotoCard · MotoModal · Magma
+    ├── Patinetas · Carros · Taller · Parts · PartModal · Benefits
     └── Showroom · CTA · Contact · Footer · WhatsAppButton · StructuredData
 ```
 
@@ -335,7 +365,7 @@ src/
 | `ink` / `slate` | `#080C13` / `#4A5768` | texto sobre claro |
 | `blue` / `blue-deep` / `blue-soft` | `#1B57D6` / `#123C99` / `#4C7CFF` | acentos del logo; `blue-soft` es el anillo de foco |
 | `red` / `red-btn` | `#D62030` / `#C0121F` | acentos y botón principal |
-| `cyan` | `#7FA8D9` | etiquetas sobre oscuro (azul acero, ya no neón) |
+| `cyan` | `#3D8BFF` | azul eléctrico: etiquetas, líneas y bordes sobre oscuro |
 
 ---
 

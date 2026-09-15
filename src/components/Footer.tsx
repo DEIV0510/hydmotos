@@ -3,6 +3,9 @@ import { NAV, SOCIAL, SCHEDULE, PHONE, EMAIL } from '@/data/site'
 import { STATS } from '@/data/motos'
 import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
 
+/** En el pie van también el inicio y el contacto, que el menú de arriba no lleva */
+const ENLACES = [{ id: 'inicio', label: 'Inicio' }, ...NAV, { id: 'contacto', label: 'Contacto' }]
+
 export default function Footer() {
   const socials = Object.entries(SOCIAL).filter(([, v]) => v) as [string, string][]
   const wa = waLink(WA_GENERAL)
@@ -15,8 +18,8 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-silver">
-              {STATS.total} modelos de motos eléctricas con autonomía de hasta {STATS.maxRange} km.
-              Movilidad sin gasolina.
+              Motos, patinetas y carros eléctricos, taller y repuestos. {STATS.total} modelos de
+              motos con autonomía de hasta {STATS.maxRange} km.
             </p>
           </div>
 
@@ -25,7 +28,7 @@ export default function Footer() {
               Navegación
             </h2>
             <ul className="mt-4 space-y-1">
-              {NAV.map((n) => (
+              {ENLACES.map((n) => (
                 <li key={n.id}>
                   <a
                     href={`#${n.id}`}

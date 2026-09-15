@@ -141,3 +141,38 @@ export const MAGMA: Media[] = [
     "srcSet": "/magma/detalle-amortiguador-380.webp 380w, /magma/detalle-amortiguador-757.webp 757w"
   }
 ]
+
+export const CARRO_MINI: Media[] = [
+  {
+    "id": "tres-cuartos",
+    "alt": "Carro eléctrico pequeño azul claro con techo blanco, visto de tres cuartos",
+    "width": 960,
+    "height": 719,
+    "src": "/carro-mini/tres-cuartos-960.webp",
+    "srcSet": "/carro-mini/tres-cuartos-480.webp 480w, /carro-mini/tres-cuartos-960.webp 960w"
+  },
+  {
+    "id": "frente",
+    "alt": "Carro eléctrico pequeño azul claro visto de frente",
+    "width": 959,
+    "height": 1280,
+    "src": "/carro-mini/frente-959.webp",
+    "srcSet": "/carro-mini/frente-480.webp 480w, /carro-mini/frente-959.webp 959w"
+  },
+  {
+    "id": "trasera-tres-cuartos",
+    "alt": "Carro eléctrico pequeño azul claro visto desde atrás, de tres cuartos",
+    "width": 960,
+    "height": 719,
+    "src": "/carro-mini/trasera-tres-cuartos-960.webp",
+    "srcSet": "/carro-mini/trasera-tres-cuartos-480.webp 480w, /carro-mini/trasera-tres-cuartos-960.webp 960w"
+  },
+  {
+    "id": "trasera",
+    "alt": "Parte trasera del carro eléctrico pequeño azul claro",
+    "width": 959,
+    "height": 1280,
+    "src": "/carro-mini/trasera-959.webp",
+    "srcSet": "/carro-mini/trasera-480.webp 480w, /carro-mini/trasera-959.webp 959w"
+  }
+]

@@ -167,10 +167,10 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
               href={wa}
               target={wa.startsWith('http') ? '_blank' : undefined}
               rel="noopener noreferrer"
-              className="mt-8 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-red-btn px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-red transition-all duration-300 hover:bg-red active:scale-[0.98] sm:w-auto"
+              className="mt-8 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-blue px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-blue transition-all duration-300 hover:bg-blue-deep active:scale-[0.98] sm:w-auto"
             >
               <IconWhatsApp className="h-5 w-5" />
-              Cotizar por WhatsApp
+              Comprar por WhatsApp
             </a>
           </div>
         </div>

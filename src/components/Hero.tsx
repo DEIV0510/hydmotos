@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/Primitives'
-import { IconArrow, IconWhatsApp } from '@/components/art/Icons'
+import { IconArrow } from '@/components/art/Icons'
 import { CARRO, type Media } from '@/data/media'
 import { STATS, formatCOP } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
@@ -16,13 +16,11 @@ import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
  * esquinas redondeadas y borde fino, como el resto de fotos grandes de la web.
  *
  * En el material no hay nombre, precio ni ficha del carro, así que la portada
- * no afirma nada sobre él: el titular es el de la tienda y el enlace del carro
- * solo pregunta por él.
+ * no afirma nada sobre él: el titular es el de la tienda y el enlace lleva a la
+ * sección de carros eléctricos, donde el precio se pide por WhatsApp.
  */
 
 const FOTO = CARRO.find((m) => m.id === 'tres-cuartos') as Media
-
-const WA_CARRO = 'Hola, quiero información sobre el carro que aparece en la portada de H&D MOTORENS.'
 
 /** Desplaza la foto unos píxeles con el cursor. Solo con ratón y sin movimiento reducido. */
 function useParallax<T extends HTMLElement>() {
@@ -56,7 +54,6 @@ function useParallax<T extends HTMLElement>() {
 
 export default function Hero() {
   const wa = waLink(WA_GENERAL)
-  const waCarro = waLink(WA_CARRO)
   const capa = useParallax<HTMLDivElement>()
 
   const cifras = [
@@ -70,6 +67,13 @@ export default function Hero() {
       id="inicio"
       className="relative isolate overflow-hidden bg-void pt-[74px] lg:flex lg:min-h-[min(100svh,960px)] lg:items-center"
     >
+      {/* Luz azul y rejilla técnica de fondo. La foto va enmarcada, así que no delatan ningún borde */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(75%_40%_at_50%_18%,rgba(27,87,214,0.30),transparent_70%)] lg:bg-[radial-gradient(50%_60%_at_76%_46%,rgba(27,87,214,0.32),transparent_70%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent" />
+      </div>
+
       {/*
         Móvil: la foto arriba y el texto debajo.
         Escritorio: texto y foto dentro del mismo ancho que el resto de
@@ -81,7 +85,7 @@ export default function Hero() {
         <figure className="relative animate-[hero-car_1.1s_cubic-bezier(.16,1,.3,1)_.15s_both] px-5 pt-4 sm:px-8 sm:pt-6 lg:order-2 lg:px-0 lg:pt-0">
           <div ref={capa} className="transition-transform duration-700 ease-out will-change-transform">
             <div
-              className="relative overflow-hidden rounded-2xl border border-white/10 bg-graphite bg-cover bg-center shadow-lift sm:rounded-3xl"
+              className="relative overflow-hidden rounded-2xl border border-cyan/30 bg-graphite bg-cover bg-center shadow-lift sm:rounded-3xl"
               style={{
                 aspectRatio: `${FOTO.width} / ${FOTO.height}`,
                 // Vista previa difuminada mientras llega la foto
@@ -105,16 +109,11 @@ export default function Hero() {
           {/* Debajo de la foto y no encima: así no tapa ninguna parte del carro */}
           <figcaption className="mt-4 hidden justify-end lg:flex">
             <a
-              href={waCarro}
-              target={waReady ? '_blank' : undefined}
-              rel="noopener noreferrer"
-              className="group inline-flex min-h-[46px] items-center gap-2.5 rounded-full border border-white/15 bg-void/55 py-1.5 pl-1.5 pr-4 text-[12.5px] font-semibold text-chrome backdrop-blur-md transition-colors duration-300 hover:border-white/35 hover:bg-void/75"
+              href="#carros"
+              className="group inline-flex min-h-[46px] items-center gap-2.5 rounded-full border border-cyan/30 bg-void/55 px-5 text-[12.5px] font-semibold text-chrome backdrop-blur-md transition-colors duration-300 hover:border-cyan/60 hover:bg-void/75"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
-                <IconWhatsApp className="h-4 w-4" />
-              </span>
-              Pregunta por este carro
-              <IconArrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              Ver carros eléctricos
+              <IconArrow className="h-3.5 w-3.5 text-cyan transition-transform duration-300 group-hover:translate-x-0.5" />
             </a>
           </figcaption>
         </figure>
@@ -122,7 +121,7 @@ export default function Hero() {
         {/* ---------------- Mensaje ---------------- */}
         <div className="relative z-10 px-5 pb-14 pt-8 sm:px-8 sm:pb-16 sm:pt-10 lg:order-1 lg:px-0 lg:py-14">
           <p className="inline-flex animate-[hero-in_.6s_ease-out_.25s_both] items-center gap-3 text-[11px] font-semibold uppercase tracking-widest2 text-silver">
-            <span className="h-px w-8 bg-red" aria-hidden="true" />
+            <span className="h-px w-8 bg-cyan" aria-hidden="true" />
             <span className="hidden sm:inline">H&amp;D Motorens · </span>
             Movilidad eléctrica
           </p>
@@ -135,7 +134,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-5 max-w-[30rem] animate-[hero-in_.7s_ease-out_.52s_both] text-[15.5px] leading-relaxed text-silver sm:text-[17px]">
-            Motos eléctricas y repuestos en un solo lugar. Elige tu modelo y consúltalo por WhatsApp.
+            Motos, patinetas y carros eléctricos, con taller y repuestos en un solo lugar. Elige tu
+            modelo y consúltalo por WhatsApp.
           </p>
 
           {/* Tracking algo más corto que el botón base: así caben los dos en una
@@ -151,13 +151,11 @@ export default function Hero() {
 
           {/* En escritorio este enlace va bajo la foto */}
           <a
-            href={waCarro}
-            target={waReady ? '_blank' : undefined}
-            rel="noopener noreferrer"
+            href="#carros"
             className="mt-4 inline-flex min-h-[44px] animate-[hero-in_.7s_ease-out_.68s_both] items-center gap-2 text-[13.5px] font-semibold text-silver underline-offset-4 transition-colors hover:text-chrome hover:underline lg:hidden"
           >
-            ¿Te interesa el carro de la foto? Pregúntanos
-            <IconArrow className="h-3.5 w-3.5" />
+            ¿Te interesa el carro? Ver carros eléctricos
+            <IconArrow className="h-3.5 w-3.5 text-cyan" />
           </a>
 
           <dl className="mt-8 grid max-w-[30rem] animate-[hero-in_.7s_ease-out_.74s_both] grid-cols-3 gap-4 border-t border-white/[0.09] pt-5 lg:mt-10">

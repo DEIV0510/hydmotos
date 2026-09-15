@@ -21,7 +21,7 @@ export default function StructuredData() {
       '@type': 'AutoDealer',
       '@id': `${SITE}/#organizacion`,
       name: 'H&D MOTORENS',
-      description: `Venta de motos eléctricas y repuestos: ${STATS.total} modelos, con autonomía de hasta ${STATS.maxRange} km, y ${REPUESTOS.length} repuestos con referencia y precio.`,
+      description: `Motos, patinetas y carros eléctricos, taller y repuestos: ${STATS.total} modelos de motos, con autonomía de hasta ${STATS.maxRange} km, y ${REPUESTOS.length} repuestos con precio.`,
       url: SITE,
       image: `${SITE}/og.jpg`,
     }

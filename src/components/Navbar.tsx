@@ -78,7 +78,7 @@ export default function Navbar() {
                 <a
                   href={`#${n.id}`}
                   aria-current={active === n.id ? 'page' : undefined}
-                  className={`relative flex min-h-[44px] items-center px-4 text-[12.5px] font-semibold uppercase tracking-widest2 transition-colors ${
+                  className={`relative flex min-h-[44px] items-center px-3 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors xl:px-4 xl:text-[12.5px] xl:tracking-widest2 ${
                     active === n.id ? 'text-cyan' : 'text-silver hover:text-chrome'
                   }`}
                 >

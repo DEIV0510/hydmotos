@@ -139,9 +139,9 @@ export default function MotoCard({
           href={wa}
           target={wa.startsWith('http') ? '_blank' : undefined}
           rel="noopener noreferrer"
-          className="relative z-20 mt-3 inline-flex min-h-[46px] items-center justify-center rounded-full bg-ink text-[11.5px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-red-btn hover:shadow-glow-red active:scale-[0.98]"
+          className="relative z-20 mt-3 inline-flex min-h-[46px] items-center justify-center rounded-full bg-blue text-[11.5px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98]"
         >
-          Consultar
+          Comprar
         </a>
       </div>
 

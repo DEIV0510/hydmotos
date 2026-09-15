@@ -82,6 +82,41 @@
   stroke-dashoffset: 0;
 }
 
+/* ---- Letras en 3D (banner de descuentos) ----
+   Extrusión con sombras apiladas en azul eléctrico: sin imágenes ni WebGL,
+   se lee como texto real y no pesa nada */
+.texto-3d {
+  text-shadow:
+    0 1px 0 #d6e4ff,
+    0 2px 0 #a9c6ff,
+    0 3px 0 #7da8ff,
+    0 4px 0 #5a93ff,
+    0 5px 0 #3d7bff,
+    0 6px 0 #2f68e6,
+    0 7px 0 #2455c2,
+    0 8px 0 #1b449e,
+    0 16px 26px rgba(0, 0, 0, 0.55);
+}
+@media (min-width: 1024px) {
+  .texto-3d {
+    text-shadow:
+      0 1px 0 #d6e4ff,
+      0 2px 0 #bcd3ff,
+      0 3px 0 #a2c1ff,
+      0 4px 0 #88afff,
+      0 5px 0 #6e9eff,
+      0 6px 0 #5a93ff,
+      0 7px 0 #4a86ff,
+      0 8px 0 #3d7bff,
+      0 9px 0 #336fee,
+      0 10px 0 #2a63db,
+      0 11px 0 #2455c2,
+      0 12px 0 #1d4aab,
+      0 13px 0 #173f94,
+      0 26px 40px rgba(0, 0, 0, 0.6);
+  }
+}
+
 /* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

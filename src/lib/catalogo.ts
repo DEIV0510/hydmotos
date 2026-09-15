@@ -16,3 +16,16 @@ export function abrirCatalogo(p: PeticionCatalogo) {
     .getElementById('motos')
     ?.scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'start' })
 }
+
+/** Lo mismo para los repuestos: patinetas, taller y descuentos llevan a ellos filtrados */
+export type PeticionRepuestos = { cat?: string; q?: string }
+
+export const EVENTO_REPUESTOS = 'hd:repuestos'
+
+export function abrirRepuestos(p: PeticionRepuestos) {
+  window.dispatchEvent(new CustomEvent<PeticionRepuestos>(EVENTO_REPUESTOS, { detail: p }))
+  const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  document
+    .getElementById('repuestos')
+    ?.scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'start' })
+}

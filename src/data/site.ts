@@ -45,11 +45,16 @@ export const BRAND = {
   claim: 'La ciudad, sin gasolina.',
 }
 
+/**
+ * Menú por categorías, como lo pidió el cliente en sus notas de voz del 11 y
+ * el 15 de septiembre: motos, patinetas, carros eléctricos, taller y repuestos.
+ * El logo lleva al inicio y el botón «Consultar», a WhatsApp; el pie añade
+ * inicio y contacto.
+ */
 export const NAV = [
-  { id: 'inicio', label: 'Inicio' },
   { id: 'motos', label: 'Motos' },
-  { id: 'magma', label: 'MAGMA' },
-  { id: 'nosotros', label: 'Nosotros' },
+  { id: 'patinetas', label: 'Patinetas' },
+  { id: 'carros', label: 'Carros eléctricos' },
+  { id: 'taller', label: 'Taller' },
   { id: 'repuestos', label: 'Repuestos' },
-  { id: 'contacto', label: 'Contacto' },
 ]
