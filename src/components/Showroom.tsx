@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Reveal } from '@/components/ui/Primitives'
-import { IconPin, IconClock, IconShield } from '@/components/art/Icons'
+import { IconBolt, IconTools, IconWhatsApp } from '@/components/art/Icons'
 import { STATS } from '@/data/motos'
-import { SCHEDULE } from '@/data/site'
-import { waLink, WA_GENERAL } from '@/lib/wa'
+import { STATS_REPUESTOS } from '@/data/repuestos'
+import { waLink, waReady } from '@/lib/wa'
+
+const WA_LOCAL = 'Hola, ¿cómo llego al local de H&D MOTORENS?'
 
 /**
  * Vídeo del local.
@@ -11,6 +13,10 @@ import { waLink, WA_GENERAL } from '@/lib/wa'
  * final. El vídeo solo empieza a cargarse cuando la sección entra en pantalla
  * (`preload="none"` + IntersectionObserver): así no pesa en la carga inicial.
  * Con `prefers-reduced-motion` se queda en el póster, sin reproducir.
+ *
+ * Los textos se limitan a lo comprobable. Antes prometía todos los modelos en
+ * exhibición para probar, un horario y atención sin cita, y nada de eso lo
+ * había confirmado el cliente.
  */
 export default function Showroom() {
   const box = useRef<HTMLDivElement>(null)
@@ -45,8 +51,15 @@ export default function Showroom() {
     })
   }, [cerca])
 
+  const puntos = [
+    { Icon: IconBolt, t: `${STATS.total} modelos en catálogo`, d: 'Motos, scooters y bicicletas eléctricas.' },
+    { Icon: IconTools, t: `${STATS_REPUESTOS.total} repuestos`, d: 'Con referencia y precio publicado.' },
+    { Icon: IconWhatsApp, t: 'Atención por WhatsApp', d: 'Pregunta por modelos, repuestos y cómo llegar.' },
+  ]
+  const wa = waLink(WA_LOCAL)
+
   return (
-    <section className="relative overflow-hidden py-14 sm:py-20">
+    <section className="relative overflow-hidden bg-void py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute inset-0 bg-grid-tech bg-grid opacity-25" />
         <div className="absolute -left-32 top-1/2 h-[440px] w-[440px] -translate-y-1/2 rounded-full bg-blue/8 blur-[90px]" />
@@ -57,35 +70,32 @@ export default function Showroom() {
           <Reveal>
             <span className="eyebrow">
               <span className="h-px w-7 bg-cyan/60" aria-hidden="true" />
-              Nuestro local
+              06 · Nuestro local
             </span>
           </Reveal>
           <Reveal delay={90}>
-            <h2 className="mt-4 font-display text-[clamp(2rem,6vw,3.4rem)] font-extrabold uppercase leading-[0.94] tracking-tight text-chrome">
-              Ven, míralas
-              <br />y pruébalas
+            <h2 className="mt-4 font-display text-[clamp(2.1rem,6vw,3.6rem)] font-extrabold uppercase leading-[0.92] tracking-tight text-chrome">
+              Así es
+              <br />
+              la tienda
             </h2>
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-5 max-w-md text-[15px] leading-relaxed text-silver sm:text-base">
-              Tenemos {STATS.total} modelos en exhibición. Pásate por el local, súbete a la que te
-              guste y resuelve tus dudas con nosotros.
+              Un recorrido real por el local de H&amp;D MOTORENS. Escríbenos y te indicamos cómo
+              llegar.
             </p>
           </Reveal>
 
           <Reveal delay={230}>
-            <ul className="mt-8 space-y-3">
-              {[
-                { Icon: IconPin, t: 'Showroom abierto', d: 'Todos los modelos disponibles para ver y probar.' },
-                { Icon: IconClock, t: SCHEDULE, d: 'Te atendemos sin cita previa.' },
-                { Icon: IconShield, t: 'Garantía y respaldo', d: 'Compra con acompañamiento antes y después.' },
-              ].map(({ Icon, t, d }) => (
-                <li key={t} className="flex gap-3.5">
-                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-cyan">
-                    <Icon className="h-[17px] w-[17px]" />
+            <ul className="mt-8 divide-y divide-white/[0.07] border-y border-white/[0.07]">
+              {puntos.map(({ Icon, t, d }) => (
+                <li key={t} className="flex items-center gap-4 py-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-cyan">
+                    <Icon className="h-[18px] w-[18px]" />
                   </span>
                   <span>
-                    <span className="block text-[14.5px] font-semibold text-chrome">{t}</span>
+                    <span className="block text-[15px] font-semibold text-chrome">{t}</span>
                     <span className="block text-[13.5px] text-silver">{d}</span>
                   </span>
                 </li>
@@ -95,8 +105,8 @@ export default function Showroom() {
 
           <Reveal delay={300}>
             <div className="mt-8">
-              <Button href={waLink(WA_GENERAL)} external={waLink(WA_GENERAL).startsWith('http')}>
-                Escríbenos
+              <Button href={wa} external={waReady}>
+                Pregunta cómo llegar
               </Button>
             </div>
           </Reveal>
@@ -105,10 +115,7 @@ export default function Showroom() {
         {/* Vídeo vertical, en el marco de un teléfono */}
         <Reveal delay={140}>
           <div ref={box} className="relative mx-auto w-full max-w-[300px] lg:max-w-[340px]">
-            <div
-              className="absolute -inset-5 rounded-[42px] bg-blue/8 blur-3xl"
-              aria-hidden="true"
-            />
+            <div className="absolute -inset-5 rounded-[42px] bg-blue/8 blur-3xl" aria-hidden="true" />
             <div className="relative overflow-hidden rounded-[28px] border border-white/12 bg-graphite shadow-lift">
               <video
                 ref={video}

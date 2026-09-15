@@ -60,11 +60,19 @@ const CLIENTE = [
   { id: 'beetle', name: 'BEETLE', price: 4_600_000, range: 65, speed: 50, power: 550, battery: 'Grafeno', capacity: '2 personas', brakes: 'Disco delantero y banda trasera', pedals: true, led: true, parkingLights: true, art: 'scooter', category: 'familiar' },
 ]
 
-/** Nombre del Excel que corresponde a cada modelo del cliente (foto y descripción) */
+/**
+ * Nombre del Excel que corresponde a cada modelo del cliente (foto y
+ * descripción). Solo los que la tienda vende con el mismo nombre.
+ *
+ * El TRICIMOTOR ELÉCTRICO iba emparejado con «Trimotos C1 Tyson» de Mobulaa y
+ * no es el mismo vehículo: la C1 tiene 650 W, 25–35 km/h y 300 kg, pide
+ * licencia, SOAT y matrícula y cuesta $8.875.000; el del cliente, 400 W,
+ * 40 km/h, 240 kg, sin matrícula y $5.990.000. Se quitó el 2026-09-15: el
+ * tricimotor queda con «Foto pendiente» y la C1 sale aparte, sin precio.
+ */
 const FOTO_DE = {
   urban: 'Urban', urbex: 'Urbex', reina: 'Reina', moped: 'Moped',
   'ryder-pro': 'Ryder Pro', tigre: 'Tigre', polar: 'Polar',
-  'tricimotor-electrico': 'Trimotos C1 Tyson',
 }
 
 /* ---------------------------------------------------------------- */
@@ -101,15 +109,32 @@ const motos = []
 for (const c of CLIENTE) {
   const fuente = FOTO_DE[c.id] ? porNombre.get(norm(FOTO_DE[c.id])) : null
   if (fuente) usados.add(norm(fuente.nombre))
+  /**
+   * La descripción y la ficha de la tienda solo se usan si sus cifras cuadran
+   * con las del cliente. En REINA, MOPED, RYDER PRO, TIGRE y POLAR no cuadran
+   * (MOPED: 350 W, 38 km/h y 55 km en la tienda; 550 W, 50 km/h y 65 km en la
+   * lista) y la ficha acababa diciendo lo contrario que la tarjeta. La foto sí
+   * se usa: es el modelo que la tienda vende con ese mismo nombre.
+   */
+  const cuadra =
+    fuente &&
+    [['autonomiaKm', 'range'], ['velocidadKmh', 'speed'], ['potenciaW', 'power']].every(
+      ([t, k]) => !fuente.specs[t] || !c[k] || fuente.specs[t] === c[k],
+    )
+  const ficha = cuadra ? fuente : null
   const id = c.id
-  const img = existsSync(`public/motos/${slug(FOTO_DE[c.id] ?? '')}.webp`) ? slug(FOTO_DE[c.id]) : null
+  // La foto se busca por la carpeta del Excel y, si el modelo no tiene
+  // carpeta, por su propio id: así aparecen las de build-extra-photos
+  // (zeus.webp, classic-run.webp…).
+  const archivo = FOTO_DE[c.id] ? slug(FOTO_DE[c.id]) : id
+  const img = existsSync(`public/motos/${archivo}.webp`) ? archivo : null
   motos.push({
     ...base, ...c,
     image: img,
-    description: fuente?.descripcion || '',
+    description: ficha?.descripcion || '',
     colors: fuente ? colores(fuente.opciones) : [],
-    charge: fuente?.specs.carga || '',
-    sheet: fuente?.detalle ?? [],
+    charge: ficha?.specs.carga || '',
+    sheet: ficha?.detalle ?? [],
     brand: fuente?.proveedor ?? '',
     source: 'cliente',
   })
@@ -122,13 +147,17 @@ for (const m of crudo) {
   const { category, art } = clasificar(m)
   const id = slug(m.nombre)
   motos.push({
-    ...base,
+    // Sin `...base`: esos valores comunes (espejos de lujo, llanta Sello
+    // Matic…) son de la ficha del cliente, no de estos modelos, y se colaban
+    // en su ficha técnica.
     id, name: m.nombre.toUpperCase(), category, art,
     price: null,
     range: m.specs.autonomiaKm, speed: m.specs.velocidadKmh, power: m.specs.potenciaW,
-    battery: /litio/i.test(m.specs.bateriaTxt) ? 'Litio' : 'Grafeno',
+    // Tal y como la escribe el proveedor ("48V: Ácido de plomo"). Antes todo
+    // lo que no decía «litio» salía como grafeno, también las de plomo.
+    battery: m.specs.bateriaTxt ? String(m.specs.bateriaTxt).trim() : '',
     capacity: m.specs.capacidad || '', brakes: m.specs.frenos || '',
-    tire: m.specs.llantas || base.tire,
+    tire: m.specs.llantas || '',
     charge: m.specs.carga || '',
     sheet: m.detalle ?? [],
     brand: m.proveedor,
@@ -136,7 +165,35 @@ for (const m of crudo) {
     description: m.descripcion,
     colors: colores(m.opciones),
     pedals: /pedal/i.test(m.ficha), led: /led/i.test(m.ficha), parkingLights: false,
+    alarm: false, stop: false, soat: false, matricula: false, tecnomecanica: false,
     source: 'excel',
+  })
+}
+
+/**
+ * Modelos nuevos de la carpeta Motors (2026-09-15) que no están ni en la lista
+ * del cliente ni en el Excel. El nombre se leyó en el propio vehículo o en el
+ * banner de la marca (ver build-extra-photos.mjs). No hay precio ni ficha
+ * técnica: la tarjeta muestra «Precio por WhatsApp» y ninguna cifra.
+ */
+const NUEVOS = [
+  { id: 'magma-bubble', name: 'MAGMA BUBBLE', brand: 'MAGMA' },
+  { id: 'magma-q2-boxter', name: 'MAGMA Q2 BOXTER', brand: 'MAGMA' },
+  { id: 'magma-x1', name: 'MAGMA X1', brand: 'MAGMA' },
+  { id: 'magma-one', name: 'MAGMA ONE', brand: 'MAGMA' },
+  { id: 'x-baw', name: 'X.BAW', brand: '' },
+]
+for (const n of NUEVOS) {
+  motos.push({
+    id: n.id, name: n.name, category: 'urbana', art: 'street',
+    price: null,
+    image: existsSync(`public/motos/${n.id}.webp`) ? n.id : null,
+    battery: '', tire: '',
+    description: '', colors: [], sheet: [],
+    alarm: false, pedals: false, led: false, stop: false, parkingLights: false,
+    soat: false, matricula: false, tecnomecanica: false,
+    brand: n.brand,
+    source: 'nuevo',
   })
 }
 

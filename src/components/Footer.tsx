@@ -1,13 +1,16 @@
 import { Logo } from '@/components/art/Logo'
 import { NAV, SOCIAL, SCHEDULE, PHONE, EMAIL } from '@/data/site'
 import { STATS } from '@/data/motos'
+import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
 
 export default function Footer() {
   const socials = Object.entries(SOCIAL).filter(([, v]) => v) as [string, string][]
+  const wa = waLink(WA_GENERAL)
 
   return (
     <footer className="relative border-t border-white/[0.07] bg-graphite">
-      <div className="mx-auto max-w-content px-5 py-12 sm:px-8 sm:py-14">
+      {/* Margen inferior amplio: el botón flotante de WhatsApp no tapa la última línea */}
+      <div className="mx-auto max-w-content px-5 pb-28 pt-12 sm:px-8 sm:pb-24 sm:pt-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Logo />
@@ -43,6 +46,17 @@ export default function Footer() {
               Contacto
             </h2>
             <ul className="mt-4 space-y-2.5 text-[14px] text-silver">
+              {/* WhatsApp siempre: es el canal de la web aunque aún no haya teléfono ni correo */}
+              <li>
+                <a
+                  href={wa}
+                  target={waReady ? '_blank' : undefined}
+                  rel="noopener noreferrer"
+                  className="hover:text-chrome"
+                >
+                  WhatsApp
+                </a>
+              </li>
               {PHONE && (
                 <li>
                   <a href={`tel:${PHONE.replace(/\s/g, '')}`} className="hover:text-chrome">
@@ -57,7 +71,7 @@ export default function Footer() {
                   </a>
                 </li>
               )}
-              <li>{SCHEDULE}</li>
+              {SCHEDULE && <li>{SCHEDULE}</li>}
             </ul>
 
             {socials.length > 0 && (

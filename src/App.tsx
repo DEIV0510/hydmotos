@@ -2,11 +2,10 @@ import LoadingScreen from '@/components/LoadingScreen'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
+import Featured from '@/components/Featured'
 import Catalog from '@/components/Catalog'
-import Highlights from '@/components/Highlights'
+import Magma from '@/components/Magma'
 import Benefits from '@/components/Benefits'
-import Process from '@/components/Process'
-import Services from '@/components/Services'
 import Parts from '@/components/Parts'
 import Showroom from '@/components/Showroom'
 import CTA from '@/components/CTA'
@@ -15,6 +14,12 @@ import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import StructuredData from '@/components/StructuredData'
 
+/**
+ * Orden de la página, pensado como un recorrido de venta:
+ * portada con el carro → destacados y accesos por tipo → catálogo completo →
+ * la marca MAGMA → por qué H&D y cómo comprar → repuestos → el local → cierre
+ * y contacto. Alterna bloques oscuros y claros para marcar el ritmo.
+ */
 export default function App() {
   return (
     <>
@@ -24,11 +29,10 @@ export default function App() {
       <main id="main">
         <Hero />
         <Marquee />
+        <Featured />
         <Catalog />
-        <Highlights />
+        <Magma />
         <Benefits />
-        <Process />
-        <Services />
         <Parts />
         <Showroom />
         <CTA />

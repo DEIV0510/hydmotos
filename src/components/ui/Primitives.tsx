@@ -89,8 +89,10 @@ type BtnProps = {
   'aria-label'?: string
 }
 
+// En móvil, menos espaciado entre letras: con el de escritorio «Consultar por
+// WhatsApp» se partía en dos líneas a 320 px y dentro de la tarjeta del cierre
 const BASE =
-  'group relative inline-flex items-center justify-center gap-2.5 rounded-full font-semibold uppercase tracking-widest2 transition-all duration-300 min-h-[48px] px-7 text-[12.5px] focus-visible:outline-offset-4 active:scale-[0.97]'
+  'group relative inline-flex items-center justify-center gap-2.5 rounded-full text-center font-semibold uppercase tracking-[0.12em] sm:tracking-widest2 transition-all duration-300 min-h-[48px] px-5 sm:px-7 text-[12.5px] focus-visible:outline-offset-4 active:scale-[0.97]'
 
 const VARIANTS = {
   // rojo con contraste AA sobre texto blanco; el brillo lo da el halo, no el fondo

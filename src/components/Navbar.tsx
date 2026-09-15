@@ -45,6 +45,8 @@ export default function Navbar() {
     }
   }, [open])
 
+  const wa = waLink(WA_GENERAL)
+
   return (
     <>
       <a
@@ -93,12 +95,12 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <a
-              href={waLink(WA_GENERAL)}
-              target={waLink(WA_GENERAL).startsWith('http') ? '_blank' : undefined}
+              href={wa}
+              target={wa.startsWith('http') ? '_blank' : undefined}
               rel="noopener noreferrer"
               className="hidden min-h-[44px] items-center rounded-full bg-red-btn px-6 text-[12px] font-bold uppercase tracking-widest2 text-white shadow-glow-red transition-all duration-300 hover:-translate-y-0.5 hover:bg-red sm:inline-flex"
             >
-              Cotizar
+              Consultar
             </a>
 
             <button
@@ -166,13 +168,13 @@ export default function Navbar() {
           </ul>
 
           <a
-            href={waLink(WA_GENERAL)}
-            target={waLink(WA_GENERAL).startsWith('http') ? '_blank' : undefined}
+            href={wa}
+            target={wa.startsWith('http') ? '_blank' : undefined}
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="mt-9 inline-flex min-h-[54px] animate-[menu-in_.5s_cubic-bezier(.16,1,.3,1)_.36s_both] items-center justify-center rounded-full bg-red-btn text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-red"
           >
-            Cotizar ahora
+            Consultar por WhatsApp
           </a>
         </nav>
         <style>{`@keyframes menu-in { from { opacity:0; transform: translateY(18px) } to { opacity:1; transform:none } }`}</style>

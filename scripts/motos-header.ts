@@ -8,14 +8,13 @@
 
 import type { MotoVariant } from '@/components/art/MotoArt'
 
-export type Battery = 'Grafeno' | 'Litio'
 export type CategoryId = 'urbana' | 'familiar' | 'matricula' | 'tricimotor'
 
 export type Moto = {
   id: string
   name: string
   category: CategoryId
-  /** Silueta vectorial de respaldo cuando no hay foto */
+  /** Silueta vectorial de respaldo (ya no se dibuja; se conserva el dato) */
   art: MotoVariant
 
   /** Precio en COP. Sin precio ⇒ la tarjeta muestra "Precio por WhatsApp" */
@@ -26,9 +25,9 @@ export type Moto = {
   /** Nombre del archivo en public/motos (sin extensión) */
   image?: string
   /**
-   * Cómo encuadrar la foto. Por omisión va recortada sobre el fondo de la
-   * tarjeta; 'cover' es para las fotos de ambiente (calle, parqueadero),
-   * que llenan el marco porque no se pueden recortar.
+   * Cómo encuadrar la foto. Por omisión va recortada, en un lienzo cuadrado,
+   * sobre el fondo de la tarjeta. 'cover' es una foto entera (calle, local o
+   * fondo de color de estudio) exportada ya en el marco 4:3 de las tarjetas.
    */
   photoFit?: 'cover'
   /**
@@ -50,14 +49,19 @@ export type Moto = {
   speed?: number
   power?: number
 
-  battery: Battery
+  /**
+   * Batería. En los modelos del cliente, «Grafeno» o «Litio»; en los del
+   * Excel, el texto del proveedor ("60V: Plomo de grafeno"). Vacío = sin dato.
+   */
+  battery?: string
   capacity?: string
   brakes?: string
   charge?: string
-  tire: string
-  mirrors: string
-  bikeLane: string
-  turnSignals: string
+  /** Vacíos cuando el modelo no los declara: no se muestran */
+  tire?: string
+  mirrors?: string
+  bikeLane?: string
+  turnSignals?: string
 
   alarm: boolean
   pedals: boolean
@@ -69,9 +73,12 @@ export type Moto = {
   tecnomecanica: boolean
   reverse?: boolean
 
-  /** Tienda de origen del material (Evobike, Biologica, Brenson, Mobulaa, NIU) */
+  /** Tienda o marca de origen del material (Evobike, Biologica, MAGMA…) */
   brand?: string
 
-  /** De dónde salieron los datos: 'cliente' tiene precio propio verificado */
-  source: 'cliente' | 'excel'
+  /**
+   * De dónde salieron los datos: 'cliente' tiene precio y ficha propios;
+   * 'excel', la ficha del proveedor; 'nuevo', solo nombre y foto.
+   */
+  source: 'cliente' | 'excel' | 'nuevo'
 }

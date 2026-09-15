@@ -14,7 +14,7 @@
     "assets:logo": "node scripts/build-logo.mjs",
     "assets:video": "node scripts/build-video.mjs",
     "catalog": "node scripts/build-catalog.mjs",
-    "assets": "npm run assets:excel && npm run assets:pick && npm run assets:photos && npm run catalog",
+    "assets": "npm run assets:excel && npm run assets:pick && npm run assets:photos && npm run assets:extra && npm run catalog",
     "audit": "node scripts/audit.mjs",
     "audit:missing": "node scripts/match-missing.mjs",
     "audit:sheet": "node scripts/review-photos.mjs",
@@ -23,7 +23,11 @@
     "parts:excel": "node scripts/parse-parts-xlsx.mjs",
     "parts:photos": "node scripts/extract-parts-photos.mjs",
     "parts": "node scripts/build-parts.mjs",
-    "audit:parts": "node scripts/audit-parts.mjs"
+    "audit:parts": "node scripts/audit-parts.mjs",
+    "assets:extra": "node scripts/build-extra-photos.mjs",
+    "media": "node scripts/build-media.mjs",
+    "parts:clean": "node scripts/build-parts-clean.mjs",
+    "repuestos": "npm run parts:excel && npm run parts:photos && npm run parts:clean && npm run parts"
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -1,9 +1,13 @@
 import { useEffect } from 'react'
-import { MOTOS } from '@/data/motos'
+import { MOTOS, STATS } from '@/data/motos'
 import { REPUESTOS } from '@/data/repuestos'
 import { ADDRESS, EMAIL, PHONE, SOCIAL, WHATSAPP_NUMBER } from '@/data/site'
 
-const SITE = 'https://hdmotorens.com'
+/**
+ * Dirección pública de la web. Si se compra un dominio propio, cambiarla aquí
+ * y en index.html, public/robots.txt y public/sitemap.xml.
+ */
+const SITE = 'https://hydmotos.vercel.app'
 
 /**
  * Datos estructurados schema.org.
@@ -17,11 +21,9 @@ export default function StructuredData() {
       '@type': 'AutoDealer',
       '@id': `${SITE}/#organizacion`,
       name: 'H&D MOTORENS',
-      description:
-        'Venta de motos eléctricas y repuestos: baterías de grafeno, autonomía de hasta 90 km, modelos sin requisito de SOAT ni matrícula, y catálogo de repuestos para vehículos eléctricos.',
+      description: `Venta de motos eléctricas y repuestos: ${STATS.total} modelos, con autonomía de hasta ${STATS.maxRange} km, y ${REPUESTOS.length} repuestos con referencia y precio.`,
       url: SITE,
-      image: `${SITE}/og.svg`,
-      priceRange: '$$',
+      image: `${SITE}/og.jpg`,
     }
     if (PHONE || WHATSAPP_NUMBER) org.telephone = PHONE || `+${WHATSAPP_NUMBER}`
     if (EMAIL) org.email = EMAIL
@@ -33,6 +35,10 @@ export default function StructuredData() {
      * Una oferta sin precio no es válida en schema.org, y de las motos solo
      * tienen precio las que lo dio el cliente: el resto va sin `offers` en vez
      * de con un precio vacío.
+     *
+     * No se declara marca ni disponibilidad: H&D vende modelos de varias
+     * marcas (ninguno es de marca H&D) y la existencia en tienda no está
+     * confirmada.
      */
     const producto = (
       name: string,
@@ -43,7 +49,6 @@ export default function StructuredData() {
       const p: Record<string, unknown> = {
         '@type': 'Product',
         name,
-        brand: { '@type': 'Brand', name: 'H&D MOTORENS' },
         category,
       }
       if (sku) p.sku = sku
@@ -52,7 +57,7 @@ export default function StructuredData() {
           '@type': 'Offer',
           price,
           priceCurrency: 'COP',
-          availability: 'https://schema.org/InStock',
+          seller: { '@id': `${SITE}/#organizacion` },
         }
       }
       return p

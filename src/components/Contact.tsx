@@ -24,11 +24,11 @@ export default function Contact() {
   const socials = Object.entries(SOCIAL).filter(([, v]) => v) as [string, string][]
 
   return (
-    <section id="contacto" className="relative scroll-mt-20 py-14 sm:py-20">
+    <section id="contacto" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <SectionHead
-            eyebrow="Contacto"
+            eyebrow="07 · Contacto"
             title={<>Hablemos</>}
             sub="Respondemos por WhatsApp. Cuéntanos qué buscas y te asesoramos sin compromiso."
           />
@@ -50,14 +50,15 @@ export default function Contact() {
                     WhatsApp
                   </span>
                   <span className="mt-0.5 block text-[13.5px] text-silver">
-                    {waReady ? 'Escríbenos, respondemos rápido' : 'Número pendiente de configurar'}
+                    {waReady ? 'Escríbenos y cuéntanos qué buscas' : 'Número pendiente de configurar'}
                   </span>
                 </span>
                 <IconArrow className="h-5 w-5 shrink-0 text-cyan transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </Reveal>
 
-            {/* Datos */}
+            {/* Datos: solo si hay alguno configurado; si no, la lista vacía dejaba un borde suelto */}
+            {rows.length > 0 && (
             <ul className="mt-4 space-y-px overflow-hidden rounded-3xl border border-white/[0.07]">
               {rows.map(({ Icon, label, value, href }, i) => (
                 <Reveal as="li" key={label} delay={60 + i * 70}>
@@ -84,6 +85,7 @@ export default function Contact() {
                 </Reveal>
               ))}
             </ul>
+            )}
 
             {socials.length > 0 && (
               <Reveal delay={200}>

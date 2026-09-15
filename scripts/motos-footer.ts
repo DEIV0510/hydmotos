@@ -54,7 +54,11 @@ const ALIAS: Record<string, string> = {
 }
 const claveDe = (label: string) => ALIAS[label.toLowerCase()] ?? label.toLowerCase()
 
-/** Ficha técnica lista para mostrar; omite lo que no se declaró */
+/**
+ * Ficha técnica lista para mostrar; omite lo que no se declaró.
+ * Ninguna fila lleva un valor por omisión: si el modelo no trae el dato, la
+ * fila no aparece.
+ */
 export function specsOf(m: Moto): { label: string; value: string }[] {
   const yn = (v: boolean) => (v ? 'Sí' : 'No')
 
@@ -64,8 +68,9 @@ export function specsOf(m: Moto): { label: string; value: string }[] {
   const yaDetallado = (clave: string, ...finos: string[]) =>
     finos.some((f) => delProveedor.has(f)) || delProveedor.has(clave)
 
-  const rows: { label: string; value: string }[] = [{ label: 'Batería', value: m.battery }]
+  const rows: { label: string; value: string }[] = []
 
+  if (m.battery) rows.push({ label: 'Batería', value: m.battery })
   if (m.range) rows.push({ label: 'Autonomía', value: `${m.range} km` })
   if (m.speed) rows.push({ label: 'Velocidad', value: `${m.speed} km/h` })
   if (m.power) rows.push({ label: 'Motor', value: `${m.power.toLocaleString('es-CO')}W nominal` })
@@ -77,8 +82,10 @@ export function specsOf(m: Moto): { label: string; value: string }[] {
   if (m.colors?.length && !yaDetallado('colores')) {
     rows.push({ label: 'Colores', value: m.colors.join(', ') })
   }
-  if (!yaDetallado('llanta', 'llanta-tras')) rows.push({ label: 'Llanta', value: m.tire })
-  if (!yaDetallado('espejos')) rows.push({ label: 'Espejos', value: m.mirrors })
+  // Llanta y espejos solo cuando el modelo los declara. Antes los del Excel
+  // heredaban los del cliente (Sello Matic, espejos de lujo) sin tenerlos.
+  if (m.tire && !yaDetallado('llanta', 'llanta-tras')) rows.push({ label: 'Llanta', value: m.tire })
+  if (m.mirrors && !yaDetallado('espejos')) rows.push({ label: 'Espejos', value: m.mirrors })
 
   // Resto de la ficha del proveedor, sin repetir lo ya puesto
   if (m.sheet?.length) {
@@ -95,8 +102,8 @@ export function specsOf(m: Moto): { label: string; value: string }[] {
   // en los demás el Excel no los declara y no se inventan.
   if (m.source === 'cliente') {
     const puestos = new Set(rows.map((r) => claveDe(r.label)))
-    const añadir = (label: string, value: string) => {
-      if (puestos.has(claveDe(label))) return
+    const añadir = (label: string, value: string | undefined) => {
+      if (!value || puestos.has(claveDe(label))) return
       puestos.add(claveDe(label))
       rows.push({ label, value })
     }
@@ -126,5 +133,10 @@ export function formatCOP(value: number) {
 /** Rutas de la foto procesada, o null si el modelo aún no tiene */
 export function photoOf(m: Moto) {
   if (!m.image) return null
-  return { src: `/motos/${m.image}.webp`, srcSet: `/motos/${m.image}.webp 450w, /motos/${m.image}@2x.webp 900w` }
+  // Recortadas: lienzo cuadrado de 450/900 px. Enteras: marco 4:3 de 500/1000 px.
+  const [a, b] = m.photoFit === 'cover' ? [500, 1000] : [450, 900]
+  return {
+    src: `/motos/${m.image}.webp`,
+    srcSet: `/motos/${m.image}.webp ${a}w, /motos/${m.image}@2x.webp ${b}w`,
+  }
 }

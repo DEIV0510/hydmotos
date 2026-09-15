@@ -1,25 +1,30 @@
 import { STATS } from '@/data/motos'
+import { STATS_REPUESTOS } from '@/data/repuestos'
 
 /**
- * Franja de argumentos comerciales en movimiento continuo.
+ * Franja de datos en movimiento continuo.
  * El contenido se duplica para que el bucle no tenga costura;
  * la copia extra queda oculta a lectores de pantalla.
+ *
+ * Solo datos comprobables en la propia web. «Recarga en casa» se quitó: nadie
+ * lo confirmó y depende de cada modelo.
  */
 export default function Marquee() {
   const items = [
     'Cero gasolina',
     `Hasta ${STATS.maxRange} km de autonomía`,
-    'Sin SOAT ni matrícula*',
-    'Baterías de grafeno',
-    'Recarga en casa',
-    `${STATS.total} modelos disponibles`,
+    'Modelos sin SOAT ni matrícula',
+    'Baterías de grafeno y litio',
+    `${STATS.total} modelos`,
+    `${STATS_REPUESTOS.total} repuestos`,
+    'Consulta por WhatsApp',
   ]
 
   return (
     <div
-      className="relative flex overflow-hidden border-y border-white/[0.07] bg-white/[0.015] py-4"
+      className="relative flex overflow-hidden border-y border-white/[0.07] bg-void py-4"
       role="region"
-      aria-label="Ventajas de las motos eléctricas"
+      aria-label="Resumen de H&D MOTORENS"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-void to-transparent sm:w-28" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-void to-transparent sm:w-28" />

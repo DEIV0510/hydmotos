@@ -3,22 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#04060A" />
+    <meta name="theme-color" content="#0B0D11" />
 
     <title>H&amp;D MOTORENS | Motos eléctricas y repuestos</title>
-    <meta name="description" content="Motos eléctricas con batería de grafeno y hasta 90 km de autonomía, más de 130 repuestos con referencia y precio. Cotiza por WhatsApp en H&amp;D MOTORENS." />
-    <link rel="canonical" href="https://hdmotorens.com/" />
+    <meta name="description" content="Motos eléctricas con hasta 90 km de autonomía y más de 130 repuestos con referencia y precio. Consulta por WhatsApp en H&amp;D MOTORENS." />
+    <!-- Dirección pública: si se compra un dominio, cambiarla aquí, en StructuredData.tsx, robots.txt y sitemap.xml -->
+    <link rel="canonical" href="https://hydmotos.vercel.app/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="H&amp;D MOTORENS" />
+    <meta property="og:url" content="https://hydmotos.vercel.app/" />
     <meta property="og:title" content="H&amp;D MOTORENS | Motos eléctricas y repuestos" />
-    <meta property="og:description" content="Motos eléctricas con batería de grafeno y hasta 90 km de autonomía, más de 130 repuestos con referencia y precio. Cotiza por WhatsApp en H&amp;D MOTORENS." />
-    <meta property="og:image" content="/og.svg" />
+    <meta property="og:description" content="Motos eléctricas con hasta 90 km de autonomía y más de 130 repuestos con referencia y precio. Consulta por WhatsApp en H&amp;D MOTORENS." />
+    <!-- JPG con URL completa: WhatsApp y Facebook no muestran SVG ni rutas relativas -->
+    <meta property="og:image" content="https://hydmotos.vercel.app/og.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Carro plateado de cinco puertas visto de tres cuartos" />
     <meta property="og:locale" content="es_CO" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Foto del carro de la portada: se pide antes que el JS para que aparezca rápido -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/carro/tres-cuartos-1270.webp"
+      imagesrcset="/carro/tres-cuartos-640.webp 640w, /carro/tres-cuartos-960.webp 960w, /carro/tres-cuartos-1270.webp 1270w"
+      imagesizes="(min-width: 1024px) 60vw, 100vw"
+      fetchpriority="high"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

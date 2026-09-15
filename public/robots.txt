@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hdmotorens.com/sitemap.xml
+Sitemap: https://hydmotos.vercel.app/sitemap.xml

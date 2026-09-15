@@ -4,8 +4,9 @@ import { LogoMark } from '@/components/art/Logo'
 /**
  * Pantalla de arranque.
  * Se cierra en cuanto el documento termina de cargar, con un mínimo de
- * 900 ms para que la animación se lea y un techo duro de 1600 ms para
- * que nunca bloquee la página. Con `prefers-reduced-motion` no aparece.
+ * 650 ms para que la animación se lea y un techo duro de 1300 ms para
+ * que nunca bloquee la página: la foto de la portada va precargada y no
+ * hay que esperar al catálogo. Con `prefers-reduced-motion` no aparece.
  */
 export default function LoadingScreen() {
   const [done, setDone] = useState(
@@ -18,8 +19,8 @@ export default function LoadingScreen() {
   useEffect(() => {
     if (done) return
     const start = performance.now()
-    const MIN = 900
-    const MAX = 1600
+    const MIN = 650
+    const MAX = 1300
 
     const finish = () => {
       const waited = performance.now() - start

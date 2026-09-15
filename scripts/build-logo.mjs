@@ -47,12 +47,29 @@ for (const w of [280, 560]) {
   await sharp(baseBuf).resize({ width: w }).webp({ quality: 92 }).toFile(path.join(OUT, `logo-${w}.webp`))
 }
 
-// Solo el monograma H&D (la fila superior de bloques) para el favicon
+// Solo el monograma H&D (la fila superior de bloques): pantalla de carga e iconos
 const markH = Math.round(box.height * 0.52)
 const markBuf = await sharp(baseBuf)
   .extract({ left: 0, top: 0, width: box.width, height: markH })
   .toBuffer()
 await sharp(markBuf).resize({ width: 320 }).webp({ quality: 92 }).toFile(path.join(OUT, 'monograma.webp'))
+
+/**
+ * Iconos: el monograma centrado en un cuadrado del fondo de la web.
+ * favicon-48.png para la pestaña (Google pide múltiplos de 48) y
+ * apple-touch-icon.png para la pantalla de inicio del iPhone, que no admite
+ * SVG. Sustituyen al favicon.svg del principio, un hexágono con «HD» dibujado
+ * a mano que no era el logo de la marca.
+ */
+for (const [lado, nombre] of [[48, 'favicon-48.png'], [180, 'apple-touch-icon.png']]) {
+  const ancho = Math.round(lado * 0.86)
+  const marca = await sharp(markBuf).resize({ width: ancho }).png().toBuffer()
+  const { height: alto } = await sharp(marca).metadata()
+  await sharp({ create: { width: lado, height: lado, channels: 4, background: '#0B0D11' } })
+    .composite([{ input: marca, left: Math.round((lado - ancho) / 2), top: Math.round((lado - alto) / 2) }])
+    .png()
+    .toFile(path.join('public', nombre))
+}
 
 const out = await sharp(path.join(OUT, 'logo-560.webp')).metadata()
 console.log(`logo-560.webp → ${out.width}x${out.height}`)

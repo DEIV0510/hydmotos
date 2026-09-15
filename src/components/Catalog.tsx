@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import MotoCard from '@/components/MotoCard'
 import MotoModal from '@/components/MotoModal'
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconSearch, IconClose, IconChevron } from '@/components/art/Icons'
 import { CATEGORIES, MOTOS, STATS, type CategoryId, type Moto } from '@/data/motos'
+import { EVENTO_CATALOGO, type PeticionCatalogo } from '@/lib/catalogo'
 
 type SortId = 'destacados' | 'precio-asc' | 'precio-desc' | 'autonomia' | 'velocidad' | 'potencia'
 
@@ -25,6 +26,19 @@ export default function Catalog() {
   const [sort, setSort] = useState<SortId>('destacados')
   const [detail, setDetail] = useState<Moto | null>(null)
   const [shown, setShown] = useState(PAGE)
+  const cerrar = useCallback(() => setDetail(null), [])
+
+  // Los accesos por tipo y el bloque de MAGMA filtran el catálogo con un evento
+  useEffect(() => {
+    const onPeticion = (e: Event) => {
+      const p = (e as CustomEvent<PeticionCatalogo>).detail ?? {}
+      setCat(p.cat ?? 'todas')
+      setQuery(p.q ?? '')
+      setSort('destacados')
+    }
+    window.addEventListener(EVENTO_CATALOGO, onPeticion)
+    return () => window.removeEventListener(EVENTO_CATALOGO, onPeticion)
+  }, [])
 
   const list = useMemo(() => {
     const q = query.trim().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
@@ -32,7 +46,7 @@ export default function Catalog() {
     const out = MOTOS.filter((m) => {
       if (cat !== 'todas' && m.category !== cat) return false
       if (!q) return true
-      const haystack = `${m.name} ${m.battery} ${m.capacity ?? ''} ${m.brakes ?? ''} ${m.power ?? ''}w ${m.range ?? ''}km ${m.speed ?? ''} ${(m.colors ?? []).join(' ')} ${m.description ?? ''}`
+      const haystack = `${m.name} ${m.brand ?? ''} ${m.battery ?? ''} ${m.capacity ?? ''} ${m.brakes ?? ''} ${m.power ?? ''}w ${m.range ?? ''}km ${m.speed ?? ''} ${(m.colors ?? []).join(' ')} ${m.description ?? ''}`
         .toLowerCase()
         .normalize('NFD')
         .replace(/\p{Diacritic}/gu, '')
@@ -40,8 +54,7 @@ export default function Catalog() {
     })
 
     const by: Record<SortId, (a: Moto, b: Moto) => number> = {
-      // ofertas primero, luego mejor relación autonomía/precio
-      // Con foto y con precio primero: son las fichas mas completas
+      // Ofertas primero; después las fichas más completas (con precio, con foto)
       destacados: (a, b) =>
         Number(Boolean(b.oldPrice)) - Number(Boolean(a.oldPrice)) ||
         Number(Boolean(b.price)) - Number(Boolean(a.price)) ||
@@ -70,20 +83,20 @@ export default function Catalog() {
   const restantes = list.length - visible.length
 
   return (
-    <section id="motos" className="relative scroll-mt-20 bg-paper py-14 sm:py-20">
+    <section id="motos" className="relative bg-paper2 py-14 sm:py-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             tone="light"
-            eyebrow="Catálogo"
+            eyebrow="02 · Catálogo"
             title={
               <>
-                Encuentra tu
+                Todos los
                 <br />
-                próxima moto
+                modelos
               </>
             }
-            sub={`${STATS.total} modelos eléctricos, ${STATS.offers} en oferta. Filtra, compara y cotiza en un clic.`}
+            sub={`${STATS.total} modelos eléctricos · ${STATS.offers} en oferta · ${STATS.withPrice} con precio publicado.`}
           />
 
           {/* Búsqueda + orden */}
@@ -95,16 +108,16 @@ export default function Catalog() {
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Buscar modelo…"
-                  aria-label="Buscar moto por nombre o característica"
-                  className="h-[46px] w-full rounded-full border border-ink/12 bg-card pl-11 pr-10 text-[14px] text-ink placeholder:text-slate transition-colors focus:border-blue focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:w-56"
+                  placeholder="Buscar modelo o marca…"
+                  aria-label="Buscar moto por nombre, marca o característica"
+                  className="h-[46px] w-full rounded-full border border-ink/12 bg-card pl-11 pr-10 text-[14px] text-ink placeholder:text-slate transition-colors focus:border-blue focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:w-60"
                 />
                 {query && (
                   <button
                     type="button"
                     onClick={() => setQuery('')}
                     aria-label="Limpiar búsqueda"
-                    className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-slate hover:text-ink"
+                    className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-slate hover:text-ink"
                   >
                     <IconClose className="h-4 w-4" />
                   </button>
@@ -173,7 +186,7 @@ export default function Catalog() {
             <ul className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
               {visible.map((m, i) => (
                 <Reveal as="li" key={m.id} delay={Math.min(i % PAGE, 5) * 60} className="h-full">
-                  <MotoCard moto={m} onOpen={setDetail} priority={i < 4} />
+                  <MotoCard moto={m} onOpen={setDetail} />
                 </Reveal>
               ))}
             </ul>
@@ -211,7 +224,7 @@ export default function Catalog() {
         )}
       </div>
 
-      <MotoModal moto={detail} onClose={() => setDetail(null)} />
+      <MotoModal moto={detail} onClose={cerrar} />
     </section>
   )
 }

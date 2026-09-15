@@ -94,13 +94,15 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
                 <img
                   src={photo.src}
                   srcSet={photo.srcSet}
-                  sizes="(max-width: 640px) 90vw, 460px"
+                  sizes="(max-width: 640px) 90vw, 520px"
                   alt={`Moto eléctrica ${moto.name}`}
-                  width={900}
-                  height={900}
+                  width={moto.photoFit === 'cover' ? 1000 : 900}
+                  height={moto.photoFit === 'cover' ? 750 : 900}
                   decoding="async"
-                  className={`mx-auto aspect-square w-full max-w-[420px] ${
-                    moto.photoFit === 'cover' ? 'rounded-2xl object-cover' : 'object-contain'
+                  className={`mx-auto w-full ${
+                    moto.photoFit === 'cover'
+                      ? 'aspect-[4/3] max-w-[520px] rounded-2xl object-cover'
+                      : 'aspect-square max-w-[420px] object-contain'
                   }`}
                 />
               ) : (

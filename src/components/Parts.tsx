@@ -66,12 +66,12 @@ export default function Parts() {
   const restantes = lista.length - visibles.length
 
   return (
-    <section id="repuestos" className="relative scroll-mt-20 bg-paper2 py-14 sm:py-20">
+    <section id="repuestos" className="relative bg-paper2 py-14 sm:py-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             tone="light"
-            eyebrow="Repuestos"
+            eyebrow="05 · Repuestos"
             title={
               <>
                 Todo para tu

@@ -16,6 +16,14 @@ import path from 'node:path'
 const ROOT = 'C:/Users/Lenovo/Desktop/motors'
 const BAD_NAME = /page-0|banner|captura|screenshot|logo|garantia|ficha/i
 
+/**
+ * Carpetas de Motors que no son de tiendas de motos. «Repuestos sin marca de
+ * agua» tiene la misma profundidad (categoría/repuesto/fotos) y cada repuesto
+ * se colaría como si fuera un modelo. Las fotos curadas las procesa
+ * build-extra-photos.mjs.
+ */
+const NO_SON_TIENDAS = new Set(['Repuestos sin marca de agua', 'Mejores fotos - 17 modelos'])
+
 /** Recuadro del contenido: filas/columnas que no son fondo claro uniforme */
 async function contentBox(file) {
   const img = sharp(file).flatten({ background: '#ffffff' })
@@ -92,6 +100,7 @@ function score(box, name, meta) {
 
 const out = {}
 for (const brand of await readdir(ROOT)) {
+  if (NO_SON_TIENDAS.has(brand)) continue
   const brandDir = path.join(ROOT, brand)
   if (!(await stat(brandDir)).isDirectory()) continue
   for (const sub of await readdir(brandDir)) {
