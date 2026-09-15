@@ -135,6 +135,11 @@ recomprimir. Sirven como referencia para comprobar datos a ojo.
   apoyada sobre el color de la tarjeta en vez de dentro de un recuadro blanco.
   Los modelos donde la elección automática falla se corrigen en la constante
   `MANUAL` de ese script.
+- **Encuadre** (`npm run catalog`): el lienzo cuadrado deja mucho aire
+  transparente arriba y abajo de una moto de perfil. El generador mide el alto
+  real de cada vehículo por su canal alfa y guarda `photoAspect`, la proporción
+  que encuadra solo la moto con un 3 % de margen. La portada lo usa con
+  `object-cover` para que no quede una franja vacía bajo las ruedas.
 - **Logo** (`scripts/build-logo.mjs`): recorta el PNG por su canal alfa y
   exporta el wordmark en dos anchos más el monograma del favicon.
 - **Vídeo** (`scripts/build-video.mjs`): recorta 18 s del recorrido por el local,

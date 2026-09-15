@@ -31,6 +31,13 @@ export type Moto = {
    * que llenan el marco porque no se pueden recortar.
    */
   photoFit?: 'cover'
+  /**
+   * Proporción ancho/alto que encuadra solo el vehículo dentro de su foto
+   * recortada. Las fotos van en un lienzo cuadrado y una moto de perfil ocupa
+   * poco más de la mitad del alto: con object-cover y este aspect-ratio se ve
+   * entera, sin las franjas transparentes. Lo mide `npm run catalog`.
+   */
+  photoAspect?: number
   description?: string
   colors?: string[]
   /**

@@ -144,6 +144,45 @@ for (const m of crudo) {
 /*  4. Volcado a TypeScript                                           */
 /* ---------------------------------------------------------------- */
 
+/**
+ * Encuadre de las fotos recortadas.
+ *
+ * build-photos.mjs exporta cada vehículo centrado en un lienzo cuadrado. Una
+ * moto de perfil ocupa poco más de la mitad del alto, así que mostrada entera
+ * arrastra dos franjas transparentes: en la portada dejaban 110 px vacíos bajo
+ * las ruedas. Aquí se mide el alto real por el canal alfa y se guarda la
+ * proporción ancho/alto que encuadra solo la moto, con un margen; con
+ * object-cover y ese aspect-ratio se ve entera y sin el aire.
+ *
+ * Solo vale porque el vehículo va centrado en vertical (gravity center en
+ * build-photos). Comprobado en las 52 fotos: el peor caso se desvía 1 px de 900.
+ */
+const { default: sharp } = await import('sharp')
+const MARGEN = 0.03 // del alto del lienzo, para que la moto no roce el borde
+
+for (const m of motos) {
+  if (!m.image || MODOS[m.image] === 'ambiente') continue
+  const { data, info } = await sharp(`public/motos/${m.image}@2x.webp`)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+
+  const filaConMoto = (y) => {
+    for (let x = 0; x < info.width; x++) if (data[(y * info.width + x) * 4 + 3] > 16) return true
+    return false
+  }
+  let arriba = 0
+  while (arriba < info.height && !filaConMoto(arriba)) arriba++
+  if (arriba >= info.height) continue
+  let abajo = info.height - 1
+  while (abajo > arriba && !filaConMoto(abajo)) abajo--
+
+  const visible = abajo - arriba + 1 + 2 * Math.round(MARGEN * info.height)
+  const aspecto = Math.min(2.2, info.width / visible)
+  // Si la moto ya llena el cuadrado no hay aire que quitar
+  if (aspecto > 1.02) m.photoAspect = Number(aspecto.toFixed(3))
+}
+
 const q = (s) => JSON.stringify(s ?? '')
 const money = (n) => (n ? String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '_') : 'undefined')
 
@@ -155,6 +194,7 @@ const body = motos
     if (m.image) {
       l.push(`    image: ${q(m.image)}`)
       if (MODOS[m.image] === 'ambiente') l.push(`    photoFit: ${q('cover')}`)
+      if (m.photoAspect) l.push(`    photoAspect: ${m.photoAspect}`)
     }
     if (m.description) l.push(`    description: ${q(m.description)}`)
     if (m.colors?.length) l.push(`    colors: ${JSON.stringify(m.colors)}`)
