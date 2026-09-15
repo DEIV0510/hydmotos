@@ -11,9 +11,9 @@ import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
  * Portada: el carro es el protagonista.
  *
  * Las fotos del carro son exteriores (asfalto mojado, árboles, cielo gris), no
- * un render recortado. El vehículo no se toca: la foto va entera y con su
- * proporción, sin filtros de color, y lo que se funde con el fondo oscuro son
- * sus bordes (cielo, suelo y laterales), nunca la carrocería.
+ * un render recortado. La foto va entera, con su proporción y sin filtros ni
+ * fundidos en los bordes: el cliente pidió verla completa. Va en un marco con
+ * esquinas redondeadas y borde fino, como el resto de fotos grandes de la web.
  *
  * En el material no hay nombre, precio ni ficha del carro, así que la portada
  * no afirma nada sobre él: el titular es el de la tienda y el enlace del carro
@@ -41,7 +41,7 @@ function useParallax<T extends HTMLElement>() {
       frame = requestAnimationFrame(() => {
         const x = e.clientX / window.innerWidth - 0.5
         const y = e.clientY / window.innerHeight - 0.5
-        el.style.transform = `translate3d(${(-x * 16).toFixed(1)}px, ${(-y * 8).toFixed(1)}px, 0)`
+        el.style.transform = `translate3d(${(-x * 8).toFixed(1)}px, ${(-y * 4).toFixed(1)}px, 0)`
       })
     }
     window.addEventListener('pointermove', onMove, { passive: true })
@@ -71,22 +71,17 @@ export default function Hero() {
       className="relative isolate overflow-hidden bg-void pt-[74px] lg:flex lg:min-h-[min(100svh,960px)] lg:items-center"
     >
       {/*
-        Sin luces de fondo detrás de la foto: sus fundidos terminan en el color
-        void, y cualquier tinte alrededor dejaba ver el borde de la foto como un
-        recuadro (se notaba en 1024 y 1920 px).
+        Móvil: la foto arriba y el texto debajo.
+        Escritorio: texto y foto dentro del mismo ancho que el resto de
+        secciones. Columnas 0,9 / 1,1: con menos, los dos botones ya no caben
+        en una fila en el portátil de 1366 px del cliente.
       */}
-
-      {/*
-        Móvil: la foto arriba, a sangre, y el texto debajo.
-        Escritorio: el texto alineado con el resto de secciones y la foto
-        llegando hasta el borde derecho de la pantalla.
-      */}
-      <div className="relative w-full lg:grid lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center lg:pl-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))]">
+      <div className="relative w-full lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-10 lg:px-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))]">
         {/* ---------------- Carro ---------------- */}
-        <figure className="relative animate-[hero-car_1.1s_cubic-bezier(.16,1,.3,1)_.15s_both] lg:order-2 lg:-ml-[4%]">
+        <figure className="relative animate-[hero-car_1.1s_cubic-bezier(.16,1,.3,1)_.15s_both] px-5 pt-4 sm:px-8 sm:pt-6 lg:order-2 lg:px-0 lg:pt-0">
           <div ref={capa} className="transition-transform duration-700 ease-out will-change-transform">
             <div
-              className="relative overflow-hidden bg-cover bg-center"
+              className="relative overflow-hidden rounded-2xl border border-white/10 bg-graphite bg-cover bg-center shadow-lift sm:rounded-3xl"
               style={{
                 aspectRatio: `${FOTO.width} / ${FOTO.height}`,
                 // Vista previa difuminada mientras llega la foto
@@ -96,7 +91,7 @@ export default function Hero() {
               <img
                 src={FOTO.src}
                 srcSet={FOTO.srcSet}
-                sizes="(min-width: 1024px) 60vw, 100vw"
+                sizes="(min-width: 1024px) 700px, 92vw"
                 width={FOTO.width}
                 height={FOTO.height}
                 alt={FOTO.alt}
@@ -104,17 +99,11 @@ export default function Hero() {
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              {/* Fundidos: cielo, suelo y laterales; la carrocería queda intacta */}
-              <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-                <div className="absolute inset-x-0 top-0 h-[38%] bg-gradient-to-b from-void via-void/65 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-void via-void/60 to-transparent" />
-                <div className="absolute inset-y-0 left-0 w-[8%] bg-gradient-to-r from-void to-transparent lg:w-[24%] lg:via-void/45" />
-                <div className="absolute inset-y-0 right-0 w-[6%] bg-gradient-to-l from-void to-transparent" />
-              </div>
             </div>
           </div>
 
-          <figcaption className="absolute bottom-[9%] right-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))] z-10 hidden lg:block">
+          {/* Debajo de la foto y no encima: así no tapa ninguna parte del carro */}
+          <figcaption className="mt-4 hidden justify-end lg:flex">
             <a
               href={waCarro}
               target={waReady ? '_blank' : undefined}
@@ -131,7 +120,7 @@ export default function Hero() {
         </figure>
 
         {/* ---------------- Mensaje ---------------- */}
-        <div className="relative z-10 -mt-4 px-5 pb-14 sm:-mt-12 sm:px-8 sm:pb-16 lg:order-1 lg:mt-0 lg:px-0 lg:py-14">
+        <div className="relative z-10 px-5 pb-14 pt-8 sm:px-8 sm:pb-16 sm:pt-10 lg:order-1 lg:px-0 lg:py-14">
           <p className="inline-flex animate-[hero-in_.6s_ease-out_.25s_both] items-center gap-3 text-[11px] font-semibold uppercase tracking-widest2 text-silver">
             <span className="h-px w-8 bg-red" aria-hidden="true" />
             <span className="hidden sm:inline">H&amp;D Motorens · </span>
@@ -160,7 +149,7 @@ export default function Hero() {
             </Button>
           </div>
 
-          {/* En escritorio este enlace va sobre la foto */}
+          {/* En escritorio este enlace va bajo la foto */}
           <a
             href={waCarro}
             target={waReady ? '_blank' : undefined}

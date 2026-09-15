@@ -35,21 +35,18 @@ export default function CTA() {
             </div>
           </div>
 
-          <div className="relative min-h-[220px] sm:min-h-[300px] lg:min-h-0">
+          {/* La foto entera, sin fundidos ni recorte, en su propio marco dentro de la tarjeta */}
+          <div className="relative flex items-center px-5 pb-5 sm:px-8 sm:pb-8 lg:py-8 lg:pl-0 lg:pr-8">
             <img
               src={FARO.src}
               srcSet={FARO.srcSet}
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 680px, 90vw"
               width={FARO.width}
               height={FARO.height}
               alt={FARO.alt}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-b from-graphite via-graphite/25 to-transparent lg:bg-gradient-to-r"
-              aria-hidden="true"
+              className="block h-auto w-full rounded-2xl border border-white/10 sm:rounded-3xl"
             />
           </div>
         </div>

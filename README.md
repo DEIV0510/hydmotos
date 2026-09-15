@@ -232,11 +232,10 @@ npm run assets:logo  # public/marca, favicon-48.png y apple-touch-icon.png
 
 - **Carro**: la portada usa `carro4.png` (tres cuartos, 1270×716) y el cierre
   `carro.png` (el faro). También se exportan `carro2` y `carro3`. Son fotos de
-  unos 1270 px de ancho, casi 16:9: van enteras y sin filtros de color, y lo
-  que se funde con el fondo son el cielo, el suelo y los bordes, nunca la
-  carrocería. Detrás no hay brillos de color, porque dejaban ver el borde de la
-  foto como un recuadro. Se precarga desde `index.html` y mientras llega se ve
-  una vista previa difuminada de unos 250 bytes.
+  unos 1270 px de ancho, casi 16:9, y van **completas**: sin recortes, sin
+  filtros y sin fundidos en los bordes (así lo pidió el cliente), en un marco
+  con esquinas redondeadas y borde fino. Se precarga desde `index.html` y
+  mientras llega se ve una vista previa difuminada de unos 250 bytes.
 - **Compartir el enlace**: `og.jpg` (1200×630) es la misma foto del carro
   recortada a ese formato. WhatsApp y Facebook no muestran SVG ni rutas
   relativas; el `og.svg` anterior llevaba una moto dibujada y «19 modelos».
