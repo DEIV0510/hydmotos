@@ -3,9 +3,10 @@ import MotoModal from '@/components/MotoModal'
 import PhotoPending from '@/components/art/PhotoPending'
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconArrow, IconBattery, IconGauge, IconRoute } from '@/components/art/Icons'
-import { CATEGORIES, MOTOS, formatCOP, photoOf, type Moto } from '@/data/motos'
+import { CATEGORIES, formatCOP, photoOf, type Moto } from '@/data/motos'
 import { useTilt } from '@/hooks/useTilt'
 import { abrirCatalogo } from '@/lib/catalogo'
+import { useCatalogoVivo } from '@/lib/motos-live'
 import { waForMoto, waLink, waReady } from '@/lib/wa'
 
 const descuento = (m: Moto) =>
@@ -20,7 +21,7 @@ const recortada = (m: Moto) => Boolean(m.image) && m.photoFit !== 'cover'
  * modelos tiene. Entre iguales ganan las fotos de estudio recortadas y el
  * precio más alto. Todo sale del catálogo: si cambia, la selección cambia.
  */
-function elegirDestacados(n: number): Moto[] {
+function elegirDestacados(MOTOS: Moto[], n: number): Moto[] {
   const conPrecio = MOTOS.filter((m) => m.price && m.image)
   const elegidos = conPrecio
     .filter((m) => m.oldPrice)
@@ -217,7 +218,8 @@ function Tarjeta({
 }
 
 export default function Featured() {
-  const destacados = useMemo(() => elegirDestacados(5), [])
+  const { motos: MOTOS } = useCatalogoVivo()
+  const destacados = useMemo(() => elegirDestacados(MOTOS, 5), [MOTOS])
   const [detalle, setDetalle] = useState<Moto | null>(null)
   const cerrar = useCallback(() => setDetalle(null), [])
 
@@ -232,7 +234,7 @@ export default function Featured() {
           return { id: c.id, label: c.label, total: modelos.length, muestra }
         })
         .filter((t) => t.total > 0),
-    [],
+    [MOTOS],
   )
 
   if (!destacados.length) return null

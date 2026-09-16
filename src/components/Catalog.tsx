@@ -3,8 +3,9 @@ import MotoCard from '@/components/MotoCard'
 import MotoModal from '@/components/MotoModal'
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconSearch, IconClose, IconChevron } from '@/components/art/Icons'
-import { CATEGORIES, MOTOS, STATS, type CategoryId, type Moto } from '@/data/motos'
+import { CATEGORIES, type CategoryId, type Moto } from '@/data/motos'
 import { EVENTO_CATALOGO, type PeticionCatalogo } from '@/lib/catalogo'
+import { useCatalogoVivo } from '@/lib/motos-live'
 
 type SortId = 'destacados' | 'precio-asc' | 'precio-desc' | 'autonomia' | 'velocidad' | 'potencia'
 
@@ -21,6 +22,7 @@ const SORTS: { id: SortId; label: string }[] = [
 const PAGE = 8
 
 export default function Catalog() {
+  const { motos: MOTOS, stats: STATS } = useCatalogoVivo()
   const [cat, setCat] = useState<CategoryId | 'todas'>('todas')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<SortId>('destacados')
@@ -68,7 +70,7 @@ export default function Catalog() {
       potencia: (a, b) => (b.power ?? 0) - (a.power ?? 0),
     }
     return [...out].sort(by[sort])
-  }, [cat, query, sort])
+  }, [MOTOS, cat, query, sort])
 
   // Al cambiar filtro, búsqueda u orden se vuelve al primer bloque
   useEffect(() => setShown(PAGE), [cat, query, sort])
@@ -77,7 +79,7 @@ export default function Catalog() {
     const map = new Map<string, number>([['todas', MOTOS.length]])
     for (const m of MOTOS) map.set(m.category, (map.get(m.category) ?? 0) + 1)
     return map
-  }, [])
+  }, [MOTOS])
 
   const visible = list.slice(0, shown)
   const restantes = list.length - visible.length

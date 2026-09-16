@@ -1,8 +1,9 @@
 import { Reveal } from '@/components/ui/Primitives'
 import { IconArrow, IconWhatsApp } from '@/components/art/Icons'
 import { MAGMA, type Media } from '@/data/media'
-import { MOTOS, type Moto } from '@/data/motos'
+import type { Moto } from '@/data/motos'
 import { abrirCatalogo } from '@/lib/catalogo'
+import { useCatalogoVivo } from '@/lib/motos-live'
 import { waLink, waReady } from '@/lib/wa'
 
 const WA_MAGMA = 'Hola, quiero información sobre los modelos MAGMA de H&D MOTORENS.'
@@ -40,6 +41,7 @@ export default function Magma() {
   const banner = pieza('bubble-faro')
   const info = ['potencia', 'bateria-extraible', 'carga-rapida', 'bateria-ciclos', 'garantia-motor'].map(pieza)
   const detalles = ['detalle-freno', 'detalle-amortiguador', 'detalle-rueda'].map(pieza)
+  const { motos: MOTOS } = useCatalogoVivo()
   const modelos = MOTOS.filter(esMagma)
   const bubble = modelos.find((m) => m.id === 'magma-bubble')
   const wa = waLink(WA_MAGMA)

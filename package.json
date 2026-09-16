@@ -31,12 +31,15 @@
     "repuestos": "npm run parts:excel && npm run parts:photos && npm run parts:clean && npm run parts"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.0",
+    "@vercel/postgres": "^0.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vercel/node": "^13.0.1",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "pdfjs-dist": "^6.3.289",

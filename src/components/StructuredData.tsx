@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { MOTOS, STATS } from '@/data/motos'
 import { REPUESTOS } from '@/data/repuestos'
 import { ADDRESS, EMAIL, PHONE, SOCIAL, WHATSAPP_NUMBER } from '@/data/site'
+import { useCatalogoVivo } from '@/lib/motos-live'
 
 /**
  * Dirección pública de la web. Si se compra un dominio propio, cambiarla aquí
@@ -16,6 +16,8 @@ const SITE = 'https://hydmotos.vercel.app'
  * contacto que estén configurados en site.ts: nada inventado.
  */
 export default function StructuredData() {
+  const { motos: MOTOS, stats: STATS } = useCatalogoVivo()
+
   useEffect(() => {
     const org: Record<string, unknown> = {
       '@type': 'AutoDealer',
@@ -90,7 +92,8 @@ export default function StructuredData() {
     return () => {
       el.remove()
     }
-  }, [])
+    // Se rehace cuando llegan los precios en vivo (ver src/lib/motos-live.tsx)
+  }, [MOTOS, STATS])
 
   return null
 }

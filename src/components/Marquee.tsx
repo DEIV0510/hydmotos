@@ -1,5 +1,5 @@
-import { STATS } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
+import { useCatalogoVivo } from '@/lib/motos-live'
 
 /**
  * Franja de datos en movimiento continuo, en el azul eléctrico de la marca.
@@ -11,6 +11,7 @@ import { STATS_REPUESTOS } from '@/data/repuestos'
  * catálogo. «Recarga en casa» se quitó: nadie lo confirmó.
  */
 export default function Marquee() {
+  const { stats: STATS } = useCatalogoVivo()
   const items = [
     'Motos eléctricas',
     'Patinetas eléctricas',

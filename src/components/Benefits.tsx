@@ -1,8 +1,8 @@
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
-import { STATS } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
 import { abrirCatalogo } from '@/lib/catalogo'
+import { useCatalogoVivo } from '@/lib/motos-live'
 
 /**
  * Por qué H&D y cómo comprar.
@@ -13,6 +13,7 @@ import { abrirCatalogo } from '@/lib/catalogo'
  * los tres pasos que la web deja hacer de verdad.
  */
 export default function Benefits() {
+  const { stats: STATS } = useCatalogoVivo()
   const cifras = [
     { v: String(STATS.total), l: 'modelos eléctricos en el catálogo' },
     { v: `${STATS.maxRange} km`, l: 'de autonomía en el modelo de mayor alcance' },

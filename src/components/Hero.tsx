@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
-import { STATS, formatCOP } from '@/data/motos'
+import { formatCOP } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
+import { useCatalogoVivo } from '@/lib/motos-live'
 import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
 
 /**
@@ -97,6 +98,7 @@ function useForzarAutoplay() {
 export default function Hero() {
   const wa = waLink(WA_GENERAL)
   const capa = useParallax<HTMLDivElement>()
+  const { stats: STATS } = useCatalogoVivo()
   const video = useForzarAutoplay()
 
   const cifras = [
