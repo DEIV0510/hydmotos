@@ -141,7 +141,8 @@ export default function Parts() {
                   }`}
                 >
                   {c.id === 'todas' ? 'Todas' : c.id}
-                  <span className={on ? 'text-white/70' : 'text-slate'}>{c.total}</span>
+                  {/* Sin /70: con el azul más vivo de fondo, atenuado bajaba de 4.5:1 */}
+                  <span className={on ? 'text-white/90' : 'text-slate'}>{c.total}</span>
                 </button>
               )
             })}

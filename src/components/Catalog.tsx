@@ -168,7 +168,8 @@ export default function Catalog() {
                   }`}
                 >
                   {c.label}
-                  <span className={on ? 'text-white/70' : 'text-slate'}>{counts.get(c.id) ?? 0}</span>
+                  {/* Sin /70: con el azul más vivo de fondo, atenuado bajaba de 4.5:1 */}
+                  <span className={on ? 'text-white/90' : 'text-slate'}>{counts.get(c.id) ?? 0}</span>
                 </button>
               )
             })}

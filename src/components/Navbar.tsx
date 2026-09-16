@@ -79,7 +79,10 @@ export default function Navbar() {
                   href={`#${n.id}`}
                   aria-current={active === n.id ? 'page' : undefined}
                   className={`relative flex min-h-[44px] items-center px-3 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors xl:px-4 xl:text-[12.5px] xl:tracking-widest2 ${
-                    active === n.id ? 'text-cyan' : 'text-silver hover:text-chrome'
+                    // text-chrome, no text-cyan: el fondo del menú cambia según lo que
+                    // haya detrás al hacer scroll, y el cyan no siempre daba 4.5:1 ahí.
+                    // La rayita de abajo ya marca cuál es la sección activa.
+                    active === n.id ? 'text-chrome' : 'text-silver hover:text-chrome'
                   }`}
                 >
                   {n.label}

@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
 import { STATS, formatCOP } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
-import { prioridad } from '@/lib/img'
 import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
 
 /**
@@ -23,6 +22,11 @@ import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
  * texto legible pase lo que pase en la escena. En el material no hay nombre,
  * precio ni ficha del carro, así que la portada no afirma nada sobre él: el
  * enlace lleva a la sección de carros eléctricos.
+ *
+ * Se reproduce siempre, incluso con «reducir movimiento»: así lo pidió el
+ * cliente ("que el video se reproduzca automaticamente", 16/09). Va muted +
+ * loop + playsInline, que es lo que permite el autoplay en el navegador; el
+ * parallax de abajo sigue respetando esa preferencia, solo el vídeo no.
  */
 
 const VIDEO_HERO = '/video/hero.mp4'
@@ -59,12 +63,41 @@ function useParallax<T extends HTMLElement>() {
   return ref
 }
 
+/**
+ * Refuerza el autoplay por si el atributo solo no basta (pasa en algunos
+ * navegadores móviles). Si el navegador igual lo bloquea, reintenta en el
+ * primer toque o clic en la página: eso ya cuenta como interacción del
+ * usuario y el navegador lo permite.
+ */
+function useForzarAutoplay() {
+  const ref = useRef<HTMLVideoElement | null>(null)
+
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    const intentar = () => v.play().catch(() => {})
+    intentar()
+
+    const reintentar = () => {
+      intentar()
+      window.removeEventListener('pointerdown', reintentar)
+      window.removeEventListener('keydown', reintentar)
+    }
+    window.addEventListener('pointerdown', reintentar, { once: true, passive: true })
+    window.addEventListener('keydown', reintentar, { once: true })
+    return () => {
+      window.removeEventListener('pointerdown', reintentar)
+      window.removeEventListener('keydown', reintentar)
+    }
+  }, [])
+
+  return ref
+}
+
 export default function Hero() {
   const wa = waLink(WA_GENERAL)
   const capa = useParallax<HTMLDivElement>()
-  // Con «reducir movimiento» el vídeo no se reproduce: se queda en el póster
-  const reducido =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const video = useForzarAutoplay()
 
   const cifras = [
     { v: String(STATS.total), l: 'Modelos' },
@@ -83,30 +116,20 @@ export default function Hero() {
         ref={capa}
         className="absolute inset-x-0 -top-[74px] bottom-0 -z-10 animate-[hero-car_1.3s_ease-out_both] transition-transform duration-700 ease-out will-change-transform"
       >
-        {reducido ? (
-          <img
-            src={POSTER_HERO}
-            alt=""
-            aria-hidden="true"
-            decoding="async"
-            {...prioridad('high')}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={POSTER_HERO}
-            aria-hidden="true"
-            className="h-full w-full object-cover"
-          >
-            <source src={VIDEO_HERO_MOVIL} media="(max-width: 767px)" type="video/mp4" />
-            <source src={VIDEO_HERO} type="video/mp4" />
-          </video>
-        )}
+        <video
+          ref={video}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={POSTER_HERO}
+          aria-hidden="true"
+          className="h-full w-full object-cover"
+        >
+          <source src={VIDEO_HERO_MOVIL} media="(max-width: 767px)" type="video/mp4" />
+          <source src={VIDEO_HERO} type="video/mp4" />
+        </video>
 
         {/*
           Velo parejo, no un recorte del carro: la cámara del vídeo se acerca
