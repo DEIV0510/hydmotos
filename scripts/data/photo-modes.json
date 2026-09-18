@@ -72,5 +72,10 @@
  "magma-q2-boxter": "ambiente",
  "magma-x1": "ambiente",
  "magma-one": "ambiente",
- "x-baw": "ambiente"
+ "x-baw": "ambiente",
+ "portiva-magma": "recorte",
+ "t3-aima": "recorte",
+ "biwi-electrica": "ambiente",
+ "motorens": "ambiente",
+ "tricimotor-electrico": "ambiente"
 }

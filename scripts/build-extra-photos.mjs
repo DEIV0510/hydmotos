@@ -8,6 +8,13 @@
  *     moto («CLASSIC» en el costado y «RUN» en el escudo y el guardabarros).
  *  3. Modelos nuevos de la carpeta Motors (2026-09-15). Solo los que tienen el
  *     nombre escrito en el propio vehículo o en el banner de la marca.
+ *  4. Fotos que llenan huecos de "sin foto" (2026-09-18), sueltas en la raíz
+ *     de Motors, no en carpeta de tienda: BIWI, MOTORENS y TRICIMOTOR son las
+ *     que ya usaba el catálogo (nombre de la ficha, no impreso en el
+ *     vehículo); PORTIVA – MAGMA y T3 – AIMA sí traen el nombre impreso
+ *     («PORTIVA» en el escudo/costado; «...aima» en el carenado — y esta vez
+ *     el render de T3 SÍ muestra el vehículo completo, no solo la parte
+ *     trasera cortada como el que se descartó antes).
  *
  * Se ejecuta DESPUÉS de build-photos.mjs: sobrescribe algunas de sus fotos y
  * añade sus modos a scripts/data/photo-modes.json.
@@ -15,7 +22,6 @@
  *   node scripts/build-extra-photos.mjs
  *
  * Quedan fuera a propósito:
- *  - T3 – AIMA: el render oficial solo enseña la parte trasera, cortada.
  *  - MAK3 – AIMA: la única foto que existe lleva la marca de agua de la tienda.
  *  - FISHER 350: la foto curada es otra del local; no mejora la que ya tiene.
  *  - Motos cuyo modelo no se puede leer con seguridad (la scooter MAGMA de
@@ -90,6 +96,15 @@ const FOTOS = [
   { id: 'magma-x1', modo: 'foto', file: [MOTORS, 'moto25.png'] }, // «X1» en el depósito
   { id: 'magma-one', modo: 'foto', encaje: 'difuminar', file: [MOTORS, 'moto31.png'] }, // «ONE» en el frontal y el costado
   { id: 'x-baw', modo: 'foto', file: [MOTORS, '8.png'] }, // «SUPER BIKE X.BAW» en el frontal
+
+  // 4. Huecos de "sin foto" rellenados (2026-09-18)
+  // biwi/motorens/tricimotor: fondo con degradado de estudio, no liso — cutout()
+  // lo rechaza (deja restos), así que van en modo 'foto' como magma-neva/cielo.
+  { id: 'biwi-electrica', modo: 'foto', file: [MOTORS, 'biwiselec3.png'] },
+  { id: 'motorens', modo: 'foto', file: [MOTORS, 'motorens3.png'] },
+  { id: 'tricimotor-electrico', modo: 'foto', file: [MOTORS, 'tricimotolelec2.png'] },
+  { id: 'portiva-magma', modo: 'recorte', file: [MOTORS, 'portivamagma2.png'] }, // «PORTIVA» en el escudo
+  { id: 't3-aima', modo: 'recorte', file: [MOTORS, 'T3aima.png'] }, // vehículo completo, no solo la parte trasera
 ]
 
 const modosPath = 'scripts/data/photo-modes.json'
