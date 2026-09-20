@@ -54,24 +54,63 @@ export async function fotoCompleta(input, W, H, encaje = 'auto') {
   const modo = encaje === 'auto' ? (meta.width / meta.height > W / H + 0.02 ? 'recortar' : 'extender') : encaje
 
   if (modo === 'recortar') {
+    // Se recorta el original SIN destarar antes: 'cover' ya necesita ese
+    // margen de sobra para poder quitar algo de fondo por los lados sin
+    // tocar el vehículo. Destararlo primero (como se probó) deja muy poco
+    // margen y el recorte central puede quedar descuadrado si la foto no
+    // tenía al vehículo perfectamente centrado (pasaba con CLASSIC RUN).
     return sharp(input, opts).removeAlpha().resize(W, H, { fit: 'cover', position: 'centre' }).png().toBuffer()
   }
 
-  const escala = Math.min(1, W / meta.width, H / meta.height)
-  const w = Math.round(meta.width * escala)
-  const h = Math.round(meta.height * escala)
-  const frente = await sharp(input, opts).removeAlpha().resize(w, h).png().toBuffer()
+  // Recorta el margen sobrante de fondo antes de encajar: si no, una foto de
+  // estudio con mucho aire alrededor deja el vehículo pequeño y descuadrado
+  // frente a las tarjetas en modo 'recorte' (que sí llenan el lienzo). Seguro
+  // aquí porque solo se va a rellenar (nunca a recortar) lo que sobre.
+  let base = input
+  if (encaje !== 'difuminar') {
+    const recortado = await sharp(input, opts).trim({ threshold: 24 }).png().toBuffer()
+    const tmeta = await sharp(recortado, opts).metadata()
+    // 2px hacia adentro: el borde del recorte puede quedar justo en un pixel
+    // de sombra o de un detalle oscuro del vehículo, que al reescalar se ve
+    // como una raya fina junto al blanco (pasaba en TRICIMOTOR).
+    const inset = 2
+    base = await sharp(recortado, opts)
+      .extract({
+        left: inset,
+        top: inset,
+        width: Math.max(1, tmeta.width - inset * 2),
+        height: Math.max(1, tmeta.height - inset * 2),
+      })
+      .png()
+      .toBuffer()
+  }
+  const metaBase = encaje === 'difuminar' ? meta : await sharp(base, opts).metadata()
+
+  const escala = Math.min(1, W / metaBase.width, H / metaBase.height)
+  const w = Math.round(metaBase.width * escala)
+  const h = Math.round(metaBase.height * escala)
+  const frente = await sharp(base, opts).removeAlpha().resize(w, h).png().toBuffer()
 
   if (modo === 'extender') {
     const izq = Math.floor((W - w) / 2)
     const arriba = Math.floor((H - h) / 2)
+    // Blanco liso, no 'copy': copiar el píxel del borde se ve bien si ese
+    // borde es blanco, pero si toca una sombra o un detalle oscuro del
+    // vehículo, esa franja entera sale negra (pasaba en BIWI y TRICIMOTOR).
     return sharp(frente)
-      .extend({ left: izq, right: W - w - izq, top: arriba, bottom: H - h - arriba, extendWith: 'copy' })
+      .extend({
+        left: izq,
+        right: W - w - izq,
+        top: arriba,
+        bottom: H - h - arriba,
+        extendWith: 'background',
+        background: '#ffffff',
+      })
       .png()
       .toBuffer()
   }
 
-  const fondo = await sharp(input, opts)
+  const fondo = await sharp(base, opts)
     .removeAlpha()
     .resize(W, H, { fit: 'cover' })
     .blur(28)
