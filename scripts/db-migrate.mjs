@@ -26,6 +26,24 @@ await sql`
 `
 console.log('✓ moto_overrides')
 
+// Fase 2: imagen subida desde el panel (URL completa de Vercel Blob). Null =
+// sigue mostrando la foto del catálogo estático, como hasta ahora.
+await sql`alter table moto_overrides add column if not exists image text`
+console.log('✓ moto_overrides.image')
+
+await sql`
+  create table if not exists repuesto_overrides (
+    repuesto_id text primary key,
+    price integer,
+    old_price integer,
+    on_sale boolean not null default false,
+    published boolean not null default true,
+    image text,
+    updated_at timestamptz not null default now()
+  )
+`
+console.log('✓ repuesto_overrides')
+
 await sql`
   create table if not exists admin_audit_log (
     id bigserial primary key,

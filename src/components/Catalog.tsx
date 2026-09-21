@@ -5,7 +5,7 @@ import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconSearch, IconClose, IconChevron } from '@/components/art/Icons'
 import { CATEGORIES, type CategoryId, type Moto } from '@/data/motos'
 import { EVENTO_CATALOGO, type PeticionCatalogo } from '@/lib/catalogo'
-import { useCatalogoVivo } from '@/lib/motos-live'
+import { useCatalogoVivo, type MotoConEstado } from '@/lib/motos-live'
 
 type SortId = 'destacados' | 'precio-asc' | 'precio-desc' | 'autonomia' | 'velocidad' | 'potencia'
 
@@ -26,7 +26,7 @@ export default function Catalog() {
   const [cat, setCat] = useState<CategoryId | 'todas'>('todas')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<SortId>('destacados')
-  const [detail, setDetail] = useState<Moto | null>(null)
+  const [detail, setDetail] = useState<MotoConEstado | null>(null)
   const [shown, setShown] = useState(PAGE)
   const cerrar = useCallback(() => setDetail(null), [])
 

@@ -15,17 +15,12 @@ import {
   IconChevron,
   IconWhatsApp,
 } from '@/components/art/Icons'
-import {
-  REPUESTOS,
-  CATEGORIAS_REPUESTO,
-  STATS_REPUESTOS,
-  photoOfPart,
-  type Repuesto,
-} from '@/data/repuestos'
+import { STATS_REPUESTOS } from '@/data/repuestos'
 import { formatCOP } from '@/data/motos'
 import { waLink, waReady } from '@/lib/wa'
 import PartModal, { waForPart } from '@/components/PartModal'
 import { EVENTO_REPUESTOS, type PeticionRepuestos } from '@/lib/catalogo'
+import { photoOfPartLive, useRepuestosVivo, type RepuestoConEstado } from '@/lib/repuestos-live'
 
 const ICONOS = {
   battery: IconBattery,
@@ -46,7 +41,8 @@ export default function Parts() {
   const [cat, setCat] = useState<string>('todas')
   const [query, setQuery] = useState('')
   const [shown, setShown] = useState(PAGE)
-  const [abierto, setAbierto] = useState<Repuesto | null>(null)
+  const { repuestos } = useRepuestosVivo()
+  const [abierto, setAbierto] = useState<RepuestoConEstado | null>(null)
 
   // Las secciones de patinetas, taller y descuentos abren los repuestos ya filtrados
   useEffect(() => {
@@ -59,9 +55,15 @@ export default function Parts() {
     return () => window.removeEventListener(EVENTO_REPUESTOS, onPeticion)
   }, [])
 
+  const categorias = useMemo(() => {
+    const cuenta = new Map<string, number>()
+    for (const r of repuestos) cuenta.set(r.category, (cuenta.get(r.category) ?? 0) + 1)
+    return [...cuenta.entries()].sort((a, b) => b[1] - a[1]).map(([id, total]) => ({ id, total }))
+  }, [repuestos])
+
   const lista = useMemo(() => {
     const q = query.trim().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
-    return REPUESTOS.filter((r) => {
+    return repuestos.filter((r) => {
       if (cat !== 'todas' && r.category !== cat) return false
       if (!q) return true
       return `${r.name} ${r.sku ?? ''} ${r.category} ${r.sub ?? ''} ${r.description ?? ''}`
@@ -70,7 +72,7 @@ export default function Parts() {
         .replace(/\p{Diacritic}/gu, '')
         .includes(q)
     })
-  }, [cat, query])
+  }, [repuestos, cat, query])
 
   useEffect(() => setShown(PAGE), [cat, query])
 
@@ -126,7 +128,7 @@ export default function Parts() {
             role="group"
             aria-label="Filtrar repuestos por categoría"
           >
-            {[{ id: 'todas', total: REPUESTOS.length }, ...CATEGORIAS_REPUESTO].map((c) => {
+            {[{ id: 'todas', total: repuestos.length }, ...categorias].map((c) => {
               const on = cat === c.id
               return (
                 <button
@@ -160,7 +162,7 @@ export default function Parts() {
             <ul className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
               {visibles.map((r, i) => {
                 const Icon = ICONOS[r.icon]
-                const foto = photoOfPart(r)
+                const foto = photoOfPartLive(r)
                 const wa = waLink(waForPart(r))
                 const off =
                   r.oldPrice && r.price

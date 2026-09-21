@@ -1,8 +1,9 @@
 import PhotoPending from '@/components/art/PhotoPending'
 import { useTilt } from '@/hooks/useTilt'
-import { formatCOP, photoOf, type Moto } from '@/data/motos'
+import { formatCOP } from '@/data/motos'
 import { IconBattery, IconGauge, IconRoute, IconArrow } from '@/components/art/Icons'
 import { TechFrame } from '@/components/ui/Primitives'
+import { photoOfLive, type MotoConEstado } from '@/lib/motos-live'
 import { waLink, waForMoto } from '@/lib/wa'
 import { prioridad } from '@/lib/img'
 
@@ -11,8 +12,8 @@ export default function MotoCard({
   onOpen,
   priority = false,
 }: {
-  moto: Moto
-  onOpen: (m: Moto) => void
+  moto: MotoConEstado
+  onOpen: (m: MotoConEstado) => void
   /** Las primeras tarjetas cargan su foto de inmediato, el resto en diferido */
   priority?: boolean
 }) {
@@ -21,7 +22,7 @@ export default function MotoCard({
     ? Math.round(((moto.oldPrice - moto.price) / moto.oldPrice) * 100)
     : 0
   const wa = waLink(waForMoto(moto.name))
-  const photo = photoOf(moto)
+  const photo = photoOfLive(moto)
 
   const specs = [
     moto.range && { Icon: IconRoute, v: `${moto.range} km`, l: 'Autonomía' },

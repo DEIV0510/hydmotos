@@ -4,6 +4,7 @@ import { Logo } from '@/components/art/Logo'
 const ITEMS = [
   { ruta: '/admin', label: 'Dashboard' },
   { ruta: '/admin/motos', label: 'Motos' },
+  { ruta: '/admin/repuestos', label: 'Repuestos' },
 ]
 
 export default function Layout({

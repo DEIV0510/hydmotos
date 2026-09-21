@@ -2,6 +2,7 @@ import Login from './Login'
 import Layout from './Layout'
 import Dashboard from './Dashboard'
 import MotosList from './MotosList'
+import RepuestosList from './RepuestosList'
 import { useRuta } from './router'
 import { useSesion } from './useSesion'
 
@@ -24,7 +25,13 @@ export default function AdminApp() {
 
   return (
     <Layout email={sesion.email} ruta={ruta} ir={ir} onSalir={sesion.salir}>
-      {ruta === '/admin/motos' ? <MotosList /> : <Dashboard />}
+      {ruta === '/admin/motos' ? (
+        <MotosList />
+      ) : ruta === '/admin/repuestos' ? (
+        <RepuestosList />
+      ) : (
+        <Dashboard />
+      )}
     </Layout>
   )
 }

@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { MOTOS as MOTOS_BASE, type Moto } from '@/data/motos'
+import { MOTOS as MOTOS_BASE, photoOf, type Moto } from '@/data/motos'
 
 /**
- * Precio, precio anterior, oferta y publicado/oculto ya no salen solo del
- * archivo estático: el panel de administración (`/admin`) los guarda en la
- * base de datos, y esto los trae a la web pública.
+ * Precio, precio anterior, oferta, publicado/oculto e imagen ya no salen solo
+ * del archivo estático: el panel de administración (`/admin`) los guarda en
+ * la base de datos, y esto los trae a la web pública.
  *
  * Si la petición falla (sin conexión, base de datos caída, primera visita
  * antes de que responda) se sigue mostrando el catálogo estático tal cual
@@ -13,11 +13,35 @@ import { MOTOS as MOTOS_BASE, type Moto } from '@/data/motos'
 
 export type MotoConEstado = Moto & { published: boolean }
 
-type Override = { price: number | null; oldPrice: number | null; onSale: boolean; published: boolean }
+type Override = {
+  price: number | null
+  oldPrice: number | null
+  onSale: boolean
+  published: boolean
+  image: string | null
+}
 
 function aplicar(base: Moto, o?: Override): MotoConEstado {
   if (!o) return { ...base, published: true }
-  return { ...base, price: o.price ?? undefined, oldPrice: o.onSale && o.oldPrice ? o.oldPrice : undefined, published: o.published }
+  return {
+    ...base,
+    price: o.price ?? undefined,
+    oldPrice: o.onSale && o.oldPrice ? o.oldPrice : undefined,
+    published: o.published,
+    // Imagen subida desde el panel: URL completa de Vercel Blob. Sin eso,
+    // sigue el slug local de siempre (photoOfLive la reconoce por el "http").
+    image: o.image ?? base.image,
+  }
+}
+
+/**
+ * Igual que `photoOf` (en el archivo generado), pero reconoce una imagen
+ * subida desde el panel: si `image` ya es una URL completa (Blob), se usa tal
+ * cual, sin las variantes @2x locales que esa foto nunca tuvo.
+ */
+export function photoOfLive(m: MotoConEstado) {
+  if (m.image?.startsWith('http')) return { src: m.image, srcSet: undefined }
+  return photoOf(m)
 }
 
 function calcularStats(motos: MotoConEstado[]) {

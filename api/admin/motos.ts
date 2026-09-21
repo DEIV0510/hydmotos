@@ -1,11 +1,12 @@
 /**
  * GET   /api/admin/motos            → las 80 motos con su estado actual (protegido)
- * PATCH /api/admin/motos            → cambia precio/oferta/publicado de una (protegido)
+ * PATCH /api/admin/motos            → cambia precio/oferta/publicado/imagen de una (protegido)
  *
- * El catálogo (nombre, foto, ficha técnica...) sigue viniendo del archivo
- * estático generado por los scripts de `motors`; lo único que vive en la base
- * de datos —y que este panel puede cambiar— es precio, precio anterior,
- * oferta activa y publicado/oculto. Fase 2 sumará más campos editables.
+ * El catálogo (nombre, ficha técnica...) sigue viniendo del archivo estático
+ * generado por los scripts de `motors`; lo que vive en la base de datos —y
+ * que este panel puede cambiar— es precio, precio anterior, oferta activa,
+ * publicado/oculto e imagen principal (Fase 2: sube a Vercel Blob desde
+ * /api/admin/upload y aquí solo se guarda la URL resultante).
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
@@ -20,6 +21,7 @@ type FilaOverride = {
   old_price: number | null
   on_sale: boolean
   published: boolean
+  image: string | null
   updated_at: string
 }
 
@@ -40,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return {
         id: m.id,
         name: m.name,
-        image: m.image ?? null,
+        image: o?.image ?? m.image ?? null,
         category: m.category,
         range: m.range ?? null,
         speed: m.speed ?? null,
@@ -57,12 +59,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method === 'PATCH') {
-    const { motoId, price, oldPrice, onSale, published } = (req.body ?? {}) as {
+    const { motoId, price, oldPrice, onSale, published, image } = (req.body ?? {}) as {
       motoId?: string
       price?: number | null
       oldPrice?: number | null
       onSale?: boolean
       published?: boolean
+      image?: string | null
     }
 
     if (typeof motoId !== 'string' || !MOTOS.some((m) => m.id === motoId)) {
@@ -74,23 +77,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (typeof onSale !== 'boolean' || typeof published !== 'boolean') {
       return res.status(400).json({ ok: false, error: 'Faltan datos.' })
     }
+    if (image != null && (typeof image !== 'string' || !/^https:\/\//.test(image))) {
+      return res.status(400).json({ ok: false, error: 'Imagen no válida.' })
+    }
 
     const antes = (await sql<FilaOverride>`select * from moto_overrides where moto_id = ${motoId}`).rows[0]
+    const imagenFinal = image !== undefined ? image : (antes?.image ?? null)
 
     await sql`
-      insert into moto_overrides (moto_id, price, old_price, on_sale, published, updated_at)
-      values (${motoId}, ${price ?? null}, ${oldPrice ?? null}, ${onSale}, ${published}, now())
+      insert into moto_overrides (moto_id, price, old_price, on_sale, published, image, updated_at)
+      values (${motoId}, ${price ?? null}, ${oldPrice ?? null}, ${onSale}, ${published}, ${imagenFinal}, now())
       on conflict (moto_id) do update set
         price = excluded.price,
         old_price = excluded.old_price,
         on_sale = excluded.on_sale,
         published = excluded.published,
+        image = excluded.image,
         updated_at = now()
     `
 
     await sql`
       insert into admin_audit_log (actor, action, detail)
-      values (${sesion.email}, 'update_moto', ${JSON.stringify({ motoId, antes: antes ?? null, despues: { price, oldPrice, onSale, published } })})
+      values (${sesion.email}, 'update_moto', ${JSON.stringify({ motoId, antes: antes ?? null, despues: { price, oldPrice, onSale, published, image: imagenFinal } })})
     `
 
     return res.status(200).json({ ok: true })

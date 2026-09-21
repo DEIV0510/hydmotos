@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { IconClose, IconWhatsApp } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
-import { photoOfPart, type Repuesto } from '@/data/repuestos'
+import type { Repuesto } from '@/data/repuestos'
+import { photoOfPartLive, type RepuestoConEstado } from '@/lib/repuestos-live'
 import { waLink, waReady } from '@/lib/wa'
 
 export function waForPart(r: Repuesto) {
@@ -15,7 +16,7 @@ export default function PartModal({
   onClose,
   icon: Icon,
 }: {
-  part: Repuesto | null
+  part: RepuestoConEstado | null
   onClose: () => void
   icon: (p: { className?: string }) => JSX.Element
 }) {
@@ -57,7 +58,7 @@ export default function PartModal({
 
   if (!part) return null
 
-  const foto = photoOfPart(part)
+  const foto = photoOfPartLive(part)
   const wa = waLink(waForPart(part))
   const off =
     part.oldPrice && part.price

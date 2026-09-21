@@ -1,10 +1,10 @@
 import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
-import { REPUESTOS } from '@/data/repuestos'
 import { VIDEOS_PROMO, type VideoPromo } from '@/data/promos'
 import { abrirCatalogo, abrirRepuestos } from '@/lib/catalogo'
 import { useCatalogoVivo } from '@/lib/motos-live'
+import { useRepuestosVivo } from '@/lib/repuestos-live'
 import { waLink, waReady } from '@/lib/wa'
 
 const WA_DESCUENTOS = 'Hola, quiero comprar con descuento en H&D MOTORENS. ¿Qué ofertas tienen ahora?'
@@ -23,6 +23,7 @@ const rebaja = (precio: number, anterior: number) => Math.round(((anterior - pre
  */
 export default function Descuentos() {
   const { motos: MOTOS } = useCatalogoVivo()
+  const { repuestos: REPUESTOS } = useRepuestosVivo()
   const motos = MOTOS.filter((m) => m.price && m.oldPrice)
     .map((m) => ({ id: m.id, nombre: m.name, precio: m.price as number, anterior: m.oldPrice as number }))
     .sort((a, b) => rebaja(b.precio, b.anterior) - rebaja(a.precio, a.anterior))

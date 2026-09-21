@@ -3,10 +3,10 @@ import MotoModal from '@/components/MotoModal'
 import PhotoPending from '@/components/art/PhotoPending'
 import { DataStrip, Reveal, SectionHead, TechFrame } from '@/components/ui/Primitives'
 import { IconArrow, IconBattery, IconGauge, IconRoute } from '@/components/art/Icons'
-import { CATEGORIES, formatCOP, photoOf, type Moto } from '@/data/motos'
+import { CATEGORIES, formatCOP, type Moto } from '@/data/motos'
 import { useTilt } from '@/hooks/useTilt'
 import { abrirCatalogo } from '@/lib/catalogo'
-import { useCatalogoVivo } from '@/lib/motos-live'
+import { photoOfLive, useCatalogoVivo, type MotoConEstado } from '@/lib/motos-live'
 import { waForMoto, waLink, waReady } from '@/lib/wa'
 
 const descuento = (m: Moto) =>
@@ -21,7 +21,7 @@ const recortada = (m: Moto) => Boolean(m.image) && m.photoFit !== 'cover'
  * modelos tiene. Entre iguales ganan las fotos de estudio recortadas y el
  * precio más alto. Todo sale del catálogo: si cambia, la selección cambia.
  */
-function elegirDestacados(MOTOS: Moto[], n: number): Moto[] {
+function elegirDestacados(MOTOS: MotoConEstado[], n: number): MotoConEstado[] {
   const conPrecio = MOTOS.filter((m) => m.price && m.image)
   const elegidos = conPrecio
     .filter((m) => m.oldPrice)
@@ -34,7 +34,7 @@ function elegirDestacados(MOTOS: Moto[], n: number): Moto[] {
   const tamaño = (c: string) => MOTOS.filter((m) => m.category === c).length
   const tipos = [...new Set(MOTOS.map((m) => m.category))].sort((a, b) => tamaño(b) - tamaño(a))
   // Dos fichas con el mismo nombre (hay dos FAMILY PLUS) no van juntas
-  const usado = (m: Moto) => elegidos.some((e) => e.id === m.id || e.name === m.name)
+  const usado = (m: MotoConEstado) => elegidos.some((e) => e.id === m.id || e.name === m.name)
 
   for (let ronda = 0; elegidos.length < n; ronda++) {
     let añadidos = 0
@@ -52,9 +52,9 @@ function elegirDestacados(MOTOS: Moto[], n: number): Moto[] {
   return elegidos
 }
 
-function Tarjeta({ moto, onOpen }: { moto: Moto; onOpen: (m: Moto) => void }) {
+function Tarjeta({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEstado) => void }) {
   const tilt = useTilt<HTMLElement>(4)
-  const foto = photoOf(moto)
+  const foto = photoOfLive(moto)
   const off = descuento(moto)
   const wa = waLink(waForMoto(moto.name))
   const tipo = CATEGORIES.find((c) => c.id === moto.category)?.label
@@ -168,8 +168,8 @@ function Tarjeta({ moto, onOpen }: { moto: Moto; onOpen: (m: Moto) => void }) {
  * especificaciones tipo tablero, más cerca de una ficha de vehículo que de
  * una tarjeta de catálogo.
  */
-function Flagship({ moto, onOpen }: { moto: Moto; onOpen: (m: Moto) => void }) {
-  const foto = photoOf(moto)
+function Flagship({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEstado) => void }) {
+  const foto = photoOfLive(moto)
   const off = descuento(moto)
   const wa = waLink(waForMoto(moto.name))
   const tipo = CATEGORIES.find((c) => c.id === moto.category)?.label
@@ -271,7 +271,7 @@ function Flagship({ moto, onOpen }: { moto: Moto; onOpen: (m: Moto) => void }) {
 export default function Featured() {
   const { motos: MOTOS } = useCatalogoVivo()
   const destacados = useMemo(() => elegirDestacados(MOTOS, 5), [MOTOS])
-  const [detalle, setDetalle] = useState<Moto | null>(null)
+  const [detalle, setDetalle] = useState<MotoConEstado | null>(null)
   const cerrar = useCallback(() => setDetalle(null), [])
 
   // Accesos por tipo, cada uno con una foto recortada de ese tipo
@@ -340,7 +340,7 @@ export default function Featured() {
           </Reveal>
           <ul className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {tipos.map((t, i) => {
-              const foto = t.muestra ? photoOf(t.muestra) : null
+              const foto = t.muestra ? photoOfLive(t.muestra) : null
               return (
                 <Reveal as="li" key={t.id} delay={i * 60} className="h-full">
                   <button

@@ -1,14 +1,13 @@
 /**
- * GET /api/public/motos-overrides — sin autenticación: lo consume la propia
- * web pública para mostrar los precios y el publicado/oculto que el
- * administrador haya dejado en la base de datos. Sin esto, la web solo vería
- * los valores estáticos con los que se creó el catálogo.
+ * GET /api/public/repuestos-overrides — sin autenticación, mismo patrón que
+ * /api/public/motos-overrides.ts: lo consume la web pública para reflejar
+ * precio, oferta, publicado/oculto e imagen sin depender del admin.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
 
 type Fila = {
-  moto_id: string
+  repuesto_id: string
   price: number | null
   old_price: number | null
   on_sale: boolean
@@ -18,13 +17,15 @@ type Fila = {
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   try {
-    const { rows } = await sql<Fila>`select moto_id, price, old_price, on_sale, published, image from moto_overrides`
+    const { rows } = await sql<Fila>`
+      select repuesto_id, price, old_price, on_sale, published, image from repuesto_overrides
+    `
     const overrides: Record<
       string,
       { price: number | null; oldPrice: number | null; onSale: boolean; published: boolean; image: string | null }
     > = {}
     for (const r of rows) {
-      overrides[r.moto_id] = {
+      overrides[r.repuesto_id] = {
         price: r.price,
         oldPrice: r.on_sale ? r.old_price : null,
         onSale: r.on_sale,
@@ -32,13 +33,10 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
         image: r.image,
       }
     }
-    // Cachear poco tiempo: un cambio del admin debe verse casi al instante, pero
-    // sin pedir la base de datos en cada clic de un mismo visitante.
     res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=120')
     return res.status(200).json({ ok: true, overrides })
   } catch (e) {
-    console.error('motos-overrides', e)
-    // Si la base de datos falla, la web sigue mostrando el catálogo estático (ver src/lib/motos-live.tsx)
+    console.error('repuestos-overrides', e)
     return res.status(500).json({ ok: false })
   }
 }
