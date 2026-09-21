@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from 'react'
 import MotoModal from '@/components/MotoModal'
 import PhotoPending from '@/components/art/PhotoPending'
-import { DataStrip, Reveal, SectionHead, TechFrame } from '@/components/ui/Primitives'
-import { IconArrow, IconBattery, IconGauge, IconRoute } from '@/components/art/Icons'
+import { DataStrip, Reveal, SectionHead } from '@/components/ui/Primitives'
+import { IconArrow } from '@/components/art/Icons'
 import { CATEGORIES, formatCOP, type Moto } from '@/data/motos'
 import { useTilt } from '@/hooks/useTilt'
 import { abrirCatalogo } from '@/lib/catalogo'
@@ -60,11 +60,10 @@ function Tarjeta({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEst
   const tipo = CATEGORIES.find((c) => c.id === moto.category)?.label
   const cover = moto.photoFit === 'cover'
 
-  const cifras = [
-    moto.range ? { Icon: IconRoute, v: `${moto.range} km`, l: 'Autonomía' } : null,
-    moto.speed ? { Icon: IconGauge, v: `${moto.speed} km/h`, l: 'Velocidad' } : null,
-    moto.power ? { Icon: IconBattery, v: `${moto.power.toLocaleString('es-CO')} W`, l: 'Motor' } : null,
-  ].filter((c): c is { Icon: typeof IconRoute; v: string; l: string } => c !== null)
+  // Solo lo esencial para decidir de un vistazo; el resto va en el detalle
+  const datos = [moto.range && `${moto.range} km autonomía`, moto.speed && `${moto.speed} km/h`].filter(
+    Boolean,
+  ) as string[]
 
   return (
     <article
@@ -115,20 +114,6 @@ function Tarjeta({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEst
           {moto.name}
         </h3>
 
-        {cifras.length > 0 && (
-          <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
-            {cifras.map(({ Icon, v, l }) => (
-              <li key={l} className="flex items-center gap-1.5">
-                <Icon className="h-3.5 w-3.5 shrink-0 text-blue" />
-                <span className="font-display text-[12.5px] font-bold leading-none text-ink sm:text-[13.5px]">
-                  {v}
-                </span>
-                <span className="sr-only">{l}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
         <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-2.5 pt-3">
           <div className="min-w-0">
             {moto.oldPrice && (
@@ -139,6 +124,7 @@ function Tarjeta({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEst
             <p className="font-display text-[1.1rem] font-extrabold leading-none tracking-tight text-ink [font-variant-numeric:tabular-nums] sm:text-[1.3rem]">
               {formatCOP(moto.price ?? 0)}
             </p>
+            {datos.length > 0 && <p className="mt-1 text-[11.5px] text-slate">{datos.join(' · ')}</p>}
           </div>
           <a
             href={wa}
@@ -183,7 +169,6 @@ function Flagship({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEs
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-graphite">
-      <TechFrame inset={16} size={22} />
       <div className="grid lg:grid-cols-[1.15fr_1fr]">
         {/* Foto */}
         <div
@@ -274,20 +259,6 @@ export default function Featured() {
   const [detalle, setDetalle] = useState<MotoConEstado | null>(null)
   const cerrar = useCallback(() => setDetalle(null), [])
 
-  // Accesos por tipo, cada uno con una foto recortada de ese tipo
-  const tipos = useMemo(
-    () =>
-      CATEGORIES.filter((c) => c.id !== 'todas')
-        .map((c) => {
-          const modelos = MOTOS.filter((m) => m.category === c.id)
-          const muestra =
-            modelos.find((m) => recortada(m) && m.price) ?? modelos.find(recortada) ?? null
-          return { id: c.id, label: c.label, total: modelos.length, muestra }
-        })
-        .filter((t) => t.total > 0),
-    [MOTOS],
-  )
-
   if (!destacados.length) return null
   const [principal, ...resto] = destacados
 
@@ -330,52 +301,6 @@ export default function Featured() {
             </Reveal>
           ))}
         </ul>
-
-        {/* Accesos por tipo */}
-        <div className="mt-12 sm:mt-16">
-          <Reveal>
-            <h3 className="font-display text-[1.5rem] font-bold uppercase leading-none text-ink sm:text-[1.8rem]">
-              Explora por tipo
-            </h3>
-          </Reveal>
-          <ul className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            {tipos.map((t, i) => {
-              const foto = t.muestra ? photoOfLive(t.muestra) : null
-              return (
-                <Reveal as="li" key={t.id} delay={i * 60} className="h-full">
-                  <button
-                    type="button"
-                    onClick={() => abrirCatalogo({ cat: t.id })}
-                    className="group relative flex h-full min-h-[132px] w-full flex-col items-start overflow-hidden rounded-lg border border-ink/[0.07] bg-card p-4 text-left shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-blue/25 hover:shadow-card-hover sm:min-h-[176px] sm:p-5"
-                  >
-                    <span className="relative z-10 font-display text-[1.25rem] font-bold uppercase leading-none text-ink sm:text-[1.6rem]">
-                      {t.label}
-                    </span>
-                    <span className="relative z-10 mt-1.5 text-[12px] font-semibold text-slate">
-                      {t.total} {t.total === 1 ? 'modelo' : 'modelos'}
-                    </span>
-                    <span className="relative z-10 mt-auto inline-flex items-center gap-1.5 pt-3 text-[11px] font-bold uppercase tracking-widest2 text-blue-deep">
-                      Ver
-                      <IconArrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                    {foto && (
-                      <img
-                        src={foto.src}
-                        alt=""
-                        aria-hidden="true"
-                        width={450}
-                        height={450}
-                        loading="lazy"
-                        decoding="async"
-                        className="pointer-events-none absolute -bottom-4 -right-5 w-[62%] max-w-[190px] object-contain transition-transform duration-700 group-hover:-translate-x-1 group-hover:scale-105 sm:-bottom-6 sm:w-[56%]"
-                      />
-                    )}
-                  </button>
-                </Reveal>
-              )
-            })}
-          </ul>
-        </div>
       </div>
 
       <MotoModal moto={detalle} onClose={cerrar} />

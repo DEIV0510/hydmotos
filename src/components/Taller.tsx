@@ -27,13 +27,7 @@ export default function Taller() {
   ]
 
   return (
-    <section id="taller" className="relative isolate overflow-hidden bg-graphite py-16 sm:py-24">
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-60" />
-        <div className="absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-blue/20 blur-[120px]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/40 to-transparent" />
-      </div>
-
+    <section id="taller" className="relative bg-graphite py-16 sm:py-24">
       <div className="mx-auto grid max-w-content items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
         <div>
           <Reveal>

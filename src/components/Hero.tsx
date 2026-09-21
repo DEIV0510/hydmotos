@@ -1,10 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Button, DataStrip, TechFrame } from '@/components/ui/Primitives'
-import { IconArrow } from '@/components/art/Icons'
-import { formatCOP } from '@/data/motos'
-import { STATS_REPUESTOS } from '@/data/repuestos'
-import { useCatalogoVivo } from '@/lib/motos-live'
-import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
+import { Button } from '@/components/ui/Primitives'
 
 /**
  * Portada: el vídeo del carro ocupa todo el hero, de fondo, con el mensaje de
@@ -96,19 +91,11 @@ function useForzarAutoplay() {
 }
 
 export default function Hero() {
-  const wa = waLink(WA_GENERAL)
   const capa = useParallax<HTMLDivElement>()
-  const { stats: STATS } = useCatalogoVivo()
   const video = useForzarAutoplay()
 
-  const cifras = [
-    { v: String(STATS.total), l: 'Modelos' },
-    { v: String(STATS_REPUESTOS.total), l: 'Repuestos' },
-    { v: formatCOP(STATS.minPrice), l: 'Precio desde' },
-  ]
-
   return (
-    <section id="inicio" className="relative isolate overflow-hidden bg-void pt-[74px]">
+    <section id="inicio" className="relative isolate flex min-h-[88vh] items-center overflow-hidden bg-void pt-[74px] sm:min-h-[92vh]">
       {/*
         Vídeo de fondo a sangre en TODO el hero: el -top-[74px] lo estira hasta
         el borde real de la pantalla, por detrás del menú (transparente hasta
@@ -144,81 +131,34 @@ export default function Hero() {
           className="pointer-events-none absolute inset-0 bg-void/85 lg:bg-gradient-to-r lg:from-void/97 lg:via-void/88 lg:to-void/25"
           aria-hidden="true"
         />
-        {/* Textura técnica muy sutil, solo del lado del texto: aporta el
-            carácter "ingeniería" sin ensuciar la lectura sobre el vídeo */}
-        <div
-          className="pointer-events-none absolute inset-0 hidden bg-grid-tech bg-grid opacity-[0.15] [mask-image:linear-gradient(to_right,black,transparent_42%)] lg:block"
-          aria-hidden="true"
-        />
       </div>
 
-      {/* Marcas de esquina: el hero como un visor, no como una foto de stock */}
-      <TechFrame inset={18} size={20} />
+      {/*
+        Una sola idea: marca, eslogan, un botón. Nada compite con el carro —
+        sin franjas de datos, sin marcas técnicas, sin segundo CTA: eso ya
+        vive en el marquee y en cada sección (pidió el cliente "menos
+        información, más impacto, más espacio, más producto", 20/09).
+      */}
+      <div className="relative z-10 mx-auto w-full max-w-content px-5 sm:px-8 lg:px-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))]">
+        <div className="max-w-xl">
+          <p className="animate-[hero-in_.6s_ease-out_.2s_both] text-[12px] font-extrabold uppercase tracking-widest3 text-chrome sm:text-[13px]">
+            H&amp;D Motorens
+            <span className="mx-2.5 text-cyan">·</span>
+            <span className="text-cyan">Movilidad eléctrica</span>
+          </p>
 
-      {/* Rótulo lateral, solo en pantallas grandes: como la ficha técnica de un catálogo */}
-      <div
-        className="pointer-events-none absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 xl:block"
-        aria-hidden="true"
-      >
-        <span
-          className="block text-[10px] font-semibold uppercase tracking-[0.5em] text-silver/55 [transform:rotate(180deg)] [writing-mode:vertical-rl]"
-        >
-          H&amp;D Motorens · Movilidad eléctrica
-        </span>
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-content px-5 pt-8 sm:px-8 sm:pt-10 lg:px-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))] lg:pt-14">
-        <div className="max-w-xl pb-12 sm:pb-14 lg:pb-16">
-          {/* Marca + categoría: lo primero que se lee, antes que el eslogan */}
-          <div className="animate-[hero-in_.6s_ease-out_.2s_both]">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-9 bg-cyan" aria-hidden="true" />
-              <p className="text-[12.5px] font-extrabold uppercase tracking-widest3 text-chrome sm:text-[13.5px]">
-                H&amp;D Motorens
-              </p>
-            </div>
-            <p className="mt-1.5 pl-[3rem] text-[10.5px] font-semibold uppercase tracking-widest2 text-cyan sm:text-[11px]">
-              Movilidad eléctrica
-            </p>
-          </div>
-
-          <h1 className="mt-5 font-display text-[clamp(2.6rem,11.5vw,3.8rem)] font-extrabold uppercase leading-[0.9] tracking-tight text-chrome sm:text-[clamp(3.4rem,8vw,4.4rem)] lg:text-[clamp(3rem,4.8vw,5.6rem)]">
+          <h1 className="mt-5 font-display text-[clamp(2.8rem,12vw,4rem)] font-extrabold uppercase leading-[0.9] tracking-tight text-chrome sm:text-[clamp(3.6rem,8.5vw,4.8rem)] lg:text-[clamp(3.4rem,5.2vw,6rem)]">
             <span className="block animate-[hero-in_.7s_ease-out_.32s_both]">La ciudad,</span>
             <span className="block animate-[hero-in_.7s_ease-out_.42s_both]">
               sin gasolina<span className="text-red">.</span>
             </span>
           </h1>
 
-          <p className="mt-5 max-w-[30rem] animate-[hero-in_.7s_ease-out_.52s_both] text-[15.5px] leading-relaxed text-silver sm:text-[17px]">
-            Motos, patinetas y carros eléctricos, con taller y repuestos en un solo lugar. Elige tu
-            modelo y consúltalo por WhatsApp.
-          </p>
-
-          {/* Tracking algo más corto que el botón base: así caben los dos en una
-              fila en portátiles de 1366 px */}
-          <div className="mt-8 flex animate-[hero-in_.7s_ease-out_.62s_both] flex-col flex-wrap gap-3 sm:flex-row">
-            <Button href={wa} external={waReady} className="sm:!px-6 sm:!tracking-[0.16em]">
-              Consultar por WhatsApp
-            </Button>
-            <Button href="#motos" variant="outline" className="sm:!px-6 sm:!tracking-[0.16em]">
-              Ver catálogo
+          <div className="mt-9 animate-[hero-in_.7s_ease-out_.52s_both]">
+            <Button href="#motos" variant="outline">
+              Ver modelos
             </Button>
           </div>
-
-          <a
-            href="#carros"
-            className="mt-4 inline-flex min-h-[44px] animate-[hero-in_.7s_ease-out_.68s_both] items-center gap-2 text-[13.5px] font-semibold text-silver underline-offset-4 transition-colors hover:text-chrome hover:underline"
-          >
-            ¿Te interesa el carro? Ver carros eléctricos
-            <IconArrow className="h-3.5 w-3.5 text-cyan" />
-          </a>
-        </div>
-      </div>
-
-      {/* Franja de datos a lo ancho: lectura de tablero, no una lista suelta */}
-      <div className="relative z-10 animate-[hero-in_.7s_ease-out_.78s_both] border-t border-white/[0.14] bg-void/45 backdrop-blur-sm">
-        <div className="mx-auto max-w-content px-5 py-5 sm:px-8 sm:py-6">
-          <DataStrip items={cifras} tone="light" size="md" />
         </div>
       </div>
 

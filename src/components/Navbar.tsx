@@ -67,17 +67,8 @@ export default function Navbar() {
           className="mx-auto flex h-[74px] max-w-content items-center justify-between gap-4 px-5 sm:px-8"
           aria-label="Principal"
         >
-          <a href="#inicio" className="flex min-h-[44px] shrink-0 items-center gap-3.5" aria-label="H&D MOTORENS, inicio">
+          <a href="#inicio" className="flex min-h-[44px] shrink-0 items-center" aria-label="H&D MOTORENS, inicio">
             <Logo compact />
-            {/* Lockup de marca: solo cuando hay sitio de sobra, para no competir con el menú */}
-            <span className="hidden items-center gap-3.5 xl:flex" aria-hidden="true">
-              <span className="h-6 w-px bg-white/15" />
-              <span className="text-[10px] font-semibold uppercase leading-tight tracking-widest2 text-silver">
-                Movilidad
-                <br />
-                eléctrica
-              </span>
-            </span>
           </a>
 
           {/* Desktop */}

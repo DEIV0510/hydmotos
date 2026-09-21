@@ -39,8 +39,6 @@ const busquedaDe = (m: Moto) => (/\bmagma\b/i.test(m.name) ? m.name : `${m.name}
  */
 export default function Magma() {
   const banner = pieza('bubble-faro')
-  const info = ['potencia', 'bateria-extraible', 'carga-rapida', 'bateria-ciclos', 'garantia-motor'].map(pieza)
-  const detalles = ['detalle-freno', 'detalle-amortiguador', 'detalle-rueda'].map(pieza)
   const { motos: MOTOS } = useCatalogoVivo()
   const modelos = MOTOS.filter(esMagma)
   const bubble = modelos.find((m) => m.id === 'magma-bubble')
@@ -147,65 +145,7 @@ export default function Magma() {
                 </a>
               </div>
             </Reveal>
-            <Reveal delay={320}>
-              <ul className="mt-9 grid grid-cols-3 gap-2.5 sm:gap-3">
-                {detalles.map((d) => (
-                  <li key={d.id} className="overflow-hidden rounded-xl border border-white/[0.08] bg-void">
-                    <img
-                      src={d.src}
-                      srcSet={d.srcSet}
-                      sizes="(min-width: 1024px) 150px, 30vw"
-                      width={d.width}
-                      height={d.height}
-                      alt={d.alt}
-                      loading="lazy"
-                      decoding="async"
-                      className="aspect-square w-full object-cover"
-                    />
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
           </div>
-        </div>
-
-        {/* Piezas de la marca */}
-        <div className="mt-16 sm:mt-24">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <Reveal>
-              <h3 className="font-display text-[clamp(1.6rem,4vw,2.4rem)] font-extrabold uppercase leading-none text-chrome">
-                Lo que destaca la marca
-              </h3>
-            </Reveal>
-            <Reveal delay={80}>
-              <p className="text-[12.5px] text-silver">Piezas publicitarias de MAGMA</p>
-            </Reveal>
-          </div>
-          <ul className="mt-7 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-5">
-            {info.map((p, i) => (
-              <Reveal as="li" key={p.id} delay={i * 60}>
-                <figure className="group overflow-hidden rounded-lg border border-white/[0.08] bg-void">
-                  <img
-                    src={p.src}
-                    srcSet={p.srcSet}
-                    sizes="(min-width: 1280px) 250px, (min-width: 768px) 32vw, 46vw"
-                    width={p.width}
-                    height={p.height}
-                    alt={p.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                </figure>
-              </Reveal>
-            ))}
-          </ul>
-          <Reveal>
-            <p className="mt-5 max-w-2xl text-[12.5px] leading-relaxed text-silver/85">
-              Las características, los ciclos de batería y las garantías dependen de cada modelo.
-              Confírmalos al consultar.
-            </p>
-          </Reveal>
         </div>
       </div>
     </section>

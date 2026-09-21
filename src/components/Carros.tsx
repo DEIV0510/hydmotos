@@ -123,12 +123,7 @@ function Ficha({ v }: { v: Vehiculo }) {
 
 export default function Carros() {
   return (
-    <section id="carros" className="relative isolate overflow-hidden bg-void py-16 sm:py-24">
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-60" />
-        <div className="absolute right-[-10%] top-10 h-[520px] w-[520px] rounded-full bg-blue/20 blur-[130px]" />
-      </div>
-
+    <section id="carros" className="relative bg-void py-16 sm:py-24">
       <div className="mx-auto max-w-content px-5 sm:px-8">
         <SectionHead
           eyebrow="05 · Carros eléctricos"

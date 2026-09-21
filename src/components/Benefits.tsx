@@ -15,10 +15,9 @@ import { useCatalogoVivo } from '@/lib/motos-live'
 export default function Benefits() {
   const { stats: STATS } = useCatalogoVivo()
   const cifras = [
-    { v: String(STATS.total), l: 'modelos eléctricos en el catálogo' },
-    { v: `${STATS.maxRange} km`, l: 'de autonomía en el modelo de mayor alcance' },
-    { v: String(STATS.withPrice), l: 'modelos con precio publicado' },
-    { v: String(STATS_REPUESTOS.total), l: 'repuestos con referencia y precio' },
+    { v: String(STATS.total), l: 'Modelos' },
+    { v: `${STATS.maxRange} km`, l: 'Autonomía máxima' },
+    { v: String(STATS_REPUESTOS.total), l: 'Repuestos' },
   ]
 
   const pasos = [
@@ -46,12 +45,14 @@ export default function Benefits() {
             />
           </div>
 
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-ink/[0.08] bg-ink/[0.08] lg:col-span-7">
+          <dl className="grid grid-cols-3 gap-6 lg:col-span-7 lg:gap-10">
             {cifras.map((c, i) => (
               // La etiqueta va antes en el DOM (dt antes que dd) y se pinta debajo
-              <Reveal key={c.l} delay={i * 70} className="flex flex-col-reverse bg-card p-5 sm:p-8">
-                <dt className="mt-2 max-w-[22ch] text-[13px] leading-snug text-slate sm:text-[14px]">{c.l}</dt>
-                <dd className="font-display text-[clamp(2.3rem,7vw,4.2rem)] font-extrabold leading-none tracking-tight text-ink [font-variant-numeric:tabular-nums]">
+              <Reveal key={c.l} delay={i * 70} className="flex flex-col-reverse">
+                <dt className="mt-1.5 text-[11px] font-semibold uppercase tracking-widest2 text-slate sm:text-[12px]">
+                  {c.l}
+                </dt>
+                <dd className="font-display text-[clamp(1.8rem,6vw,3.2rem)] font-extrabold leading-none tracking-tight text-ink [font-variant-numeric:tabular-nums]">
                   {c.v}
                 </dd>
               </Reveal>

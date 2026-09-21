@@ -59,12 +59,7 @@ export default function Showroom() {
   const wa = waLink(WA_LOCAL)
 
   return (
-    <section className="relative overflow-hidden bg-void py-16 sm:py-24">
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-25" />
-        <div className="absolute -left-32 top-1/2 h-[440px] w-[440px] -translate-y-1/2 rounded-full bg-blue/8 blur-[90px]" />
-      </div>
-
+    <section className="relative bg-void py-16 sm:py-24">
       <div className="mx-auto grid max-w-content items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.78fr] lg:gap-14">
         <div>
           <Reveal>

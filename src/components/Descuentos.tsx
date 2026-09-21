@@ -2,7 +2,7 @@ import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
 import { VIDEOS_PROMO, type VideoPromo } from '@/data/promos'
-import { abrirCatalogo, abrirRepuestos } from '@/lib/catalogo'
+import { abrirRepuestos } from '@/lib/catalogo'
 import { useCatalogoVivo } from '@/lib/motos-live'
 import { useRepuestosVivo } from '@/lib/repuestos-live'
 import { waLink, waReady } from '@/lib/wa'
@@ -38,6 +38,7 @@ export default function Descuentos() {
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   if (!motos.length && !repuestos.length) return null
+  const topMotos = motos.slice(0, 3)
 
   return (
     <section
@@ -45,12 +46,6 @@ export default function Descuentos() {
       aria-labelledby="titulo-descuentos"
       className="relative isolate overflow-hidden bg-void py-16 sm:py-24"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,#0B0D11_0%,#0C1A3F_50%,#123C99_100%)]" />
-        <div className="absolute inset-0 bg-grid-tech bg-grid opacity-80" />
-        <div className="absolute -right-32 top-1/2 h-[560px] w-[560px] -translate-y-1/2 rounded-full bg-cyan/20 blur-[130px]" />
-      </div>
-
       <div className="mx-auto grid max-w-content items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <div>
           <Reveal>
@@ -68,12 +63,7 @@ export default function Descuentos() {
             </h2>
           </Reveal>
           <Reveal delay={150}>
-            <p className="mt-7 max-w-lg text-[15.5px] leading-relaxed text-chrome sm:text-[17px]">
-              Motos y repuestos con precio rebajado. Pregunta por el tuyo y cómpralo por WhatsApp.
-            </p>
-          </Reveal>
-          <Reveal delay={210}>
-            <ul className="mt-6 flex flex-wrap gap-2.5">
+            <ul className="mt-7 flex flex-wrap gap-2.5">
               {maxMotos > 0 && (
                 <li className="rounded-md border border-cyan/40 bg-cyan/10 px-4 py-2 text-[12px] font-bold uppercase tracking-widest2 text-white">
                   Motos hasta −{maxMotos}%
@@ -86,22 +76,17 @@ export default function Descuentos() {
               )}
             </ul>
           </Reveal>
-          <Reveal delay={270}>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Reveal delay={210}>
+            <div className="mt-8">
               <Button href={waLink(WA_DESCUENTOS)} external={waReady}>
                 Comprar por WhatsApp
               </Button>
-              {motos.length > 0 && (
-                <Button variant="outline" onClick={() => abrirCatalogo({})}>
-                  Ver motos en oferta
-                </Button>
-              )}
             </div>
           </Reveal>
         </div>
 
         <Reveal delay={120}>
-          <div className="rounded-lg border border-cyan/25 bg-void/70 p-5 shadow-lift backdrop-blur-md sm:p-7">
+          <div className="rounded-lg border border-white/10 bg-graphite p-5 sm:p-7">
             {video && (
               <video
                 src={video.src}
@@ -117,39 +102,31 @@ export default function Descuentos() {
               />
             )}
 
-            {motos.length > 0 && (
-              <>
-                <p className="text-[11px] font-semibold uppercase tracking-widest2 text-cyan">
-                  Motos en oferta
-                </p>
-                <ul className="mt-3 divide-y divide-white/[0.08]">
-                  {motos.map((o) => (
-                    <li key={o.id} className="flex items-end justify-between gap-4 py-3.5">
-                      <div className="min-w-0">
-                        <p className="font-display text-[1.15rem] font-bold uppercase leading-tight text-chrome sm:text-[1.35rem]">
-                          {o.nombre}
-                        </p>
-                        <p className="mt-0.5 text-[12.5px] text-silver line-through">{formatCOP(o.anterior)}</p>
-                      </div>
-                      <div className="flex shrink-0 items-center gap-2.5">
-                        <p className="font-display text-[1.2rem] font-extrabold leading-none text-white [font-variant-numeric:tabular-nums] sm:text-[1.45rem]">
-                          {formatCOP(o.precio)}
-                        </p>
-                        <span className="rounded-md bg-red-btn px-2 py-1 text-[11px] font-bold text-white">
-                          −{rebaja(o.precio, o.anterior)}%
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </>
+            {topMotos.length > 0 && (
+              <ul className="divide-y divide-white/[0.08]">
+                {topMotos.map((o) => (
+                  <li key={o.id} className="flex items-end justify-between gap-4 py-3.5">
+                    <p className="font-display text-[1.1rem] font-bold uppercase leading-tight text-chrome sm:text-[1.25rem]">
+                      {o.nombre}
+                    </p>
+                    <div className="flex shrink-0 items-center gap-2.5">
+                      <p className="font-display text-[1.1rem] font-extrabold leading-none text-white [font-variant-numeric:tabular-nums] sm:text-[1.3rem]">
+                        {formatCOP(o.precio)}
+                      </p>
+                      <span className="rounded-md bg-red-btn px-2 py-1 text-[11px] font-bold text-white">
+                        −{rebaja(o.precio, o.anterior)}%
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             )}
 
             {repuestos.length > 0 && (
               <button
                 type="button"
                 onClick={() => abrirRepuestos({})}
-                className="group mt-4 flex min-h-[48px] w-full items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 text-left text-[13px] font-semibold text-chrome transition-colors hover:border-cyan/50"
+                className={`group flex min-h-[48px] w-full items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 text-left text-[13px] font-semibold text-chrome transition-colors hover:border-cyan/50 ${topMotos.length ? 'mt-4' : ''}`}
               >
                 <span>{repuestos.length} repuestos en oferta</span>
                 <IconArrow className="h-4 w-4 text-cyan transition-transform duration-300 group-hover:translate-x-1" />
