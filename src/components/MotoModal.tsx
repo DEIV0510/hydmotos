@@ -65,7 +65,7 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
 
       <div
         ref={panel}
-        className="relative flex max-h-[92dvh] w-full max-w-3xl animate-[sheet_.42s_cubic-bezier(.16,1,.3,1)_both] flex-col overflow-hidden rounded-t-3xl border border-ink/[0.09] bg-card sm:animate-[pop_.35s_cubic-bezier(.16,1,.3,1)_both] sm:rounded-3xl"
+        className="relative flex max-h-[92dvh] w-full max-w-3xl animate-[sheet_.42s_cubic-bezier(.16,1,.3,1)_both] flex-col overflow-hidden rounded-t-lg border border-ink/[0.09] bg-card sm:animate-[pop_.35s_cubic-bezier(.16,1,.3,1)_both] sm:rounded-lg"
       >
         <button
           ref={closeBtn}
@@ -85,7 +85,7 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
               <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.13] blur-[60px]" />
             </div>
             {off > 0 && (
-              <span className="absolute left-5 top-5 z-10 rounded-full bg-red-btn px-3 py-1 text-[10px] font-bold uppercase tracking-widest2 text-white shadow-glow-red">
+              <span className="absolute left-5 top-5 z-10 rounded-md bg-red-btn px-3 py-1 text-[10px] font-bold uppercase tracking-widest2 text-white shadow-glow-red">
                 Oferta −{off}%
               </span>
             )}
@@ -101,7 +101,7 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
                   decoding="async"
                   className={`mx-auto w-full ${
                     moto.photoFit === 'cover'
-                      ? 'aspect-[4/3] max-w-[520px] rounded-2xl object-cover'
+                      ? 'aspect-[4/3] max-w-[520px] rounded-lg object-cover'
                       : 'aspect-square max-w-[420px] object-contain'
                   }`}
                 />
@@ -167,7 +167,7 @@ export default function MotoModal({ moto, onClose }: { moto: Moto | null; onClos
               href={wa}
               target={wa.startsWith('http') ? '_blank' : undefined}
               rel="noopener noreferrer"
-              className="mt-8 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-blue px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-blue transition-all duration-300 hover:bg-blue-deep active:scale-[0.98] sm:w-auto"
+              className="mt-8 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-md bg-blue px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-blue transition-all duration-300 hover:bg-blue-deep active:scale-[0.98] sm:w-auto"
             >
               <IconWhatsApp className="h-5 w-5" />
               Comprar por WhatsApp

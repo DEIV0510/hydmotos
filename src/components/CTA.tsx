@@ -14,7 +14,7 @@ export default function CTA() {
   return (
     <section className="relative bg-void px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <div className="relative mx-auto grid max-w-content overflow-hidden rounded-[28px] border border-white/[0.09] bg-graphite sm:rounded-[36px] lg:grid-cols-[1fr_1.1fr]">
+        <div className="relative mx-auto grid max-w-content overflow-hidden rounded-lg border border-white/[0.09] bg-graphite lg:grid-cols-[1fr_1.1fr]">
           <div className="relative z-10 p-7 sm:p-12 lg:p-16">
             <span className="eyebrow">
               <span className="h-px w-7 bg-cyan/60" aria-hidden="true" />
@@ -46,7 +46,7 @@ export default function CTA() {
               alt={FARO.alt}
               loading="lazy"
               decoding="async"
-              className="block h-auto w-full rounded-2xl border border-white/10 sm:rounded-3xl"
+              className="block h-auto w-full rounded-lg border border-white/10"
             />
           </div>
         </div>

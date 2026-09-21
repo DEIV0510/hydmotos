@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import MotoModal from '@/components/MotoModal'
 import PhotoPending from '@/components/art/PhotoPending'
-import { Reveal, SectionHead } from '@/components/ui/Primitives'
+import { DataStrip, Reveal, SectionHead, TechFrame } from '@/components/ui/Primitives'
 import { IconArrow, IconBattery, IconGauge, IconRoute } from '@/components/art/Icons'
 import { CATEGORIES, formatCOP, photoOf, type Moto } from '@/data/motos'
 import { useTilt } from '@/hooks/useTilt'
@@ -52,16 +52,8 @@ function elegirDestacados(MOTOS: Moto[], n: number): Moto[] {
   return elegidos
 }
 
-function Tarjeta({
-  moto,
-  grande = false,
-  onOpen,
-}: {
-  moto: Moto
-  grande?: boolean
-  onOpen: (m: Moto) => void
-}) {
-  const tilt = useTilt<HTMLElement>(grande ? 2.5 : 4)
+function Tarjeta({ moto, onOpen }: { moto: Moto; onOpen: (m: Moto) => void }) {
+  const tilt = useTilt<HTMLElement>(4)
   const foto = photoOf(moto)
   const off = descuento(moto)
   const wa = waLink(waForMoto(moto.name))
@@ -79,49 +71,32 @@ function Tarjeta({
       ref={tilt.ref}
       onPointerMove={tilt.onPointerMove}
       onPointerLeave={tilt.onPointerLeave}
-      className={`group relative flex h-full overflow-hidden rounded-3xl border border-ink/[0.07] bg-card shadow-card transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:border-blue/25 hover:shadow-card-hover [transform:perspective(1200px)_rotateX(var(--rx,0))_rotateY(var(--ry,0))] ${
-        grande ? 'flex-col' : 'flex-row sm:flex-col'
-      }`}
+      className="group relative flex h-full flex-row overflow-hidden rounded-lg border border-ink/[0.07] bg-card shadow-card transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:border-blue/25 hover:shadow-card-hover [transform:perspective(1200px)_rotateX(var(--rx,0))_rotateY(var(--ry,0))] sm:flex-col"
     >
       {/* Foto */}
       <div
-        className={`relative shrink-0 overflow-hidden ${
+        className={`relative min-h-[132px] w-[42%] shrink-0 overflow-hidden sm:aspect-[4/3] sm:min-h-0 sm:w-full ${
           cover ? 'bg-paper2' : 'bg-[radial-gradient(75%_65%_at_50%_62%,#FFFFFF_0%,#E6EAF0_100%)]'
-        } ${
-          grande
-            ? 'aspect-[4/3] lg:aspect-auto lg:min-h-[300px] lg:flex-1'
-            : 'min-h-[132px] w-[42%] sm:aspect-[4/3] sm:min-h-0 sm:w-full'
         }`}
       >
-        <div className="absolute left-3 top-3 z-10 flex flex-col items-start gap-1.5 sm:left-4 sm:top-4">
-          {off > 0 && (
-            <span className="rounded-md bg-red-btn px-2 py-1 text-[9.5px] font-bold uppercase tracking-widest2 text-white sm:px-2.5 sm:text-[10px]">
-              {grande ? 'Oferta ' : ''}−{off}%
-            </span>
-          )}
-          {grande && moto.matricula && (
-            <span className="rounded-md border border-blue/25 bg-card/85 px-2.5 py-1 text-[9.5px] font-semibold uppercase tracking-widest2 text-blue-deep backdrop-blur">
-              Con matrícula
-            </span>
-          )}
-        </div>
+        {off > 0 && (
+          <span className="absolute left-3 top-3 z-10 rounded-md bg-red-btn px-2 py-1 text-[9.5px] font-bold uppercase tracking-widest2 text-white sm:left-4 sm:top-4 sm:px-2.5 sm:text-[10px]">
+            −{off}%
+          </span>
+        )}
 
         {foto ? (
           <img
             src={foto.src}
             srcSet={foto.srcSet}
-            sizes={
-              grande
-                ? '(min-width: 1024px) 640px, 92vw'
-                : '(min-width: 1024px) 300px, (min-width: 640px) 46vw, 42vw'
-            }
+            sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 42vw"
             alt={`Moto eléctrica ${moto.name}`}
             width={cover ? 1000 : 900}
             height={cover ? 750 : 900}
             loading="lazy"
             decoding="async"
             className={`absolute inset-0 h-full w-full transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05] ${
-              cover ? 'object-cover' : grande ? 'object-contain p-6 sm:p-10' : 'object-contain p-2.5 sm:p-5'
+              cover ? 'object-cover' : 'object-contain p-2.5 sm:p-5'
             }`}
           />
         ) : (
@@ -130,66 +105,38 @@ function Tarjeta({
       </div>
 
       {/* Datos */}
-      <div
-        className={`relative flex min-w-0 flex-1 flex-col ${
-          grande ? 'p-5 sm:p-7 lg:flex-none' : 'p-3.5 sm:p-5'
-        }`}
-      >
+      <div className="relative flex min-w-0 flex-1 flex-col p-3.5 sm:p-5">
         {tipo && (
           <p className="text-[9.5px] font-semibold uppercase tracking-widest2 text-blue-deep sm:text-[10.5px]">
             {tipo}
           </p>
         )}
-        <h3
-          className={`mt-1 font-display font-extrabold uppercase leading-[0.95] text-ink ${
-            grande ? 'text-[clamp(1.9rem,4.4vw,3rem)]' : 'text-[1.1rem] sm:text-[1.35rem]'
-          }`}
-        >
+        <h3 className="mt-1 font-display text-[1.1rem] font-extrabold uppercase leading-[0.95] text-ink sm:text-[1.35rem]">
           {moto.name}
         </h3>
 
         {cifras.length > 0 && (
-          <ul className={`flex flex-wrap ${grande ? 'mt-4 gap-x-7 gap-y-2' : 'mt-2 gap-x-3 gap-y-1'}`}>
+          <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
             {cifras.map(({ Icon, v, l }) => (
               <li key={l} className="flex items-center gap-1.5">
-                <Icon className={`shrink-0 text-blue ${grande ? 'h-[18px] w-[18px]' : 'h-3.5 w-3.5'}`} />
-                <span className="leading-none">
-                  <span
-                    className={`block font-display font-bold text-ink ${
-                      grande ? 'text-[18px]' : 'text-[12.5px] sm:text-[13.5px]'
-                    }`}
-                  >
-                    {v}
-                  </span>
-                  <span
-                    className={
-                      grande ? 'mt-1 block text-[9.5px] font-semibold uppercase tracking-wider text-slate' : 'sr-only'
-                    }
-                  >
-                    {l}
-                  </span>
+                <Icon className="h-3.5 w-3.5 shrink-0 text-blue" />
+                <span className="font-display text-[12.5px] font-bold leading-none text-ink sm:text-[13.5px]">
+                  {v}
                 </span>
+                <span className="sr-only">{l}</span>
               </li>
             ))}
           </ul>
         )}
 
-        <div
-          className={`mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-2.5 ${
-            grande ? 'pt-6' : 'pt-3'
-          }`}
-        >
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-2.5 pt-3">
           <div className="min-w-0">
             {moto.oldPrice && (
               <p className="text-[11px] font-medium text-slate line-through sm:text-[12px]">
                 {formatCOP(moto.oldPrice)}
               </p>
             )}
-            <p
-              className={`font-display font-extrabold leading-none tracking-tight text-ink [font-variant-numeric:tabular-nums] ${
-                grande ? 'text-[clamp(1.7rem,3.4vw,2.4rem)]' : 'text-[1.1rem] sm:text-[1.3rem]'
-              }`}
-            >
+            <p className="font-display text-[1.1rem] font-extrabold leading-none tracking-tight text-ink [font-variant-numeric:tabular-nums] sm:text-[1.3rem]">
               {formatCOP(moto.price ?? 0)}
             </p>
           </div>
@@ -197,9 +144,7 @@ function Tarjeta({
             href={wa}
             target={waReady ? '_blank' : undefined}
             rel="noopener noreferrer"
-            className={`relative z-20 inline-flex items-center justify-center rounded-full bg-blue font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98] ${
-              grande ? 'min-h-[50px] px-7 text-[12px]' : 'min-h-[44px] px-4 text-[10.5px] sm:px-5 sm:text-[11px]'
-            }`}
+            className="relative z-20 inline-flex min-h-[44px] items-center justify-center rounded-md bg-blue px-4 text-[10.5px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98] sm:px-5 sm:text-[11px]"
           >
             Comprar
           </a>
@@ -211,9 +156,115 @@ function Tarjeta({
         type="button"
         onClick={() => onOpen(moto)}
         aria-label={`Ver detalles de ${moto.name}`}
-        className="absolute inset-0 z-10 rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+        className="absolute inset-0 z-10 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
       />
     </article>
+  )
+}
+
+/**
+ * Máquina destacada: la ficha principal ya no es "la tarjeta grande", es una
+ * presentación propia — panel oscuro a lo ancho, foto grande y lectura de
+ * especificaciones tipo tablero, más cerca de una ficha de vehículo que de
+ * una tarjeta de catálogo.
+ */
+function Flagship({ moto, onOpen }: { moto: Moto; onOpen: (m: Moto) => void }) {
+  const foto = photoOf(moto)
+  const off = descuento(moto)
+  const wa = waLink(waForMoto(moto.name))
+  const tipo = CATEGORIES.find((c) => c.id === moto.category)?.label
+  const cover = moto.photoFit === 'cover'
+
+  const cifras = [
+    moto.range ? { v: `${moto.range} km`, l: 'Autonomía' } : null,
+    moto.speed ? { v: `${moto.speed} km/h`, l: 'Velocidad' } : null,
+    moto.power ? { v: `${moto.power.toLocaleString('es-CO')} W`, l: 'Motor' } : null,
+  ].filter((c): c is { v: string; l: string } => c !== null)
+
+  return (
+    <div className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-graphite">
+      <TechFrame inset={16} size={22} />
+      <div className="grid lg:grid-cols-[1.15fr_1fr]">
+        {/* Foto */}
+        <div
+          className={`relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:min-h-[420px] ${
+            cover ? 'bg-void' : 'bg-[radial-gradient(72%_60%_at_50%_58%,#1B212B_0%,#0B0D11_100%)]'
+          }`}
+        >
+          <div className="absolute inset-x-5 top-5 z-10 flex flex-wrap items-start justify-between gap-x-3 gap-y-2 sm:inset-x-7 sm:top-7">
+            <p className="text-[10px] font-semibold uppercase tracking-widest2 text-cyan sm:tracking-widest3">
+              Máquina destacada
+            </p>
+            {off > 0 && (
+              <span className="rounded-md bg-red-btn px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-widest2 text-white">
+                Oferta −{off}%
+              </span>
+            )}
+          </div>
+          {foto ? (
+            <img
+              src={foto.src}
+              srcSet={foto.srcSet}
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              alt={`Moto eléctrica ${moto.name}`}
+              width={cover ? 1000 : 900}
+              height={cover ? 750 : 900}
+              loading="eager"
+              decoding="async"
+              className={`absolute inset-0 h-full w-full transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.035] ${
+                cover ? 'object-cover' : 'object-contain p-9 sm:p-14'
+              }`}
+            />
+          ) : (
+            <PhotoPending name={moto.name} />
+          )}
+        </div>
+
+        {/* Datos */}
+        <div className="relative flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+          <p className="text-[10.5px] font-semibold uppercase tracking-widest2 text-blue-soft">
+            {tipo}
+            {moto.matricula ? ' · Con matrícula' : ''}
+          </p>
+          <h3 className="mt-2 font-display text-[clamp(2.2rem,5.5vw,3.6rem)] font-extrabold uppercase leading-[0.92] text-chrome">
+            {moto.name}
+          </h3>
+
+          {cifras.length > 0 && (
+            <DataStrip items={cifras} tone="light" size="lg" className="mt-7 max-w-md border-t border-white/[0.12] pt-5" />
+          )}
+
+          <div className="mt-7 flex flex-wrap items-end justify-between gap-4 border-t border-white/[0.12] pt-6">
+            <div>
+              {moto.oldPrice && (
+                <p className="text-[12px] font-medium text-silver line-through">{formatCOP(moto.oldPrice)}</p>
+              )}
+              <p className="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold leading-none tracking-tight text-chrome [font-variant-numeric:tabular-nums]">
+                {formatCOP(moto.price ?? 0)}
+              </p>
+            </div>
+            <div className="flex gap-2.5">
+              <button
+                type="button"
+                onClick={() => onOpen(moto)}
+                className="inline-flex min-h-[48px] items-center rounded-md border border-white/20 px-5 text-[12px] font-bold uppercase tracking-widest2 text-chrome transition-colors hover:border-cyan/50"
+              >
+                Ver ficha
+              </button>
+              <a
+                href={wa}
+                target={waReady ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center gap-2 rounded-md bg-blue px-6 text-[12px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue"
+              >
+                Comprar
+                <IconArrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -268,10 +319,11 @@ export default function Featured() {
           </Reveal>
         </div>
 
-        <ul className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:grid-rows-2">
-          <Reveal as="li" className="h-full sm:col-span-2 lg:row-span-2">
-            <Tarjeta moto={principal} grande onOpen={setDetalle} />
-          </Reveal>
+        <Reveal className="mt-8 sm:mt-10">
+          <Flagship moto={principal} onOpen={setDetalle} />
+        </Reveal>
+
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {resto.map((m, i) => (
             <Reveal as="li" key={m.id} delay={(i + 1) * 70} className="h-full">
               <Tarjeta moto={m} onOpen={setDetalle} />
@@ -294,7 +346,7 @@ export default function Featured() {
                   <button
                     type="button"
                     onClick={() => abrirCatalogo({ cat: t.id })}
-                    className="group relative flex h-full min-h-[132px] w-full flex-col items-start overflow-hidden rounded-2xl border border-ink/[0.07] bg-card p-4 text-left shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-blue/25 hover:shadow-card-hover sm:min-h-[176px] sm:p-5"
+                    className="group relative flex h-full min-h-[132px] w-full flex-col items-start overflow-hidden rounded-lg border border-ink/[0.07] bg-card p-4 text-left shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-blue/25 hover:shadow-card-hover sm:min-h-[176px] sm:p-5"
                   >
                     <span className="relative z-10 font-display text-[1.25rem] font-bold uppercase leading-none text-ink sm:text-[1.6rem]">
                       {t.label}

@@ -40,7 +40,7 @@ export default function Contact() {
                 href={wa}
                 target={wa.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-3xl border border-white/[0.09] surface p-5 transition-all duration-500 hover:-translate-y-1 hover:border-cyan/35 hover:shadow-lift sm:p-6"
+                className="group flex items-center gap-4 rounded-lg border border-white/[0.09] surface p-5 transition-all duration-500 hover:-translate-y-1 hover:border-cyan/35 hover:shadow-lift sm:p-6"
               >
                 <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#25D366]/15 text-[#25D366] transition-transform duration-500 group-hover:scale-110">
                   <IconWhatsApp className="h-7 w-7" />
@@ -59,7 +59,7 @@ export default function Contact() {
 
             {/* Datos: solo si hay alguno configurado; si no, la lista vacía dejaba un borde suelto */}
             {rows.length > 0 && (
-            <ul className="mt-4 space-y-px overflow-hidden rounded-3xl border border-white/[0.07]">
+            <ul className="mt-4 space-y-px overflow-hidden rounded-lg border border-white/[0.07]">
               {rows.map(({ Icon, label, value, href }, i) => (
                 <Reveal as="li" key={label} delay={60 + i * 70}>
                   <div className="flex items-center gap-4 bg-white/[0.02] px-5 py-4">
@@ -96,7 +96,7 @@ export default function Contact() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-[44px] items-center rounded-full border border-white/12 px-5 text-[12px] font-semibold uppercase tracking-widest2 text-silver transition-colors hover:border-cyan/45 hover:text-cyan"
+                      className="inline-flex min-h-[44px] items-center rounded-md border border-white/12 px-5 text-[12px] font-semibold uppercase tracking-widest2 text-silver transition-colors hover:border-cyan/45 hover:text-cyan"
                     >
                       {name}
                     </a>

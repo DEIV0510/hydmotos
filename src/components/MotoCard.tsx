@@ -2,6 +2,7 @@ import PhotoPending from '@/components/art/PhotoPending'
 import { useTilt } from '@/hooks/useTilt'
 import { formatCOP, photoOf, type Moto } from '@/data/motos'
 import { IconBattery, IconGauge, IconRoute, IconArrow } from '@/components/art/Icons'
+import { TechFrame } from '@/components/ui/Primitives'
 import { waLink, waForMoto } from '@/lib/wa'
 import { prioridad } from '@/lib/img'
 
@@ -33,7 +34,7 @@ export default function MotoCard({
       ref={tilt.ref}
       onPointerMove={tilt.onPointerMove}
       onPointerLeave={tilt.onPointerLeave}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/[0.07] bg-card shadow-card transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:-translate-y-1.5 hover:border-blue/25 hover:shadow-card-hover focus-within:border-blue/40 [transform-style:preserve-3d] [transform:perspective(1100px)_rotateX(var(--rx,0))_rotateY(var(--ry,0))_translateZ(0)]"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-ink/[0.07] bg-card shadow-card transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:-translate-y-1.5 hover:border-blue/25 hover:shadow-card-hover focus-within:border-blue/40 [transform-style:preserve-3d] [transform:perspective(1100px)_rotateX(var(--rx,0))_rotateY(var(--ry,0))_translateZ(0)]"
     >
       {/* Escenario del vehículo */}
       <div className="relative aspect-[4/3] overflow-hidden bg-paper2/70">
@@ -41,6 +42,7 @@ export default function MotoCard({
           <div className="absolute inset-0 bg-grid-light bg-grid opacity-30" />
           <div className="absolute left-1/2 top-[58%] h-36 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.13] blur-[46px] transition-all duration-700 group-hover:bg-blue/10" />
         </div>
+        <TechFrame tone="dark" inset={9} size={12} />
 
         <div className="absolute left-3 top-3 z-10 flex flex-col items-start gap-1.5">
           {off > 0 && (
@@ -95,12 +97,12 @@ export default function MotoCard({
         )}
 
         {specs.length > 0 && (
-          <ul className="mt-2.5 grid grid-cols-3 gap-1 border-y border-ink/[0.08] py-2.5 sm:gap-1.5">
+          <ul className="mt-2.5 grid grid-cols-3 divide-x divide-ink/[0.08] border-y border-ink/[0.08] py-2.5">
             {specs.map(({ Icon, v, l }) => (
-              <li key={l} className="flex items-center gap-1 sm:gap-1.5">
+              <li key={l} className="flex items-center gap-1 pl-2 first:pl-0 sm:gap-1.5 sm:pl-2.5">
                 <Icon className="h-3.5 w-3.5 shrink-0 text-blue sm:h-4 sm:w-4" />
                 <span className="min-w-0">
-                  <span className="block font-display text-[11px] font-bold leading-none text-ink sm:text-[14px]">{v}</span>
+                  <span className="block font-display text-[11px] font-bold leading-none text-ink [font-variant-numeric:tabular-nums] sm:text-[14px]">{v}</span>
                   <span className="mt-0.5 hidden truncate text-[9px] font-semibold uppercase tracking-wider text-slate sm:block">
                     {l}
                   </span>
@@ -114,6 +116,7 @@ export default function MotoCard({
           <div className="min-w-0">
             {moto.price ? (
               <>
+                <p className="text-[9px] font-semibold uppercase tracking-widest2 text-slate">Precio</p>
                 {moto.oldPrice && (
                   <p className="text-[10.5px] font-medium text-slate line-through sm:text-[12px]">{formatCOP(moto.oldPrice)}</p>
                 )}
@@ -139,7 +142,7 @@ export default function MotoCard({
           href={wa}
           target={wa.startsWith('http') ? '_blank' : undefined}
           rel="noopener noreferrer"
-          className="relative z-20 mt-3 inline-flex min-h-[46px] items-center justify-center rounded-full bg-blue text-[11.5px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98]"
+          className="relative z-20 mt-3 inline-flex min-h-[46px] items-center justify-center rounded-md bg-blue text-[11.5px] font-bold uppercase tracking-widest2 text-white transition-all duration-300 hover:bg-blue-deep hover:shadow-glow-blue active:scale-[0.98]"
         >
           Comprar
         </a>

@@ -67,8 +67,17 @@ export default function Navbar() {
           className="mx-auto flex h-[74px] max-w-content items-center justify-between gap-4 px-5 sm:px-8"
           aria-label="Principal"
         >
-          <a href="#inicio" className="flex min-h-[44px] shrink-0 items-center" aria-label="H&D MOTORENS, inicio">
+          <a href="#inicio" className="flex min-h-[44px] shrink-0 items-center gap-3.5" aria-label="H&D MOTORENS, inicio">
             <Logo compact />
+            {/* Lockup de marca: solo cuando hay sitio de sobra, para no competir con el menú */}
+            <span className="hidden items-center gap-3.5 xl:flex" aria-hidden="true">
+              <span className="h-6 w-px bg-white/15" />
+              <span className="text-[10px] font-semibold uppercase leading-tight tracking-widest2 text-silver">
+                Movilidad
+                <br />
+                eléctrica
+              </span>
+            </span>
           </a>
 
           {/* Desktop */}
@@ -101,7 +110,7 @@ export default function Navbar() {
               href={wa}
               target={wa.startsWith('http') ? '_blank' : undefined}
               rel="noopener noreferrer"
-              className="hidden min-h-[44px] items-center rounded-full bg-red-btn px-6 text-[12px] font-bold uppercase tracking-widest2 text-white shadow-glow-red transition-all duration-300 hover:-translate-y-0.5 hover:bg-red sm:inline-flex"
+              className="hidden min-h-[44px] items-center rounded-md bg-red-btn px-6 text-[12px] font-bold uppercase tracking-widest2 text-white shadow-glow-red transition-all duration-300 hover:-translate-y-0.5 hover:bg-red sm:inline-flex"
             >
               Consultar
             </a>
@@ -176,7 +185,7 @@ export default function Navbar() {
             target={wa.startsWith('http') ? '_blank' : undefined}
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="mt-9 inline-flex min-h-[54px] animate-[menu-in_.5s_cubic-bezier(.16,1,.3,1)_.36s_both] items-center justify-center rounded-full bg-red-btn text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-red"
+            className="mt-9 inline-flex min-h-[54px] animate-[menu-in_.5s_cubic-bezier(.16,1,.3,1)_.36s_both] items-center justify-center rounded-md bg-red-btn text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-red"
           >
             Consultar por WhatsApp
           </a>

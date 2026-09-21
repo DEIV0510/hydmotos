@@ -57,7 +57,7 @@ export default function Magma() {
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Banner */}
           <Reveal className="lg:col-span-7">
-            <figure className="group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-void">
+            <figure className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-void">
               <img
                 src={banner.src}
                 srcSet={banner.srcSet}
@@ -80,7 +80,7 @@ export default function Magma() {
                   <button
                     type="button"
                     onClick={() => abrirCatalogo({ q: bubble.name })}
-                    className="inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border border-white/20 bg-void/50 px-4 text-[11px] font-bold uppercase tracking-widest2 text-chrome backdrop-blur transition-colors hover:border-white/45"
+                    className="inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-md border border-white/20 bg-void/50 px-4 text-[11px] font-bold uppercase tracking-widest2 text-chrome backdrop-blur transition-colors hover:border-white/45"
                   >
                     Ver modelo
                     <IconArrow className="h-3.5 w-3.5" />
@@ -118,7 +118,7 @@ export default function Magma() {
                     <button
                       type="button"
                       onClick={() => abrirCatalogo({ q: busquedaDe(m) })}
-                      className="inline-flex min-h-[44px] items-center rounded-full border border-white/12 bg-white/[0.03] px-4 text-[11.5px] font-semibold uppercase tracking-widest2 text-chrome transition-colors hover:border-cyan/50 hover:text-cyan"
+                      className="inline-flex min-h-[44px] items-center rounded-md border border-white/12 bg-white/[0.03] px-4 text-[11.5px] font-semibold uppercase tracking-widest2 text-chrome transition-colors hover:border-cyan/50 hover:text-cyan"
                     >
                       {sinMarca(m.name)}
                     </button>
@@ -131,7 +131,7 @@ export default function Magma() {
                 <button
                   type="button"
                   onClick={() => abrirCatalogo({ q: 'magma' })}
-                  className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full bg-chrome px-7 text-[12.5px] font-bold uppercase tracking-widest2 text-void transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
+                  className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-md bg-chrome px-7 text-[12.5px] font-bold uppercase tracking-widest2 text-void transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
                 >
                   Ver modelos MAGMA
                   <IconArrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -140,7 +140,7 @@ export default function Magma() {
                   href={wa}
                   target={waReady ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full border border-white/20 px-7 text-[12.5px] font-semibold uppercase tracking-widest2 text-chrome transition-colors duration-300 hover:border-cyan/60"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-md border border-white/20 px-7 text-[12.5px] font-semibold uppercase tracking-widest2 text-chrome transition-colors duration-300 hover:border-cyan/60"
                 >
                   <IconWhatsApp className="h-4 w-4" />
                   Consultar
@@ -184,7 +184,7 @@ export default function Magma() {
           <ul className="mt-7 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-5">
             {info.map((p, i) => (
               <Reveal as="li" key={p.id} delay={i * 60}>
-                <figure className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-void">
+                <figure className="group overflow-hidden rounded-lg border border-white/[0.08] bg-void">
                   <img
                     src={p.src}
                     srcSet={p.srcSet}

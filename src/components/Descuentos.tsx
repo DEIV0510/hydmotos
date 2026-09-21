@@ -74,12 +74,12 @@ export default function Descuentos() {
           <Reveal delay={210}>
             <ul className="mt-6 flex flex-wrap gap-2.5">
               {maxMotos > 0 && (
-                <li className="rounded-full border border-cyan/40 bg-cyan/10 px-4 py-2 text-[12px] font-bold uppercase tracking-widest2 text-white">
+                <li className="rounded-md border border-cyan/40 bg-cyan/10 px-4 py-2 text-[12px] font-bold uppercase tracking-widest2 text-white">
                   Motos hasta −{maxMotos}%
                 </li>
               )}
               {maxRepuestos > 0 && (
-                <li className="rounded-full border border-cyan/40 bg-cyan/10 px-4 py-2 text-[12px] font-bold uppercase tracking-widest2 text-white">
+                <li className="rounded-md border border-cyan/40 bg-cyan/10 px-4 py-2 text-[12px] font-bold uppercase tracking-widest2 text-white">
                   Repuestos hasta −{maxRepuestos}%
                 </li>
               )}
@@ -100,7 +100,7 @@ export default function Descuentos() {
         </div>
 
         <Reveal delay={120}>
-          <div className="rounded-3xl border border-cyan/25 bg-void/70 p-5 shadow-lift backdrop-blur-md sm:p-7">
+          <div className="rounded-lg border border-cyan/25 bg-void/70 p-5 shadow-lift backdrop-blur-md sm:p-7">
             {video && (
               <video
                 src={video.src}
@@ -112,7 +112,7 @@ export default function Descuentos() {
                 loop
                 playsInline
                 preload="metadata"
-                className="mb-6 aspect-video w-full rounded-2xl border border-white/10 object-cover"
+                className="mb-6 aspect-video w-full rounded-lg border border-white/10 object-cover"
               />
             )}
 
@@ -148,7 +148,7 @@ export default function Descuentos() {
               <button
                 type="button"
                 onClick={() => abrirRepuestos({})}
-                className="group mt-4 flex min-h-[48px] w-full items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-left text-[13px] font-semibold text-chrome transition-colors hover:border-cyan/50"
+                className="group mt-4 flex min-h-[48px] w-full items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 text-left text-[13px] font-semibold text-chrome transition-colors hover:border-cyan/50"
               >
                 <span>{repuestos.length} repuestos en oferta</span>
                 <IconArrow className="h-4 w-4 text-cyan transition-transform duration-300 group-hover:translate-x-1" />

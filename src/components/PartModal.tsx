@@ -81,7 +81,7 @@ export default function PartModal({
 
       <div
         ref={panel}
-        className="relative flex max-h-[92dvh] w-full max-w-3xl animate-[sheet_.42s_cubic-bezier(.16,1,.3,1)_both] flex-col overflow-hidden rounded-t-3xl border border-ink/[0.09] bg-card sm:animate-[pop_.35s_cubic-bezier(.16,1,.3,1)_both] sm:rounded-3xl"
+        className="relative flex max-h-[92dvh] w-full max-w-3xl animate-[sheet_.42s_cubic-bezier(.16,1,.3,1)_both] flex-col overflow-hidden rounded-t-lg border border-ink/[0.09] bg-card sm:animate-[pop_.35s_cubic-bezier(.16,1,.3,1)_both] sm:rounded-lg"
       >
         <button
           ref={closeBtn}
@@ -98,7 +98,7 @@ export default function PartModal({
             {/* Foto */}
             <div className="relative bg-white">
               {off > 0 && (
-                <span className="absolute left-4 top-4 z-10 rounded-full bg-red-btn px-3 py-1 text-[10px] font-bold uppercase tracking-widest2 text-white">
+                <span className="absolute left-4 top-4 z-10 rounded-md bg-red-btn px-3 py-1 text-[10px] font-bold uppercase tracking-widest2 text-white">
                   Oferta −{off}%
                 </span>
               )}
@@ -185,7 +185,7 @@ export default function PartModal({
                 href={wa}
                 target={waReady ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="mt-7 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-blue px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-blue transition-all duration-300 hover:bg-blue-deep active:scale-[0.98]"
+                className="mt-7 inline-flex min-h-[54px] w-full items-center justify-center gap-2.5 rounded-md bg-blue px-8 text-[13px] font-bold uppercase tracking-widest2 text-white shadow-glow-blue transition-all duration-300 hover:bg-blue-deep active:scale-[0.98]"
               >
                 <IconWhatsApp className="h-5 w-5" />
                 Comprar por WhatsApp

@@ -46,7 +46,7 @@ export default function Benefits() {
             />
           </div>
 
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-ink/[0.08] bg-ink/[0.08] lg:col-span-7">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-ink/[0.08] bg-ink/[0.08] lg:col-span-7">
             {cifras.map((c, i) => (
               // La etiqueta va antes en el DOM (dt antes que dd) y se pinta debajo
               <Reveal key={c.l} delay={i * 70} className="flex flex-col-reverse bg-card p-5 sm:p-8">

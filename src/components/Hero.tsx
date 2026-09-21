@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Button } from '@/components/ui/Primitives'
+import { Button, DataStrip, TechFrame } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
@@ -144,17 +144,45 @@ export default function Hero() {
           className="pointer-events-none absolute inset-0 bg-void/85 lg:bg-gradient-to-r lg:from-void/97 lg:via-void/88 lg:to-void/25"
           aria-hidden="true"
         />
+        {/* Textura técnica muy sutil, solo del lado del texto: aporta el
+            carácter "ingeniería" sin ensuciar la lectura sobre el vídeo */}
+        <div
+          className="pointer-events-none absolute inset-0 hidden bg-grid-tech bg-grid opacity-[0.15] [mask-image:linear-gradient(to_right,black,transparent_42%)] lg:block"
+          aria-hidden="true"
+        />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-content px-5 pb-14 pt-8 sm:px-8 sm:pb-16 sm:pt-10 lg:px-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))] lg:py-14">
-        <div className="max-w-xl">
-          <p className="inline-flex animate-[hero-in_.6s_ease-out_.25s_both] items-center gap-3 text-[11px] font-semibold uppercase tracking-widest2 text-silver">
-            <span className="h-px w-8 bg-cyan" aria-hidden="true" />
-            <span className="hidden sm:inline">H&amp;D Motorens · </span>
-            Movilidad eléctrica
-          </p>
+      {/* Marcas de esquina: el hero como un visor, no como una foto de stock */}
+      <TechFrame inset={18} size={20} />
 
-          <h1 className="mt-4 font-display text-[clamp(2.6rem,11.5vw,3.8rem)] font-extrabold uppercase leading-[0.9] tracking-tight text-chrome sm:text-[clamp(3.4rem,8vw,4.4rem)] lg:text-[clamp(3rem,4.6vw,5.2rem)]">
+      {/* Rótulo lateral, solo en pantallas grandes: como la ficha técnica de un catálogo */}
+      <div
+        className="pointer-events-none absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 xl:block"
+        aria-hidden="true"
+      >
+        <span
+          className="block text-[10px] font-semibold uppercase tracking-[0.5em] text-silver/55 [transform:rotate(180deg)] [writing-mode:vertical-rl]"
+        >
+          H&amp;D Motorens · Movilidad eléctrica
+        </span>
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-content px-5 pt-8 sm:px-8 sm:pt-10 lg:px-[max(2rem,calc((100vw_-_84rem)/2_+_2rem))] lg:pt-14">
+        <div className="max-w-xl pb-12 sm:pb-14 lg:pb-16">
+          {/* Marca + categoría: lo primero que se lee, antes que el eslogan */}
+          <div className="animate-[hero-in_.6s_ease-out_.2s_both]">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-9 bg-cyan" aria-hidden="true" />
+              <p className="text-[12.5px] font-extrabold uppercase tracking-widest3 text-chrome sm:text-[13.5px]">
+                H&amp;D Motorens
+              </p>
+            </div>
+            <p className="mt-1.5 pl-[3rem] text-[10.5px] font-semibold uppercase tracking-widest2 text-cyan sm:text-[11px]">
+              Movilidad eléctrica
+            </p>
+          </div>
+
+          <h1 className="mt-5 font-display text-[clamp(2.6rem,11.5vw,3.8rem)] font-extrabold uppercase leading-[0.9] tracking-tight text-chrome sm:text-[clamp(3.4rem,8vw,4.4rem)] lg:text-[clamp(3rem,4.8vw,5.6rem)]">
             <span className="block animate-[hero-in_.7s_ease-out_.32s_both]">La ciudad,</span>
             <span className="block animate-[hero-in_.7s_ease-out_.42s_both]">
               sin gasolina<span className="text-red">.</span>
@@ -184,18 +212,13 @@ export default function Hero() {
             ¿Te interesa el carro? Ver carros eléctricos
             <IconArrow className="h-3.5 w-3.5 text-cyan" />
           </a>
+        </div>
+      </div>
 
-          <dl className="mt-8 grid max-w-[30rem] animate-[hero-in_.7s_ease-out_.74s_both] grid-cols-3 gap-4 border-t border-white/[0.14] pt-5 lg:mt-10">
-            {cifras.map((c) => (
-              // La etiqueta va antes en el DOM (dt antes que dd) y se pinta debajo
-              <div key={c.l} className="flex flex-col-reverse">
-                <dt className="mt-1.5 text-[10.5px] font-semibold uppercase tracking-widest2 text-silver">{c.l}</dt>
-                <dd className="font-display text-[clamp(1.15rem,3.6vw,1.6rem)] font-bold leading-none text-chrome [font-variant-numeric:tabular-nums]">
-                  {c.v}
-                </dd>
-              </div>
-            ))}
-          </dl>
+      {/* Franja de datos a lo ancho: lectura de tablero, no una lista suelta */}
+      <div className="relative z-10 animate-[hero-in_.7s_ease-out_.78s_both] border-t border-white/[0.14] bg-void/45 backdrop-blur-sm">
+        <div className="mx-auto max-w-content px-5 py-5 sm:px-8 sm:py-6">
+          <DataStrip items={cifras} tone="light" size="md" />
         </div>
       </div>
 

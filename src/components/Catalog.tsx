@@ -112,7 +112,7 @@ export default function Catalog() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar modelo o marca…"
                   aria-label="Buscar moto por nombre, marca o característica"
-                  className="h-[46px] w-full rounded-full border border-ink/12 bg-card pl-11 pr-10 text-[14px] text-ink placeholder:text-slate transition-colors focus:border-blue focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:w-60"
+                  className="h-[46px] w-full rounded-md border border-ink/12 bg-card pl-11 pr-10 text-[14px] text-ink placeholder:text-slate transition-colors focus:border-blue focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:w-60"
                 />
                 {query && (
                   <button
@@ -134,7 +134,7 @@ export default function Catalog() {
                   id="orden"
                   value={sort}
                   onChange={(e) => setSort(e.target.value as SortId)}
-                  className="h-[46px] w-full cursor-pointer appearance-none rounded-full border border-ink/12 bg-card pl-5 pr-11 text-[13px] font-medium text-ink transition-colors focus:border-blue focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:w-52"
+                  className="h-[46px] w-full cursor-pointer appearance-none rounded-md border border-ink/12 bg-card pl-5 pr-11 text-[13px] font-medium text-ink transition-colors focus:border-blue focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:w-52"
                 >
                   {SORTS.map((s) => (
                     <option key={s.id} value={s.id}>
@@ -163,7 +163,7 @@ export default function Catalog() {
                   type="button"
                   onClick={() => setCat(c.id)}
                   aria-pressed={on}
-                  className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border px-4 text-[12px] font-semibold uppercase tracking-widest2 transition-all duration-300 ${
+                  className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-md border px-4 text-[12px] font-semibold uppercase tracking-widest2 transition-all duration-300 ${
                     on
                       ? 'border-blue bg-blue text-white'
                       : 'border-ink/12 bg-card text-slate hover:border-blue/40 hover:text-blue-deep'
@@ -199,7 +199,7 @@ export default function Catalog() {
                 <button
                   type="button"
                   onClick={() => setShown((n) => n + PAGE)}
-                  className="group inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-ink/15 bg-card px-8 text-[12px] font-bold uppercase tracking-widest2 text-ink shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-blue/40 hover:shadow-card-hover"
+                  className="group inline-flex min-h-[52px] items-center gap-2.5 rounded-md border border-ink/15 bg-card px-8 text-[12px] font-bold uppercase tracking-widest2 text-ink shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-blue/40 hover:shadow-card-hover"
                 >
                   Ver {Math.min(restantes, PAGE)} modelos más
                   <IconChevron className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
@@ -208,7 +208,7 @@ export default function Catalog() {
             )}
           </>
         ) : (
-          <div className="mt-6 rounded-2xl border border-ink/[0.09] bg-card px-6 py-14 text-center shadow-card">
+          <div className="mt-6 rounded-lg border border-ink/[0.09] bg-card px-6 py-14 text-center shadow-card">
             <p className="font-display text-2xl font-bold uppercase text-ink">Sin resultados</p>
             <p className="mx-auto mt-2 max-w-sm text-[14.5px] text-slate">
               No encontramos motos con esa búsqueda. Prueba con otro nombre o mira el catálogo completo.
@@ -219,7 +219,7 @@ export default function Catalog() {
                 setQuery('')
                 setCat('todas')
               }}
-              className="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-ink px-7 text-[12px] font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-blue-deep"
+              className="mt-6 inline-flex min-h-[48px] items-center rounded-md bg-ink px-7 text-[12px] font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-blue-deep"
             >
               Ver todo el catálogo
             </button>

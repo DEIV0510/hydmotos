@@ -90,9 +90,11 @@ type BtnProps = {
 }
 
 // En móvil, menos espaciado entre letras: con el de escritorio «Consultar por
-// WhatsApp» se partía en dos líneas a 320 px y dentro de la tarjeta del cierre
+// WhatsApp» se partía en dos líneas a 320 px y dentro de la tarjeta del cierre.
+// Esquina pequeña, no píldora: una marca de movilidad/ingeniería lee como
+// panel técnico, no como plantilla de e-commerce con todo en rounded-full.
 const BASE =
-  'group relative inline-flex items-center justify-center gap-2.5 rounded-full text-center font-semibold uppercase tracking-[0.12em] sm:tracking-widest2 transition-all duration-300 min-h-[48px] px-5 sm:px-7 text-[12.5px] focus-visible:outline-offset-4 active:scale-[0.97]'
+  'group relative inline-flex items-center justify-center gap-2.5 rounded-md text-center font-semibold uppercase tracking-[0.12em] sm:tracking-widest2 transition-all duration-300 min-h-[48px] px-5 sm:px-7 text-[12.5px] focus-visible:outline-offset-4 active:scale-[0.97]'
 
 const VARIANTS = {
   // rojo con contraste AA sobre texto blanco; el brillo lo da el halo, no el fondo
@@ -148,5 +150,79 @@ export function TechBackdrop({ className = '' }: { className?: string }) {
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-void to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-void to-transparent" />
     </div>
+  )
+}
+
+/* ---------------- Marcas de esquina (lenguaje visual propio) ----------------
+   Cuatro escuadras finas en las esquinas de una foto o panel, como el retículo
+   de un visor. Referencia a instrumentación técnica sin llegar a HUD de
+   videojuego: son cuatro trazos de 1px, nada más. Se usan con moderación —
+   en el Hero, en la máquina destacada y poco más. */
+export function TechFrame({
+  tone = 'light',
+  inset = 14,
+  size = 22,
+}: {
+  /** 'light' = trazos claros (sobre fondo oscuro), 'dark' = trazos oscuros (sobre fondo claro) */
+  tone?: 'light' | 'dark'
+  inset?: number
+  size?: number
+}) {
+  const color = tone === 'light' ? 'border-white/40' : 'border-ink/30'
+  const corners = [
+    { key: 'tl', pos: 'left-0 top-0', border: 'border-l border-t' },
+    { key: 'tr', pos: 'right-0 top-0', border: 'border-r border-t' },
+    { key: 'bl', pos: 'left-0 bottom-0', border: 'border-l border-b' },
+    { key: 'br', pos: 'right-0 bottom-0', border: 'border-r border-b' },
+  ]
+  return (
+    <div className="pointer-events-none absolute z-10" style={{ inset }} aria-hidden="true">
+      {corners.map((c) => (
+        <span
+          key={c.key}
+          className={`absolute ${c.pos} ${c.border} ${color}`}
+          style={{ width: size, height: size }}
+        />
+      ))}
+    </div>
+  )
+}
+
+/* ---------------- Franja de datos (lectura tipo tablero) ----------------
+   Fila de cifras con etiqueta, separadas por líneas finas y con numeración
+   tabular — el mismo patrón que ya usaban el Hero y "Por qué H&D" a mano,
+   ahora reutilizable donde haga falta una lectura de especificaciones. */
+export function DataStrip({
+  items,
+  tone = 'light',
+  size = 'md',
+  className = '',
+}: {
+  items: { v: string; l: string }[]
+  tone?: 'light' | 'dark'
+  size?: 'sm' | 'md' | 'lg'
+  className?: string
+}) {
+  const dark = tone === 'dark'
+  const valueSize = {
+    sm: 'text-[1.05rem] sm:text-[1.2rem]',
+    md: 'text-[clamp(1.15rem,3.6vw,1.6rem)]',
+    lg: 'text-[clamp(1.6rem,4.4vw,2.5rem)]',
+  }[size]
+  return (
+    <dl className={`grid auto-cols-fr grid-flow-col divide-x ${dark ? 'divide-ink/10' : 'divide-white/[0.14]'} ${className}`}>
+      {items.map((c) => (
+        <div key={c.l} className="flex flex-col-reverse pr-4 first:pl-0 [&:not(:first-child)]:pl-4">
+          <dt className={`mt-1.5 text-[10px] font-semibold uppercase tracking-widest2 ${dark ? 'text-slate' : 'text-silver'}`}>
+            {c.l}
+          </dt>
+          <dd
+            className={`font-display font-bold leading-none [font-variant-numeric:tabular-nums] ${valueSize} ${dark ? 'text-ink' : 'text-chrome'}`}
+          >
+            {c.v}
+          </dd>
+        </div>
+      ))}
+    </dl>
   )
 }

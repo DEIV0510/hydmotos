@@ -86,7 +86,7 @@ export default function Footer() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-[40px] items-center rounded-full border border-white/12 px-4 text-[11px] font-semibold uppercase tracking-widest2 text-silver transition-colors hover:border-cyan/45 hover:text-cyan"
+                      className="inline-flex min-h-[40px] items-center rounded-md border border-white/12 px-4 text-[11px] font-semibold uppercase tracking-widest2 text-silver transition-colors hover:border-cyan/45 hover:text-cyan"
                     >
                       {name}
                     </a>
