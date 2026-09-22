@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hydmotos.vercel.app/sitemap.xml
+Sitemap: https://www.hydmotorens.com/sitemap.xml

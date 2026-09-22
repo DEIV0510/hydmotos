@@ -2,7 +2,9 @@
 
 Web de catálogo para **H&D MOTORENS**: motos (80 modelos), patinetas y carros
 eléctricos, taller y 135 repuestos. React 18 + Vite 5 + Tailwind 3 + TypeScript.
-En vivo en **https://hydmotos.vercel.app**: cada push a `main` se despliega solo.
+En vivo en **https://www.hydmotorens.com** (dominio propio, comprado en Hostinger;
+`https://hydmotos.vercel.app` sigue funcionando como alias): cada push a `main`
+se despliega solo.
 
 ```bash
 npm install
@@ -335,8 +337,8 @@ Para quitar o añadir una excepción hay que volver a sacar las originales:
 ## SEO
 
 - Título, descripción, `canonical`, Open Graph con `og.jpg`, `robots.txt` y
-  `sitemap.xml`, todos con `https://hydmotos.vercel.app`. La dirección anterior
-  (`hdmotorens.com`) no existía.
+  `sitemap.xml`, todos con `https://www.hydmotorens.com` (dominio propio desde
+  el 2026-09-22; `hydmotos.vercel.app` sigue activo como alias).
 - La descripción ya no dice que todas las motos llevan batería de grafeno:
   muchas del Excel son de plomo o de litio.
 - Datos estructurados (`StructuredData.tsx`): el concesionario, las 80 motos y

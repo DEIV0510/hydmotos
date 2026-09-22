@@ -4,10 +4,10 @@ import { ADDRESS, EMAIL, PHONE, SOCIAL, WHATSAPP_NUMBER } from '@/data/site'
 import { useCatalogoVivo } from '@/lib/motos-live'
 
 /**
- * Dirección pública de la web. Si se compra un dominio propio, cambiarla aquí
+ * Dirección pública de la web. Si cambia el dominio, actualizarla aquí
  * y en index.html, public/robots.txt y public/sitemap.xml.
  */
-const SITE = 'https://hydmotos.vercel.app'
+const SITE = 'https://www.hydmotorens.com'
 
 /**
  * Datos estructurados schema.org.
