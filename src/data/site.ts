@@ -7,22 +7,19 @@
  */
 
 /**
- * 📞 NÚMERO DE WHATSAPP — PENDIENTE
+ * 📞 NÚMERO DE WHATSAPP
  * Formato internacional SIN "+", sin espacios ni guiones.
- * Ejemplo Colombia: '573001234567'
- * Mientras esté vacío, los botones llevan a la sección de contacto
- * en lugar de abrir un chat roto.
  */
-export const WHATSAPP_NUMBER: string = ''
+export const WHATSAPP_NUMBER: string = '573102063400'
 
 /** 📞 Teléfono visible. Vacío = no se muestra la fila. */
-export const PHONE: string = ''
+export const PHONE: string = '310 206 3400'
 
 /** ✉️ Correo de contacto. Vacío = no se muestra la fila. */
 export const EMAIL: string = ''
 
 /** 📍 Dirección / ciudad. Vacío = no se muestra la fila. */
-export const ADDRESS: string = ''
+export const ADDRESS: string = 'Calle 44 #3-98, Montería'
 
 /**
  * 🕐 Horario de atención — PENDIENTE. Vacío = no se muestra.
