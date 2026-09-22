@@ -4,7 +4,7 @@ import { MAGMA, type Media } from '@/data/media'
 import type { Moto } from '@/data/motos'
 import { abrirCatalogo } from '@/lib/catalogo'
 import { useCatalogoVivo } from '@/lib/motos-live'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const WA_MAGMA = 'Hola, quiero información sobre los modelos MAGMA de H&D MOTORENS.'
 
@@ -38,6 +38,7 @@ const busquedaDe = (m: Moto) => (/\bmagma\b/i.test(m.name) ? m.name : `${m.name}
  * tienda no las repite como promesa suya.
  */
 export default function Magma() {
+  const { waLink, waReady } = useWa()
   const banner = pieza('bubble-faro')
   const { motos: MOTOS } = useCatalogoVivo()
   const modelos = MOTOS.filter(esMagma)

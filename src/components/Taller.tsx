@@ -2,7 +2,7 @@ import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconBolt, IconTools, IconWhatsApp } from '@/components/art/Icons'
 import { REPUESTOS, STATS_REPUESTOS, photoOfPart, type Repuesto } from '@/data/repuestos'
 import { abrirRepuestos } from '@/lib/catalogo'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const WA_TALLER =
   'Hola, necesito el taller de H&D MOTORENS para mi vehículo eléctrico. ¿Me pueden ayudar?'
@@ -17,6 +17,7 @@ const MUESTRA = ['RKCT026', 'RKFR027', 'RKCZ004']
  * los repuestos, que sí están en la web, y lleva a WhatsApp.
  */
 export default function Taller() {
+  const { waLink, waReady } = useWa()
   const piezas = MUESTRA.map((sku) => REPUESTOS.find((r) => r.sku === sku)).filter(
     (r): r is Repuesto => Boolean(r && photoOfPart(r)),
   )

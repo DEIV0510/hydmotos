@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { REPUESTOS } from '@/data/repuestos'
-import { ADDRESS, EMAIL, PHONE, SOCIAL, WHATSAPP_NUMBER } from '@/data/site'
 import { useCatalogoVivo } from '@/lib/motos-live'
+import { useSettingsVivo } from '@/lib/settings-live'
 
 /**
  * Dirección pública de la web. Si cambia el dominio, actualizarla aquí
@@ -17,6 +17,8 @@ const SITE = 'https://www.hydmotorens.com'
  */
 export default function StructuredData() {
   const { motos: MOTOS, stats: STATS } = useCatalogoVivo()
+  const { contact, social: SOCIAL } = useSettingsVivo()
+  const address = [contact.address, contact.city].filter(Boolean).join(', ')
 
   useEffect(() => {
     const org: Record<string, unknown> = {
@@ -27,9 +29,9 @@ export default function StructuredData() {
       url: SITE,
       image: `${SITE}/og.jpg`,
     }
-    if (PHONE || WHATSAPP_NUMBER) org.telephone = PHONE || `+${WHATSAPP_NUMBER}`
-    if (EMAIL) org.email = EMAIL
-    if (ADDRESS) org.address = { '@type': 'PostalAddress', streetAddress: ADDRESS, addressCountry: 'CO' }
+    if (contact.phone || contact.whatsapp) org.telephone = contact.phone || `+${contact.whatsapp}`
+    if (contact.email) org.email = contact.email
+    if (address) org.address = { '@type': 'PostalAddress', streetAddress: address, addressCountry: 'CO' }
     const sameAs = Object.values(SOCIAL).filter(Boolean)
     if (sameAs.length) org.sameAs = sameAs
 
@@ -93,7 +95,7 @@ export default function StructuredData() {
       el.remove()
     }
     // Se rehace cuando llegan los precios en vivo (ver src/lib/motos-live.tsx)
-  }, [MOTOS, STATS])
+  }, [MOTOS, STATS, contact, SOCIAL, address])
 
   return null
 }

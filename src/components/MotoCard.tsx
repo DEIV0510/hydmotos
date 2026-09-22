@@ -2,7 +2,7 @@ import PhotoPending from '@/components/art/PhotoPending'
 import { useTilt } from '@/hooks/useTilt'
 import { formatCOP } from '@/data/motos'
 import { photoOfLive, type MotoConEstado } from '@/lib/motos-live'
-import { waLink, waForMoto } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 import { prioridad } from '@/lib/img'
 
 export default function MotoCard({
@@ -15,11 +15,12 @@ export default function MotoCard({
   /** Las primeras tarjetas cargan su foto de inmediato, el resto en diferido */
   priority?: boolean
 }) {
+  const { waLink, waForMoto } = useWa()
   const tilt = useTilt<HTMLElement>(5)
   const off = moto.oldPrice && moto.price
     ? Math.round(((moto.oldPrice - moto.price) / moto.oldPrice) * 100)
     : 0
-  const wa = waLink(waForMoto(moto.name))
+  const wa = waLink(waForMoto(moto.name, moto.price))
   const photo = photoOfLive(moto)
 
   // Solo lo que ayuda a decidir de un vistazo: autonomía y velocidad. El resto

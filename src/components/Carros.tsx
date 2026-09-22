@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconWhatsApp } from '@/components/art/Icons'
 import { CARRO, CARRO_MINI, type Media } from '@/data/media'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 type Vehiculo = {
   id: string
@@ -43,6 +43,7 @@ const VEHICULOS: Vehiculo[] = [
 ]
 
 function Ficha({ v }: { v: Vehiculo }) {
+  const { waLink, waReady } = useWa()
   const [activa, setActiva] = useState(0)
   const foto = v.fotos[activa]
   const wa = waLink(v.mensaje)

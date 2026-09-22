@@ -1,22 +1,27 @@
-import { WHATSAPP_NUMBER } from '@/data/site'
+import { formatCOP } from '@/data/motos'
+import { useSettingsVivo } from '@/lib/settings-live'
 
 /**
- * Construye el enlace de WhatsApp con mensaje prellenado.
- * Si aún no hay número configurado devuelve '#contacto', para que
- * el botón siga siendo útil en vez de abrir un chat inválido.
+ * Número y mensajes de WhatsApp: ya no viven repetidos por todo el código,
+ * salen de `useSettingsVivo()` (Fase 3, editable en /admin/contenido → WhatsApp
+ * y Contacto). Por eso es un hook y no funciones sueltas: necesita leer el
+ * Context en cada componente que lo use.
  */
-export function waLink(message: string) {
-  if (!WHATSAPP_NUMBER) return '#contacto'
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+export function useWa() {
+  const { contact, whatsapp } = useSettingsVivo()
+  const numero = contact.whatsapp
+
+  /** Si aún no hay número configurado, el enlace lleva a la sección de contacto en vez de abrir un chat inválido */
+  const waLink = (message: string) => (numero ? `https://wa.me/${numero}?text=${encodeURIComponent(message)}` : '#contacto')
+
+  /** true cuando el enlace abre WhatsApp de verdad (hay número configurado) */
+  const waReady = Boolean(numero)
+
+  /** Mensaje del botón «Comprar» de cada moto, con {PRODUCT_NAME} y {PRICE} ya resueltos */
+  const waForMoto = (name: string, price?: number | null) =>
+    whatsapp.productMessageTemplate
+      .replace(/\{PRODUCT_NAME\}/g, name)
+      .replace(/\{PRICE\}/g, price ? formatCOP(price) : '')
+
+  return { waLink, waReady, WA_GENERAL: whatsapp.generalMessage, waForMoto }
 }
-
-export const WA_GENERAL =
-  'Hola, quiero información sobre las motos, patinetas y carros eléctricos de H&D MOTORENS.'
-
-/** Mensaje del botón «Comprar» de cada moto */
-export function waForMoto(name: string) {
-  return `Hola, quiero comprar la moto ${name} que vi en la web de H&D MOTORENS. ¿Me confirman precio y disponibilidad?`
-}
-
-/** true cuando el enlace abre WhatsApp de verdad (hay número configurado) */
-export const waReady = Boolean(WHATSAPP_NUMBER)

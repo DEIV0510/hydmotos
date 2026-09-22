@@ -1,6 +1,6 @@
 import { Button, Reveal } from '@/components/ui/Primitives'
 import { CARRO, type Media } from '@/data/media'
-import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const FARO = CARRO.find((m) => m.id === 'faro') as Media
 
@@ -9,6 +9,7 @@ const FARO = CARRO.find((m) => m.id === 'faro') as Media
  * página empiece y termine con la misma imagen.
  */
 export default function CTA() {
+  const { waLink, waReady, WA_GENERAL } = useWa()
   const wa = waLink(WA_GENERAL)
 
   return (

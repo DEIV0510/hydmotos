@@ -3,7 +3,7 @@ import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconBolt, IconTools, IconWhatsApp } from '@/components/art/Icons'
 import { STATS } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const WA_LOCAL = 'Hola, ¿cómo llego al local de H&D MOTORENS?'
 
@@ -19,6 +19,7 @@ const WA_LOCAL = 'Hola, ¿cómo llego al local de H&D MOTORENS?'
  * había confirmado el cliente.
  */
 export default function Showroom() {
+  const { waLink, waReady } = useWa()
   const box = useRef<HTMLDivElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   const [cerca, setCerca] = useState(false)

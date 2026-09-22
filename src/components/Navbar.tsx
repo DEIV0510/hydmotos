@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Logo } from '@/components/art/Logo'
-import { NAV } from '@/data/site'
-import { waLink, WA_GENERAL } from '@/lib/wa'
+import { useSettingsVivo } from '@/lib/settings-live'
+import { useWa } from '@/lib/wa'
 
 export default function Navbar() {
+  const { nav: NAV } = useSettingsVivo()
+  const { waLink, WA_GENERAL } = useWa()
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('inicio')
@@ -16,7 +18,8 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Sección activa
+  // Sección activa. NAV en las dependencias: si el admin cambia el menú desde
+  // /admin/contenido, vuelve a observar las secciones correctas.
   useEffect(() => {
     const sections = NAV.map((n) => document.getElementById(n.id)).filter(Boolean) as HTMLElement[]
     if (!sections.length) return
@@ -31,7 +34,7 @@ export default function Navbar() {
     )
     sections.forEach((s) => io.observe(s))
     return () => io.disconnect()
-  }, [])
+  }, [NAV])
 
   // Menú móvil: bloquear scroll y cerrar con Escape
   useEffect(() => {
@@ -76,7 +79,9 @@ export default function Navbar() {
             {NAV.map((n) => (
               <li key={n.id}>
                 <a
-                  href={`#${n.id}`}
+                  href={n.href}
+                  target={n.newTab ? '_blank' : undefined}
+                  rel={n.newTab ? 'noopener noreferrer' : undefined}
                   aria-current={active === n.id ? 'page' : undefined}
                   className={`relative flex min-h-[44px] items-center px-3 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors xl:px-4 xl:text-[12.5px] xl:tracking-widest2 ${
                     // text-chrome, no text-cyan: el fondo del menú cambia según lo que
@@ -157,7 +162,9 @@ export default function Navbar() {
                 className="animate-[menu-in_.5s_cubic-bezier(.16,1,.3,1)_both]"
               >
                 <a
-                  href={`#${n.id}`}
+                  href={n.href}
+                  target={n.newTab ? '_blank' : undefined}
+                  rel={n.newTab ? 'noopener noreferrer' : undefined}
                   onClick={() => setOpen(false)}
                   className="flex items-baseline gap-4 border-b border-white/[0.07] py-4 font-display text-[2.1rem] font-bold uppercase leading-none text-chrome transition-colors active:text-cyan"
                 >

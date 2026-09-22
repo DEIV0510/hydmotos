@@ -7,17 +7,21 @@ import {
   IconMail,
   IconArrow,
 } from '@/components/art/Icons'
-import { ADDRESS, EMAIL, PHONE, SCHEDULE, SOCIAL } from '@/data/site'
-import { waLink, WA_GENERAL, waReady } from '@/lib/wa'
+import { useSettingsVivo } from '@/lib/settings-live'
+import { useWa } from '@/lib/wa'
 
 export default function Contact() {
+  const { contact, social: SOCIAL } = useSettingsVivo()
+  const { waLink, WA_GENERAL, waReady } = useWa()
   const wa = waLink(WA_GENERAL)
+  const { phone: PHONE, email: EMAIL, address, city, schedule: SCHEDULE, mapsUrl } = contact
+  const ADDRESS = [address, city].filter(Boolean).join(', ')
 
-  // Solo se muestran las filas con dato real configurado en site.ts
+  // Solo se muestran las filas con dato real configurado en /admin/contenido
   const rows = [
     PHONE && { Icon: IconPhone, label: 'Teléfono', value: PHONE, href: `tel:${PHONE.replace(/\s/g, '')}` },
     EMAIL && { Icon: IconMail, label: 'Correo', value: EMAIL, href: `mailto:${EMAIL}` },
-    ADDRESS && { Icon: IconPin, label: 'Ubicación', value: ADDRESS },
+    ADDRESS && { Icon: IconPin, label: 'Ubicación', value: ADDRESS, href: mapsUrl || undefined },
     SCHEDULE && { Icon: IconClock, label: 'Horario', value: SCHEDULE },
   ].filter(Boolean) as { Icon: typeof IconPhone; label: string; value: string; href?: string }[]
 
@@ -73,6 +77,8 @@ export default function Contact() {
                       {href ? (
                         <a
                           href={href}
+                          target={href.startsWith('http') ? '_blank' : undefined}
+                          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                           className="text-[14.5px] font-medium text-chrome underline-offset-4 hover:text-cyan hover:underline"
                         >
                           {value}

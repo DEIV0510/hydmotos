@@ -5,6 +5,7 @@ const ITEMS = [
   { ruta: '/admin', label: 'Dashboard' },
   { ruta: '/admin/motos', label: 'Motos' },
   { ruta: '/admin/repuestos', label: 'Repuestos' },
+  { ruta: '/admin/contenido', label: 'Contenido' },
 ]
 
 export default function Layout({

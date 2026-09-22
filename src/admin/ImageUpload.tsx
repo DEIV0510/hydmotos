@@ -24,7 +24,7 @@ export default function ImageUpload({
   valorActual,
   onSubido,
 }: {
-  carpeta: 'motos' | 'repuestos'
+  carpeta: 'motos' | 'repuestos' | 'contenido'
   id: string
   valorActual: string | null
   onSubido: (url: string) => void

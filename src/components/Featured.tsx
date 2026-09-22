@@ -7,7 +7,7 @@ import { CATEGORIES, formatCOP, type Moto } from '@/data/motos'
 import { useTilt } from '@/hooks/useTilt'
 import { abrirCatalogo } from '@/lib/catalogo'
 import { photoOfLive, useCatalogoVivo, type MotoConEstado } from '@/lib/motos-live'
-import { waForMoto, waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const descuento = (m: Moto) =>
   m.oldPrice && m.price ? Math.round(((m.oldPrice - m.price) / m.oldPrice) * 100) : 0
@@ -53,10 +53,11 @@ function elegirDestacados(MOTOS: MotoConEstado[], n: number): MotoConEstado[] {
 }
 
 function Tarjeta({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEstado) => void }) {
+  const { waLink, waForMoto, waReady } = useWa()
   const tilt = useTilt<HTMLElement>(4)
   const foto = photoOfLive(moto)
   const off = descuento(moto)
-  const wa = waLink(waForMoto(moto.name))
+  const wa = waLink(waForMoto(moto.name, moto.price))
   const tipo = CATEGORIES.find((c) => c.id === moto.category)?.label
   const cover = moto.photoFit === 'cover'
 
@@ -155,9 +156,10 @@ function Tarjeta({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEst
  * una tarjeta de catálogo.
  */
 function Flagship({ moto, onOpen }: { moto: MotoConEstado; onOpen: (m: MotoConEstado) => void }) {
+  const { waLink, waForMoto, waReady } = useWa()
   const foto = photoOfLive(moto)
   const off = descuento(moto)
-  const wa = waLink(waForMoto(moto.name))
+  const wa = waLink(waForMoto(moto.name, moto.price))
   const tipo = CATEGORIES.find((c) => c.id === moto.category)?.label
   const cover = moto.photoFit === 'cover'
 

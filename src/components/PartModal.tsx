@@ -3,7 +3,7 @@ import { IconClose, IconWhatsApp } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
 import type { Repuesto } from '@/data/repuestos'
 import { photoOfPartLive, type RepuestoConEstado } from '@/lib/repuestos-live'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 export function waForPart(r: Repuesto) {
   return `Hola, quiero comprar este repuesto de H&D MOTORENS: ${r.name}${
@@ -56,6 +56,7 @@ export default function PartModal({
     }
   }, [part, onClose])
 
+  const { waLink, waReady } = useWa()
   if (!part) return null
 
   const foto = photoOfPartLive(part)

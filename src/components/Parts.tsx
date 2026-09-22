@@ -17,7 +17,7 @@ import {
 } from '@/components/art/Icons'
 import { STATS_REPUESTOS } from '@/data/repuestos'
 import { formatCOP } from '@/data/motos'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 import PartModal, { waForPart } from '@/components/PartModal'
 import { EVENTO_REPUESTOS, type PeticionRepuestos } from '@/lib/catalogo'
 import { photoOfPartLive, useRepuestosVivo, type RepuestoConEstado } from '@/lib/repuestos-live'
@@ -38,6 +38,7 @@ const ICONOS = {
 const PAGE = 8
 
 export default function Parts() {
+  const { waLink, waReady } = useWa()
   const [cat, setCat] = useState<string>('todas')
   const [query, setQuery] = useState('')
   const [shown, setShown] = useState(PAGE)

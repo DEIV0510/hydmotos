@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { IconWhatsApp } from '@/components/art/Icons'
-import { waLink, WA_GENERAL } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 /**
  * Botón flotante de WhatsApp.
@@ -8,6 +8,7 @@ import { waLink, WA_GENERAL } from '@/lib/wa'
  */
 export default function WhatsAppButton() {
   const [show, setShow] = useState(false)
+  const { waLink, WA_GENERAL } = useWa()
   const wa = waLink(WA_GENERAL)
 
   useEffect(() => {

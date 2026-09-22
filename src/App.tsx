@@ -17,6 +17,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import StructuredData from '@/components/StructuredData'
+import SeoMeta from '@/components/SeoMeta'
 
 /**
  * Orden de la página, pensado como un recorrido de venta y en el mismo orden
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <>
       <StructuredData />
+      <SeoMeta />
       <LoadingScreen />
       <Navbar />
       <main id="main">

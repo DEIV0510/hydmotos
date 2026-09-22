@@ -3,7 +3,7 @@ import { IconArrow, IconWhatsApp } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
 import { REPUESTOS, photoOfPart } from '@/data/repuestos'
 import { abrirRepuestos } from '@/lib/catalogo'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const WA_PATINETAS =
   'Hola, quiero comprar una patineta eléctrica en H&D MOTORENS. ¿Qué modelos tienen disponibles y a qué precio?'
@@ -16,6 +16,7 @@ const WA_PATINETAS =
  * patineta del catálogo, con su foto y su precio.
  */
 export default function Patinetas() {
+  const { waLink, waReady } = useWa()
   const repuestos = REPUESTOS.filter((r) => /patineta/i.test(r.name))
   const conFoto = repuestos.filter((r) => photoOfPart(r)).slice(0, 6)
 

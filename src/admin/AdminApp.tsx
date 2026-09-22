@@ -3,6 +3,7 @@ import Layout from './Layout'
 import Dashboard from './Dashboard'
 import MotosList from './MotosList'
 import RepuestosList from './RepuestosList'
+import ContenidoPanel from './ContenidoPanel'
 import { useRuta } from './router'
 import { useSesion } from './useSesion'
 
@@ -29,6 +30,8 @@ export default function AdminApp() {
         <MotosList />
       ) : ruta === '/admin/repuestos' ? (
         <RepuestosList />
+      ) : ruta === '/admin/contenido' ? (
+        <ContenidoPanel />
       ) : (
         <Dashboard />
       )}

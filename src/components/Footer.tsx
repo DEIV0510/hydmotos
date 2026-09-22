@@ -1,14 +1,22 @@
 import { Logo } from '@/components/art/Logo'
-import { NAV, SOCIAL, SCHEDULE, PHONE, EMAIL } from '@/data/site'
 import { STATS } from '@/data/motos'
-import { WA_GENERAL, waLink, waReady } from '@/lib/wa'
-
-/** En el pie van también el inicio y el contacto, que el menú de arriba no lleva */
-const ENLACES = [{ id: 'inicio', label: 'Inicio' }, ...NAV, { id: 'contacto', label: 'Contacto' }]
+import { useSettingsVivo } from '@/lib/settings-live'
+import { useWa } from '@/lib/wa'
 
 export default function Footer() {
+  const { nav: NAV, contact, social: SOCIAL } = useSettingsVivo()
+  const { waLink, waReady, WA_GENERAL } = useWa()
+  // En el pie van también el inicio y el contacto, que el menú de arriba no lleva
+  const ENLACES = [
+    { id: 'inicio', label: 'Inicio', href: '#inicio' },
+    ...NAV,
+    { id: 'contacto', label: 'Contacto', href: '#contacto' },
+  ]
   const socials = Object.entries(SOCIAL).filter(([, v]) => v) as [string, string][]
   const wa = waLink(WA_GENERAL)
+  const PHONE = contact.phone
+  const EMAIL = contact.email
+  const SCHEDULE = contact.schedule
 
   return (
     <footer className="relative border-t border-white/[0.07] bg-graphite">
@@ -32,7 +40,7 @@ export default function Footer() {
               {ENLACES.map((n) => (
                 <li key={n.id}>
                   <a
-                    href={`#${n.id}`}
+                    href={n.href}
                     className="group inline-flex py-1.5 text-[14px] text-silver transition-colors hover:text-chrome"
                   >
                     <span className="relative">

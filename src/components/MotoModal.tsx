@@ -3,9 +3,10 @@ import PhotoPending from '@/components/art/PhotoPending'
 import { formatCOP, specsOf } from '@/data/motos'
 import { IconClose, IconWhatsApp } from '@/components/art/Icons'
 import { photoOfLive, type MotoConEstado } from '@/lib/motos-live'
-import { waLink, waForMoto } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 export default function MotoModal({ moto, onClose }: { moto: MotoConEstado | null; onClose: () => void }) {
+  const { waLink, waForMoto } = useWa()
   const panel = useRef<HTMLDivElement>(null)
   const closeBtn = useRef<HTMLButtonElement>(null)
 
@@ -47,7 +48,7 @@ export default function MotoModal({ moto, onClose }: { moto: MotoConEstado | nul
   const off =
     moto.oldPrice && moto.price ? Math.round(((moto.oldPrice - moto.price) / moto.oldPrice) * 100) : 0
   const photo = photoOfLive(moto)
-  const wa = waLink(waForMoto(moto.name))
+  const wa = waLink(waForMoto(moto.name, moto.price))
 
   return (
     <div

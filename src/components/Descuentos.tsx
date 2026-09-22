@@ -5,7 +5,7 @@ import { VIDEOS_PROMO, type VideoPromo } from '@/data/promos'
 import { abrirRepuestos } from '@/lib/catalogo'
 import { useCatalogoVivo } from '@/lib/motos-live'
 import { useRepuestosVivo } from '@/lib/repuestos-live'
-import { waLink, waReady } from '@/lib/wa'
+import { useWa } from '@/lib/wa'
 
 const WA_DESCUENTOS = 'Hola, quiero comprar con descuento en H&D MOTORENS. ¿Qué ofertas tienen ahora?'
 
@@ -22,6 +22,7 @@ const rebaja = (precio: number, anterior: number) => Math.round(((anterior - pre
  * reproductor.
  */
 export default function Descuentos() {
+  const { waLink, waReady } = useWa()
   const { motos: MOTOS } = useCatalogoVivo()
   const { repuestos: REPUESTOS } = useRepuestosVivo()
   const motos = MOTOS.filter((m) => m.price && m.oldPrice)

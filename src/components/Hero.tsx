@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/Primitives'
+import { useSettingsVivo } from '@/lib/settings-live'
 
 /**
  * Portada: el vídeo del carro ocupa todo el hero, de fondo, con el mensaje de
@@ -91,6 +92,7 @@ function useForzarAutoplay() {
 }
 
 export default function Hero() {
+  const { hero } = useSettingsVivo()
   const capa = useParallax<HTMLDivElement>()
   const video = useForzarAutoplay()
 
@@ -112,7 +114,7 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
-          poster={POSTER_HERO}
+          poster={hero.poster ?? POSTER_HERO}
           aria-hidden="true"
           className="h-full w-full object-cover"
         >
@@ -144,19 +146,20 @@ export default function Hero() {
           <p className="animate-[hero-in_.6s_ease-out_.2s_both] text-[12px] font-extrabold uppercase tracking-widest3 text-chrome sm:text-[13px]">
             H&amp;D Motorens
             <span className="mx-2.5 text-cyan">·</span>
-            <span className="text-cyan">Movilidad eléctrica</span>
+            <span className="text-cyan">{hero.kicker}</span>
           </p>
 
           <h1 className="mt-5 font-display text-[clamp(2.8rem,12vw,4rem)] font-extrabold uppercase leading-[0.9] tracking-tight text-chrome sm:text-[clamp(3.6rem,8.5vw,4.8rem)] lg:text-[clamp(3.4rem,5.2vw,6rem)]">
-            <span className="block animate-[hero-in_.7s_ease-out_.32s_both]">La ciudad,</span>
+            <span className="block animate-[hero-in_.7s_ease-out_.32s_both]">{hero.title1}</span>
             <span className="block animate-[hero-in_.7s_ease-out_.42s_both]">
-              sin gasolina<span className="text-red">.</span>
+              {hero.title2}
+              <span className="text-red">.</span>
             </span>
           </h1>
 
           <div className="mt-9 animate-[hero-in_.7s_ease-out_.52s_both]">
-            <Button href="#motos" variant="outline">
-              Ver modelos
+            <Button href={hero.ctaHref} variant="outline">
+              {hero.ctaLabel}
             </Button>
           </div>
         </div>
