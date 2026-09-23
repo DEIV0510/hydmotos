@@ -34,6 +34,62 @@ function aplicar(base: Moto, o?: Override): MotoConEstado {
   }
 }
 
+type FilaCustomMoto = {
+  id: string
+  name: string
+  category: string
+  price: number | null
+  old_price: number | null
+  on_sale: boolean
+  image: string | null
+  range: number | null
+  speed: number | null
+  power: number | null
+  battery: string | null
+  capacity: string | null
+  brakes: string | null
+  description: string | null
+  soat: boolean
+  matricula: boolean
+  tecnomecanica: boolean
+}
+
+/**
+ * Moto creada desde /admin/contenido (el cliente pidió poder "añadir otras
+ * referencias" que build-catalog.mjs no generó). Los campos que no tiene la
+ * tabla custom_motos (art, alarma, pedales...) llevan el valor por omisión
+ * más común en el catálogo real; `source: 'nuevo'` ya existía en el tipo
+ * Moto para justo este caso.
+ */
+function desdeCustom(f: FilaCustomMoto): MotoConEstado {
+  return {
+    id: f.id,
+    name: f.name,
+    category: f.category as Moto['category'],
+    art: 'street',
+    price: f.price ?? undefined,
+    oldPrice: f.on_sale && f.old_price ? f.old_price : undefined,
+    image: f.image ?? undefined,
+    range: f.range ?? undefined,
+    speed: f.speed ?? undefined,
+    power: f.power ?? undefined,
+    battery: f.battery ?? undefined,
+    capacity: f.capacity ?? undefined,
+    brakes: f.brakes ?? undefined,
+    description: f.description ?? undefined,
+    alarm: true,
+    pedals: true,
+    led: true,
+    stop: true,
+    parkingLights: false,
+    soat: f.soat,
+    matricula: f.matricula,
+    tecnomecanica: f.tecnomecanica,
+    source: 'nuevo',
+    published: true, // ya vino filtrado por el endpoint público
+  }
+}
+
 /**
  * Igual que `photoOf` (en el archivo generado), pero reconoce una imagen
  * subida desde el panel: si `image` ya es una URL completa (Blob), se usa tal
@@ -73,15 +129,21 @@ export function CatalogoVivoProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let cancelado = false
-    fetch('/api/public/motos-overrides')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((datos: { ok: boolean; overrides?: Record<string, Override> } | null) => {
-        if (cancelado || !datos?.ok || !datos.overrides) return
-        setEstado(construirEstado(MOTOS_BASE.map((m) => aplicar(m, datos.overrides![m.id]))))
-      })
-      .catch(() => {
-        /* sin overrides disponibles: se queda con el catálogo estático */
-      })
+    Promise.all([
+      fetch('/api/public/motos-overrides')
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null) as Promise<{ ok: boolean; overrides?: Record<string, Override> } | null>,
+      fetch('/api/public/custom-motos')
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null) as Promise<{ ok: boolean; motos?: FilaCustomMoto[] } | null>,
+    ]).then(([overridesRes, customRes]) => {
+      if (cancelado) return
+      const conocidas = overridesRes?.ok && overridesRes.overrides
+        ? MOTOS_BASE.map((m) => aplicar(m, overridesRes.overrides![m.id]))
+        : MOTOS_BASE.map((m) => aplicar(m))
+      const nuevas = customRes?.ok && customRes.motos ? customRes.motos.map(desdeCustom) : []
+      setEstado(construirEstado([...conocidas, ...nuevas]))
+    })
     return () => {
       cancelado = true
     }

@@ -28,6 +28,37 @@ function aplicar(base: Repuesto, o?: Override): RepuestoConEstado {
   }
 }
 
+type FilaCustomRepuesto = {
+  id: string
+  name: string
+  category: string
+  sub: string | null
+  sku: string | null
+  icon: string
+  price: number | null
+  old_price: number | null
+  on_sale: boolean
+  image: string | null
+  description: string | null
+}
+
+/** Repuesto creado desde /admin/contenido, igual que desdeCustom() en motos-live.tsx */
+function desdeCustom(f: FilaCustomRepuesto): RepuestoConEstado {
+  return {
+    id: f.id,
+    name: f.name,
+    category: f.category,
+    sub: f.sub ?? undefined,
+    sku: f.sku ?? undefined,
+    icon: f.icon as Repuesto['icon'],
+    price: f.price ?? undefined,
+    oldPrice: f.on_sale && f.old_price ? f.old_price : undefined,
+    image: f.image ?? undefined,
+    description: f.description ?? undefined,
+    published: true,
+  }
+}
+
 /** Igual que `photoOfPart`, pero reconoce una imagen subida desde el panel (URL completa de Blob). */
 export function photoOfPartLive(r: RepuestoConEstado) {
   if (r.image?.startsWith('http')) return { src: r.image, src2x: r.image, srcSet: undefined }
@@ -48,15 +79,21 @@ export function RepuestosVivoProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let cancelado = false
-    fetch('/api/public/repuestos-overrides')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((datos: { ok: boolean; overrides?: Record<string, Override> } | null) => {
-        if (cancelado || !datos?.ok || !datos.overrides) return
-        setEstado(construirEstado(REPUESTOS_BASE.map((r) => aplicar(r, datos.overrides![r.id]))))
-      })
-      .catch(() => {
-        /* sin overrides disponibles: se queda con el catálogo estático */
-      })
+    Promise.all([
+      fetch('/api/public/repuestos-overrides')
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null) as Promise<{ ok: boolean; overrides?: Record<string, Override> } | null>,
+      fetch('/api/public/custom-repuestos')
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null) as Promise<{ ok: boolean; repuestos?: FilaCustomRepuesto[] } | null>,
+    ]).then(([overridesRes, customRes]) => {
+      if (cancelado) return
+      const conocidos = overridesRes?.ok && overridesRes.overrides
+        ? REPUESTOS_BASE.map((r) => aplicar(r, overridesRes.overrides![r.id]))
+        : REPUESTOS_BASE.map((r) => aplicar(r))
+      const nuevos = customRes?.ok && customRes.repuestos ? customRes.repuestos.map(desdeCustom) : []
+      setEstado(construirEstado([...conocidos, ...nuevos]))
+    })
     return () => {
       cancelado = true
     }

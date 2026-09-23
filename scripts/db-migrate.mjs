@@ -125,4 +125,54 @@ for (const [key, value] of Object.entries(semillaSettings)) {
 }
 console.log(`✓ site_settings sembrada (${sembradas} secciones nuevas de ${Object.keys(semillaSettings).length})`)
 
+// Fase 3b: productos creados desde el panel, no del catálogo estático (el
+// cliente pidió poder "añadir otras referencias" que build-catalog.mjs no
+// generó). Tabla aparte de moto_overrides/repuesto_overrides: esas dos
+// siguen intactas, solo para lo que YA existe en motos.ts/repuestos.ts.
+await sql`
+  create table if not exists custom_motos (
+    id text primary key,
+    name text not null,
+    category text not null,
+    price integer,
+    old_price integer,
+    on_sale boolean not null default false,
+    published boolean not null default true,
+    image text,
+    range integer,
+    speed integer,
+    power integer,
+    battery text,
+    capacity text,
+    brakes text,
+    description text,
+    soat boolean not null default false,
+    matricula boolean not null default false,
+    tecnomecanica boolean not null default false,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+  )
+`
+console.log('✓ custom_motos')
+
+await sql`
+  create table if not exists custom_repuestos (
+    id text primary key,
+    name text not null,
+    category text not null,
+    sub text,
+    sku text,
+    icon text not null default 'tools',
+    price integer,
+    old_price integer,
+    on_sale boolean not null default false,
+    published boolean not null default true,
+    image text,
+    description text,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+  )
+`
+console.log('✓ custom_repuestos')
+
 console.log('Listo.')
