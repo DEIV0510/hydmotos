@@ -54,7 +54,7 @@ function Guardar({ guardando, onClick }: { guardando: boolean; onClick: () => vo
 function AvisoError({ mensaje }: { mensaje: string }) {
   if (!mensaje) return null
   return (
-    <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+    <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
       {mensaje}
     </p>
   )
@@ -126,7 +126,7 @@ function HeroTab({ value, onGuardado }: { value: HeroSettings; onGuardado: (k: k
         <div>
           <label className={etiqueta} htmlFor="h-href">Enlace del botón</label>
           <input id="h-href" className={campo} value={v.ctaHref} onChange={(e) => setV({ ...v, ctaHref: e.target.value })} />
-          <p className="mt-1 text-[11px] text-slate">Ej. #motos para ir a una sección de esta página.</p>
+          <p className="mt-1 text-[11px] text-slate">Ej. #motos para ir a una sección de esta página, o una web completa (https://…).</p>
         </div>
       </div>
       <AvisoError mensaje={error} />
@@ -327,6 +327,7 @@ function NavTab({ value, onGuardado }: { value: { items: NavItem[] }; onGuardado
             <div>
               <label className={etiqueta} htmlFor={`nav-href-${it.id}`}>Enlace</label>
               <input id={`nav-href-${it.id}`} className={campo} value={it.href} onChange={(e) => actualizar(i, { href: e.target.value })} />
+              <p className="mt-1 text-[11px] text-slate">Ej. #motos, o una web completa (https://…).</p>
             </div>
           </div>
           <div className="mt-3 flex flex-wrap gap-4">
@@ -545,7 +546,7 @@ function VideoSlot({
         aria-label={`Elegir ${titulo.toLowerCase()}`}
       />
       {error && (
-        <p role="alert" className="mt-3 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+        <p role="alert" className="mt-3 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
           {error}
         </p>
       )}
@@ -617,7 +618,7 @@ export default function ContenidoPanel() {
       </p>
 
       {aviso && <p className="mt-4 rounded-lg bg-blue/10 px-3.5 py-2 text-[13px] text-blue-deep">{aviso}</p>}
-      {error && <p className="mt-4 rounded-lg border border-red/30 bg-red/10 px-3.5 py-2 text-[13px] text-red">{error}</p>}
+      {error && <p className="mt-4 rounded-lg border border-red/30 bg-red/10 px-3.5 py-2 text-[13px] text-red-deep">{error}</p>}
 
       {!settings && !error && (
         <div className="mt-6 space-y-2">

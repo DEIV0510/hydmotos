@@ -1,8 +1,8 @@
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconArrow } from '@/components/art/Icons'
-import { STATS_REPUESTOS } from '@/data/repuestos'
 import { abrirCatalogo } from '@/lib/catalogo'
 import { useCatalogoVivo } from '@/lib/motos-live'
+import { useRepuestosVivo } from '@/lib/repuestos-live'
 
 /**
  * Por qué H&D y cómo comprar.
@@ -14,6 +14,7 @@ import { useCatalogoVivo } from '@/lib/motos-live'
  */
 export default function Benefits() {
   const { stats: STATS } = useCatalogoVivo()
+  const { stats: STATS_REPUESTOS } = useRepuestosVivo()
   const cifras = [
     { v: String(STATS.total), l: 'Modelos' },
     { v: `${STATS.maxRange} km`, l: 'Autonomía máxima' },

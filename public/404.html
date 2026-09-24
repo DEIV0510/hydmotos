@@ -1,0 +1,137 @@
+<!doctype html>
+<!--
+  Página 404. Vercel la sirve para cualquier ruta que no exista: antes toda
+  ruta inventada devolvía la portada con 200 (un «soft 404» para Google).
+  Rutas absolutas a propósito: se sirve en cualquier profundidad (/a/b/c).
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0B0D11" />
+    <title>Página no encontrada | H&amp;D MOTORENS</title>
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@800&family=Inter:wght@400;700&display=swap"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+        background: #0b0d11 radial-gradient(ellipse 70% 50% at 50% 0%, rgba(27, 87, 214, 0.22), transparent 70%);
+        color: #e6ecf4;
+        font: 400 16px/1.6 Inter, system-ui, sans-serif;
+        text-align: center;
+      }
+      main {
+        max-width: 34rem;
+      }
+      .logo {
+        display: block;
+        margin: 0 auto;
+        width: 98px;
+        height: 56px;
+      }
+      .codigo {
+        margin: 36px 0 0;
+        font: 800 clamp(5rem, 24vw, 8.5rem) / 0.85 'Saira Condensed', 'Arial Narrow', sans-serif;
+      }
+      .codigo span {
+        color: #d62030;
+      }
+      h1 {
+        margin: 18px 0 0;
+        font: 800 clamp(1.7rem, 7vw, 2.4rem) / 1 'Saira Condensed', 'Arial Narrow', sans-serif;
+        text-transform: uppercase;
+      }
+      .texto {
+        margin: 14px auto 0;
+        max-width: 28rem;
+        color: #aeb6c2;
+        font-size: 15px;
+      }
+      .acciones {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        padding: 0 26px;
+        border-radius: 999px;
+        font: 700 12.5px/1 Inter, system-ui, sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+      }
+      .btn:focus-visible,
+      .inicio:focus-visible {
+        outline: 2px solid #3d8bff;
+        outline-offset: 3px;
+      }
+      .primario {
+        background: #1b57d6;
+        color: #fff;
+      }
+      .primario:hover {
+        background: #123c99;
+      }
+      .secundario {
+        border: 1px solid rgba(230, 236, 244, 0.18);
+        color: #e6ecf4;
+      }
+      .secundario:hover {
+        border-color: #3d8bff;
+        color: #3d8bff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="inicio" href="/">
+        <img
+          class="logo"
+          src="/marca/logo-280.webp"
+          srcset="/marca/logo-280.webp 280w, /marca/logo-560.webp 560w"
+          sizes="98px"
+          width="98"
+          height="56"
+          alt="H&amp;D MOTORENS, ir al inicio"
+        />
+      </a>
+      <p class="codigo" aria-hidden="true">404<span>.</span></p>
+      <h1>Esta página no existe</h1>
+      <p class="texto">
+        Puede que el enlace esté mal escrito o que la página ya no esté. Las motos, patinetas, carros y
+        repuestos están en la página principal.
+      </p>
+      <div class="acciones">
+        <a class="btn primario" href="/">Ir al inicio</a>
+        <a class="btn secundario" href="/#motos">Ver las motos</a>
+      </div>
+    </main>
+  </body>
+</html>

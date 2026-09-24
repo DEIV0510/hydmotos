@@ -1,7 +1,7 @@
 import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconBolt, IconTools, IconWhatsApp } from '@/components/art/Icons'
-import { REPUESTOS, STATS_REPUESTOS, photoOfPart, type Repuesto } from '@/data/repuestos'
 import { abrirRepuestos } from '@/lib/catalogo'
+import { photoOfPartLive, useRepuestosVivo, type RepuestoConEstado } from '@/lib/repuestos-live'
 import { useWa } from '@/lib/wa'
 
 const WA_TALLER =
@@ -18,12 +18,14 @@ const MUESTRA = ['RKCT026', 'RKFR027', 'RKCZ004']
  */
 export default function Taller() {
   const { waLink, waReady } = useWa()
-  const piezas = MUESTRA.map((sku) => REPUESTOS.find((r) => r.sku === sku)).filter(
-    (r): r is Repuesto => Boolean(r && photoOfPart(r)),
+  // De los publicados: si el cliente oculta una de estas piezas, sale también de aquí
+  const { repuestos, stats } = useRepuestosVivo()
+  const piezas = MUESTRA.map((sku) => repuestos.find((r) => r.sku === sku)).filter(
+    (r): r is RepuestoConEstado => Boolean(r && photoOfPartLive(r)),
   )
   const puntos = [
     { Icon: IconTools, t: 'Motos, patinetas y carros eléctricos', d: 'Cuéntanos qué vehículo tienes y qué necesita.' },
-    { Icon: IconBolt, t: `${STATS_REPUESTOS.total} repuestos en la web`, d: 'Con precio publicado, para ubicar la pieza que buscas.' },
+    { Icon: IconBolt, t: `${stats.total} repuestos en la web`, d: 'Por nombre o referencia, para ubicar la pieza que buscas.' },
     { Icon: IconWhatsApp, t: 'Atención por WhatsApp', d: 'Escríbenos y te orientamos por ahí.' },
   ]
 
@@ -82,7 +84,7 @@ export default function Taller() {
           <Reveal delay={140}>
             <ul className="grid grid-cols-2 gap-3 sm:gap-4" aria-label="Algunos repuestos de la tienda">
               {piezas.map((p, i) => {
-                const foto = photoOfPart(p)
+                const foto = photoOfPartLive(p)
                 if (!foto) return null
                 return (
                   <li

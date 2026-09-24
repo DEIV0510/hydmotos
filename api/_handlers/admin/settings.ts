@@ -24,9 +24,15 @@ function esTextoNoVacio(v: unknown, max = TEXTO_MAX): v is string {
 function esUrlHttpsOVacio(v: unknown): v is string {
   return esTexto(v) && (v === '' || /^https:\/\//.test(v))
 }
+/**
+ * Enlace del menú o del botón del Hero: una sección de la página (#motos), la
+ * portada (/ o /#motos) o una web externa. Una ruta como /taller no: la web es
+ * de una sola página y esa dirección da 404.
+ */
 function esHrefValido(v: unknown): v is string {
-  return esTextoNoVacio(v, 300) && (v.startsWith('#') || v.startsWith('http') || v.startsWith('/'))
+  return esTextoNoVacio(v, 300) && (/^\/?#[\w-]+$/.test(v) || v === '/' || /^https?:\/\/[^\s/]+/.test(v))
 }
+const AYUDA_HREF = 'usa una sección de la página (ej. #motos) o una dirección que empiece por https://'
 
 type Validador = (value: unknown) => string | null // null = válido, string = mensaje de error
 
@@ -38,7 +44,7 @@ const VALIDADORES: Record<string, Validador> = {
     if (!esTextoNoVacio(o.title1, 80)) return 'La primera línea del título es obligatoria.'
     if (!esTextoNoVacio(o.title2, 80)) return 'La segunda línea del título es obligatoria.'
     if (!esTextoNoVacio(o.ctaLabel, 40)) return 'El texto del botón es obligatorio.'
-    if (!esHrefValido(o.ctaHref)) return 'El enlace del botón no es válido.'
+    if (!esHrefValido(o.ctaHref)) return `El enlace del botón no es válido: ${AYUDA_HREF}.`
     if (o.poster != null && !esUrlHttpsOVacio(o.poster)) return 'La imagen de portada no es válida.'
     return null
   },
@@ -94,7 +100,7 @@ const VALIDADORES: Record<string, Validador> = {
       const i = it as Record<string, unknown>
       if (!esTextoNoVacio(i.id, 40) || !/^[a-z0-9-]+$/.test(i.id as string)) return 'Hay un identificador de menú inválido.'
       if (!esTextoNoVacio(i.label, 40)) return 'Cada elemento del menú necesita un nombre.'
-      if (!esHrefValido(i.href)) return 'Hay un enlace de menú inválido.'
+      if (!esHrefValido(i.href)) return `El enlace de «${i.label}» no es válido: ${AYUDA_HREF}.`
       if (typeof i.enabled !== 'boolean' || typeof i.newTab !== 'boolean') return 'Faltan datos en un elemento del menú.'
       if (typeof i.order !== 'number' || !Number.isFinite(i.order)) return 'El orden del menú no es válido.'
     }

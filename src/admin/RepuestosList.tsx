@@ -164,7 +164,7 @@ function EditarModal({
           </label>
 
           {error && (
-            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
               {error}
             </p>
           )}
@@ -386,7 +386,7 @@ function CrearEditarModal({
           </div>
 
           {error && (
-            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
               {error}
             </p>
           )}
@@ -537,7 +537,7 @@ export default function RepuestosList() {
       </div>
 
       {aviso && <p className="mt-4 rounded-lg bg-blue/10 px-3.5 py-2 text-[13px] text-blue-deep">{aviso}</p>}
-      {error && <p className="mt-4 rounded-lg border border-red/30 bg-red/10 px-3.5 py-2 text-[13px] text-red">{error}</p>}
+      {error && <p className="mt-4 rounded-lg border border-red/30 bg-red/10 px-3.5 py-2 text-[13px] text-red-deep">{error}</p>}
 
       {!repuestos && !error && (
         <div className="mt-6 space-y-2">

@@ -85,25 +85,26 @@ function GaleriaEditor({ imagenes, onChange }: { imagenes: Imagen[]; onChange: (
           {imagenes.map((img, i) => (
             <li key={img.src} className="overflow-hidden rounded-lg border border-ink/15 bg-paper2">
               <div className="relative aspect-[4/3]">
-                <img src={img.src} alt="" className="h-full w-full object-contain" />
+                <img src={img.src} alt={`Foto ${i + 1}`} className="h-full w-full object-contain" />
                 {i === 0 && (
                   <span className="absolute left-1 top-1 rounded bg-blue px-1.5 py-0.5 text-[9.5px] font-bold uppercase text-white">
                     Principal
                   </span>
                 )}
               </div>
+              {/* Con el número de la foto: si todos dicen «Quitar foto», un lector de pantalla no sabe cuál */}
               <div className="flex border-t border-ink/10 text-[13px]">
-                <button type="button" onClick={() => mover(i, -1)} disabled={i === 0} className="h-8 flex-1 disabled:opacity-30" aria-label="Mover antes">
+                <button type="button" onClick={() => mover(i, -1)} disabled={i === 0} className="h-8 flex-1 disabled:opacity-30" aria-label={`Mover la foto ${i + 1} antes`}>
                   ←
                 </button>
-                <button type="button" onClick={() => mover(i, 1)} disabled={i === imagenes.length - 1} className="h-8 flex-1 disabled:opacity-30" aria-label="Mover después">
+                <button type="button" onClick={() => mover(i, 1)} disabled={i === imagenes.length - 1} className="h-8 flex-1 disabled:opacity-30" aria-label={`Mover la foto ${i + 1} después`}>
                   →
                 </button>
                 <button
                   type="button"
                   onClick={() => onChange(imagenes.filter((_, k) => k !== i))}
                   className="h-8 flex-1 text-red"
-                  aria-label="Quitar foto"
+                  aria-label={`Quitar la foto ${i + 1}`}
                 >
                   ✕
                 </button>
@@ -143,7 +144,7 @@ function GaleriaEditor({ imagenes, onChange }: { imagenes: Imagen[]; onChange: (
         aria-label="Elegir fotos"
       />
       {error && (
-        <p role="alert" className="mt-2 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+        <p role="alert" className="mt-2 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
           {error}
         </p>
       )}
@@ -333,7 +334,7 @@ function Modal({
           </div>
 
           {error && (
-            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
               {error}
             </p>
           )}
@@ -428,7 +429,7 @@ export default function VehiculosList({ tipo }: { tipo: Tipo }) {
       </div>
 
       {aviso && <p className="mt-4 rounded-lg bg-blue/10 px-3.5 py-2 text-[13px] text-blue-deep">{aviso}</p>}
-      {error && <p className="mt-4 rounded-lg border border-red/30 bg-red/10 px-3.5 py-2 text-[13px] text-red">{error}</p>}
+      {error && <p className="mt-4 rounded-lg border border-red/30 bg-red/10 px-3.5 py-2 text-[13px] text-red-deep">{error}</p>}
 
       {!lista && !error && (
         <div className="mt-6 space-y-2">

@@ -2,8 +2,8 @@ import FichaVehiculo from '@/components/FichaVehiculo'
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconArrow, IconWhatsApp } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
-import { REPUESTOS, photoOfPart } from '@/data/repuestos'
 import { abrirRepuestos } from '@/lib/catalogo'
+import { photoOfPartLive, useRepuestosVivo, type RepuestoConEstado } from '@/lib/repuestos-live'
 import { useVehiculosVivo, type Vehiculo } from '@/lib/vehiculos-live'
 import { useWa } from '@/lib/wa'
 
@@ -21,7 +21,8 @@ const WA_PATINETAS =
  */
 export default function Patinetas() {
   const { patinetas } = useVehiculosVivo()
-  const repuestos = REPUESTOS.filter((r) => /patineta/i.test(r.name))
+  const { repuestos: publicados } = useRepuestosVivo()
+  const repuestos = publicados.filter((r) => /patineta/i.test(r.name))
   if (patinetas.length > 0) return <ConModelos patinetas={patinetas} hayRepuestos={repuestos.length > 0} />
   return <SinModelos repuestos={repuestos} />
 }
@@ -69,9 +70,9 @@ function ConModelos({ patinetas, hayRepuestos }: { patinetas: Vehiculo[]; hayRep
   )
 }
 
-function SinModelos({ repuestos }: { repuestos: typeof REPUESTOS }) {
+function SinModelos({ repuestos }: { repuestos: RepuestoConEstado[] }) {
   const { waLink, waReady } = useWa()
-  const conFoto = repuestos.filter((r) => photoOfPart(r)).slice(0, 6)
+  const conFoto = repuestos.filter((r) => photoOfPartLive(r)).slice(0, 6)
 
   return (
     <section id="patinetas" className="relative bg-paper py-14 sm:py-20">
@@ -123,7 +124,7 @@ function SinModelos({ repuestos }: { repuestos: typeof REPUESTOS }) {
             </Reveal>
             <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
               {conFoto.map((r, i) => {
-                const foto = photoOfPart(r)
+                const foto = photoOfPartLive(r)
                 if (!foto) return null
                 return (
                   <Reveal as="li" key={r.id} delay={i * 60} className="h-full">

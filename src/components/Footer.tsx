@@ -1,10 +1,11 @@
 import { Logo } from '@/components/art/Logo'
-import { STATS } from '@/data/motos'
+import { useCatalogoVivo } from '@/lib/motos-live'
 import { useSettingsVivo } from '@/lib/settings-live'
 import { useWa } from '@/lib/wa'
 
 export default function Footer() {
   const { nav: NAV, contact, social: SOCIAL } = useSettingsVivo()
+  const { stats: STATS } = useCatalogoVivo()
   const { waLink, waReady, WA_GENERAL } = useWa()
   // En el pie van también el inicio y el contacto, que el menú de arriba no lleva
   const ENLACES = [

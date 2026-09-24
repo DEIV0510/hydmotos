@@ -65,10 +65,26 @@ export function photoOfPartLive(r: RepuestoConEstado) {
   return photoOfPart(r)
 }
 
-type Estado = { repuestos: RepuestoConEstado[] }
+/**
+ * Cifras de los repuestos que se ven en la web. Reemplazan a STATS_REPUESTOS
+ * (del archivo generado), que no sabía de los ocultos ni de los creados desde
+ * el panel.
+ */
+function calcularStats(visibles: RepuestoConEstado[]) {
+  const conPrecio = visibles.filter((r) => r.price)
+  return {
+    total: visibles.length,
+    categorias: new Set(visibles.map((r) => r.category)).size,
+    conPrecio: conPrecio.length,
+    minPrice: conPrecio.length ? Math.min(...conPrecio.map((r) => r.price!)) : 0,
+  }
+}
+
+type Estado = { repuestos: RepuestoConEstado[]; stats: ReturnType<typeof calcularStats> }
 
 function construirEstado(repuestos: RepuestoConEstado[]): Estado {
-  return { repuestos: repuestos.filter((r) => r.published) }
+  const visibles = repuestos.filter((r) => r.published)
+  return { repuestos: visibles, stats: calcularStats(visibles) }
 }
 
 const RepuestosVivoContext = createContext<Estado | null>(null)
@@ -102,6 +118,7 @@ export function RepuestosVivoProvider({ children }: { children: ReactNode }) {
   return <RepuestosVivoContext.Provider value={estado}>{children}</RepuestosVivoContext.Provider>
 }
 
+/** Repuestos publicados y sus cifras, ya con lo que haya cambiado el administrador */
 export function useRepuestosVivo() {
   const ctx = useContext(RepuestosVivoContext)
   if (!ctx) throw new Error('useRepuestosVivo debe usarse dentro de <RepuestosVivoProvider>')

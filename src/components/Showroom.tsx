@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconBolt, IconTools, IconWhatsApp } from '@/components/art/Icons'
-import { STATS } from '@/data/motos'
-import { STATS_REPUESTOS } from '@/data/repuestos'
+import { useCatalogoVivo } from '@/lib/motos-live'
+import { useRepuestosVivo } from '@/lib/repuestos-live'
 import { marcoDeVideo, useSettingsVivo } from '@/lib/settings-live'
 import { useWa } from '@/lib/wa'
 
@@ -22,9 +22,12 @@ const WA_LOCAL = 'Hola, ¿cómo llego al local de H&D MOTORENS?'
 export default function Showroom() {
   const { waLink, waReady } = useWa()
   const { videos } = useSettingsVivo()
+  const { stats: STATS } = useCatalogoVivo()
+  const { stats: STATS_REPUESTOS } = useRepuestosVivo()
   const box = useRef<HTMLDivElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   const [cerca, setCerca] = useState(false)
+  const enPantalla = useRef(false)
 
   // El cliente puede cambiar este video desde /admin/contenido → Videos (nota
   // de voz del 23/09); sin eso, el recorrido original del local, vertical.
@@ -40,14 +43,18 @@ export default function Showroom() {
     if (!el) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
+    // Sigue observando después de la primera vez: así el video se pausa al
+    // salir de la sección y sigue al volver, en vez de correr fuera de pantalla
     const io = new IntersectionObserver(
       ([e]) => {
+        enPantalla.current = e.isIntersecting
         if (!e.isIntersecting) {
           video.current?.pause()
           return
         }
         setCerca(true)
-        io.disconnect()
+        // La primera vez aún no hay <source>: arranca el efecto de abajo
+        if (video.current?.querySelector('source')) video.current.play().catch(() => {})
       },
       { rootMargin: '200px 0px' },
     )
@@ -55,9 +62,9 @@ export default function Showroom() {
     return () => io.disconnect()
   }, [])
 
-  // Arranca solo cuando la fuente ya está montada (y otra vez si cambia el video)
+  // Arranca cuando la fuente ya está montada (y otra vez si cambia el video)
   useEffect(() => {
-    if (!cerca) return
+    if (!cerca || !enPantalla.current) return
     video.current?.play().catch(() => {
       /* el navegador puede bloquear el autoplay: se queda el póster */
     })
@@ -65,7 +72,8 @@ export default function Showroom() {
 
   const puntos = [
     { Icon: IconBolt, t: `${STATS.total} modelos en catálogo`, d: 'Motos, scooters y bicicletas eléctricas.' },
-    { Icon: IconTools, t: `${STATS_REPUESTOS.total} repuestos`, d: 'Con referencia y precio publicado.' },
+    // Sin «con precio y referencia»: desde el panel se puede crear uno sin ninguno de los dos
+    { Icon: IconTools, t: `${STATS_REPUESTOS.total} repuestos`, d: 'Búscalos por nombre o referencia.' },
     { Icon: IconWhatsApp, t: 'Atención por WhatsApp', d: 'Pregunta por modelos, repuestos y cómo llegar.' },
   ]
   const wa = waLink(WA_LOCAL)

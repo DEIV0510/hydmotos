@@ -82,7 +82,7 @@ export default function Login({ onEntrar }: { onEntrar: () => void }) {
           </div>
 
           {error && (
-            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+            <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-soft">
               {error}
             </p>
           )}

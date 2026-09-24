@@ -15,7 +15,6 @@ import {
   IconChevron,
   IconWhatsApp,
 } from '@/components/art/Icons'
-import { STATS_REPUESTOS } from '@/data/repuestos'
 import { formatCOP } from '@/data/motos'
 import { useWa } from '@/lib/wa'
 import PartModal, { waForPart } from '@/components/PartModal'
@@ -42,7 +41,7 @@ export default function Parts() {
   const [cat, setCat] = useState<string>('todas')
   const [query, setQuery] = useState('')
   const [shown, setShown] = useState(PAGE)
-  const { repuestos } = useRepuestosVivo()
+  const { repuestos, stats } = useRepuestosVivo()
   const [abierto, setAbierto] = useState<RepuestoConEstado | null>(null)
 
   // Las secciones de patinetas, taller y descuentos abren los repuestos ya filtrados
@@ -80,6 +79,13 @@ export default function Parts() {
   const visibles = lista.slice(0, shown)
   const restantes = lista.length - visibles.length
 
+  // De lo publicado, no del archivo generado: cambia si el cliente oculta o agrega uno
+  const resumen = [
+    `${stats.total} ${stats.total === 1 ? 'repuesto' : 'repuestos'} en ${stats.categorias} ${stats.categorias === 1 ? 'categoría' : 'categorías'}`,
+    stats.minPrice ? `, desde ${formatCOP(stats.minPrice)}` : '',
+    '. Búscalo por nombre o referencia.',
+  ].join('')
+
   return (
     <section id="repuestos" className="relative bg-paper2 py-14 sm:py-20">
       <div className="mx-auto max-w-content px-5 sm:px-8">
@@ -94,7 +100,7 @@ export default function Parts() {
                 eléctrica
               </>
             }
-            sub={`${STATS_REPUESTOS.total} repuestos en ${STATS_REPUESTOS.categorias} categorías, desde ${formatCOP(STATS_REPUESTOS.minPrice)}. Búscalo por nombre o referencia.`}
+            sub={resumen}
           />
 
           <Reveal delay={120}>

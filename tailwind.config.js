@@ -25,7 +25,9 @@ export default {
         // nombre es heredado: empezó como un cian neón, pasó a azul acero y el
         // cliente pidió «más azul eléctrico, que se vea más tecnología» (15/09)
         cyan: { DEFAULT: '#3D8BFF', deep: '#1F66E0' },
-        red: { DEFAULT: '#D62030', btn: '#C0121F', deep: '#8E0A14' },
+        // Texto de error: `deep` sobre claro (7:1) y `soft` sobre oscuro (7,7:1).
+        // El rojo base sobre su propio fondo al 10% quedaba en 3,4-4,3:1.
+        red: { DEFAULT: '#D62030', btn: '#C0121F', deep: '#8E0A14', soft: '#FF8A92' },
       },
       fontFamily: {
         display: ['"Saira Condensed"', 'Impact', 'system-ui', 'sans-serif'],

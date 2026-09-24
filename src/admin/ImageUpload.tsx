@@ -119,7 +119,7 @@ export default function ImageUpload({
         aria-label="Elegir imagen"
       />
       {error && (
-        <p role="alert" className="mt-2 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+        <p role="alert" className="mt-2 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red-deep">
           {error}
         </p>
       )}

@@ -56,6 +56,18 @@ await sql`
 `
 console.log('✓ admin_audit_log')
 
+// Intentos fallidos de inicio de sesión, para el límite por IP de
+// api/_handlers/admin/login.ts. Solo IP y hora: nunca el correo ni la contraseña.
+await sql`
+  create table if not exists admin_login_intentos (
+    id bigserial primary key,
+    ip text not null,
+    creado timestamptz not null default now()
+  )
+`
+await sql`create index if not exists admin_login_intentos_ip_creado on admin_login_intentos (ip, creado)`
+console.log('✓ admin_login_intentos')
+
 // Fase 3: contenido del sitio editable desde /admin/contenido (Hero, contacto,
 // WhatsApp, SEO, menú). Una fila por sección, no una tabla por campo: así se
 // pueden agregar campos nuevos a futuro sin otra migración.

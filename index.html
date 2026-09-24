@@ -27,8 +27,22 @@
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Póster del vídeo de la portada: se pide antes que el JS para que aparezca rápido -->
-    <link rel="preload" as="image" type="image/jpeg" href="/video/hero-poster.jpg" fetchpriority="high" />
+    <!--
+      Póster del vídeo de la portada: se pide antes que el JS para que aparezca
+      rápido. En /admin no: este mismo HTML sirve el panel, que no lo muestra, y
+      el navegador avisaba en la consola de una precarga sin usar.
+    -->
+    <script>
+      if (!/^\/admin(\/|$)/.test(location.pathname)) {
+        var poster = document.createElement('link')
+        poster.rel = 'preload'
+        poster.as = 'image'
+        poster.type = 'image/jpeg'
+        poster.href = '/video/hero-poster.jpg'
+        poster.setAttribute('fetchpriority', 'high')
+        document.head.appendChild(poster)
+      }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

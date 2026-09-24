@@ -1,5 +1,5 @@
-import { STATS_REPUESTOS } from '@/data/repuestos'
 import { useCatalogoVivo } from '@/lib/motos-live'
+import { useRepuestosVivo } from '@/lib/repuestos-live'
 
 /**
  * Franja de datos en movimiento continuo, en el azul eléctrico de la marca.
@@ -12,6 +12,7 @@ import { useCatalogoVivo } from '@/lib/motos-live'
  */
 export default function Marquee() {
   const { stats: STATS } = useCatalogoVivo()
+  const { stats: STATS_REPUESTOS } = useRepuestosVivo()
   const items = [
     'Motos eléctricas',
     'Patinetas eléctricas',

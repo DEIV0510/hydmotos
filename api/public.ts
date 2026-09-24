@@ -27,5 +27,10 @@ const RUTAS = new Map<string, Manejador>([
 export default function handler(req: VercelRequest, res: VercelResponse) {
   const manejar = RUTAS.get(String(req.query.recurso))
   if (!manejar) return res.status(404).json({ ok: false, error: 'No encontrado' })
+  // Todo lo público es de solo lectura: antes un POST respondía 200 con los datos
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    res.setHeader('Allow', 'GET, HEAD')
+    return res.status(405).json({ ok: false, error: 'Método no permitido' })
+  }
   return manejar(req, res)
 }

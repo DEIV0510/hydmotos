@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { REPUESTOS } from '@/data/repuestos'
 import { useCatalogoVivo } from '@/lib/motos-live'
+import { useRepuestosVivo } from '@/lib/repuestos-live'
 import { useSettingsVivo } from '@/lib/settings-live'
 
 /**
@@ -13,10 +13,12 @@ const SITE = 'https://www.hydmotorens.com'
  * Datos estructurados schema.org.
  * Se generan desde el catálogo real, así que los precios del buscador
  * siempre coinciden con los de la web. Solo se declaran los campos de
- * contacto que estén configurados en site.ts: nada inventado.
+ * contacto que estén configurados en el panel (Contenido → Contacto y
+ * Redes): nada inventado.
  */
 export default function StructuredData() {
   const { motos: MOTOS, stats: STATS } = useCatalogoVivo()
+  const { repuestos: REPUESTOS, stats: STATS_REPUESTOS } = useRepuestosVivo()
   const { contact, social: SOCIAL } = useSettingsVivo()
   const address = [contact.address, contact.city].filter(Boolean).join(', ')
 
@@ -25,7 +27,7 @@ export default function StructuredData() {
       '@type': 'AutoDealer',
       '@id': `${SITE}/#organizacion`,
       name: 'H&D MOTORENS',
-      description: `Motos, patinetas y carros eléctricos, taller y repuestos: ${STATS.total} modelos de motos, con autonomía de hasta ${STATS.maxRange} km, y ${REPUESTOS.length} repuestos con precio.`,
+      description: `Motos, patinetas y carros eléctricos, taller y repuestos: ${STATS.total} modelos de motos, con autonomía de hasta ${STATS.maxRange} km, y ${STATS_REPUESTOS.conPrecio} repuestos con precio.`,
       url: SITE,
       image: `${SITE}/og.jpg`,
     }
@@ -94,8 +96,8 @@ export default function StructuredData() {
     return () => {
       el.remove()
     }
-    // Se rehace cuando llegan los precios en vivo (ver src/lib/motos-live.tsx)
-  }, [MOTOS, STATS, contact, SOCIAL, address])
+    // Se rehace cuando llegan los precios en vivo (ver src/lib/motos-live.tsx y repuestos-live.tsx)
+  }, [MOTOS, STATS, REPUESTOS, STATS_REPUESTOS, contact, SOCIAL, address])
 
   return null
 }

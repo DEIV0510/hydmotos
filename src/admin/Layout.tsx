@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import { IconClose } from '@/components/art/Icons'
 import { Logo } from '@/components/art/Logo'
 
 const ITEMS = [
@@ -9,6 +10,34 @@ const ITEMS = [
   { ruta: '/admin/carros', label: 'Carros' },
   { ruta: '/admin/contenido', label: 'Contenido' },
 ]
+
+/**
+ * Fuera de Layout a propósito: definido adentro era un componente nuevo en
+ * cada render, React lo desmontaba y montaba entero y el botón recién pulsado
+ * perdía el foco del teclado.
+ */
+function Menu({ ruta, onElegir }: { ruta: string; onElegir: (destino: string) => void }) {
+  return (
+    <nav aria-label="Secciones del panel" className="space-y-1">
+      {ITEMS.map((it) => {
+        const activo = ruta === it.ruta
+        return (
+          <button
+            key={it.ruta}
+            type="button"
+            onClick={() => onElegir(it.ruta)}
+            aria-current={activo ? 'page' : undefined}
+            className={`flex min-h-[44px] w-full items-center rounded-lg px-3.5 text-left text-[13.5px] font-semibold transition-colors ${
+              activo ? 'bg-blue/15 text-chrome' : 'text-silver hover:bg-white/[0.05] hover:text-chrome'
+            }`}
+          >
+            {it.label}
+          </button>
+        )
+      })}
+    </nav>
+  )
+}
 
 export default function Layout({
   email,
@@ -27,25 +56,10 @@ export default function Layout({
 }) {
   const [menuAbierto, setMenuAbierto] = useState(false)
 
-  const Nav = ({ enMovil = false }: { enMovil?: boolean }) => (
-    <nav className={enMovil ? 'space-y-1' : 'space-y-1'}>
-      {ITEMS.map((it) => (
-        <button
-          key={it.ruta}
-          type="button"
-          onClick={() => {
-            ir(it.ruta)
-            setMenuAbierto(false)
-          }}
-          className={`flex min-h-[44px] w-full items-center rounded-lg px-3.5 text-left text-[13.5px] font-semibold transition-colors ${
-            ruta === it.ruta ? 'bg-blue/15 text-chrome' : 'text-silver hover:bg-white/[0.05] hover:text-chrome'
-          }`}
-        >
-          {it.label}
-        </button>
-      ))}
-    </nav>
-  )
+  const elegir = (destino: string) => {
+    ir(destino)
+    setMenuAbierto(false)
+  }
 
   return (
     <div className="min-h-screen bg-paper text-ink lg:flex">
@@ -53,7 +67,7 @@ export default function Layout({
       <aside className="hidden w-60 shrink-0 flex-col border-r border-ink/10 bg-graphite p-5 lg:flex">
         <Logo compact />
         <div className="mt-8 flex-1">
-          <Nav />
+          <Menu ruta={ruta} onElegir={elegir} />
         </div>
         <div className="border-t border-white/10 pt-4">
           <p className="truncate text-[11.5px] text-silver" title={email}>
@@ -76,24 +90,31 @@ export default function Layout({
           type="button"
           onClick={() => setMenuAbierto((v) => !v)}
           aria-expanded={menuAbierto}
+          aria-controls="menu-admin"
           className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-chrome"
           aria-label={menuAbierto ? 'Cerrar menú' : 'Abrir menú'}
         >
-          {menuAbierto ? '✕' : '☰'}
+          {menuAbierto ? (
+            <IconClose className="h-5 w-5" />
+          ) : (
+            <span className="flex w-[18px] flex-col gap-[4px]" aria-hidden="true">
+              <span className="h-[2px] rounded bg-chrome" />
+              <span className="h-[2px] rounded bg-chrome" />
+              <span className="h-[2px] rounded bg-chrome" />
+            </span>
+          )}
         </button>
       </header>
-      {menuAbierto && (
-        <div className="border-b border-ink/10 bg-graphite p-4 lg:hidden">
-          <Nav enMovil />
-          <button
-            type="button"
-            onClick={onSalir}
-            className="mt-3 min-h-[44px] w-full rounded-lg border border-white/15 text-[13px] font-semibold text-silver"
-          >
-            Cerrar sesión
-          </button>
-        </div>
-      )}
+      <div id="menu-admin" hidden={!menuAbierto} className="border-b border-ink/10 bg-graphite p-4 lg:hidden">
+        <Menu ruta={ruta} onElegir={elegir} />
+        <button
+          type="button"
+          onClick={onSalir}
+          className="mt-3 min-h-[44px] w-full rounded-lg border border-white/15 text-[13px] font-semibold text-silver"
+        >
+          Cerrar sesión
+        </button>
+      </div>
 
       <main className="min-w-0 flex-1 p-5 sm:p-8">{children}</main>
     </div>

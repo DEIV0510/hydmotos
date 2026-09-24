@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Login from './Login'
 import Layout from './Layout'
 import Dashboard from './Dashboard'
@@ -20,6 +21,11 @@ import { useSesion } from './useSesion'
 export default function AdminApp() {
   const sesion = useSesion()
   const [ruta, ir] = useRuta()
+
+  // index.html trae el título de la web; con las dos pestañas abiertas no se distinguían
+  useEffect(() => {
+    document.title = 'Panel · H&D MOTORENS'
+  }, [])
 
   if (sesion.cargando) return null // evita el parpadeo del login antes de saber si ya hay sesión
 
