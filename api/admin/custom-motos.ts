@@ -12,7 +12,15 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
 import { sesionDeLaPeticion } from '../_lib/auth.js'
 import { MOTOS } from '../../src/data/motos.js'
-import { CATEGORIAS_MOTO, idSeguro, idUnico, PRECIO_MAXIMO, precioValido, textoOpcional } from '../_lib/productos.js'
+import {
+  CATEGORIAS_MOTO,
+  enteroOpcional,
+  idSeguro,
+  idUnico,
+  imagenValida,
+  precioValido,
+  textoOpcional,
+} from '../_lib/productos.js'
 
 type FilaCustomMoto = {
   id: string
@@ -36,6 +44,56 @@ type FilaCustomMoto = {
   updated_at: string
 }
 
+type DatosMoto = {
+  name: string
+  category: string
+  price: number | null
+  oldPrice: number | null
+  onSale: boolean
+  published: boolean
+  range: number | null
+  speed: number | null
+  power: number | null
+  battery: string | null
+  capacity: string | null
+  brakes: string | null
+  description: string | null
+  soat: boolean
+  matricula: boolean
+  tecnomecanica: boolean
+}
+
+/** Crear y editar validan igual: o un error para mostrar, o los datos ya con su tipo */
+function leerMoto(b: Record<string, unknown>): DatosMoto | { error: string } {
+  if (typeof b.name !== 'string' || !b.name.trim()) return { error: 'El nombre es obligatorio.' }
+  if (typeof b.category !== 'string' || !CATEGORIAS_MOTO.has(b.category)) {
+    return { error: 'Elige una categoría válida.' }
+  }
+  const price = b.price ?? null
+  const oldPrice = b.oldPrice ?? null
+  if (!precioValido(price) || !precioValido(oldPrice)) {
+    return { error: 'El precio debe ser un número entero positivo.' }
+  }
+  return {
+    name: b.name.trim(),
+    category: b.category,
+    price,
+    oldPrice,
+    onSale: b.onSale === true,
+    published: b.published !== false,
+    range: enteroOpcional(b.range),
+    speed: enteroOpcional(b.speed),
+    power: enteroOpcional(b.power),
+    battery: textoOpcional(b.battery),
+    capacity: textoOpcional(b.capacity),
+    brakes: textoOpcional(b.brakes),
+    description: textoOpcional(b.description),
+    soat: b.soat === true,
+    matricula: b.matricula === true,
+    tecnomecanica: b.tecnomecanica === true,
+  }
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const sesion = sesionDeLaPeticion(req)
   if (!sesion) return res.status(401).json({ ok: false, error: 'Sesión no válida. Vuelve a iniciar sesión.' })
@@ -47,22 +105,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === 'POST') {
     const b = (req.body ?? {}) as Record<string, unknown>
-
-    if (typeof b.name !== 'string' || !b.name.trim()) {
-      return res.status(400).json({ ok: false, error: 'El nombre es obligatorio.' })
-    }
-    if (typeof b.category !== 'string' || !CATEGORIAS_MOTO.has(b.category)) {
-      return res.status(400).json({ ok: false, error: 'Elige una categoría válida.' })
-    }
-    if (!precioValido(b.price ?? null) || !precioValido(b.oldPrice ?? null)) {
-      return res.status(400).json({ ok: false, error: 'El precio debe ser un número entero positivo.' })
-    }
+    const d = leerMoto(b)
+    if ('error' in d) return res.status(400).json({ ok: false, error: d.error })
+    if (!imagenValida(b.image)) return res.status(400).json({ ok: false, error: 'Imagen no válida.' })
+    const image = b.image ?? null
 
     const idsExistentes = new Set([
       ...MOTOS.map((m) => m.id),
       ...(await sql<{ id: string }>`select id from custom_motos`).rows.map((r) => r.id),
     ])
-    const id = idUnico(idSeguro(b.name as string), idsExistentes)
+    const id = idUnico(idSeguro(d.name), idsExistentes)
 
     await sql`
       insert into custom_motos (
@@ -70,17 +122,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         range, speed, power, battery, capacity, brakes, description,
         soat, matricula, tecnomecanica
       ) values (
-        ${id}, ${(b.name as string).trim()}, ${b.category}, ${b.price ?? null}, ${b.oldPrice ?? null},
-        ${Boolean(b.onSale)}, ${b.published !== false}, ${textoOpcional(b.image)},
-        ${Number.isInteger(b.range) ? b.range : null}, ${Number.isInteger(b.speed) ? b.speed : null},
-        ${Number.isInteger(b.power) ? b.power : null}, ${textoOpcional(b.battery)}, ${textoOpcional(b.capacity)},
-        ${textoOpcional(b.brakes)}, ${textoOpcional(b.description)},
-        ${Boolean(b.soat)}, ${Boolean(b.matricula)}, ${Boolean(b.tecnomecanica)}
+        ${id}, ${d.name}, ${d.category}, ${d.price}, ${d.oldPrice}, ${d.onSale}, ${d.published}, ${image},
+        ${d.range}, ${d.speed}, ${d.power}, ${d.battery}, ${d.capacity}, ${d.brakes}, ${d.description},
+        ${d.soat}, ${d.matricula}, ${d.tecnomecanica}
       )
     `
     await sql`
       insert into admin_audit_log (actor, action, detail)
-      values (${sesion.email}, 'create_moto', ${JSON.stringify({ id, name: b.name })})
+      values (${sesion.email}, 'create_moto', ${JSON.stringify({ id, name: d.name })})
     `
     return res.status(200).json({ ok: true, id })
   }
@@ -93,42 +142,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const antes = (await sql<FilaCustomMoto>`select * from custom_motos where id = ${id}`).rows[0]
     if (!antes) return res.status(404).json({ ok: false, error: 'Esa moto no existe.' })
 
-    if (typeof b.name !== 'string' || !b.name.trim()) {
-      return res.status(400).json({ ok: false, error: 'El nombre es obligatorio.' })
-    }
-    if (typeof b.category !== 'string' || !CATEGORIAS_MOTO.has(b.category)) {
-      return res.status(400).json({ ok: false, error: 'Elige una categoría válida.' })
-    }
-    if (!precioValido(b.price ?? null) || !precioValido(b.oldPrice ?? null)) {
-      return res.status(400).json({ ok: false, error: 'El precio debe ser un número entero positivo.' })
-    }
-    const imagenFinal = b.image !== undefined ? textoOpcional(b.image) : antes.image
+    const d = leerMoto(b)
+    if ('error' in d) return res.status(400).json({ ok: false, error: d.error })
+    if (!imagenValida(b.image)) return res.status(400).json({ ok: false, error: 'Imagen no válida.' })
+    // undefined = no se tocó la imagen en el formulario: se conserva la que había
+    const image = b.image === undefined ? antes.image : b.image
 
     await sql`
       update custom_motos set
-        name = ${(b.name as string).trim()},
-        category = ${b.category},
-        price = ${b.price ?? null},
-        old_price = ${b.oldPrice ?? null},
-        on_sale = ${Boolean(b.onSale)},
-        published = ${b.published !== false},
-        image = ${imagenFinal},
-        range = ${Number.isInteger(b.range) ? b.range : null},
-        speed = ${Number.isInteger(b.speed) ? b.speed : null},
-        power = ${Number.isInteger(b.power) ? b.power : null},
-        battery = ${textoOpcional(b.battery)},
-        capacity = ${textoOpcional(b.capacity)},
-        brakes = ${textoOpcional(b.brakes)},
-        description = ${textoOpcional(b.description)},
-        soat = ${Boolean(b.soat)},
-        matricula = ${Boolean(b.matricula)},
-        tecnomecanica = ${Boolean(b.tecnomecanica)},
+        name = ${d.name},
+        category = ${d.category},
+        price = ${d.price},
+        old_price = ${d.oldPrice},
+        on_sale = ${d.onSale},
+        published = ${d.published},
+        image = ${image},
+        range = ${d.range},
+        speed = ${d.speed},
+        power = ${d.power},
+        battery = ${d.battery},
+        capacity = ${d.capacity},
+        brakes = ${d.brakes},
+        description = ${d.description},
+        soat = ${d.soat},
+        matricula = ${d.matricula},
+        tecnomecanica = ${d.tecnomecanica},
         updated_at = now()
       where id = ${id}
     `
     await sql`
       insert into admin_audit_log (actor, action, detail)
-      values (${sesion.email}, 'update_custom_moto', ${JSON.stringify({ id, antes, despues: b })})
+      values (${sesion.email}, 'update_custom_moto', ${JSON.stringify({ id, antes, despues: { ...d, image } })})
     `
     return res.status(200).json({ ok: true })
   }
@@ -136,7 +180,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === 'DELETE') {
     const id = typeof req.query.id === 'string' ? req.query.id : null
     if (!id) return res.status(400).json({ ok: false, error: 'Falta el identificador.' })
-    await sql`delete from custom_motos where id = ${id}`
+    const { rowCount } = await sql`delete from custom_motos where id = ${id}`
+    if (!rowCount) return res.status(404).json({ ok: false, error: 'Esa moto no existe.' })
     await sql`
       insert into admin_audit_log (actor, action, detail)
       values (${sesion.email}, 'delete_custom_moto', ${JSON.stringify({ id })})

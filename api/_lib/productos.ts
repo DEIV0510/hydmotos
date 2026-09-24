@@ -5,18 +5,28 @@
  * cada archivo.
  */
 
-export const PRECIO_MAXIMO = 1_000_000_000 // tope contra un typo, no un límite real de negocio
+const PRECIO_MAXIMO = 1_000_000_000 // tope contra un typo, no un límite real de negocio
 
+/** Quien llama pasa `v ?? null`: aquí undefined ya no llega */
 export function precioValido(v: unknown): v is number | null {
-  return v === null || v === undefined || (typeof v === 'number' && Number.isInteger(v) && v > 0 && v <= PRECIO_MAXIMO)
+  return v === null || (typeof v === 'number' && Number.isInteger(v) && v > 0 && v <= PRECIO_MAXIMO)
 }
 
-/** '' → null; recorta espacios; deja pasar undefined tal cual (== "no se tocó este campo") */
-export function textoOpcional(v: unknown): string | null | undefined {
-  if (v === undefined) return undefined
+/** Autonomía, velocidad, potencia: entero ≥ 0, o null si no vino o no es válido */
+export function enteroOpcional(v: unknown): number | null {
+  return typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 1_000_000 ? v : null
+}
+
+/** '' o cualquier cosa que no sea texto → null; recorta espacios */
+export function textoOpcional(v: unknown): string | null {
   if (typeof v !== 'string') return null
   const limpio = v.trim()
   return limpio.length > 0 ? limpio : null
+}
+
+/** Sin imagen, o una URL https (la que devuelve /api/admin/upload): mismo criterio que motos.ts */
+export function imagenValida(v: unknown): v is string | null | undefined {
+  return v === undefined || v === null || (typeof v === 'string' && /^https:\/\//.test(v))
 }
 
 /** Slug seguro para usar como id: minúsculas, solo [a-z0-9-], máx 80 */
