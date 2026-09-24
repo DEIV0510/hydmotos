@@ -400,7 +400,14 @@ export default function VehiculosList({ tipo }: { tipo: Tipo }) {
       return siguiente.sort((a, b) => a.orden - b.orden)
     })
     setEditando(undefined)
-    setAviso(eliminadoId ? 'Eliminado.' : 'Cambios guardados y ya visibles en la web.')
+    // La API pública se cachea ~30 s: "ya se ve" haría pensar que falló al revisar al instante
+    setAviso(
+      eliminadoId
+        ? 'Eliminado. En unos segundos deja de verse en la web.'
+        : v?.published
+          ? 'Guardado. En unos segundos se ve en la web.'
+          : 'Guardado. Está oculto: no se ve en la web hasta que lo publiques.',
+    )
     setTimeout(() => setAviso(''), 3500)
   }
 

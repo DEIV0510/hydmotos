@@ -358,7 +358,8 @@ export default function ContenidoPanel() {
 
   const onGuardado = (key: keyof Settings, value: unknown) => {
     setSettings((prev) => (prev ? { ...prev, [key]: value } : prev))
-    setAviso('Cambios guardados y ya visibles en la web.')
+    // La API pública se cachea ~30 s: "ya se ve" haría pensar que falló al revisar al instante
+    setAviso('Cambios guardados. En unos segundos se ven en la web.')
     setTimeout(() => setAviso(''), 3500)
   }
 
