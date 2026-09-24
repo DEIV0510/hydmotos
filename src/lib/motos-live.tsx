@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { MOTOS as MOTOS_BASE, photoOf, type Moto } from '@/data/motos'
+import { MOTOS as MOTOS_BASE, photoOf, specsOf, type Moto } from '@/data/motos'
 
 /**
  * Precio, precio anterior, oferta, publicado/oculto e imagen ya no salen solo
@@ -11,7 +11,11 @@ import { MOTOS as MOTOS_BASE, photoOf, type Moto } from '@/data/motos'
  * está en el repo — nunca una pantalla vacía ni un error visible.
  */
 
-export type MotoConEstado = Moto & { published: boolean }
+export type MotoConEstado = Moto & {
+  published: boolean
+  /** Creada desde el panel (custom_motos), no del catálogo generado */
+  custom?: boolean
+}
 
 type Override = {
   price: number | null
@@ -87,6 +91,7 @@ function desdeCustom(f: FilaCustomMoto): MotoConEstado {
     tecnomecanica: f.tecnomecanica,
     source: 'nuevo',
     published: true, // ya vino filtrado por el endpoint público
+    custom: true,
   }
 }
 
@@ -98,6 +103,27 @@ function desdeCustom(f: FilaCustomMoto): MotoConEstado {
 export function photoOfLive(m: MotoConEstado) {
   if (m.image?.startsWith('http')) return { src: m.image, srcSet: undefined }
   return photoOf(m)
+}
+
+/**
+ * Igual que `specsOf` (en el archivo generado), más SOAT, matrícula y
+ * tecnomecánica para las motos creadas desde el panel: su formulario los pide
+ * con casillas explícitas, así que son dato real y no pueden quedar guardados
+ * sin verse. El resto del equipamiento (alarma, pedales…) no se muestra: esa
+ * tabla no lo tiene y specsOf solo lo afirma en las fichas del cliente.
+ * Solo `custom`, no `source: 'nuevo'`: las 'nuevo' del catálogo generado
+ * traen esos tres campos por omisión, no porque alguien los haya marcado.
+ */
+export function specsOfLive(m: MotoConEstado) {
+  const filas = specsOf(m)
+  if (!m.custom) return filas
+  const yn = (v: boolean) => (v ? 'Sí' : 'No')
+  return [
+    ...filas,
+    { label: 'SOAT', value: yn(m.soat) },
+    { label: 'Matrícula', value: yn(m.matricula) },
+    { label: 'Tecnomecánica', value: yn(m.tecnomecanica) },
+  ]
 }
 
 function calcularStats(motos: MotoConEstado[]) {

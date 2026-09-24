@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import PhotoPending from '@/components/art/PhotoPending'
-import { formatCOP, specsOf } from '@/data/motos'
+import { formatCOP } from '@/data/motos'
 import { IconClose, IconWhatsApp } from '@/components/art/Icons'
-import { photoOfLive, type MotoConEstado } from '@/lib/motos-live'
+import { photoOfLive, specsOfLive, type MotoConEstado } from '@/lib/motos-live'
 import { useWa } from '@/lib/wa'
 
 export default function MotoModal({ moto, onClose }: { moto: MotoConEstado | null; onClose: () => void }) {
@@ -154,7 +154,7 @@ export default function MotoModal({ moto, onClose }: { moto: MotoConEstado | nul
               Ficha técnica
             </h3>
             <dl className="mt-3 grid gap-x-8 sm:grid-cols-2">
-              {specsOf(moto).map((s) => (
+              {specsOfLive(moto).map((s) => (
                 <div
                   key={s.label}
                   className="flex items-baseline justify-between gap-4 border-b border-ink/[0.07] py-2.5"
