@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
-import ImageUpload from './ImageUpload'
+import { useEffect, useRef, useState } from 'react'
+import ImageUpload, { subirDataUrl } from './ImageUpload'
 import type {
   ContactSettings,
   HeroSettings,
   NavItem,
   SeoSettings,
   SocialSettings,
+  VideoSettings,
+  VideosSettings,
   WhatsappSettings,
 } from '@/lib/settings-live'
 
@@ -16,6 +18,7 @@ type Settings = {
   seo: SeoSettings
   social: SocialSettings
   nav: { items: NavItem[] }
+  videos: VideosSettings
 }
 
 const TABS = [
@@ -25,6 +28,7 @@ const TABS = [
   { id: 'seo', label: 'SEO' },
   { id: 'social', label: 'Redes' },
   { id: 'nav', label: 'Menú' },
+  { id: 'videos', label: 'Videos' },
 ] as const
 type TabId = (typeof TABS)[number]['id']
 
@@ -47,7 +51,7 @@ function Guardar({ guardando, onClick }: { guardando: boolean; onClick: () => vo
   )
 }
 
-function Error({ mensaje }: { mensaje: string }) {
+function AvisoError({ mensaje }: { mensaje: string }) {
   if (!mensaje) return null
   return (
     <p role="alert" className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
@@ -125,7 +129,7 @@ function HeroTab({ value, onGuardado }: { value: HeroSettings; onGuardado: (k: k
           <p className="mt-1 text-[11px] text-slate">Ej. #motos para ir a una sección de esta página.</p>
         </div>
       </div>
-      <Error mensaje={error} />
+      <AvisoError mensaje={error} />
       <Guardar guardando={guardando} onClick={() => guardar(v)} />
     </div>
   )
@@ -180,7 +184,7 @@ function ContactTab({ value, onGuardado }: { value: ContactSettings; onGuardado:
         <input id="c-maps" className={campo} value={v.mapsUrl} onChange={(e) => setV({ ...v, mapsUrl: e.target.value })} placeholder="https://maps.app.goo.gl/…" />
         <p className="mt-1 text-[11px] text-slate">Si lo llenas, la dirección en la web se vuelve un enlace a Maps.</p>
       </div>
-      <Error mensaje={error} />
+      <AvisoError mensaje={error} />
       <Guardar guardando={guardando} onClick={() => guardar(v)} />
     </div>
   )
@@ -212,7 +216,7 @@ function WhatsappTab({ value, onGuardado }: { value: WhatsappSettings; onGuardad
           {previa}
         </p>
       </div>
-      <Error mensaje={error} />
+      <AvisoError mensaje={error} />
       <Guardar guardando={guardando} onClick={() => guardar(v)} />
     </div>
   )
@@ -256,7 +260,7 @@ function SeoTab({ value, onGuardado }: { value: SeoSettings; onGuardado: (k: key
         <label className={etiqueta} htmlFor="s-canonical">URL canónica</label>
         <input id="s-canonical" className={campo} value={v.canonical} onChange={(e) => setV({ ...v, canonical: e.target.value })} />
       </div>
-      <Error mensaje={error} />
+      <AvisoError mensaje={error} />
       <Guardar guardando={guardando} onClick={() => guardar(v)} />
     </div>
   )
@@ -278,7 +282,7 @@ function SocialTab({ value, onGuardado }: { value: SocialSettings; onGuardado: (
           <input id={`soc-${red}`} className={campo} value={v[red]} onChange={(e) => setV({ ...v, [red]: e.target.value })} placeholder="https://…" />
         </div>
       ))}
-      <Error mensaje={error} />
+      <AvisoError mensaje={error} />
       <Guardar guardando={guardando} onClick={() => guardar(v)} />
     </div>
   )
@@ -337,8 +341,250 @@ function NavTab({ value, onGuardado }: { value: { items: NavItem[] }; onGuardado
           </div>
         </div>
       ))}
-      <Error mensaje={error} />
+      <AvisoError mensaje={error} />
       <Guardar guardando={guardando} onClick={() => guardar({ items })} />
+    </div>
+  )
+}
+
+const TIPOS_VIDEO = ['video/mp4', 'video/webm']
+const MAX_VIDEO_BYTES = 40 * 1024 * 1024 // el mismo tope que api/_handlers/admin/video-token.ts
+
+/**
+ * Abre el video en el navegador antes de subirlo: si no se puede reproducir
+ * aquí, tampoco se vería en la web, así que se rechaza. De paso saca sus
+ * medidas (para enmarcarlo entero en el sitio) y un fotograma como portada.
+ */
+async function leerVideo(file: File): Promise<{ ancho: number; alto: number; portada: string | null }> {
+  const url = URL.createObjectURL(file)
+  const v = document.createElement('video')
+  v.muted = true
+  v.playsInline = true
+  v.preload = 'auto'
+  v.src = url
+  try {
+    await new Promise<void>((listo, fallo) => {
+      v.onloadeddata = () => listo()
+      v.onerror = () =>
+        fallo(new Error('Este video no se puede reproducir en el navegador, así que tampoco se vería en la web. Prueba con un MP4 (así los manda WhatsApp).'))
+      setTimeout(() => fallo(new Error('No se pudo abrir el video. Prueba con un MP4.')), 20000)
+    })
+    const ancho = v.videoWidth
+    const alto = v.videoHeight
+    if (!ancho || !alto) throw new Error('No se pudo leer el tamaño del video.')
+
+    // Portada: un fotograma cerca del principio (el primero suele venir negro)
+    let portada: string | null = null
+    try {
+      v.currentTime = Math.min(1, (v.duration || 2) / 2)
+      await new Promise<void>((listo) => {
+        v.onseeked = () => listo()
+        setTimeout(listo, 5000)
+      })
+      const escala = Math.min(1, 1280 / Math.max(ancho, alto))
+      const c = document.createElement('canvas')
+      c.width = Math.round(ancho * escala)
+      c.height = Math.round(alto * escala)
+      c.getContext('2d')?.drawImage(v, 0, 0, c.width, c.height)
+      portada = c.toDataURL('image/jpeg', 0.82)
+    } catch {
+      portada = null // sin portada el video igual funciona
+    }
+    return { ancho, alto, portada }
+  } finally {
+    URL.revokeObjectURL(url)
+  }
+}
+
+function VideoSlot({
+  titulo,
+  ayuda,
+  destino,
+  actual,
+  porDefecto,
+  onCambio,
+}: {
+  titulo: string
+  ayuda: string
+  destino: 'showroom' | 'promo'
+  actual: VideoSettings | null
+  /** Lo que se ve sin video propio: el original del local, o nada */
+  porDefecto: { src: string; poster: string } | null
+  onCambio: (nuevo: VideoSettings | null) => Promise<boolean>
+}) {
+  const [estado, setEstado] = useState('')
+  const [error, setError] = useState('')
+  const [confirmarQuitar, setConfirmarQuitar] = useState(false)
+  const input = useRef<HTMLInputElement>(null)
+
+  const subir = async (file: File) => {
+    setError('')
+    if (!TIPOS_VIDEO.includes(file.type)) return setError('El video debe ser MP4 (así los manda WhatsApp) o WEBM.')
+    if (file.size > MAX_VIDEO_BYTES) {
+      return setError('El video pesa demasiado: máximo 40 MB. Uno de 30 segundos enviado por WhatsApp suele pesar menos de 15 MB.')
+    }
+    try {
+      setEstado('Revisando el video…')
+      const info = await leerVideo(file)
+
+      setEstado('Preparando la subida…')
+      const r = await fetch('/api/admin/video-token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ destino, tipo: file.type, tamano: file.size }),
+      })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok || !d.ok) throw new Error(d.error || 'No se pudo preparar la subida del video.')
+
+      // Directo del navegador a Blob: el video no pasa por la función de Vercel
+      const { put } = await import('@vercel/blob/client')
+      const blob = await put(d.pathname, file, {
+        access: 'public',
+        token: d.token,
+        contentType: file.type,
+        multipart: file.size > 8 * 1024 * 1024,
+        onUploadProgress: (p) => setEstado(`Subiendo ${Math.round(p.percentage)} %…`),
+      })
+
+      let poster: string | null = null
+      if (info.portada) {
+        setEstado('Guardando la portada…')
+        poster = await subirDataUrl(info.portada, 'contenido', `video-${destino}`).catch(() => null)
+      }
+      setEstado('Guardando…')
+      const ok = await onCambio({ src: blob.url, poster, ancho: info.ancho, alto: info.alto })
+      if (!ok) setError('El video se subió pero no se pudo guardar. Intenta nuevamente.')
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'No se pudo subir el video.')
+    } finally {
+      setEstado('')
+    }
+  }
+
+  const quitar = async () => {
+    setConfirmarQuitar(false)
+    setEstado('Guardando…')
+    await onCambio(null)
+    setEstado('')
+  }
+
+  const mostrar = actual ? { src: actual.src, poster: actual.poster ?? undefined } : porDefecto
+
+  return (
+    <div className="rounded-xl border border-ink/10 bg-white p-4 sm:p-5">
+      <p className="font-semibold text-ink">{titulo}</p>
+      <p className="mt-0.5 text-[12.5px] text-slate">{ayuda}</p>
+
+      <div className="mt-4">
+        {mostrar ? (
+          <video
+            key={mostrar.src}
+            src={mostrar.src}
+            poster={mostrar.poster}
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            className="max-h-72 max-w-full rounded-lg border border-ink/10 bg-ink"
+          />
+        ) : (
+          <p className="rounded-lg border border-dashed border-ink/20 px-3 py-6 text-center text-[12.5px] text-slate">
+            Sin video: el banner muestra solo las ofertas.
+          </p>
+        )}
+        <p className="mt-1.5 text-[11.5px] text-slate">
+          {actual
+            ? `Video subido desde el panel · ${actual.ancho > actual.alto ? 'horizontal' : 'vertical'}`
+            : porDefecto
+              ? 'Video original del sitio'
+              : ''}
+        </p>
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={() => input.current?.click()}
+          disabled={Boolean(estado)}
+          className="min-h-[44px] rounded-full bg-blue px-5 text-[12px] font-bold uppercase tracking-widest2 text-white disabled:opacity-60"
+        >
+          {estado || (actual ? 'Cambiar video' : 'Subir video')}
+        </button>
+        {actual && !estado && !confirmarQuitar && (
+          <button type="button" onClick={() => setConfirmarQuitar(true)} className="text-[12.5px] font-semibold text-red hover:underline">
+            {porDefecto ? 'Volver al video original' : 'Quitar video'}
+          </button>
+        )}
+      </div>
+      {confirmarQuitar && (
+        <div className="mt-3 rounded-lg border border-red/30 bg-red/10 p-3">
+          <p className="text-[13px] text-ink">
+            {porDefecto ? '¿Volver al video original del local?' : '¿Quitar el video del banner?'} El video subido se borra.
+          </p>
+          <div className="mt-2 flex gap-2">
+            <button type="button" onClick={quitar} className="min-h-[38px] rounded-full bg-red px-4 text-[12px] font-bold uppercase tracking-widest2 text-white">
+              Sí
+            </button>
+            <button type="button" onClick={() => setConfirmarQuitar(false)} className="min-h-[38px] rounded-full border border-ink/15 px-4 text-[12px] font-bold uppercase tracking-widest2 text-ink">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+      <p className="mt-3 text-[11px] text-slate">MP4 o WEBM · máximo 40 MB · se ve entero, vertical u horizontal</p>
+      <input
+        ref={input}
+        type="file"
+        accept="video/mp4,video/webm"
+        onChange={(e) => {
+          const file = e.target.files?.[0]
+          e.target.value = ''
+          if (file) subir(file)
+        }}
+        className="sr-only"
+        aria-label={`Elegir ${titulo.toLowerCase()}`}
+      />
+      {error && (
+        <p role="alert" className="mt-3 rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-[13px] text-red">
+          {error}
+        </p>
+      )}
+    </div>
+  )
+}
+
+function VideosTab({ value, onGuardado }: { value: VideosSettings; onGuardado: (k: keyof Settings, v: unknown) => void }) {
+  const [v, setV] = useState(value)
+  const { guardar, error } = useGuardarSeccion('videos', onGuardado)
+  useEffect(() => setV(value), [value])
+
+  // Cada cambio se guarda al momento: subir el video ya es la acción
+  const cambiar = (slot: keyof VideosSettings) => async (nuevo: VideoSettings | null) => {
+    const siguiente = { ...v, [slot]: nuevo }
+    const ok = await guardar(siguiente)
+    if (ok) setV(siguiente)
+    return ok
+  }
+
+  return (
+    <div className="space-y-4">
+      <VideoSlot
+        titulo="Video del local"
+        ayuda="Sección «Así es la tienda». Si no subes uno, se ve el recorrido original del local."
+        destino="showroom"
+        actual={v.showroom}
+        porDefecto={{ src: '/video/showroom.mp4', poster: '/video/showroom-poster.jpg' }}
+        onCambio={cambiar('showroom')}
+      />
+      <VideoSlot
+        titulo="Video del banner de Descuentos"
+        ayuda="Aparece junto a las ofertas, arriba en la página: sirve para una promoción del momento."
+        destino="promo"
+        actual={v.promo}
+        porDefecto={null}
+        onCambio={cambiar('promo')}
+      />
+      <AvisoError mensaje={error} />
     </div>
   )
 }
@@ -367,7 +613,7 @@ export default function ContenidoPanel() {
     <div>
       <h1 className="font-display text-[1.8rem] font-extrabold uppercase text-ink">Contenido</h1>
       <p className="mt-1 text-[13.5px] text-slate">
-        Hero, contacto, WhatsApp, SEO y menú — se aplican directo a la web pública al guardar.
+        Hero, contacto, WhatsApp, SEO, menú y videos — se aplican a la web pública al guardar.
       </p>
 
       {aviso && <p className="mt-4 rounded-lg bg-blue/10 px-3.5 py-2 text-[13px] text-blue-deep">{aviso}</p>}
@@ -418,6 +664,9 @@ export default function ContenidoPanel() {
             </div>
             <div hidden={tab !== 'nav'}>
               <NavTab value={settings.nav} onGuardado={onGuardado} />
+            </div>
+            <div hidden={tab !== 'videos'}>
+              <VideosTab value={settings.videos ?? { showroom: null, promo: null }} onGuardado={onGuardado} />
             </div>
           </div>
         </>

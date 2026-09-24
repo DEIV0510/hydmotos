@@ -70,8 +70,8 @@ export default function Dashboard() {
         imagen del catálogo, y con «+ Nueva» se agregan productos nuevos.{' '}
         <span className="font-semibold text-ink">Patinetas</span> y{' '}
         <span className="font-semibold text-ink">Carros</span> se cargan completos, con sus fotos. En{' '}
-        <span className="font-semibold text-ink">Contenido</span> van el Hero, contacto, WhatsApp, SEO y menú del
-        sitio.
+        <span className="font-semibold text-ink">Contenido</span> van el Hero, contacto, WhatsApp, SEO, menú y
+        los videos del local y de Descuentos.
       </p>
     </div>
   )

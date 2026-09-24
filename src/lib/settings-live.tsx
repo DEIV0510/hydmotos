@@ -57,6 +57,21 @@ export type NavItem = {
   order: number
 }
 
+/** Video subido desde el panel; ancho/alto para enmarcarlo entero, sin recortar */
+export type VideoSettings = {
+  src: string
+  poster: string | null
+  ancho: number
+  alto: number
+}
+
+export type VideosSettings = {
+  /** null = el video original del local (/video/showroom.mp4) */
+  showroom: VideoSettings | null
+  /** null = el banner de Descuentos va sin video */
+  promo: VideoSettings | null
+}
+
 export type SiteSettings = {
   hero: HeroSettings
   contact: ContactSettings
@@ -64,6 +79,7 @@ export type SiteSettings = {
   seo: SeoSettings
   social: SocialSettings
   nav: NavItem[]
+  videos: VideosSettings
 }
 
 const DEFAULTS: SiteSettings = {
@@ -75,9 +91,11 @@ const DEFAULTS: SiteSettings = {
     ctaHref: '#motos',
     poster: null,
   },
+  // Los que el cliente dio el 22-23/09: si la API falla, los botones no pueden
+  // mandar a un número viejo
   contact: {
-    phone: '310 206 3400',
-    whatsapp: '573102063400',
+    phone: '301 438 2277',
+    whatsapp: '573014382277',
     email: '',
     address: 'Calle 44 #3-98',
     city: 'Montería',
@@ -107,6 +125,7 @@ const DEFAULTS: SiteSettings = {
     { id: 'taller', label: 'Taller', href: '#taller', enabled: true, newTab: false, order: 3 },
     { id: 'repuestos', label: 'Repuestos', href: '#repuestos', enabled: true, newTab: false, order: 4 },
   ],
+  videos: { showroom: null, promo: null },
 }
 
 /** Fusiona lo guardado con lo de arriba: un campo que falte (sección nueva, o
@@ -123,6 +142,20 @@ function fusionar(remoto: Partial<Record<keyof SiteSettings, unknown>> | undefin
     seo: { ...DEFAULTS.seo, ...(remoto.seo as Partial<SeoSettings>) },
     social: { ...DEFAULTS.social, ...(remoto.social as Partial<SocialSettings>) },
     nav: nav.filter((n) => n.enabled).sort((a, b) => a.order - b.order),
+    videos: { ...DEFAULTS.videos, ...(remoto.videos as Partial<VideosSettings>) },
+  }
+}
+
+/**
+ * Estilo del marco de un video subido desde el panel: la proporción real del
+ * video (se ve entero, sin recortar) y un ancho máximo si es vertical, para
+ * que un video de celular no ocupe media página de alto.
+ */
+export function marcoDeVideo(v: VideoSettings, anchoMaxVertical: string) {
+  const vertical = v.alto > v.ancho
+  return {
+    style: { aspectRatio: `${v.ancho} / ${v.alto}` },
+    className: vertical ? `mx-auto w-full ${anchoMaxVertical}` : 'w-full',
   }
 }
 

@@ -3,6 +3,7 @@ import { Button, Reveal } from '@/components/ui/Primitives'
 import { IconBolt, IconTools, IconWhatsApp } from '@/components/art/Icons'
 import { STATS } from '@/data/motos'
 import { STATS_REPUESTOS } from '@/data/repuestos'
+import { marcoDeVideo, useSettingsVivo } from '@/lib/settings-live'
 import { useWa } from '@/lib/wa'
 
 const WA_LOCAL = 'Hola, ¿cómo llego al local de H&D MOTORENS?'
@@ -20,9 +21,19 @@ const WA_LOCAL = 'Hola, ¿cómo llego al local de H&D MOTORENS?'
  */
 export default function Showroom() {
   const { waLink, waReady } = useWa()
+  const { videos } = useSettingsVivo()
   const box = useRef<HTMLDivElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   const [cerca, setCerca] = useState(false)
+
+  // El cliente puede cambiar este video desde /admin/contenido → Videos (nota
+  // de voz del 23/09); sin eso, el recorrido original del local, vertical.
+  const propio = videos.showroom
+  const src = propio?.src ?? '/video/showroom.mp4'
+  const poster = propio ? (propio.poster ?? undefined) : '/video/showroom-poster.jpg'
+  const marco = propio
+    ? marcoDeVideo(propio, 'max-w-[300px] lg:max-w-[340px]')
+    : { style: { aspectRatio: '9 / 16' }, className: 'mx-auto w-full max-w-[300px] lg:max-w-[340px]' }
 
   useEffect(() => {
     const el = box.current
@@ -44,13 +55,13 @@ export default function Showroom() {
     return () => io.disconnect()
   }, [])
 
-  // Arranca solo cuando la fuente ya está montada
+  // Arranca solo cuando la fuente ya está montada (y otra vez si cambia el video)
   useEffect(() => {
     if (!cerca) return
     video.current?.play().catch(() => {
       /* el navegador puede bloquear el autoplay: se queda el póster */
     })
-  }, [cerca])
+  }, [cerca, src])
 
   const puntos = [
     { Icon: IconBolt, t: `${STATS.total} modelos en catálogo`, d: 'Motos, scooters y bicicletas eléctricas.' },
@@ -108,22 +119,24 @@ export default function Showroom() {
           </Reveal>
         </div>
 
-        {/* Vídeo vertical, en el marco de un teléfono */}
+        {/* Vertical en el marco de un teléfono; si el del panel es horizontal, a lo ancho */}
         <Reveal delay={140}>
-          <div ref={box} className="relative mx-auto w-full max-w-[300px] lg:max-w-[340px]">
+          <div ref={box} className={`relative ${marco.className}`}>
             <div className="absolute -inset-5 rounded-[42px] bg-blue/8 blur-3xl" aria-hidden="true" />
             <div className="relative overflow-hidden rounded-[28px] border border-white/12 bg-graphite shadow-lift">
               <video
+                key={src}
                 ref={video}
-                poster="/video/showroom-poster.jpg"
+                poster={poster}
                 muted
                 loop
                 playsInline
                 preload="none"
                 aria-label="Recorrido por el local de H&D MOTORENS"
-                className="block aspect-[9/16] w-full object-cover"
+                style={marco.style}
+                className="block w-full object-cover"
               >
-                {cerca && <source src="/video/showroom.mp4" type="video/mp4" />}
+                {cerca && <source src={src} type={src.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />}
               </video>
               <span
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-void/75 to-transparent"

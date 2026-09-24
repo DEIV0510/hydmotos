@@ -5,6 +5,7 @@ import { VIDEOS_PROMO, type VideoPromo } from '@/data/promos'
 import { abrirRepuestos } from '@/lib/catalogo'
 import { useCatalogoVivo } from '@/lib/motos-live'
 import { useRepuestosVivo } from '@/lib/repuestos-live'
+import { marcoDeVideo, useSettingsVivo } from '@/lib/settings-live'
 import { useWa } from '@/lib/wa'
 
 const WA_DESCUENTOS = 'Hola, quiero comprar con descuento en H&D MOTORENS. ¿Qué ofertas tienen ahora?'
@@ -18,11 +19,12 @@ const rebaja = (precio: number, anterior: number) => Math.round(((anterior - pre
  *
  * Ninguna oferta es inventada: salen del catálogo (los modelos con precio
  * anterior en la lista del cliente y los repuestos marcados en oferta en el
- * Excel). Los videos se configuran en src/data/promos.ts; sin videos no hay
- * reproductor.
+ * Excel). El video lo sube el cliente en /admin/contenido → Videos; si no hay,
+ * el de src/data/promos.ts, y si tampoco, no hay reproductor.
  */
 export default function Descuentos() {
   const { waLink, waReady } = useWa()
+  const { videos } = useSettingsVivo()
   const { motos: MOTOS } = useCatalogoVivo()
   const { repuestos: REPUESTOS } = useRepuestosVivo()
   const motos = MOTOS.filter((m) => m.price && m.oldPrice)
@@ -34,7 +36,13 @@ export default function Descuentos() {
     (max, r) => Math.max(max, rebaja(r.price as number, r.oldPrice as number)),
     0,
   )
-  const video: VideoPromo | undefined = VIDEOS_PROMO[0]
+  const propio = videos.promo
+  const video: VideoPromo | undefined = propio
+    ? { src: propio.src, poster: propio.poster ?? undefined, titulo: 'Video de ofertas de H&D MOTORENS' }
+    : VIDEOS_PROMO[0]
+  // Un video de celular (vertical) se ve entero y a un ancho razonable, no
+  // recortado a 16:9
+  const marco = propio ? marcoDeVideo(propio, 'max-w-[320px]') : { style: undefined, className: 'aspect-video w-full' }
   const reducido =
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -90,6 +98,7 @@ export default function Descuentos() {
           <div className="rounded-lg border border-white/10 bg-graphite p-5 sm:p-7">
             {video && (
               <video
+                key={video.src}
                 src={video.src}
                 poster={video.poster}
                 aria-label={video.titulo}
@@ -99,7 +108,8 @@ export default function Descuentos() {
                 loop
                 playsInline
                 preload="metadata"
-                className="mb-6 aspect-video w-full rounded-lg border border-white/10 object-cover"
+                style={marco.style}
+                className={`mb-6 block rounded-lg border border-white/10 object-cover ${marco.className}`}
               />
             )}
 

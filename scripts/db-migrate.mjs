@@ -81,8 +81,8 @@ const semillaSettings = {
     poster: null,
   },
   contact: {
-    phone: '310 206 3400',
-    whatsapp: '573102063400',
+    phone: '301 438 2277',
+    whatsapp: '573014382277',
     email: '',
     address: 'Calle 44 #3-98',
     city: 'Montería',
@@ -105,6 +105,9 @@ const semillaSettings = {
     canonical: 'https://www.hydmotorens.com/',
   },
   social: { instagram: '', facebook: '', tiktok: '', youtube: '' },
+  // null = el video de siempre del local (/video/showroom.mp4) y el banner de
+  // Descuentos sin video, como hasta ahora
+  videos: { showroom: null, promo: null },
   nav: {
     items: [
       { id: 'motos', label: 'Motos', href: '#motos', enabled: true, newTab: false, order: 0 },

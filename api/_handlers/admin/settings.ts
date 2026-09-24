@@ -9,6 +9,7 @@
  * la única barrera.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
+import { del } from '@vercel/blob'
 import { sql } from '@vercel/postgres'
 import { sesionDeLaPeticion } from '../../_lib/auth.js'
 
@@ -99,6 +100,32 @@ const VALIDADORES: Record<string, Validador> = {
     }
     return null
   },
+  videos(v) {
+    const o = v as Record<string, unknown>
+    if (!o || typeof o !== 'object') return 'Formato inválido.'
+    for (const slot of ['showroom', 'promo'] as const) {
+      const x = o[slot] as Record<string, unknown> | null
+      if (x === null) continue
+      if (!x || typeof x !== 'object') return 'Formato de video inválido.'
+      if (!esTextoNoVacio(x.src, 500) || !/^https:\/\//.test(x.src)) return 'La dirección del video no es válida.'
+      if (x.poster !== null && (!esTexto(x.poster, 500) || !/^https:\/\//.test(x.poster))) {
+        return 'La portada del video no es válida.'
+      }
+      for (const lado of ['ancho', 'alto'] as const) {
+        const n = x[lado]
+        if (typeof n !== 'number' || !Number.isInteger(n) || n <= 0 || n > 10000) return 'Las medidas del video no son válidas.'
+      }
+    }
+    return null
+  },
+}
+
+/** Videos y portadas que el panel subió a Blob (no los del propio sitio, como /video/showroom.mp4) */
+function archivosDeVideos(v: unknown): string[] {
+  const o = (v ?? {}) as Record<string, { src?: unknown; poster?: unknown } | null>
+  return ['showroom', 'promo']
+    .flatMap((slot) => [o[slot]?.src, o[slot]?.poster])
+    .filter((u): u is string => typeof u === 'string' && u.includes('.blob.vercel-storage.com/'))
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -114,7 +141,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === 'PATCH') {
     const { key, value } = (req.body ?? {}) as { key?: string; value?: unknown }
-    const validar = typeof key === 'string' ? VALIDADORES[key] : undefined
+    // Object.hasOwn: con VALIDADORES[key] a secas, key="isPrototypeOf" encontraba una
+    // función heredada que devuelve false (= "válido") y guardaba una fila basura
+    const validar = typeof key === 'string' && Object.hasOwn(VALIDADORES, key) ? VALIDADORES[key] : undefined
     if (!validar) return res.status(400).json({ ok: false, error: 'Sección desconocida.' })
 
     const error = validar(value)
@@ -132,6 +161,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       insert into admin_audit_log (actor, action, detail)
       values (${sesion.email}, 'update_settings', ${JSON.stringify({ key, antes: antes?.value ?? null, despues: value })})
     `
+
+    // Un video reemplazado o quitado se borra de Blob (pesan decenas de MB y
+    // se acumularían con cada cambio). Después de guardar, y sin fallar la
+    // respuesta si no se puede: lo importante ya quedó guardado.
+    if (key === 'videos') {
+      const siguen = new Set(archivosDeVideos(value))
+      const sobran = archivosDeVideos(antes?.value).filter((u) => !siguen.has(u))
+      if (sobran.length) await del(sobran).catch((e) => console.error('settings: no se pudo borrar un video viejo', e))
+    }
 
     return res.status(200).json({ ok: true })
   }

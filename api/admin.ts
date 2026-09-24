@@ -21,6 +21,7 @@ import session from './_handlers/admin/session.js'
 import settings from './_handlers/admin/settings.js'
 import upload from './_handlers/admin/upload.js'
 import vehiculos from './_handlers/admin/vehiculos.js'
+import videoToken from './_handlers/admin/video-token.js'
 
 type Manejador = (req: VercelRequest, res: VercelResponse) => unknown
 
@@ -36,6 +37,7 @@ const RUTAS = new Map<string, Manejador>([
   ['custom-motos', customMotos],
   ['custom-repuestos', customRepuestos],
   ['vehiculos', vehiculos],
+  ['video-token', videoToken],
 ])
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
