@@ -20,6 +20,7 @@ import repuestos from './_handlers/admin/repuestos.js'
 import session from './_handlers/admin/session.js'
 import settings from './_handlers/admin/settings.js'
 import upload from './_handlers/admin/upload.js'
+import vehiculos from './_handlers/admin/vehiculos.js'
 
 type Manejador = (req: VercelRequest, res: VercelResponse) => unknown
 
@@ -34,6 +35,7 @@ const RUTAS = new Map<string, Manejador>([
   ['settings', settings],
   ['custom-motos', customMotos],
   ['custom-repuestos', customRepuestos],
+  ['vehiculos', vehiculos],
 ])
 
 export default function handler(req: VercelRequest, res: VercelResponse) {

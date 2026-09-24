@@ -1,8 +1,10 @@
+import FichaVehiculo from '@/components/FichaVehiculo'
 import { Reveal, SectionHead } from '@/components/ui/Primitives'
 import { IconArrow, IconWhatsApp } from '@/components/art/Icons'
 import { formatCOP } from '@/data/motos'
 import { REPUESTOS, photoOfPart } from '@/data/repuestos'
 import { abrirRepuestos } from '@/lib/catalogo'
+import { useVehiculosVivo, type Vehiculo } from '@/lib/vehiculos-live'
 import { useWa } from '@/lib/wa'
 
 const WA_PATINETAS =
@@ -10,14 +12,65 @@ const WA_PATINETAS =
 
 /**
  * Patinetas eléctricas. El cliente las pidió como categoría del menú (notas de
- * voz del 11 y el 15/09), pero en el material todavía no hay ningún modelo: ni
- * fotos, ni nombres, ni precios. La sección no inventa ninguno: invita a
+ * voz del 11 y el 15/09) y después pidió poder cargarlas él mismo (23/09):
+ * salen de /admin/patinetas.
+ *
+ * Mientras no haya ninguna publicada, la sección no inventa modelos: invita a
  * preguntar por los disponibles y enseña lo que sí existe, los repuestos para
  * patineta del catálogo, con su foto y su precio.
  */
 export default function Patinetas() {
-  const { waLink, waReady } = useWa()
+  const { patinetas } = useVehiculosVivo()
   const repuestos = REPUESTOS.filter((r) => /patineta/i.test(r.name))
+  if (patinetas.length > 0) return <ConModelos patinetas={patinetas} hayRepuestos={repuestos.length > 0} />
+  return <SinModelos repuestos={repuestos} />
+}
+
+function ConModelos({ patinetas, hayRepuestos }: { patinetas: Vehiculo[]; hayRepuestos: boolean }) {
+  const n = patinetas.length
+  return (
+    <section id="patinetas" className="relative bg-paper py-14 sm:py-20">
+      <div className="mx-auto max-w-content px-5 sm:px-8">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHead
+            tone="light"
+            eyebrow="04 · Patinetas"
+            title={
+              <>
+                Patinetas
+                <br />
+                eléctricas
+              </>
+            }
+            sub={`${n} ${n === 1 ? 'modelo' : 'modelos'}. Pregunta por la disponibilidad por WhatsApp.`}
+          />
+          {hayRepuestos && (
+            <Reveal delay={120}>
+              <button
+                type="button"
+                onClick={() => abrirRepuestos({ q: 'patineta' })}
+                className="group inline-flex min-h-[44px] items-center gap-2 text-[12px] font-bold uppercase tracking-widest2 text-ink transition-colors hover:text-blue-deep"
+              >
+                Repuestos para patineta
+                <IconArrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </Reveal>
+          )}
+        </div>
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {patinetas.map((v, i) => (
+            <Reveal as="li" key={v.id} delay={i * 80} className="h-full">
+              <FichaVehiculo v={v} tono="claro" />
+            </Reveal>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+function SinModelos({ repuestos }: { repuestos: typeof REPUESTOS }) {
+  const { waLink, waReady } = useWa()
   const conFoto = repuestos.filter((r) => photoOfPart(r)).slice(0, 6)
 
   return (

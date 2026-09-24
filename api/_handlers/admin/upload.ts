@@ -20,7 +20,7 @@ const TIPOS: Record<string, string> = {
   'image/png': 'png',
   'image/webp': 'webp',
 }
-const CARPETAS = new Set(['motos', 'repuestos', 'contenido'])
+const CARPETAS = new Set(['motos', 'repuestos', 'contenido', 'vehiculos'])
 
 function idSeguro(id: unknown): string | null {
   if (typeof id !== 'string') return null

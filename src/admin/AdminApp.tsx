@@ -4,6 +4,7 @@ import Dashboard from './Dashboard'
 import MotosList from './MotosList'
 import RepuestosList from './RepuestosList'
 import ContenidoPanel from './ContenidoPanel'
+import VehiculosList from './VehiculosList'
 import { useRuta } from './router'
 import { useSesion } from './useSesion'
 
@@ -30,6 +31,10 @@ export default function AdminApp() {
         <MotosList />
       ) : ruta === '/admin/repuestos' ? (
         <RepuestosList />
+      ) : ruta === '/admin/patinetas' ? (
+        <VehiculosList tipo="patineta" />
+      ) : ruta === '/admin/carros' ? (
+        <VehiculosList tipo="carro" />
       ) : ruta === '/admin/contenido' ? (
         <ContenidoPanel />
       ) : (

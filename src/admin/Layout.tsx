@@ -5,6 +5,8 @@ const ITEMS = [
   { ruta: '/admin', label: 'Dashboard' },
   { ruta: '/admin/motos', label: 'Motos' },
   { ruta: '/admin/repuestos', label: 'Repuestos' },
+  { ruta: '/admin/patinetas', label: 'Patinetas' },
+  { ruta: '/admin/carros', label: 'Carros' },
   { ruta: '/admin/contenido', label: 'Contenido' },
 ]
 

@@ -65,11 +65,13 @@ export default function Dashboard() {
       </div>
 
       <p className="mt-8 text-[12.5px] text-slate">
-        El panel edita precio, precio anterior, oferta, publicado/oculto e imagen de motos y repuestos, en{' '}
-        <span className="font-semibold text-ink">Motos</span> y{' '}
-        <span className="font-semibold text-ink">Repuestos</span>; y el Hero, contacto, WhatsApp, SEO y menú del
-        sitio en <span className="font-semibold text-ink">Contenido</span>. Banners, categorías y usuarios con
-        roles llegan en las próximas fases.
+        En <span className="font-semibold text-ink">Motos</span> y{' '}
+        <span className="font-semibold text-ink">Repuestos</span> se editan precio, oferta, publicado/oculto e
+        imagen del catálogo, y con «+ Nueva» se agregan productos nuevos.{' '}
+        <span className="font-semibold text-ink">Patinetas</span> y{' '}
+        <span className="font-semibold text-ink">Carros</span> se cargan completos, con sus fotos. En{' '}
+        <span className="font-semibold text-ink">Contenido</span> van el Hero, contacto, WhatsApp, SEO y menú del
+        sitio.
       </p>
     </div>
   )

@@ -10,6 +10,7 @@ import customRepuestos from './_handlers/public/custom-repuestos.js'
 import motosOverrides from './_handlers/public/motos-overrides.js'
 import repuestosOverrides from './_handlers/public/repuestos-overrides.js'
 import settings from './_handlers/public/settings.js'
+import vehiculos from './_handlers/public/vehiculos.js'
 
 type Manejador = (req: VercelRequest, res: VercelResponse) => unknown
 
@@ -20,6 +21,7 @@ const RUTAS = new Map<string, Manejador>([
   ['settings', settings],
   ['custom-motos', customMotos],
   ['custom-repuestos', customRepuestos],
+  ['vehiculos', vehiculos],
 ])
 
 export default function handler(req: VercelRequest, res: VercelResponse) {

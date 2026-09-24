@@ -10,6 +10,7 @@
  *   node --env-file=.env.local scripts/db-migrate.mjs
  */
 import { sql } from '@vercel/postgres'
+import { CARRO, CARRO_MINI } from '../src/data/media.ts'
 
 await sql`
   create table if not exists moto_overrides (
@@ -174,5 +175,65 @@ await sql`
   )
 `
 console.log('✓ custom_repuestos')
+
+// Patinetas y carros, editables desde /admin/patinetas y /admin/carros (el
+// cliente pidió esas dos secciones en el panel, nota de voz del 23/09). Una
+// sola tabla con `tipo`: tienen los mismos campos. `images` es la galería,
+// en orden: [{ src, srcSet?, alt? }].
+await sql`
+  create table if not exists vehiculos (
+    id text primary key,
+    tipo text not null,
+    name text not null,
+    detail text,
+    price integer,
+    old_price integer,
+    on_sale boolean not null default false,
+    published boolean not null default true,
+    images jsonb not null default '[]',
+    description text,
+    range integer,
+    speed integer,
+    orden integer not null default 0,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+  )
+`
+console.log('✓ vehiculos')
+
+// Los dos carros que ya estaban en el sitio (antes fijos en Carros.tsx), con
+// las mismas fotos y sus variantes responsivas. Sin precio: el cliente no lo
+// ha dado. `on conflict do nothing` para no pisar lo que ya se haya editado.
+const fotos = (lista, ids) =>
+  (ids ? ids.map((id) => lista.find((m) => m.id === id)) : lista)
+    .filter(Boolean)
+    .map((m) => ({ src: m.src, srcSet: m.srcSet, alt: m.alt }))
+
+const carrosIniciales = [
+  {
+    id: 'carro-plateado',
+    name: 'Carro eléctrico plateado',
+    detail: '5 puertas',
+    images: fotos(CARRO, ['tres-cuartos', 'lateral', 'frente', 'faro']),
+    orden: 0,
+  },
+  {
+    id: 'carro-azul-claro',
+    name: 'Carro eléctrico azul claro',
+    detail: '2 puertas · techo blanco',
+    images: fotos(CARRO_MINI),
+    orden: 1,
+  },
+]
+let carrosNuevos = 0
+for (const c of carrosIniciales) {
+  const r = await sql`
+    insert into vehiculos (id, tipo, name, detail, images, orden)
+    values (${c.id}, 'carro', ${c.name}, ${c.detail}, ${JSON.stringify(c.images)}, ${c.orden})
+    on conflict (id) do nothing
+  `
+  if (r.rowCount) carrosNuevos++
+}
+console.log(`✓ vehiculos sembrada (${carrosNuevos} carros nuevos de ${carrosIniciales.length})`)
 
 console.log('Listo.')

@@ -4,6 +4,7 @@ import App from './App'
 import { CatalogoVivoProvider } from '@/lib/motos-live'
 import { RepuestosVivoProvider } from '@/lib/repuestos-live'
 import { SettingsVivoProvider } from '@/lib/settings-live'
+import { VehiculosVivoProvider } from '@/lib/vehiculos-live'
 import './index.css'
 
 // El panel de administración es privado y pesado (formularios, tabla): solo
@@ -22,7 +23,9 @@ createRoot(document.getElementById('root')!).render(
       <SettingsVivoProvider>
         <CatalogoVivoProvider>
           <RepuestosVivoProvider>
-            <App />
+            <VehiculosVivoProvider>
+              <App />
+            </VehiculosVivoProvider>
           </RepuestosVivoProvider>
         </CatalogoVivoProvider>
       </SettingsVivoProvider>

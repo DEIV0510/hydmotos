@@ -51,6 +51,30 @@ export function idUnico(base: string, existentes: Set<string>): string {
   return `${base}-${Date.now()}`
 }
 
+export type Imagen = { src: string; srcSet?: string; alt?: string }
+
+/**
+ * Galería de un vehículo: hasta 12 fotos. `src` es una URL https (Blob) o una
+ * ruta del propio sitio ("/carro/…", las fotos que ya estaban); nunca "//…",
+ * que el navegador trataría como otro dominio.
+ */
+export function leerImagenes(v: unknown): Imagen[] | null {
+  if (!Array.isArray(v) || v.length > 12) return null
+  const salida: Imagen[] = []
+  for (const it of v) {
+    const o = it as Record<string, unknown>
+    if (!o || typeof o.src !== 'string' || o.src.length > 500) return null
+    if (!/^https:\/\//.test(o.src) && !/^\/(?!\/)/.test(o.src)) return null
+    const img: Imagen = { src: o.src }
+    if (typeof o.srcSet === 'string' && o.srcSet.length <= 1000) img.srcSet = o.srcSet
+    if (typeof o.alt === 'string' && o.alt.length <= 200) img.alt = o.alt
+    salida.push(img)
+  }
+  return salida
+}
+
+export const TIPOS_VEHICULO = new Set(['patineta', 'carro'])
+
 export const CATEGORIAS_MOTO = new Set(['urbana', 'familiar', 'matricula', 'tricimotor'])
 
 export const ICONOS_REPUESTO = new Set([
