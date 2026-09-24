@@ -10,8 +10,8 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
-import { sesionDeLaPeticion } from '../_lib/auth.js'
-import { MOTOS } from '../../src/data/motos.js'
+import { sesionDeLaPeticion } from '../../_lib/auth.js'
+import { MOTOS } from '../../../src/data/motos.js'
 
 const PRECIO_MAXIMO = 1_000_000_000 // 1.000 millones de COP: tope contra un typo, no un límite real de negocio
 

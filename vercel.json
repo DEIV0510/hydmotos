@@ -1,3 +1,7 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/api/admin/:recurso", "destination": "/api/admin?recurso=:recurso" },
+    { "source": "/api/public/:recurso", "destination": "/api/public?recurso=:recurso" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

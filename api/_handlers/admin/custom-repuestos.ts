@@ -8,9 +8,9 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
-import { sesionDeLaPeticion } from '../_lib/auth.js'
-import { REPUESTOS } from '../../src/data/repuestos.js'
-import { ICONOS_REPUESTO, idSeguro, idUnico, imagenValida, precioValido, textoOpcional } from '../_lib/productos.js'
+import { sesionDeLaPeticion } from '../../_lib/auth.js'
+import { REPUESTOS } from '../../../src/data/repuestos.js'
+import { ICONOS_REPUESTO, idSeguro, idUnico, imagenValida, precioValido, textoOpcional } from '../../_lib/productos.js'
 
 type FilaCustomRepuesto = {
   id: string

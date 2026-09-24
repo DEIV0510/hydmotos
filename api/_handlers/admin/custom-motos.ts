@@ -10,8 +10,8 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
-import { sesionDeLaPeticion } from '../_lib/auth.js'
-import { MOTOS } from '../../src/data/motos.js'
+import { sesionDeLaPeticion } from '../../_lib/auth.js'
+import { MOTOS } from '../../../src/data/motos.js'
 import {
   CATEGORIAS_MOTO,
   enteroOpcional,
@@ -20,7 +20,7 @@ import {
   imagenValida,
   precioValido,
   textoOpcional,
-} from '../_lib/productos.js'
+} from '../../_lib/productos.js'
 
 type FilaCustomMoto = {
   id: string

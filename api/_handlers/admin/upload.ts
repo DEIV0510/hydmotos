@@ -12,7 +12,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { put } from '@vercel/blob'
 import { sql } from '@vercel/postgres'
-import { sesionDeLaPeticion } from '../_lib/auth.js'
+import { sesionDeLaPeticion } from '../../_lib/auth.js'
 
 const MAX_BYTES = 3 * 1024 * 1024 // 3 MB decodidos; deja margen bajo el límite de 4.5 MB del cuerpo de la función
 const TIPOS: Record<string, string> = {

@@ -4,7 +4,7 @@
  * nunca en el código) y, si coincide, pone la cookie de sesión.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { cookieDeSesion, crearSesion, verificarPassword } from '../_lib/auth.js'
+import { cookieDeSesion, crearSesion, verificarPassword } from '../../_lib/auth.js'
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Método no permitido' })

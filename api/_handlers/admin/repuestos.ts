@@ -9,8 +9,8 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
-import { sesionDeLaPeticion } from '../_lib/auth.js'
-import { REPUESTOS } from '../../src/data/repuestos.js'
+import { sesionDeLaPeticion } from '../../_lib/auth.js'
+import { REPUESTOS } from '../../../src/data/repuestos.js'
 
 const PRECIO_MAXIMO = 1_000_000_000
 

@@ -10,7 +10,7 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres'
-import { sesionDeLaPeticion } from '../_lib/auth.js'
+import { sesionDeLaPeticion } from '../../_lib/auth.js'
 
 const TEXTO_MAX = 400
 
